@@ -27,7 +27,7 @@ function CasePage() {
   const [err, setErr] = useState<string | null>(null);
   const [view, setView] = useState<View>("graph");
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  // Inspector can be focused on a different node than the main selection — e.g.
+  // Inspector can be focused on a different node than the main selection - e.g.
   // when clicking a pleading claim, the inspector follows the scrolled-to bundle item.
   const [inspectorId, setInspectorId] = useState<string | null>(null);
   const [selectedEdge, setSelectedEdge] = useState<DataEdge | null>(null);
@@ -207,7 +207,7 @@ function CasePage() {
 
 
   if (err) return <div className="grid min-h-screen place-items-center bg-bg p-6" style={{ color: COLORS.rejected }}>{err}</div>;
-  if (!data) return <div className="grid min-h-screen place-items-center bg-bg font-mono text-[11px] text-ink-dim">loading case…</div>;
+  if (!data) return <div className="grid min-h-screen place-items-center bg-bg font-mono text-[11px] text-ink-dim">loading case...</div>;
 
   const caseTitle = (row.title as string).replace(/\s+v\s+/i, " §V§ ").split("§V§");
 
@@ -224,7 +224,7 @@ function CasePage() {
               {caseTitle[1] && (<><span className="mx-2 italic font-normal text-ink-dim">v.</span>{caseTitle[1]?.trim()}</>)}
             </h1>
             <div className="mt-1 font-mono text-[11px] tracking-wide text-ink-dim">
-              {row.claim_no ?? "—"} &nbsp;·&nbsp; {row.court ?? "—"}
+              {row.claim_no ?? "n/a"} &nbsp;·&nbsp; {row.court ?? "n/a"}
             </div>
           </div>
 
@@ -265,7 +265,7 @@ function CasePage() {
               apiRef={graphApi}
             />
 
-            {/* Central Pleading card — draggable hero piece. */}
+            {/* Central Pleading card - draggable hero piece. */}
             <div
               className="pointer-events-none absolute left-1/2 top-1/2"
               style={{
@@ -330,7 +330,7 @@ function CasePage() {
               />
             )}
 
-            {/* Inspector as a stable right-side drawer — opens on demand. */}
+            {/* Inspector as a stable right-side drawer - opens on demand. */}
             {inspectorOpen && (
               <div
                 className="absolute right-4 top-4 bottom-4 z-20 w-[420px] max-w-[calc(100vw-32px)] animate-in slide-in-from-right-4 fade-in duration-150"

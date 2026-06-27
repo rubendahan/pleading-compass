@@ -208,7 +208,7 @@ export const listFirmMembers = createServerFn({ method: "GET" })
 
 // Demo-only: idempotently ensure a fixed demo admin account exists, with a
 // firm and a seeded case. Returns credentials the client can then use to
-// sign in. PUBLIC ENDPOINT — intentionally exposes a known demo password.
+// sign in. PUBLIC ENDPOINT - intentionally exposes a known demo password.
 export const DEMO_ADMIN_EMAIL = "demo-admin@coherence.app";
 export const DEMO_ADMIN_PASSWORD = "DemoAdmin!2026";
 

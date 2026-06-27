@@ -43,17 +43,17 @@ export const summariseNode = createServerFn({ method: "POST" })
       const isOut = e.source === data.nodeId;
       const other = nodeMap.get(isOut ? e.target : e.source);
       const otherLabel = other
-        ? `${other.label}${other.layer === "claim" || other.layer === "proposition" ? ` — ${(other.fulltext ?? other.text ?? "").slice(0, 140)}` : other.title ? ` — ${other.title}` : ""}`
+        ? `${other.label}${other.layer === "claim" || other.layer === "proposition" ? ` - ${(other.fulltext ?? other.text ?? "").slice(0, 140)}` : other.title ? ` - ${other.title}` : ""}`
         : (isOut ? e.target : e.source);
       return `- ${e.rel}${e.hard ? " (hard)" : ""}${e.own_goal ? " [OWN GOAL]" : ""} ${isOut ? "→" : "←"} ${otherLabel}${e.explanation ? ` :: ${e.explanation}` : ""}`;
     });
 
     const header =
       node.layer === "proposition"
-        ? `ALLEGATION ${node.label} — verdict ${node.verdict}, readiness ${node.readiness}/100, overlay ${node.overlay}\nText: ${node.text}`
+        ? `ALLEGATION ${node.label} - verdict ${node.verdict}, readiness ${node.readiness}/100, overlay ${node.overlay}\nText: ${node.text}`
         : node.layer === "claim"
-          ? `CLAIM ${node.label} — verdict ${node.verdict}, polarity ${node.polarity}, source ${node.source_type}, weight ${node.weight}${node.load_bearing ? ", LOAD-BEARING" : ""}${node.single_source ? ", SINGLE-SOURCE" : ""}\nText: ${node.fulltext}\nQuote: ${node.quote ?? "—"}\nAnchor: ${node.anchor ?? "—"}`
-          : `DOCUMENT ${node.label} — ${node.title} (${node.doc_type}, party: ${node.party})`;
+          ? `CLAIM ${node.label} - verdict ${node.verdict}, polarity ${node.polarity}, source ${node.source_type}, weight ${node.weight}${node.load_bearing ? ", LOAD-BEARING" : ""}${node.single_source ? ", SINGLE-SOURCE" : ""}\nText: ${node.fulltext}\nQuote: ${node.quote ?? "n/a"}\nAnchor: ${node.anchor ?? "n/a"}`
+          : `DOCUMENT ${node.label} - ${node.title} (${node.doc_type}, party: ${node.party})`;
 
     const userMsg = [
       `Case: ${row.title} · ${row.claim_no ?? ""} · ${row.court ?? ""}`,
@@ -79,7 +79,7 @@ export const summariseNode = createServerFn({ method: "POST" })
       }),
     });
 
-    if (res.status === 429) throw new Error("Rate limited — please retry in a moment.");
+    if (res.status === 429) throw new Error("Rate limited. Please retry in a moment.");
     if (res.status === 402) throw new Error("AI credits exhausted on this workspace.");
     if (!res.ok) {
       const t = await res.text().catch(() => "");

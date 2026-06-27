@@ -144,7 +144,7 @@
       "weight": 4.0,
       "verdict": "accepted",
       "anchor": "10¶4",
-      "quote": "Following the marketing review, the board wants a customer loyalty capability included in the platform before we go live — points accrual, redemption at the till, and a member database. I appreciate this was not in the original SOW, but it is now a priority for us.",
+      "quote": "Following the marketing review, the board wants a customer loyalty capability included in the platform before we go live - points accrual, redemption at the till, and a member database. I appreciate this was not in the original SOW, but it is now a priority for us.",
       "prop": null,
       "load_bearing": false,
       "single_source": false,
@@ -164,7 +164,7 @@
       "id": "claim:actual_golive",
       "layer": "claim",
       "label": "The Platform went live on 18 November 2024",
-      "fulltext": "The Platform went live on 18 November 2024 — the revised date.",
+      "fulltext": "The Platform went live on 18 November 2024 - the revised date.",
       "issue": "DELAY/SCOPE",
       "polarity": "bundle",
       "source_type": "witness_statement",
@@ -420,7 +420,7 @@
       "weight": 4.5,
       "verdict": "accepted",
       "anchor": "13¶5",
-      "quote": "D-001 | 19 Nov 2024 | Sev 1 | Stock-sync: tills show incorrect stock counts; oversell on promotional lines | Platform defect — fixed 31 Dec 2024",
+      "quote": "D-001 | 19 Nov 2024 | Sev 1 | Stock-sync: tills show incorrect stock counts; oversell on promotional lines | Platform defect - fixed 31 Dec 2024",
       "prop": null,
       "load_bearing": true,
       "single_source": false
@@ -551,8 +551,8 @@
     {
       "id": "claim:p9b_profit",
       "layer": "claim",
-      "label": "Loss of profit of £4.2m during the Nov–Dec",
-      "fulltext": "Loss of profit of £4.2m during the Nov–Dec peak trading period.",
+      "label": "Loss of profit of £4.2m during the Nov-Dec",
+      "fulltext": "Loss of profit of £4.2m during the Nov-Dec peak trading period.",
       "issue": "QUANTUM/CAP",
       "polarity": "pleading",
       "source_type": "pleading",
@@ -765,7 +765,7 @@
       "rel": "contradicts",
       "kind": "coherence",
       "hard": true,
-      "explanation": "Pleaded interval [40,100]% is disjoint from the expert ~6.2% — a numeric contradiction (cf. numeric_check).",
+      "explanation": "Pleaded interval [40,100]% is disjoint from the expert ~6.2% - a numeric contradiction (cf. numeric_check).",
       "own_goal": true,
       "blocking": true
     },
@@ -806,7 +806,7 @@
       "rel": "contradicts",
       "kind": "coherence",
       "hard": true,
-      "explanation": "TechFlow advised deferral in writing — the opposite of ignoring warnings.",
+      "explanation": "TechFlow advised deferral in writing - the opposite of ignoring warnings.",
       "own_goal": false,
       "blocking": true
     },
@@ -931,7 +931,7 @@
       "rel": "caps",
       "kind": "coherence",
       "hard": false,
-      "explanation": "cl.14 caps recovery — a legal overlay, not a factual contradiction.",
+      "explanation": "cl.14 caps recovery - a legal overlay, not a factual contradiction.",
       "own_goal": false
     },
     {
@@ -984,12 +984,12 @@
         "Original contractual go-live was 1 October 2024.",
         "Meridian requested the loyalty-module change.",
         "Change Order No. 3 revised the go-live date to 18 November 2024.",
-        "The Platform went live on 18 November 2024 — i.e. on the revised date.",
+        "The Platform went live on 18 November 2024 - i.e. on the revised date.",
         "So simple lateness against the original 1 Oct date is not supported unless the pleading addresses the signed variation."
       ],
       "impacts": [
-        "P2: REJECTED_BY_COHERENT_STORY  [legal overlay: SUPERSEDED] — Go-live was contractually revised to 18 November 2024 by Change Order No. 3.",
-        "P3: REJECTED_BY_COHERENT_STORY — Meridian itself requested the loyalty-module change (Change Order No. 3)."
+        "P2: REJECTED_BY_COHERENT_STORY  [legal overlay: SUPERSEDED] - Go-live was contractually revised to 18 November 2024 by Change Order No. 3.",
+        "P3: REJECTED_BY_COHERENT_STORY - Meridian itself requested the loyalty-module change (Change Order No. 3)."
       ],
       "amendments": [
         "Do not plead simple late delivery against the original 1 Oct date without addressing Change Order No. 3.",
@@ -1004,7 +1004,7 @@
         "So the pleaded 'no acceptance / no sign-off at any time' is rejected."
       ],
       "impacts": [
-        "P7: REJECTED_BY_COHERENT_STORY — Meridian signed a Phase 1 UAT Acceptance Certificate on 12 November 2024."
+        "P7: REJECTED_BY_COHERENT_STORY - Meridian signed a Phase 1 UAT Acceptance Certificate on 12 November 2024."
       ],
       "amendments": [
         "Withdraw or qualify the no-acceptance allegation; address the signed UAT Acceptance Certificate."
@@ -1020,7 +1020,7 @@
         "So the >40% figure and TechFlow-only causation are rejected or heavily qualified."
       ],
       "impacts": [
-        "P5: REJECTED_BY_COHERENT_STORY  [legal overlay: CAUSATION_PROBLEM] — The IT expert puts Platform-attributable unavailability at ~6.2%, not 40%; the largest outage was the Claimant's own network provider."
+        "P5: REJECTED_BY_COHERENT_STORY  [legal overlay: CAUSATION_PROBLEM] - The IT expert puts Platform-attributable unavailability at ~6.2%, not 40%; the largest outage was the Claimant's own network provider."
       ],
       "amendments": [
         "Do not plead >40% unless further evidence exists; reduce the outage case to the expert-supported ~6.2% figure.",
@@ -1036,7 +1036,7 @@
         "So 'we warned them, they ignored us and went live' is the opposite of the record."
       ],
       "impacts": [
-        "P4: REJECTED_BY_COHERENT_STORY — TechFlow recommended deferral in writing; Meridian's Programme Director overruled it and instructed go-live, accepting the risk."
+        "P4: REJECTED_BY_COHERENT_STORY - TechFlow recommended deferral in writing; Meridian's Programme Director overruled it and instructed go-live, accepting the risk."
       ],
       "amendments": [
         "Withdraw or recast the 'ignored our warnings' allegation: the contemporaneous record shows TechFlow advised deferral and Meridian overruled it."
@@ -1048,13 +1048,13 @@
       "story": [
         "The Defect Log records Severity-1 stock-synchronisation failures.",
         "The IT expert finds the stock-sync module was below standard.",
-        "So the defects allegation is genuinely supported — it survives."
+        "So the defects allegation is genuinely supported - it survives."
       ],
       "impacts": [
-        "P6: SURVIVES — Genuine Severity-1 stock-sync defects, found below standard by the IT expert."
+        "P6: SURVIVES - Genuine Severity-1 stock-sync defects, found below standard by the IT expert."
       ],
       "amendments": [
-        "Keep the defects allegation (P6) — it is the claimant's strongest, evidence-backed point."
+        "Keep the defects allegation (P6) - it is the claimant's strongest, evidence-backed point."
       ]
     },
     {
@@ -1068,11 +1068,11 @@
         "A DC flood and the wider market are alternative causes of the Q4 shortfall."
       ],
       "impacts": [
-        "P9a: SURVIVES (LEGALLY_RISKY)  [legal overlay: CAPPED] — The quantum expert accepts the GBP 1.8m wasted expenditure (at/around the MSA cl.14 liability cap).",
-        "P9b: REJECTED_BY_COHERENT_STORY  [legal overlay: CAPPED] — The quantum expert puts supportable loss of profit at ~GBP 1.3m, with much of the Q4 shortfall attributable to a DC flood and the wider market; MSA cl.14 excludes loss of profit and caps liability near GBP 1.8m."
+        "P9a: SURVIVES (LEGALLY_RISKY)  [legal overlay: CAPPED] - The quantum expert accepts the GBP 1.8m wasted expenditure (at/around the MSA cl.14 liability cap).",
+        "P9b: REJECTED_BY_COHERENT_STORY  [legal overlay: CAPPED] - The quantum expert puts supportable loss of profit at ~GBP 1.3m, with much of the Q4 shortfall attributable to a DC flood and the wider market; MSA cl.14 excludes loss of profit and caps liability near GBP 1.8m."
       ],
       "amendments": [
-        "Keep the wasted-expenditure claim (P9a) — it is supported by the quantum expert.",
+        "Keep the wasted-expenditure claim (P9a) - it is supported by the quantum expert.",
         "Reduce or qualify the £4.2m loss-of-profit claim (P9b); address the expert figure, the cl.14 cap, and the alternative (flood/market) causation."
       ]
     },
@@ -1081,10 +1081,10 @@
       "solver": "brute_force",
       "story": [
         "No quote-grounded document in the bundle addresses training provision.",
-        "Absence of evidence is not a contradiction — it is a burden / evidence gap."
+        "Absence of evidence is not a contradiction - it is a burden / evidence gap."
       ],
       "impacts": [
-        "P8: NOT_ADDRESSED  [legal overlay: BURDEN_PROBLEM] — No document in the bundle addresses training provision; the burden is the Claimant's."
+        "P8: NOT_ADDRESSED  [legal overlay: BURDEN_PROBLEM] - No document in the bundle addresses training provision; the burden is the Claimant's."
       ],
       "amendments": [
         "Add training records, attendance logs, witness evidence, or correspondence before pleading the training failure strongly. Lawyer review required."
@@ -1099,7 +1099,7 @@
         "This is a legal risk overlay, not a factual contradiction."
       ],
       "impacts": [
-        "P1: NOT_ADDRESSED  [legal overlay: CONTRACTUALLY_BARRED] — No document evidences the alleged pre-contract representation by Mr Frost (10,000 concurrent transactions); MSA cl.22 (entire agreement / non-reliance) would in any event bar reliance on it."
+        "P1: NOT_ADDRESSED  [legal overlay: CONTRACTUALLY_BARRED] - No document evidences the alleged pre-contract representation by Mr Frost (10,000 concurrent transactions); MSA cl.22 (entire agreement / non-reliance) would in any event bar reliance on it."
       ],
       "amendments": [
         "Do not treat non-reliance as a factual contradiction; mark the representation claim as not addressed plus a contractual reliance blocker. Lawyer review required."

@@ -228,7 +228,7 @@ function DocBody({
                   {c.quote && (
                     <p className="mt-1 border-l-2 pl-2 font-display text-[11.5px] italic leading-snug text-ink-dim"
                        style={{ borderColor: COLORS.hair }}>
-                      “{c.quote.length > 220 ? c.quote.slice(0, 219) + "…" : c.quote}”
+                      “{c.quote.length > 220 ? c.quote.slice(0, 219) + "..." : c.quote}”
                     </p>
                   )}
                 </button>

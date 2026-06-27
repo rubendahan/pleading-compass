@@ -207,6 +207,42 @@ function CasePage() {
     if (!selectedId) setInspectorId(null);
   }, [selectedId]);
 
+  // Click on a graph node → contextual action:
+  //  - document  → open the bundle PDF in a new tab
+  //  - proposition / pleading-claim → scroll the docked pleading to that paragraph
+  //  - bundle claim with anchor → open its source PDF
+  // In all cases the inspector also focuses the node.
+  const handleGraphSelect = (id: string | null) => {
+    setSelectedEdge(null);
+    setSelectedId(id);
+    if (!id || !data) return;
+    const node: any = data.nodes.find((n) => n.id === id);
+    if (!node) return;
+
+    if (node.layer === "document") {
+      const tab = String(node.label ?? "").padStart(2, "0");
+      window.open(`/sources/${tab}.pdf`, "_blank", "noopener");
+      return;
+    }
+
+    if (node.layer === "proposition" || (node.layer === "claim" && node.polarity === "pleading")) {
+      requestAnimationFrame(() => {
+        const sel = node.layer === "proposition"
+          ? `[data-prop-id="${CSS.escape(id)}"]`
+          : `[data-pclaim-id="${CSS.escape(id)}"]`;
+        const el = document.querySelector(sel);
+        el?.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+      return;
+    }
+
+    if (node.layer === "claim" && node.anchor) {
+      const tab = String(node.anchor).split("¶")[0]?.padStart(2, "0");
+      if (tab) window.open(`/sources/${tab}.pdf`, "_blank", "noopener");
+    }
+  };
+
+
 
 
   if (err) return <div className="grid min-h-screen place-items-center bg-bg p-6" style={{ color: COLORS.rejected }}>{err}</div>;
@@ -278,7 +314,7 @@ function CasePage() {
                 mode="stress"
                 selectedId={selectedId}
                 hoveredId={hoveredId}
-                onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); }}
+                onSelect={handleGraphSelect}
                 onHover={setHoveredId}
                 onSelectEdge={(e) => { setSelectedId(null); setSelectedEdge(e); }}
                 centerHole={140}

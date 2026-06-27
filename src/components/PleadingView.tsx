@@ -88,7 +88,9 @@ export default function PleadingView({
               return (
                 <li
                   key={p.id}
-                  className="group relative"
+                  data-prop-id={p.id}
+                  data-pclaim-id={pc?.id ?? undefined}
+                  className="group relative scroll-mt-4"
                   onMouseEnter={() => onHover(p.id)}
                   onMouseLeave={() => onHover(null)}
                   style={{ opacity: dim ? 0.35 : 1, transition: "opacity 150ms" }}

@@ -193,11 +193,32 @@ export default function GraphCanvas({
         cooldownTicks={reducedMotion ? 0 : 120}
         warmupTicks={reducedMotion ? 200 : 30}
         d3VelocityDecay={0.35}
-        linkDirectionalParticles={0}
+        linkDirectionalParticles={(l: any) => (focused && isLinkFocused(l, focused) ? 2 : 0)}
+        linkDirectionalParticleSpeed={0.006}
         nodeRelSize={5}
         enableNodeDrag={true}
         enableZoomInteraction={false}
         enablePanInteraction={true}
+        onRenderFramePre={(ctx: CanvasRenderingContext2D) => {
+          // Centre "Pleading" hub — a hollow disc behind the pinned propositions.
+          const radius = Math.max(90, Math.min(size.w, size.h) * 0.16);
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(0, 0, radius - 6, 0, Math.PI * 2);
+          ctx.fillStyle = withAlpha(COLORS.panel2 ?? COLORS.panel, 0.55);
+          ctx.fill();
+          ctx.lineWidth = 1;
+          ctx.setLineDash([3, 4]);
+          ctx.strokeStyle = withAlpha(COLORS.ink, 0.18);
+          ctx.stroke();
+          ctx.setLineDash([]);
+          ctx.font = '600 10px "IBM Plex Mono", monospace';
+          ctx.fillStyle = withAlpha(COLORS.ink, 0.55);
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+          ctx.fillText("PLEADING", 0, -radius + 16);
+          ctx.restore();
+        }}
         onNodeHover={(n: any) => onHover(n ? n.id : null)}
         onNodeClick={(n: any) => {
           onSelect(n?.id ?? null);

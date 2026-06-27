@@ -268,6 +268,7 @@ function DocCardInner({
 
   return (
     <div
+      data-bundle-id={item.doc.id}
       className="rounded-sm border bg-panel"
       style={{
         borderColor: isSelected || isLinked ? COLORS.ink : COLORS.hair,

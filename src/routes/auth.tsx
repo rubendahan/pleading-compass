@@ -133,7 +133,27 @@ function AuthPage() {
           >
             {mode === "signin" ? "No account? Open a cabinet →" : "← Already have an account? Sign in"}
           </button>
+
+          <div className="my-5 flex items-center gap-3">
+            <div className="h-px flex-1" style={{ background: COLORS.hair }} />
+            <span className="font-mono text-[9px] uppercase tracking-[0.28em] text-ink-dim">demo</span>
+            <div className="h-px flex-1" style={{ background: COLORS.hair }} />
+          </div>
+
+          <button
+            type="button"
+            onClick={handleDemoAdmin}
+            disabled={loading}
+            className="w-full rounded-sm border px-3 py-2.5 font-mono text-[11px] uppercase tracking-[0.2em] hover:bg-panel2 disabled:opacity-50"
+            style={{ borderColor: COLORS.ink, color: COLORS.ink }}
+          >
+            ⚡ Enter as demo admin
+          </button>
+          <p className="mt-2 text-center font-mono text-[9px] uppercase tracking-[0.2em] text-ink-dim">
+            instant access · seeded case · no signup
+          </p>
         </div>
+
       </div>
     </div>
   );

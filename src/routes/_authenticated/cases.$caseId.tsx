@@ -15,9 +15,12 @@ export const Route = createFileRoute("/_authenticated/cases/$caseId")({
   component: CasePage,
 });
 
+const CARD_W = 460;
+const CARD_H = 540;
+const HOLE_R = Math.hypot(CARD_W / 2, CARD_H / 2) + 28;
+
 function CasePage() {
   const { caseId } = Route.useParams();
-  // navigate not needed currently
   const fetchCase = useServerFn(getCase);
 
   const [row, setRow] = useState<any>(null);
@@ -27,6 +30,7 @@ function CasePage() {
   const [selectedEdge, setSelectedEdge] = useState<DataEdge | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [inspectorOpen, setInspectorOpen] = useState(false);
+  const [popover, setPopover] = useState<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
     fetchCase({ data: { id: caseId } })
@@ -62,7 +66,10 @@ function CasePage() {
     [focusId, adjacency],
   );
 
-  useEffect(() => { if (selectedId || selectedEdge) setInspectorOpen(true); }, [selectedId, selectedEdge]);
+  useEffect(() => {
+    if (selectedId || selectedEdge) setInspectorOpen(true);
+    else setPopover(null);
+  }, [selectedId, selectedEdge]);
 
   if (err) return <div className="grid min-h-screen place-items-center bg-bg p-6" style={{ color: COLORS.rejected }}>{err}</div>;
   if (!data) return <div className="grid min-h-screen place-items-center bg-bg font-mono text-[11px] text-ink-dim">loading case…</div>;
@@ -87,7 +94,7 @@ function CasePage() {
           </div>
 
           <div className="flex flex-wrap items-end gap-2">
-            <ViewToggle view={view} setView={setView} />
+            <ViewToggle view={view} setView={(v) => { setView(v); setPopover(null); }} />
             <div className="ml-1 flex flex-wrap gap-2">
               <StatChip label="trial readiness" value={`${data.stats.readiness}/100`}
                 color={data.stats.readiness >= 70 ? COLORS.accepted : data.stats.readiness >= 30 ? COLORS.legal : COLORS.rejected} />
@@ -99,54 +106,127 @@ function CasePage() {
         </div>
       </header>
 
-      <main className={`flex-1 grid gap-4 p-4 sm:p-6 ${
-        view === "graph"
-          ? (inspectorOpen ? "lg:grid-cols-[minmax(0,1fr)_minmax(340px,420px)]" : "lg:grid-cols-1")
-          : (inspectorOpen
-              ? "lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1.1fr)_minmax(340px,420px)]"
-              : "lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]")
-      }`}>
-        {view === "graph" ? (
-          <div className="h-[calc(100vh-200px)] min-h-[560px]">
+      {view === "graph" ? (
+        <main className="relative flex-1 p-4 sm:p-6">
+          <div className="relative h-[calc(100vh-160px)] min-h-[640px] w-full">
             <GraphCanvas
               data={data}
-              mode={view === "graph" ? "stress" : view}
+              mode="stress"
               selectedId={selectedId}
               hoveredId={hoveredId}
               onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); }}
               onHover={setHoveredId}
               onSelectEdge={(e) => { setSelectedId(null); setSelectedEdge(e); }}
+              centerHole={HOLE_R}
+              hideHub
+              onNodeClickScreen={(_id, x, y) => setPopover({ x, y })}
             />
-          </div>
-        ) : (
-          <>
-            <div className="h-[calc(100vh-200px)] min-h-[560px]">
-              <PleadingView
-                data={data} selectedId={selectedId} hoveredId={hoveredId} highlightedIds={highlightedIds}
-                onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); }} onHover={setHoveredId}
-                mode={view}
-              />
-            </div>
-            <div className="h-[calc(100vh-200px)] min-h-[560px]">
-              <BundleView
-                data={data} selectedId={selectedId} hoveredId={hoveredId} highlightedIds={highlightedIds}
-                onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); }} onHover={setHoveredId}
-                mode={view}
-              />
-            </div>
-          </>
-        )}
 
-        {inspectorOpen && (
+            {/* Central Pleading card — the hero piece, sits in the graph's hole. */}
+            <div
+              className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+              style={{ width: CARD_W, height: CARD_H }}
+            >
+              <div
+                className="pointer-events-auto h-full w-full overflow-hidden rounded-sm border shadow-[0_24px_60px_-30px_rgba(20,17,13,0.45)]"
+                style={{ borderColor: COLORS.hair, background: COLORS.panel }}
+              >
+                <PleadingView
+                  data={data}
+                  selectedId={selectedId}
+                  hoveredId={hoveredId}
+                  highlightedIds={highlightedIds}
+                  onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); setPopover(null); }}
+                  onHover={setHoveredId}
+                  mode="stress"
+                />
+              </div>
+            </div>
+
+            {/* Floating Inspector popover, anchored to the clicked node. */}
+            {inspectorOpen && popover && (
+              <FloatingInspector
+                x={popover.x}
+                y={popover.y}
+                containerSelector
+              >
+                <Inspector
+                  data={data}
+                  selectedId={selectedId}
+                  selectedEdge={selectedEdge}
+                  onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); }}
+                  onClose={() => { setSelectedId(null); setSelectedEdge(null); setInspectorOpen(false); setPopover(null); }}
+                />
+              </FloatingInspector>
+            )}
+
+            {/* Edge clicks have no screen coords — fall back to a side drawer. */}
+            {inspectorOpen && !popover && (
+              <div className="absolute right-4 top-4 z-20 h-[min(560px,calc(100vh-220px))] w-[380px]">
+                <Inspector
+                  data={data}
+                  selectedId={selectedId}
+                  selectedEdge={selectedEdge}
+                  onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); }}
+                  onClose={() => { setSelectedId(null); setSelectedEdge(null); setInspectorOpen(false); }}
+                />
+              </div>
+            )}
+          </div>
+        </main>
+      ) : (
+        <main className={`flex-1 grid gap-4 p-4 sm:p-6 ${
+          inspectorOpen
+            ? "lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1.1fr)_minmax(340px,420px)]"
+            : "lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]"
+        }`}>
           <div className="h-[calc(100vh-200px)] min-h-[560px]">
-            <Inspector
-              data={data} selectedId={selectedId} selectedEdge={selectedEdge}
-              onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); }}
-              onClose={() => { setSelectedId(null); setSelectedEdge(null); setInspectorOpen(false); }}
+            <PleadingView
+              data={data} selectedId={selectedId} hoveredId={hoveredId} highlightedIds={highlightedIds}
+              onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); }} onHover={setHoveredId}
+              mode={view}
             />
           </div>
-        )}
-      </main>
+          <div className="h-[calc(100vh-200px)] min-h-[560px]">
+            <BundleView
+              data={data} selectedId={selectedId} hoveredId={hoveredId} highlightedIds={highlightedIds}
+              onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); }} onHover={setHoveredId}
+              mode={view}
+            />
+          </div>
+          {inspectorOpen && (
+            <div className="h-[calc(100vh-200px)] min-h-[560px]">
+              <Inspector
+                data={data} selectedId={selectedId} selectedEdge={selectedEdge}
+                onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); }}
+                onClose={() => { setSelectedId(null); setSelectedEdge(null); setInspectorOpen(false); }}
+              />
+            </div>
+          )}
+        </main>
+      )}
+    </div>
+  );
+}
+
+function FloatingInspector({
+  x, y, children,
+}: { x: number; y: number; containerSelector?: boolean; children: React.ReactNode }) {
+  // Clamp the popover inside the visible viewport-ish area.
+  const W = 360, H = 460;
+  const left = Math.max(8, Math.min(x + 18, (typeof window !== "undefined" ? window.innerWidth : 1200) - W - 16));
+  const top = Math.max(8, y - 40);
+  return (
+    <div
+      className="absolute z-30 animate-in fade-in zoom-in-95 duration-150"
+      style={{ left, top, width: W, height: H }}
+    >
+      <div
+        className="h-full w-full overflow-hidden rounded-sm border shadow-[0_32px_70px_-25px_rgba(20,17,13,0.55)]"
+        style={{ borderColor: COLORS.hair, background: COLORS.panel }}
+      >
+        {children}
+      </div>
     </div>
   );
 }

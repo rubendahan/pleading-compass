@@ -107,37 +107,86 @@ function CasePage() {
   }, []);
 
 
-  // When a proposition is selected, pan the graph to its supporting/contradicting
-  // evidence — and in dual-pane views, scroll the bundle to the nearest doc.
+  // Cross-pane interaction: when ANY node is selected, focus the graph on its
+  // supporting/contradicting evidence and scroll the bundle pane to the most
+  // interesting related item.
   useEffect(() => {
     if (!data || !selectedId) return;
     const node = data.nodes.find((n) => n.id === selectedId);
-    if (!node || node.layer !== "proposition") return;
-    // Prefer directly-linked non-proposition nodes via support/contradict/asserts edges.
-    const directIds: string[] = [];
-    for (const e of data.edges) {
-      const s = srcId(e.source); const t = srcId(e.target);
-      const other = s === selectedId ? t : t === selectedId ? s : null;
-      if (!other) continue;
-      const on = data.nodes.find((n) => n.id === other);
-      if (!on || on.layer === "proposition") continue;
-      directIds.push(other);
-    }
-    // Fall back to the broader adjacency map.
-    const ids = directIds.length ? directIds : Array.from(adjacency.get(selectedId) ?? []);
-    if (view === "graph") {
-      graphApi.current?.focusNodes(ids);
+    if (!node) return;
+
+    // Compute candidate "bundle targets" (non-pleading, non-proposition nodes).
+    const isPleadingClaim = (n: any) => n?.layer === "claim" && n.polarity === "pleading";
+    const isBundleNode = (n: any) =>
+      n && (n.layer === "document" || (n.layer === "claim" && n.polarity !== "pleading"));
+
+    let targetIds: string[] = [];
+
+    if (isBundleNode(node)) {
+      // Already a bundle node: scroll right to it.
+      targetIds = [node.id];
     } else {
-      // In stress / coherence dual-pane, scroll the bundle pane to the first match.
-      const first = ids[0];
-      if (first) {
-        requestAnimationFrame(() => {
-          const el = document.querySelector(`[data-bundle-id="${first}"]`);
-          el?.scrollIntoView({ behavior: "smooth", block: "center" });
-        });
+      // Proposition or pleading-claim: collect directly linked bundle nodes.
+      const direct = new Set<string>();
+      for (const e of data.edges) {
+        const s = srcId(e.source); const t = srcId(e.target);
+        const other = s === selectedId ? t : t === selectedId ? s : null;
+        if (!other) continue;
+        const on = data.nodes.find((n) => n.id === other);
+        if (isBundleNode(on)) direct.add(other);
       }
+      // Hop through pleading-claims (proposition → pleading-claim → bundle).
+      if (direct.size === 0) {
+        for (const e of data.edges) {
+          const s = srcId(e.source); const t = srcId(e.target);
+          const mid = s === selectedId ? t : t === selectedId ? s : null;
+          if (!mid) continue;
+          const midNode = data.nodes.find((n) => n.id === mid);
+          if (!isPleadingClaim(midNode)) continue;
+          for (const e2 of data.edges) {
+            const s2 = srcId(e2.source); const t2 = srcId(e2.target);
+            const other = s2 === mid ? t2 : t2 === mid ? s2 : null;
+            if (!other) continue;
+            const on = data.nodes.find((n) => n.id === other);
+            if (isBundleNode(on)) direct.add(other);
+          }
+        }
+      }
+      // Last resort: broader adjacency, filtered to bundle.
+      if (direct.size === 0) {
+        for (const id of adjacency.get(selectedId) ?? []) {
+          const on = data.nodes.find((n) => n.id === id);
+          if (isBundleNode(on)) direct.add(id);
+        }
+      }
+
+      // Rank: load-bearing > contradicts/supports verdict > docs > anything.
+      const score = (id: string) => {
+        const n: any = data.nodes.find((x) => x.id === id);
+        if (!n) return 0;
+        let s = 0;
+        if (n.load_bearing) s += 10;
+        if (n.verdict === "CONTRADICTED" || n.verdict === "SUPPORTED") s += 5;
+        if (n.layer === "document") s += 1;
+        return s;
+      };
+      targetIds = Array.from(direct).sort((a, b) => score(b) - score(a));
+    }
+
+    if (!targetIds.length) return;
+
+    if (view === "graph") {
+      graphApi.current?.focusNodes(targetIds);
+    } else {
+      // Dual-pane: scroll bundle to the top-ranked target.
+      const first = targetIds[0];
+      requestAnimationFrame(() => {
+        const el = document.querySelector(`[data-bundle-id="${CSS.escape(first)}"]`);
+        el?.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
     }
   }, [selectedId, data, adjacency, view]);
+
 
   if (err) return <div className="grid min-h-screen place-items-center bg-bg p-6" style={{ color: COLORS.rejected }}>{err}</div>;
   if (!data) return <div className="grid min-h-screen place-items-center bg-bg font-mono text-[11px] text-ink-dim">loading case…</div>;

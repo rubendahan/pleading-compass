@@ -1,0 +1,1314 @@
+{
+  "meta": {
+    "source": "EU Cellar SPARQL (publications.europa.eu)",
+    "relation": "repeals → supersedes",
+    "challenge": "EU Publications Office — Acquis consolidation",
+    "live": true
+  },
+  "stats": {
+    "acts": 104,
+    "in_force": 52,
+    "superseded": 52,
+    "relations": 60
+  },
+  "nodes": [
+    {
+      "id": "12006M/PRO/10",
+      "label": "12006M/PRO/10",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "21984A1211(06)",
+      "label": "21984A1211(06)",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "31971R1408",
+      "label": "31971R1408",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "31971R1705",
+      "label": "31971R1705",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31974R3191",
+      "label": "31974R3191",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "31975R0347",
+      "label": "31975R0347",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "31975R2698",
+      "label": "31975R2698",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "31977R0426",
+      "label": "31977R0426",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "31982R1859",
+      "label": "31982R1859",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "31983R3419",
+      "label": "31983R3419",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "31985R0552",
+      "label": "31985R0552",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "31986R3799",
+      "label": "31986R3799",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31987R1782",
+      "label": "31987R1782",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "31987R1787",
+      "label": "31987R1787",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "31987R4131",
+      "label": "31987R4131",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31987R4135",
+      "label": "31987R4135",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31987R4136",
+      "label": "31987R4136",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "31988R0015",
+      "label": "31988R0015",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "31990R0945",
+      "label": "31990R0945",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "31991R1365",
+      "label": "31991R1365",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31991R1656",
+      "label": "31991R1656",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31991R3717",
+      "label": "31991R3717",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31992R1823",
+      "label": "31992R1823",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31992R2333",
+      "label": "31992R2333",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "31993R2697",
+      "label": "31993R2697",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "31994D0474",
+      "label": "31994D0474",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "31994R1323",
+      "label": "31994R1323",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "31998D0235",
+      "label": "31998D0235",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "31998D0372",
+      "label": "31998D0372",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "31999R1255",
+      "label": "31999R1255",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "32001D0651",
+      "label": "32001D0651",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "32001R1260",
+      "label": "32001R1260",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "32001R1543",
+      "label": "32001R1543",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "32004D0639",
+      "label": "32004D0639",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "32004D0835",
+      "label": "32004D0835",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "32004R0139",
+      "label": "32004R0139",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "32008R1180",
+      "label": "32008R1180",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "32009D0804",
+      "label": "32009D0804",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "32009R1225",
+      "label": "32009R1225",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "32009R1234",
+      "label": "32009R1234",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "32011R0492",
+      "label": "32011R0492",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "32011R0543",
+      "label": "32011R0543",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "32013R0428",
+      "label": "32013R0428",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "32013R0576",
+      "label": "32013R0576",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "32014D0209",
+      "label": "32014D0209",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "32014R0559",
+      "label": "32014R0559",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "32015D0290",
+      "label": "32015D0290",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "32016D1353",
+      "label": "32016D1353",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "32016R1377",
+      "label": "32016R1377",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "32017R0117",
+      "label": "32017R0117",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "32017R1145",
+      "label": "32017R1145",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "32017R1377",
+      "label": "32017R1377",
+      "layer": "act",
+      "verdict": "accepted",
+      "in_force": true,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "11985I216",
+      "label": "11985I216",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "11997D/PRO/11",
+      "label": "11997D/PRO/11",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "21973A0722(02)",
+      "label": "21973A0722(02)",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "21980D1231(06)",
+      "label": "21980D1231(06)",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31963R0036",
+      "label": "31963R0036",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31966R0091",
+      "label": "31966R0091",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31969R2049",
+      "label": "31969R2049",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31974R0002",
+      "label": "31974R0002",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31974R0304",
+      "label": "31974R0304",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31974R0752",
+      "label": "31974R0752",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31975R1860",
+      "label": "31975R1860",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31976R0111",
+      "label": "31976R0111",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "31979R0485",
+      "label": "31979R0485",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31980R0486",
+      "label": "31980R0486",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31980R3449",
+      "label": "31980R3449",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31981R1723",
+      "label": "31981R1723",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31985R3309",
+      "label": "31985R3309",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31986R3644",
+      "label": "31986R3644",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31987D0074",
+      "label": "31987D0074",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31987D0081",
+      "label": "31987D0081",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31987R1355",
+      "label": "31987R1355",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31987R3073",
+      "label": "31987R3073",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31988R0079",
+      "label": "31988R0079",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31989D0469",
+      "label": "31989D0469",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31989R2918",
+      "label": "31989R2918",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31990D0351",
+      "label": "31990D0351",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31991D0277",
+      "label": "31991D0277",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31992D0140",
+      "label": "31992D0140",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31992R3589",
+      "label": "31992R3589",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31993D0183",
+      "label": "31993D0183",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31993R2454",
+      "label": "31993R2454",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "31994R0220",
+      "label": "31994R0220",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31997R1310",
+      "label": "31997R1310",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "31998R0905",
+      "label": "31998R0905",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "32000D0432",
+      "label": "32000D0432",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "32000R2584",
+      "label": "32000R2584",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "32004R1994",
+      "label": "32004R1994",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "32005R1495",
+      "label": "32005R1495",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "32007D0643",
+      "label": "32007D0643",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "32008R0521",
+      "label": "32008R0521",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "32008R1150",
+      "label": "32008R1150",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "32008R1277",
+      "label": "32008R1277",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "32009R0898",
+      "label": "32009R0898",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "32010R0929",
+      "label": "32010R0929",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "32011D0630",
+      "label": "32011D0630",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": true,
+      "weight": 2.0
+    },
+    {
+      "id": "32011R1034",
+      "label": "32011R1034",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "32011R1183",
+      "label": "32011R1183",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "32012R0052",
+      "label": "32012R0052",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "32013D0021",
+      "label": "32013D0021",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "32013D0631",
+      "label": "32013D0631",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "32015D1737",
+      "label": "32015D1737",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    },
+    {
+      "id": "32015R1778",
+      "label": "32015R1778",
+      "layer": "act",
+      "verdict": "rejected",
+      "in_force": false,
+      "is_repealer": false,
+      "weight": 1.0
+    }
+  ],
+  "edges": [
+    {
+      "source": "31992R2333",
+      "target": "31985R3309",
+      "rel": "supersedes",
+      "explanation": "31992R2333 repeals 31985R3309"
+    },
+    {
+      "source": "32013R0576",
+      "target": "32004R1994",
+      "rel": "supersedes",
+      "explanation": "32013R0576 repeals 32004R1994"
+    },
+    {
+      "source": "32014R0559",
+      "target": "32011R1183",
+      "rel": "supersedes",
+      "explanation": "32014R0559 repeals 32011R1183"
+    },
+    {
+      "source": "32017R1145",
+      "target": "32005R1495",
+      "rel": "supersedes",
+      "explanation": "32017R1145 repeals 32005R1495"
+    },
+    {
+      "source": "32014D0209",
+      "target": "32013D0021",
+      "rel": "supersedes",
+      "explanation": "32014D0209 repeals 32013D0021"
+    },
+    {
+      "source": "31975R2698",
+      "target": "31975R1860",
+      "rel": "supersedes",
+      "explanation": "31975R2698 repeals 31975R1860"
+    },
+    {
+      "source": "31993R2454",
+      "target": "31987R4136",
+      "rel": "supersedes",
+      "explanation": "31993R2454 repeals 31987R4136"
+    },
+    {
+      "source": "32011R0543",
+      "target": "32008R1277",
+      "rel": "supersedes",
+      "explanation": "32011R0543 repeals 32008R1277"
+    },
+    {
+      "source": "32008R1180",
+      "target": "32000R2584",
+      "rel": "supersedes",
+      "explanation": "32008R1180 repeals 32000R2584"
+    },
+    {
+      "source": "32017R0117",
+      "target": "32015R1778",
+      "rel": "supersedes",
+      "explanation": "32017R0117 repeals 32015R1778"
+    },
+    {
+      "source": "31994D0474",
+      "target": "31989D0469",
+      "rel": "supersedes",
+      "explanation": "31994D0474 repeals 31989D0469"
+    },
+    {
+      "source": "32001D0651",
+      "target": "32000D0432",
+      "rel": "supersedes",
+      "explanation": "32001D0651 repeals 32000D0432"
+    },
+    {
+      "source": "31993R2454",
+      "target": "31991R1656",
+      "rel": "supersedes",
+      "explanation": "31993R2454 repeals 31991R1656"
+    },
+    {
+      "source": "31998D0372",
+      "target": "31993D0183",
+      "rel": "supersedes",
+      "explanation": "31998D0372 repeals 31993D0183"
+    },
+    {
+      "source": "31993R2454",
+      "target": "31987R4131",
+      "rel": "supersedes",
+      "explanation": "31993R2454 repeals 31987R4131"
+    },
+    {
+      "source": "31998D0235",
+      "target": "31987D0074",
+      "rel": "supersedes",
+      "explanation": "31998D0235 repeals 31987D0074"
+    },
+    {
+      "source": "32011D0630",
+      "target": "32004D0639",
+      "rel": "supersedes",
+      "explanation": "32011D0630 repeals 32004D0639"
+    },
+    {
+      "source": "31993R2454",
+      "target": "31991R1365",
+      "rel": "supersedes",
+      "explanation": "31993R2454 repeals 31991R1365"
+    },
+    {
+      "source": "31990R0945",
+      "target": "31989R2918",
+      "rel": "supersedes",
+      "explanation": "31990R0945 repeals 31989R2918"
+    },
+    {
+      "source": "31994R1323",
+      "target": "31994R0220",
+      "rel": "supersedes",
+      "explanation": "31994R1323 repeals 31994R0220"
+    },
+    {
+      "source": "31987R1787",
+      "target": "31987R1355",
+      "rel": "supersedes",
+      "explanation": "31987R1787 repeals 31987R1355"
+    },
+    {
+      "source": "32011R0492",
+      "target": "11985I216",
+      "rel": "supersedes",
+      "explanation": "32011R0492 repeals 11985I216"
+    },
+    {
+      "source": "31999R1255",
+      "target": "31981R1723",
+      "rel": "supersedes",
+      "explanation": "31999R1255 repeals 31981R1723"
+    },
+    {
+      "source": "32016R1377",
+      "target": "32011R1034",
+      "rel": "supersedes",
+      "explanation": "32016R1377 repeals 32011R1034"
+    },
+    {
+      "source": "31993R2454",
+      "target": "31987R4135",
+      "rel": "supersedes",
+      "explanation": "31993R2454 repeals 31987R4135"
+    },
+    {
+      "source": "12006M/PRO/10",
+      "target": "11997D/PRO/11",
+      "rel": "supersedes",
+      "explanation": "12006M/PRO/10 repeals 11997D/PRO/11"
+    },
+    {
+      "source": "32013R0576",
+      "target": "32012R0052",
+      "rel": "supersedes",
+      "explanation": "32013R0576 repeals 32012R0052"
+    },
+    {
+      "source": "31988R0015",
+      "target": "31987R3073",
+      "rel": "supersedes",
+      "explanation": "31988R0015 repeals 31987R3073"
+    },
+    {
+      "source": "31974R3191",
+      "target": "31974R0002",
+      "rel": "supersedes",
+      "explanation": "31974R3191 repeals 31974R0002"
+    },
+    {
+      "source": "31998D0235",
+      "target": "31987D0081",
+      "rel": "supersedes",
+      "explanation": "31998D0235 repeals 31987D0081"
+    },
+    {
+      "source": "31993R2454",
+      "target": "31991R3717",
+      "rel": "supersedes",
+      "explanation": "31993R2454 repeals 31991R3717"
+    },
+    {
+      "source": "32013R0576",
+      "target": "32009R0898",
+      "rel": "supersedes",
+      "explanation": "32013R0576 repeals 32009R0898"
+    },
+    {
+      "source": "32004D0835",
+      "target": "31992D0140",
+      "rel": "supersedes",
+      "explanation": "32004D0835 repeals 31992D0140"
+    },
+    {
+      "source": "32009R1234",
+      "target": "32008R1150",
+      "rel": "supersedes",
+      "explanation": "32009R1234 repeals 32008R1150"
+    },
+    {
+      "source": "31983R3419",
+      "target": "31980R3449",
+      "rel": "supersedes",
+      "explanation": "31983R3419 repeals 31980R3449"
+    },
+    {
+      "source": "32015D0290",
+      "target": "32013D0631",
+      "rel": "supersedes",
+      "explanation": "32015D0290 repeals 32013D0631"
+    },
+    {
+      "source": "32016D1353",
+      "target": "32007D0643",
+      "rel": "supersedes",
+      "explanation": "32016D1353 repeals 32007D0643"
+    },
+    {
+      "source": "32004R0139",
+      "target": "31997R1310",
+      "rel": "supersedes",
+      "explanation": "32004R0139 repeals 31997R1310"
+    },
+    {
+      "source": "32017R1377",
+      "target": "32015D1737",
+      "rel": "supersedes",
+      "explanation": "32017R1377 repeals 32015D1737"
+    },
+    {
+      "source": "31993R2697",
+      "target": "31992R3589",
+      "rel": "supersedes",
+      "explanation": "31993R2697 repeals 31992R3589"
+    },
+    {
+      "source": "31987R4136",
+      "target": "31979R0485",
+      "rel": "supersedes",
+      "explanation": "31987R4136 repeals 31979R0485"
+    },
+    {
+      "source": "31977R0426",
+      "target": "31974R0752",
+      "rel": "supersedes",
+      "explanation": "31977R0426 repeals 31974R0752"
+    },
+    {
+      "source": "32001R1543",
+      "target": "31988R0079",
+      "rel": "supersedes",
+      "explanation": "32001R1543 repeals 31988R0079"
+    },
+    {
+      "source": "31975R0347",
+      "target": "31974R0304",
+      "rel": "supersedes",
+      "explanation": "31975R0347 repeals 31974R0304"
+    },
+    {
+      "source": "31976R0111",
+      "target": "31971R1705",
+      "rel": "supersedes",
+      "explanation": "31976R0111 repeals 31971R1705"
+    },
+    {
+      "source": "31982R1859",
+      "target": "31966R0091",
+      "rel": "supersedes",
+      "explanation": "31982R1859 repeals 31966R0091"
+    },
+    {
+      "source": "31976R0111",
+      "target": "31975R0347",
+      "rel": "supersedes",
+      "explanation": "31976R0111 repeals 31975R0347"
+    },
+    {
+      "source": "31993R2454",
+      "target": "31992R1823",
+      "rel": "supersedes",
+      "explanation": "31993R2454 repeals 31992R1823"
+    },
+    {
+      "source": "32009D0804",
+      "target": "21973A0722(02)",
+      "rel": "supersedes",
+      "explanation": "32009D0804 repeals 21973A0722(02)"
+    },
+    {
+      "source": "32014R0559",
+      "target": "32008R0521",
+      "rel": "supersedes",
+      "explanation": "32014R0559 repeals 32008R0521"
+    },
+    {
+      "source": "21984A1211(06)",
+      "target": "21980D1231(06)",
+      "rel": "supersedes",
+      "explanation": "21984A1211(06) repeals 21980D1231(06)"
+    },
+    {
+      "source": "32001R1260",
+      "target": "31969R2049",
+      "rel": "supersedes",
+      "explanation": "32001R1260 repeals 31969R2049"
+    },
+    {
+      "source": "32009R1225",
+      "target": "31998R0905",
+      "rel": "supersedes",
+      "explanation": "32009R1225 repeals 31998R0905"
+    },
+    {
+      "source": "31987R1782",
+      "target": "31986R3644",
+      "rel": "supersedes",
+      "explanation": "31987R1782 repeals 31986R3644"
+    },
+    {
+      "source": "32013R0428",
+      "target": "32010R0929",
+      "rel": "supersedes",
+      "explanation": "32013R0428 repeals 32010R0929"
+    },
+    {
+      "source": "31971R1408",
+      "target": "31963R0036",
+      "rel": "supersedes",
+      "explanation": "31971R1408 repeals 31963R0036"
+    },
+    {
+      "source": "31993R2454",
+      "target": "31986R3799",
+      "rel": "supersedes",
+      "explanation": "31993R2454 repeals 31986R3799"
+    },
+    {
+      "source": "31985R0552",
+      "target": "31980R0486",
+      "rel": "supersedes",
+      "explanation": "31985R0552 repeals 31980R0486"
+    },
+    {
+      "source": "32004D0639",
+      "target": "31991D0277",
+      "rel": "supersedes",
+      "explanation": "32004D0639 repeals 31991D0277"
+    },
+    {
+      "source": "31998D0235",
+      "target": "31990D0351",
+      "rel": "supersedes",
+      "explanation": "31998D0235 repeals 31990D0351"
+    }
+  ]
+}

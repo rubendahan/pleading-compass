@@ -196,6 +196,10 @@ export const createDemoCase = createServerFn({ method: "POST" })
       .maybeSingle();
     if (!prof?.firm_id) throw new Error("No firm");
     const m = (demoCase as any).meta ?? {};
+    // Reuse an existing case of the same title instead of piling up duplicates.
+    const { data: existing } = await supabase
+      .from("cases").select("id").eq("firm_id", prof.firm_id).eq("title", m.case ?? "Demo Case").limit(1).maybeSingle();
+    if (existing?.id) return existing;
     const { data, error } = await supabase
       .from("cases")
       .insert({
@@ -221,6 +225,9 @@ export const createEuCase = createServerFn({ method: "POST" })
       .from("profiles").select("firm_id").eq("id", userId).maybeSingle();
     if (!prof?.firm_id) throw new Error("No firm");
     const m = (euCase as any).meta ?? {};
+    const { data: existing } = await supabase
+      .from("cases").select("id").eq("firm_id", prof.firm_id).eq("title", m.case ?? "EU Case").limit(1).maybeSingle();
+    if (existing?.id) return existing;
     const { data, error } = await supabase
       .from("cases")
       .insert({
@@ -234,6 +241,17 @@ export const createEuCase = createServerFn({ method: "POST" })
       .select("id").single();
     if (error) throw new Error(error.message);
     return data;
+  });
+
+// Delete a case (RLS scopes it to the user's firm).
+export const deleteCase = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: { id: string }) => z.object({ id: z.string().uuid() }).parse(input))
+  .handler(async ({ data, context }) => {
+    const { supabase } = context;
+    const { error } = await supabase.from("cases").delete().eq("id", data.id);
+    if (error) throw new Error(error.message);
+    return { ok: true };
   });
 
 export const listFirmMembers = createServerFn({ method: "GET" })

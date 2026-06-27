@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { supabase } from "@/integrations/supabase/client";
-import { getMyContext, listCases, createDemoCase, createEuCase, inviteLawyer, listFirmMembers } from "@/lib/firm.functions";
+import { getMyContext, listCases, createDemoCase, createEuCase, deleteCase, inviteLawyer, listFirmMembers } from "@/lib/firm.functions";
 import { COLORS } from "@/lib/pleading";
 
 export const Route = createFileRoute("/_authenticated/cases/")({
@@ -15,6 +15,7 @@ function CasesPage() {
   const fetchCases = useServerFn(listCases);
   const seed = useServerFn(createDemoCase);
   const seedEu = useServerFn(createEuCase);
+  const del = useServerFn(deleteCase);
   const invite = useServerFn(inviteLawyer);
   const fetchMembers = useServerFn(listFirmMembers);
 
@@ -118,16 +119,29 @@ function CasesPage() {
           ) : (
             <ul className="divide-y rounded-sm border bg-panel" style={{ borderColor: COLORS.hair }}>
               {cases.map((c) => (
-                <li key={c.id}>
+                <li key={c.id} className="flex items-center hover:bg-panel2">
                   <Link
                     to="/cases/$caseId" params={{ caseId: c.id }}
-                    className="block px-4 py-3 hover:bg-panel2"
+                    className="block flex-1 px-4 py-3"
                   >
                     <div className="font-display text-[15px]">{c.title}</div>
                     <div className="mt-0.5 font-mono text-[11px] text-ink-dim">
                       {c.claim_no ?? "n/a"} · {c.court ?? "n/a"} · updated {new Date(c.updated_at).toLocaleDateString()}
                     </div>
                   </Link>
+                  <button
+                    disabled={busy}
+                    onClick={async () => {
+                      setBusy(true);
+                      try { await del({ data: { id: c.id } }); await load(); }
+                      finally { setBusy(false); }
+                    }}
+                    className="mr-3 shrink-0 rounded-sm border px-2 py-1 font-mono text-[9px] uppercase tracking-widest text-ink-dim hover:text-ink disabled:opacity-50"
+                    style={{ borderColor: COLORS.hair }}
+                    title="Delete this case"
+                  >
+                    Delete
+                  </button>
                 </li>
               ))}
             </ul>

@@ -10,6 +10,7 @@ import Inspector from "@/components/Inspector";
 import GraphCanvas from "@/components/GraphCanvas";
 import AnnotatedPleading from "@/components/AnnotatedPleading";
 import Chronology from "@/components/Chronology";
+import { SourceReaderDialog } from "@/components/SourceReader";
 
 type View = "pleading" | "chronology" | "stress" | "graph";
 

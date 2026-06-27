@@ -15,9 +15,9 @@ export const Route = createFileRoute("/_authenticated/cases/$caseId")({
   component: CasePage,
 });
 
-const CARD_W = 640;
-const CARD_H = 680;
-const HOLE_R = Math.hypot(CARD_W / 2, CARD_H / 2) + 40;
+const CARD_W = 820;
+const CARD_H = 760;
+const HOLE_R = Math.hypot(CARD_W / 2, CARD_H / 2) + 50;
 
 function CasePage() {
   const { caseId } = Route.useParams();
@@ -126,8 +126,8 @@ function CasePage() {
             <div
               className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
               style={{
-                width: `min(${CARD_W}px, calc(100vw - ${inspectorOpen ? 460 : 80}px))`,
-                height: `min(${CARD_H}px, calc(100vh - 240px))`,
+                width: `min(${CARD_W}px, calc(100vw - ${inspectorOpen ? 480 : 120}px))`,
+                height: `min(${CARD_H}px, calc(100vh - 200px))`,
               }}
             >
               <div

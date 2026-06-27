@@ -24,6 +24,8 @@ interface Props {
   hideHub?: boolean;
   /** Called when a node is clicked, with container-relative pixel coords. */
   onNodeClickScreen?: (id: string, x: number, y: number) => void;
+  /** Click-to-source: open the in-site reader/PDF for the clicked node. */
+  onOpenSource?: (id: string) => void;
   /** Imperative API ref: caller can pan/zoom to a set of node ids, with an optional
    * horizontal screen bias (px) so the nodes land to the right of a centre card. */
   apiRef?: React.MutableRefObject<{ focusNodes: (ids: string[], biasX?: number) => void } | null>;
@@ -65,6 +67,7 @@ export default function GraphCanvas({
   centerHoleRect,
   hideHub = false,
   onNodeClickScreen,
+  onOpenSource,
   apiRef,
 }: Props) {
 
@@ -129,58 +132,76 @@ export default function GraphCanvas({
     return { nodes, links };
   }, [data, mode, geom.ringRx, geom.ringRy]);
 
-  // Apply a centre-hole repulsion + tighter bounds so nodes stay on-screen.
+  // Tune the d3-force layout. Charge/links shape the spread; the hole + bounds keep
+  // nodes on-screen with a *position* correction (deadband + clamp) instead of the old
+  // velocity injection, which jittered because it never settled. NB: this effect does
+  // NOT reheat — reheating lives in a separate data/mode effect so a resize stays calm.
   useEffect(() => {
     const fg = fgRef.current;
-    if (!fg) return;
+    if (!fg?.d3Force) return;
     try {
-      const sim = fg.d3Force ? fg : null;
-      if (!sim) return;
-      fg.d3Force("charge")?.strength(-70).distanceMax(260);
-      // Elliptical hole repulsion.
+      fg.d3Force("charge")?.strength(-120).distanceMax(220).theta(0.9);
+
+      // Elliptical centre hole: nudge free nodes just outside the card, gently.
       const holeForce = (alpha: number) => {
         const rx = geom.rx + 18;
         const ry = geom.ry + 18;
         for (const n of graph.nodes as any[]) {
           if (n.layer === "proposition") continue;
+          if (n.fx != null || n.fy != null) continue;
           const x = n.x ?? 0, y = n.y ?? 0;
           const nx = x / rx, ny = y / ry;
           const d = Math.sqrt(nx * nx + ny * ny) || 0.0001;
-          if (d < 1) {
-            // Push along the ellipse normal direction.
-            const push = (1 - d) * 1.6 * alpha;
-            n.vx = (n.vx ?? 0) + (nx / d) * push * rx * 0.06;
-            n.vy = (n.vy ?? 0) + (ny / d) * push * ry * 0.06;
+          const gap = 1 - d;
+          if (gap > 0.02) {
+            // Move a clamped fraction of the way to the ellipse boundary.
+            const k = Math.min(0.25, gap) * alpha;
+            const bx = (nx / d) * rx, by = (ny / d) * ry;
+            n.x = x + (bx - x) * k;
+            n.y = y + (by - y) * k;
           }
         }
       };
       fg.d3Force("centerHole", holeForce);
-      // Strong elastic bounds so nothing flies out of the visible canvas.
+
+      // Soft elastic bounds: pull stragglers back toward the visible canvas.
       const boundsForce = (alpha: number) => {
-        const padX = 50;
-        const padY = 50;
-        const maxX = size.w / 2 - padX;
-        const maxY = size.h / 2 - padY;
+        const maxX = size.w / 2 - 50;
+        const maxY = size.h / 2 - 50;
         for (const n of graph.nodes as any[]) {
           if (n.fx != null || n.fy != null) continue;
           const x = n.x ?? 0, y = n.y ?? 0;
-          if (Math.abs(x) > maxX) {
-            n.vx = (n.vx ?? 0) - (x - Math.sign(x) * maxX) * 0.28 * alpha;
+          if (Math.abs(x) > maxX + 4) {
+            const target = Math.sign(x) * maxX;
+            n.x = x + (target - x) * Math.min(0.3, alpha);
           }
-          if (Math.abs(y) > maxY) {
-            n.vy = (n.vy ?? 0) - (y - Math.sign(y) * maxY) * 0.28 * alpha;
+          if (Math.abs(y) > maxY + 4) {
+            const target = Math.sign(y) * maxY;
+            n.y = y + (target - y) * Math.min(0.3, alpha);
           }
         }
       };
       fg.d3Force("bounds", boundsForce);
+
       const linkF = fg.d3Force("link");
       if (linkF) {
-        linkF.distance((l: any) => (l.rel === "belongs_to" ? 20 : 48));
-        linkF.strength((l: any) => (l.rel === "belongs_to" ? 0.95 : 0.35));
+        linkF.distance((l: any) =>
+          l.rel === "belongs_to" ? 18 : l.rel === "asserts" ? 40 : 60,
+        );
+        linkF.strength((l: any) =>
+          l.rel === "belongs_to" ? 0.9 : l.rel === "asserts" ? 0.25 : 0.3,
+        );
       }
-      fg.d3ReheatSimulation();
     } catch {/* noop */}
   }, [ForceGraph, geom.rx, geom.ry, graph.nodes, size.w, size.h]);
+
+  // Reheat only when the underlying data or mode changes — never on resize, so
+  // dragging the panel divider or resizing the window does not relaunch the layout.
+  useEffect(() => {
+    const fg = fgRef.current;
+    if (!fg?.d3ReheatSimulation) return;
+    try { fg.d3ReheatSimulation(); } catch {/* noop */}
+  }, [ForceGraph, data, mode]);
 
 
   // Expose imperative focusNodes(ids): pan/zoom to the centroid of the given nodes.
@@ -260,10 +281,16 @@ export default function GraphCanvas({
   };
 
   const focusId = hoveredId ?? selectedId;
+  // The focus set is the full 2-hop evidence cluster, not just immediate neighbours,
+  // so focusing a claim keeps its whole cluster legible instead of greying it out.
   const focused = useMemo(() => {
     if (!focusId) return null;
     const set = new Set<string>([focusId]);
-    neighbours.get(focusId)?.forEach((id) => set.add(id));
+    const one = neighbours.get(focusId);
+    one?.forEach((id) => {
+      set.add(id);
+      neighbours.get(id)?.forEach((j) => set.add(j));
+    });
     return set;
   }, [focusId, neighbours]);
 
@@ -342,28 +369,20 @@ export default function GraphCanvas({
         height={size.h}
         backgroundColor={COLORS.panel}
         cooldownTicks={reducedMotion ? 0 : 200}
-        warmupTicks={reducedMotion ? 200 : 60}
-        d3VelocityDecay={0.4}
+        warmupTicks={reducedMotion ? 200 : 20}
+        d3VelocityDecay={0.3}
+        d3AlphaDecay={0.0228}
+        d3AlphaMin={0.001}
         linkDirectionalParticles={(l: any) => (focused && isLinkFocused(l, focused) ? 2 : 0)}
         linkDirectionalParticleSpeed={0.006}
         nodeRelSize={5}
         enableNodeDrag={true}
         enableZoomInteraction={false}
         enablePanInteraction={true}
-        onRenderFramePre={(ctx: CanvasRenderingContext2D, globalScale: number) => {
-          // Lay out labels once per frame: reserve the priority labels first so
-          // the sparse zoom-in labels can dodge them and text never overlaps.
-          const placed: LabelBox[] = [];
-          for (const node of graph.nodes as any[]) {
-            if (typeof node.x !== "number" || typeof node.y !== "number") continue;
-            const { show, priority } = wantsLabel(node, globalScale);
-            if (show && priority) {
-              const rect = labelRect(node, ctx);
-              placed.push({ x0: rect.x0, y0: rect.y0, x1: rect.x1, y1: rect.y1 });
-            }
-          }
-          placedLabelsRef.current = placed;
-
+        onRenderFramePre={(ctx: CanvasRenderingContext2D) => {
+          // Labels are no longer drawn here — they live in a single top layer in
+          // onRenderFramePost so later-painted nodes can't overpaint earlier labels.
+          // This pass only paints the hub disc that sits *under* the nodes.
           if (hideHub) return;
           const radius = geom.hole;
           ctx.save();
@@ -387,11 +406,16 @@ export default function GraphCanvas({
         onNodeClick={(n: any, ev: MouseEvent) => {
           onSelect(n?.id ?? null);
           onSelectEdge(null);
+          // Click-to-source: a node click opens the in-site source/PDF reader.
+          if (n && onOpenSource) onOpenSource(n.id);
           if (n && onNodeClickScreen && wrapRef.current) {
             const rect = wrapRef.current.getBoundingClientRect();
             onNodeClickScreen(n.id, ev.clientX - rect.left, ev.clientY - rect.top);
           }
         }}
+        // Pin a node where it is dragged so it doesn't spring back (non-jumpy drag).
+        onNodeDrag={(n: any) => { n.fx = n.x; n.fy = n.y; }}
+        onNodeDragEnd={(n: any) => { n.fx = n.x; n.fy = n.y; }}
         onLinkClick={(l: any) => {
           onSelectEdge(l.raw ?? null);
           onSelect(null);
@@ -405,7 +429,7 @@ export default function GraphCanvas({
           if (focused) {
             return isLinkFocused(l, focused)
               ? withAlpha(c, l.rel === "asserts" ? 0.7 : 0.9)
-              : withAlpha(c, 0.06);
+              : withAlpha(c, 0.2);
           }
           return withAlpha(c, l.rel === "asserts" ? 0.4 : 0.7);
         }}
@@ -443,8 +467,9 @@ export default function GraphCanvas({
           } else {
             ctx.arc(node.x, node.y, r, 0, 2 * Math.PI);
           }
-          // Dim the rest harder so the focused subgraph keeps its full colour.
-          ctx.fillStyle = dimmed ? withAlpha(color, 0.12) : color;
+          // Soft de-emphasis: unrelated nodes recede but the focused cluster, and the
+          // dimmed nodes themselves, stay legible (not greyed into illegibility).
+          ctx.fillStyle = dimmed ? withAlpha(color, 0.3) : color;
           ctx.fill();
 
           // A crisp hairline on in-focus nodes makes the focused cluster read solid.
@@ -458,7 +483,7 @@ export default function GraphCanvas({
             ctx.beginPath();
             ctx.arc(node.x, node.y, r + 2.5, 0, 2 * Math.PI);
             ctx.lineWidth = 1.4;
-            ctx.strokeStyle = withAlpha(COLORS.brass, dimmed ? 0.3 : 1);
+            ctx.strokeStyle = withAlpha(COLORS.brass, dimmed ? 0.45 : 1);
             ctx.stroke();
           }
 
@@ -469,27 +494,51 @@ export default function GraphCanvas({
             ctx.strokeStyle = COLORS.accent;
             ctx.stroke();
           }
+          // Labels are intentionally NOT drawn here — see onRenderFramePost.
+        }}
+        onRenderFramePost={(ctx: CanvasRenderingContext2D, globalScale: number) => {
+          // All labels render in this single top layer, after every link and node,
+          // so text is never overpainted. Priority labels (focused subgraph + key
+          // corpus anchors) are reserved and drawn first; sparse zoom-in labels then
+          // fill the gaps only where they don't collide with text already placed.
+          const placed: LabelBox[] = [];
 
-          // Decluttered labels. Priority labels were reserved in onRenderFramePre;
-          // sparse zoom-in labels draw only when they do not collide.
-          const { show, priority } = wantsLabel(node, scale);
-          if (!show) return;
-          const rect = labelRect(node, ctx);
-          if (!rect.text) return;
-          const box: LabelBox = { x0: rect.x0, y0: rect.y0, x1: rect.x1, y1: rect.y1 };
-          if (!priority) {
-            for (const p of placedLabelsRef.current) {
-              if (rectsOverlap(box, p)) return;
-            }
-            placedLabelsRef.current.push(box);
+          const drawLabel = (node: any, rect: ReturnType<typeof labelRect>) => {
+            const emphasised = hoveredId === node.id || selectedId === node.id;
+            ctx.fillStyle = withAlpha(COLORS.panel, emphasised ? 0.96 : 0.9);
+            ctx.fillRect(rect.x0, rect.y0, rect.x1 - rect.x0, rect.y1 - rect.y0);
+            ctx.textAlign = "left";
+            ctx.textBaseline = "middle";
+            ctx.fillStyle = emphasised ? COLORS.ink : withAlpha(COLORS.ink, 0.9);
+            ctx.fillText(rect.text, rect.lx, node.y);
+          };
+
+          // Pass 1 — priority labels: always shown, reserve their boxes.
+          for (const node of graph.nodes as any[]) {
+            if (typeof node.x !== "number" || typeof node.y !== "number") continue;
+            const { show, priority } = wantsLabel(node, globalScale);
+            if (!show || !priority) continue;
+            const rect = labelRect(node, ctx);
+            if (!rect.text) continue;
+            placed.push({ x0: rect.x0, y0: rect.y0, x1: rect.x1, y1: rect.y1 });
+            drawLabel(node, rect);
           }
-          const emphasised = isHover || isSelected;
-          ctx.fillStyle = withAlpha(COLORS.panel, emphasised ? 0.96 : 0.9);
-          ctx.fillRect(box.x0, box.y0, box.x1 - box.x0, box.y1 - box.y0);
-          ctx.textAlign = "left";
-          ctx.textBaseline = "middle";
-          ctx.fillStyle = emphasised ? COLORS.ink : withAlpha(COLORS.ink, 0.9);
-          ctx.fillText(rect.text, rect.lx, node.y);
+          placedLabelsRef.current = placed;
+
+          // Pass 2 — sparse zoom-in labels: drawn only when collision-free.
+          for (const node of graph.nodes as any[]) {
+            if (typeof node.x !== "number" || typeof node.y !== "number") continue;
+            const { show, priority } = wantsLabel(node, globalScale);
+            if (!show || priority) continue;
+            const rect = labelRect(node, ctx);
+            if (!rect.text) continue;
+            const box: LabelBox = { x0: rect.x0, y0: rect.y0, x1: rect.x1, y1: rect.y1 };
+            let clash = false;
+            for (const p of placed) { if (rectsOverlap(box, p)) { clash = true; break; } }
+            if (clash) continue;
+            placed.push(box);
+            drawLabel(node, rect);
+          }
         }}
         nodePointerAreaPaint={(node: any, color: string, ctx: CanvasRenderingContext2D) => {
           // Comfortable click target: always a little larger than what is drawn.

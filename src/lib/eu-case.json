@@ -2189,7 +2189,7 @@
       "category": "Pleading",
       "tab": "02",
       "modality": "text",
-      "mime": "text",
+      "mime": "text/plain",
       "paras": [
         {
           "n": 1,
@@ -2257,7 +2257,7 @@
       "category": "Contract",
       "tab": "03",
       "modality": "text",
-      "mime": "text",
+      "mime": "text/plain",
       "paras": [
         {
           "n": 1,
@@ -2285,7 +2285,7 @@
       "category": "Contract",
       "tab": "04",
       "modality": "text",
-      "mime": "text",
+      "mime": "text/plain",
       "paras": [
         {
           "n": 1,
@@ -2321,7 +2321,7 @@
       "category": "Contract",
       "tab": "05",
       "modality": "text",
-      "mime": "text",
+      "mime": "text/plain",
       "paras": [
         {
           "n": 1,
@@ -2345,7 +2345,7 @@
       "category": "Contract",
       "tab": "06",
       "modality": "text",
-      "mime": "text",
+      "mime": "text/plain",
       "paras": [
         {
           "n": 1,
@@ -2365,7 +2365,7 @@
       "category": "Amendment",
       "tab": "07",
       "modality": "text",
-      "mime": "text",
+      "mime": "text/plain",
       "paras": [
         {
           "n": 1,
@@ -2389,7 +2389,7 @@
       "category": "Correspondence",
       "tab": "08",
       "modality": "email",
-      "mime": "email",
+      "mime": "text/plain",
       "paras": [
         {
           "n": 1,
@@ -2409,7 +2409,7 @@
       "category": "Correspondence",
       "tab": "09",
       "modality": "email",
-      "mime": "email",
+      "mime": "text/plain",
       "paras": [
         {
           "n": 1,
@@ -2429,7 +2429,7 @@
       "category": "Correspondence",
       "tab": "10",
       "modality": "email",
-      "mime": "email",
+      "mime": "text/plain",
       "paras": [
         {
           "n": 1,
@@ -2449,7 +2449,7 @@
       "category": "Internal record",
       "tab": "12",
       "modality": "text",
-      "mime": "text",
+      "mime": "text/plain",
       "paras": [
         {
           "n": 1,
@@ -2473,7 +2473,7 @@
       "category": "Record",
       "tab": "13",
       "modality": "spreadsheet",
-      "mime": "spreadsheet",
+      "mime": "text/plain",
       "paras": [
         {
           "n": 1,
@@ -2493,7 +2493,7 @@
       "category": "Internal record",
       "tab": "14",
       "modality": "text",
-      "mime": "text",
+      "mime": "text/plain",
       "paras": [
         {
           "n": 1,
@@ -2513,7 +2513,7 @@
       "category": "Record",
       "tab": "15",
       "modality": "text",
-      "mime": "text",
+      "mime": "text/plain",
       "paras": [
         {
           "n": 1,
@@ -2537,7 +2537,7 @@
       "category": "Witness (fact)",
       "tab": "16",
       "modality": "text",
-      "mime": "text",
+      "mime": "text/plain",
       "paras": [
         {
           "n": 1,
@@ -2561,7 +2561,7 @@
       "category": "Witness (fact)",
       "tab": "17",
       "modality": "text",
-      "mime": "text",
+      "mime": "text/plain",
       "paras": [
         {
           "n": 1,
@@ -2581,7 +2581,7 @@
       "category": "Witness (fact)",
       "tab": "18",
       "modality": "text",
-      "mime": "text",
+      "mime": "text/plain",
       "paras": [
         {
           "n": 1,
@@ -2601,7 +2601,7 @@
       "category": "Witness (expert)",
       "tab": "19",
       "modality": "text",
-      "mime": "text",
+      "mime": "text/plain",
       "paras": [
         {
           "n": 1,
@@ -2629,7 +2629,7 @@
       "category": "Witness (expert)",
       "tab": "20",
       "modality": "text",
-      "mime": "text",
+      "mime": "text/plain",
       "paras": [
         {
           "n": 1,

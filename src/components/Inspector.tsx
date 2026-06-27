@@ -4,6 +4,7 @@ import type { AppData, ClaimNode, DataEdge, DataNode, PropositionNode } from "@/
 import { COLORS, anchorLabel, edgeColor, relLabel, srcId, verdictColor } from "@/lib/pleading";
 import { summariseNode } from "@/lib/summary.functions";
 import { AnchorButton } from "./SourceReader";
+import { VerifyChip } from "./TrustBadge";
 
 interface Props {
   data: AppData;
@@ -543,8 +544,22 @@ function ClaimView({
           )}
         </div>
       ) : (
-        <div className="rounded border p-3 text-[12px] italic text-ink-dim" style={{ borderColor: COLORS.hair }}>
-          No quote-grounded support found in this bundle.
+        <div className="rounded border p-3" style={{ borderColor: COLORS.hair, background: COLORS.bg }}>
+          <div className="mb-2 flex items-center gap-2">
+            <VerifyChip reason={node.verify_reason ?? "No quote-grounded support found in this bundle"} />
+            <span className="font-mono text-[10px] uppercase tracking-widest text-ink-dim">
+              nothing grounded here
+            </span>
+          </div>
+          <p className="text-[12px] italic text-ink-dim">
+            No quote-grounded support found in this bundle.
+            {node.anchor ? " Open the source paragraph to verify." : " Pleaded on assertion alone."}
+          </p>
+          {node.anchor && (
+            <div className="mt-2">
+              <AnchorButton anchor={node.anchor} quote={node.quote} documents={data.documents} label={anchorLabel(node.anchor)} />
+            </div>
+          )}
         </div>
       )}
 

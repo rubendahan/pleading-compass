@@ -18,6 +18,10 @@ export interface PropositionNode {
   overlay: string;
   readiness: number;
   text: string;
+  /** True when support is empty/flagged: the UI shows an "AI · verify" call-to-action
+   *  instead of leaving a silent blank (the "paragraph with nothing there" fix). */
+  verify?: boolean;
+  verify_reason?: string;
 }
 
 export interface ClaimNode {
@@ -36,6 +40,9 @@ export interface ClaimNode {
   load_bearing: boolean;
   single_source: boolean;
   blocks?: string[];
+  /** True when this claim has no quote-grounded support: surface "AI · verify". */
+  verify?: boolean;
+  verify_reason?: string;
 }
 
 export interface DocumentNode {
@@ -198,4 +205,66 @@ export function anchorLabel(anchor: string | null | undefined): string {
   if (!anchor) return "";
   const [doc, para] = anchor.split("¶");
   return para ? `${tabLabel(doc)} · ¶${para}` : tabLabel(doc);
+}
+
+/** A pointer into a source document: which paragraph to open, and the verbatim
+ *  quote to highlight there. `anchor === null` means "no grounded source" — the
+ *  reader then shows a verify call-to-action rather than a silent blank. */
+export interface SourceRef {
+  anchor: string | null;
+  quote: string | null;
+  /** The node the ref was resolved from, so the reader can offer "open full analysis". */
+  nodeId: string;
+}
+
+/** Resolve any graph node to the source it should open in the reader.
+ *  - claim node      → its own anchor + verbatim quote
+ *  - document node   → the bare tab id (whole document, no highlight)
+ *  - proposition     → its controlling evidence (the heaviest non-pleading coherence
+ *                      claim into the proposition's pleading claim); failing that,
+ *                      the pleading claim's own "02¶n" anchor. */
+export function resolveNodeSource(nodeId: string, data: AppData): SourceRef {
+  const node = data.nodes.find((n) => n.id === nodeId);
+  if (!node) return { anchor: null, quote: null, nodeId };
+
+  if (node.layer === "document") {
+    return { anchor: node.label, quote: null, nodeId };
+  }
+  if (node.layer === "claim") {
+    return { anchor: node.anchor, quote: node.quote, nodeId };
+  }
+
+  // Proposition: follow coherence edges into its pleading claim(s).
+  const propKey = node.id.replace("prop:", "");
+  const pleadingClaims = data.nodes.filter(
+    (n): n is ClaimNode =>
+      n.layer === "claim" && n.prop === propKey && n.polarity === "pleading",
+  );
+  const pleadingIds = new Set(pleadingClaims.map((n) => n.id));
+
+  let best: { c: ClaimNode; rank: number } | null = null;
+  if (pleadingIds.size > 0) {
+    for (const e of data.edges) {
+      if (e.kind !== "coherence" || !pleadingIds.has(srcId(e.target))) continue;
+      const src = data.nodes.find((n) => n.id === srcId(e.source));
+      if (!src || src.layer !== "claim" || (src as ClaimNode).polarity === "pleading") continue;
+      const sc = src as ClaimNode;
+      const relRank =
+        e.rel === "contradicts" || e.rel === "supersedes"
+          ? 4
+          : e.rel === "legal_bar" || e.rel === "caps"
+            ? 3
+            : e.rel === "supports"
+              ? 3
+              : 1;
+      const rank = relRank * 100 + (sc.weight ?? 0);
+      if (!best || rank > best.rank) best = { c: sc, rank };
+    }
+  }
+  if (best) return { anchor: best.c.anchor, quote: best.c.quote, nodeId };
+
+  // No controlling evidence: fall back to the pleading claim's own paragraph.
+  const pleading = pleadingClaims[0];
+  if (pleading) return { anchor: pleading.anchor, quote: pleading.quote, nodeId };
+  return { anchor: null, quote: null, nodeId };
 }

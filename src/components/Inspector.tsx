@@ -120,7 +120,7 @@ function AiSummary({ caseId, nodeId }: { caseId: string; nodeId: string }) {
   );
 }
 
-}
+
 
 function EmptyState() {
   return (

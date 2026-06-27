@@ -72,12 +72,14 @@ function CasePage() {
     [focusId, adjacency],
   );
 
-  // Default: inspector opens on edge clicks only. Node clicks open the floating
-  // bundle-piece popover; the inspector becomes a secondary "analysis" surface.
+  // In graph view, node clicks open the floating popover (inspector stays manual).
+  // In dual-pane views (stress / coherence), selecting a node opens the inspector.
   useEffect(() => {
     if (selectedEdge) setInspectorOpen(true);
+    else if (selectedId && view !== "graph") setInspectorOpen(true);
     else if (!selectedId && !selectedEdge) { setInspectorOpen(false); setPopover(null); }
-  }, [selectedId, selectedEdge]);
+  }, [selectedId, selectedEdge, view]);
+
 
   // Track graph container size for popover clamping.
   useEffect(() => {

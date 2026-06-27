@@ -14,16 +14,149 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      cases: {
+        Row: {
+          claim_no: string | null
+          court: string | null
+          created_at: string
+          created_by: string | null
+          data: Json
+          firm_id: string
+          id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          claim_no?: string | null
+          court?: string | null
+          created_at?: string
+          created_by?: string | null
+          data?: Json
+          firm_id: string
+          id?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          claim_no?: string | null
+          court?: string | null
+          created_at?: string
+          created_by?: string | null
+          data?: Json
+          firm_id?: string
+          id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cases_firm_id_fkey"
+            columns: ["firm_id"]
+            isOneToOne: false
+            referencedRelation: "firms"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      firms: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string | null
+          firm_id: string | null
+          full_name: string | null
+          id: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          firm_id?: string | null
+          full_name?: string | null
+          id: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          firm_id?: string | null
+          full_name?: string | null
+          id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "profiles_firm_id_fkey"
+            columns: ["firm_id"]
+            isOneToOne: false
+            referencedRelation: "firms"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          firm_id: string | null
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          firm_id?: string | null
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          firm_id?: string | null
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_roles_firm_id_fkey"
+            columns: ["firm_id"]
+            isOneToOne: false
+            referencedRelation: "firms"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      current_firm_id: { Args: never; Returns: string }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      is_firm_admin: { Args: { _firm_id: string }; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "firm_admin" | "lawyer"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +283,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["firm_admin", "lawyer"],
+    },
   },
 } as const

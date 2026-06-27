@@ -129,27 +129,25 @@ function Page() {
       </header>
 
       {/* Main layout */}
-      <main className="flex-1 grid gap-3 p-3 sm:p-4 lg:grid-cols-[minmax(320px,380px)_1fr_minmax(320px,400px)]">
+      <main className="flex-1 grid gap-4 p-4 sm:p-6 lg:grid-cols-[minmax(320px,400px)_1fr_minmax(320px,420px)]">
         {/* Pleading column */}
         <section
-          className="flex h-[calc(100vh-180px)] min-h-[520px] flex-col overflow-hidden rounded-lg border lg:h-auto"
+          className="flex h-[calc(100vh-200px)] min-h-[520px] flex-col overflow-hidden rounded-sm border lg:h-auto"
           style={{ borderColor: COLORS.hair, background: COLORS.panel }}
         >
-          <div className="border-b px-4 py-3" style={{ borderColor: COLORS.hair }}>
-            <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-dim">
-              Particulars of Claim
-            </div>
-            <h2 className="font-display text-base">Pleaded allegations</h2>
-            <p className="mt-1 text-[11px] text-ink-dim">
-              Each block is a proposition. Click one to see what stands or falls and why.
+          <div className="border-b px-5 py-4" style={{ borderColor: COLORS.hair }}>
+            <div className="rule-label">Particulars of Claim</div>
+            <h2 className="mt-1 font-display text-[18px] italic">Pleaded allegations</h2>
+            <p className="mt-1.5 text-[12px] leading-relaxed text-ink-dim">
+              Each block is a proposition. Select one to see what stands or falls, and why.
             </p>
           </div>
-          <ol className="flex-1 overflow-y-auto px-3 py-3">
+          <ol className="flex-1 overflow-y-auto px-4 py-4">
             {propositions.map((p) => {
               const c = verdictColor(p.verdict);
               const active = selectedId === p.id;
               return (
-                <li key={p.id} className="mb-2">
+                <li key={p.id} className="mb-2.5">
                   <button
                     onClick={() => {
                       setSelectedEdge(null);
@@ -157,16 +155,19 @@ function Page() {
                     }}
                     onMouseEnter={() => setHoveredId(p.id)}
                     onMouseLeave={() => setHoveredId(null)}
-                    className="group block w-full rounded-md border p-3 text-left transition focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                    className="group block w-full rounded-sm border p-3.5 text-left transition focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/30"
                     style={{
-                      borderColor: active ? c : COLORS.hair,
-                      borderLeftWidth: 4,
+                      borderColor: active ? COLORS.ink : COLORS.hair,
+                      borderLeftWidth: 3,
                       borderLeftColor: c,
-                      background: active ? `${c}14` : COLORS.bg,
+                      background: active ? COLORS.panel2 : COLORS.panel,
                     }}
                   >
                     <div className="flex items-center justify-between gap-2">
-                      <span className="font-display text-sm" style={{ color: c }}>
+                      <span
+                        className="font-mono text-[11px] uppercase tracking-[0.18em]"
+                        style={{ color: COLORS.ink }}
+                      >
                         {p.label}
                       </span>
                       <span
@@ -174,19 +175,21 @@ function Page() {
                         style={{
                           borderColor: c,
                           color: c,
-                          background: `${c}1A`,
+                          background: `${c}12`,
                         }}
                       >
                         {p.verdict.replace("_", " ")}
                       </span>
                     </div>
-                    <p className="mt-2 text-[13px] leading-snug text-ink">{p.text}</p>
+                    <p className="mt-2 font-display text-[14px] leading-snug text-ink">
+                      {p.text}
+                    </p>
                     {p.overlay && p.overlay !== "NONE" && (
                       <div
-                        className="mt-2 inline-flex items-center gap-1 rounded border px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-widest"
+                        className="mt-2.5 inline-flex items-center gap-1 rounded-sm border px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-widest"
                         style={{ borderColor: COLORS.legal, color: COLORS.legal }}
                       >
-                        legal · {p.overlay.replace(/_/g, " ").toLowerCase()}
+                        Legal · {p.overlay.replace(/_/g, " ").toLowerCase()}
                       </div>
                     )}
                   </button>
@@ -198,15 +201,15 @@ function Page() {
 
         {/* Graph */}
         <section
-          className="h-[calc(100vh-180px)] min-h-[520px] lg:h-auto"
+          className="h-[calc(100vh-200px)] min-h-[520px] lg:h-auto"
           style={{ minHeight: 520 }}
         >
           {mounted ? (
             <Suspense
               fallback={
                 <div
-                  className="grid h-full place-items-center rounded-lg border text-xs font-mono uppercase tracking-widest text-ink-dim"
-                  style={{ borderColor: COLORS.hair }}
+                  className="grid h-full place-items-center rounded-sm border text-xs font-mono uppercase tracking-widest text-ink-dim"
+                  style={{ borderColor: COLORS.hair, background: COLORS.panel }}
                 >
                   loading graph…
                 </div>
@@ -230,14 +233,14 @@ function Page() {
             </Suspense>
           ) : (
             <div
-              className="grid h-full place-items-center rounded-lg border"
-              style={{ borderColor: COLORS.hair }}
+              className="grid h-full place-items-center rounded-sm border"
+              style={{ borderColor: COLORS.hair, background: COLORS.panel }}
             />
           )}
         </section>
 
         {/* Inspector */}
-        <section className="h-[calc(100vh-180px)] min-h-[520px] lg:h-auto" style={{ minHeight: 520 }}>
+        <section className="h-[calc(100vh-200px)] min-h-[520px] lg:h-auto" style={{ minHeight: 520 }}>
           <Inspector
             data={data}
             selectedId={selectedId}

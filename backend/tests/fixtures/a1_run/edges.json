@@ -1,0 +1,56 @@
+[
+  {
+    "source_id": "C001",
+    "target_id": "E19",
+    "type": "USES_EVIDENCE",
+    "score": null,
+    "rationale": "Claim relies on the expert report.",
+    "review_relation": null,
+    "reasoning_summary": null
+  },
+  {
+    "source_id": "C001",
+    "target_id": "E09",
+    "type": "USES_EVIDENCE",
+    "score": null,
+    "rationale": "Claim relies on the readiness email.",
+    "review_relation": null,
+    "reasoning_summary": null
+  },
+  {
+    "source_id": "E19",
+    "target_id": "C001",
+    "type": "SUPPORTS",
+    "score": 0.84,
+    "rationale": "Expert confirms late go-live.",
+    "review_relation": "supports",
+    "reasoning_summary": "Expert confirms the platform went live seven weeks late."
+  },
+  {
+    "source_id": "C002",
+    "target_id": "E07",
+    "type": "USES_EVIDENCE",
+    "score": null,
+    "rationale": "Claim is tested against the change order.",
+    "review_relation": null,
+    "reasoning_summary": null
+  },
+  {
+    "source_id": "E07",
+    "target_id": "C002",
+    "type": "CONTRADICTS",
+    "score": 0.88,
+    "rationale": "The change order records Meridian's own request for a scope change.",
+    "review_relation": "contradicts",
+    "reasoning_summary": "Signed change order contradicts the no-scope-change assertion."
+  },
+  {
+    "source_id": "E03",
+    "target_id": "E07",
+    "type": "SIMILAR_TO",
+    "score": 0.55,
+    "rationale": "MSA and its change order concern the same scope and go-live date.",
+    "review_relation": "unrelated",
+    "reasoning_summary": null
+  }
+]

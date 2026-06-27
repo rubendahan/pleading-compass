@@ -5308,7 +5308,7 @@
       "category": "Pleading",
       "tab": "02",
       "modality": "text",
-      "mime": "text/plain",
+      "mime": "text",
       "paras": [
         {
           "n": 1,
@@ -5418,8 +5418,7 @@
           "n": 30,
           "text": "The Defendant failed to carry out the data protection impact assessment required by Article 35 GDPR."
         }
-      ],
-      "file_url": null
+      ]
     },
     "03": {
       "title": "Master Subscription Agreement",
@@ -5429,7 +5428,7 @@
       "category": "Contract",
       "tab": "03",
       "modality": "text",
-      "mime": "text/plain",
+      "mime": "text",
       "paras": [
         {
           "n": 1,
@@ -5447,8 +5446,7 @@
           "n": 24,
           "text": "Entire agreement. This Agreement is the entire agreement between the parties. Each party confirms it has not relied on any statement or representation not set out in this Agreement."
         }
-      ],
-      "file_url": null
+      ]
     },
     "04": {
       "title": "Data Processing Agreement",
@@ -5458,7 +5456,7 @@
       "category": "Contract",
       "tab": "04",
       "modality": "text",
-      "mime": "text/plain",
+      "mime": "text",
       "paras": [
         {
           "n": 1,
@@ -5488,8 +5486,7 @@
           "n": 14,
           "text": "Nothing in this Agreement limits a data subject's right to compensation under Article 82 GDPR, liability for which is apportioned according to each party's responsibility for the damage."
         }
-      ],
-      "file_url": null
+      ]
     },
     "05": {
       "title": "Statement of Work",
@@ -5499,7 +5496,7 @@
       "category": "Contract",
       "tab": "05",
       "modality": "text",
-      "mime": "text/plain",
+      "mime": "text",
       "paras": [
         {
           "n": 1,
@@ -5517,8 +5514,7 @@
           "n": 7,
           "text": "The Customer operates and configures its own consent-management and tag-manager on the storefront; cookies and similar technologies are governed by Article 5(3) of Directive 2002/58/EC (ePrivacy) and the Customer's own cookie policy."
         }
-      ],
-      "file_url": null
+      ]
     },
     "06": {
       "title": "Order Form",
@@ -5528,7 +5524,7 @@
       "category": "Contract",
       "tab": "06",
       "modality": "text",
-      "mime": "text/plain",
+      "mime": "text",
       "paras": [
         {
           "n": 1,
@@ -5538,8 +5534,7 @@
           "n": 2,
           "text": "Annual subscription fee: EUR 900,000, payable in advance."
         }
-      ],
-      "file_url": null
+      ]
     },
     "07": {
       "title": "Data Processing Addendum (GDPR, 2018)",
@@ -5549,7 +5544,7 @@
       "category": "Amendment",
       "tab": "07",
       "modality": "text",
-      "mime": "text/plain",
+      "mime": "text",
       "paras": [
         {
           "n": 1,
@@ -5563,8 +5558,7 @@
           "n": 3,
           "text": "All references in the 2017 Agreement to Directive 95/46/EC are replaced: that Directive was repealed by Article 94 GDPR, and international transfers are henceforth governed by Chapter V of the GDPR and the Commission's standard contractual clauses."
         }
-      ],
-      "file_url": null
+      ]
     },
     "08": {
       "title": "Email — breach notification (Cobalt to Brightmarket)",
@@ -5574,7 +5568,7 @@
       "category": "Correspondence",
       "tab": "08",
       "modality": "email",
-      "mime": "text/plain",
+      "mime": "email",
       "paras": [
         {
           "n": 1,
@@ -5584,8 +5578,7 @@
           "n": 2,
           "text": "We are notifying you, within 18 hours of becoming aware, of a personal-data breach affecting a subset of the customer dataset, so that you can assess notification to your supervisory authority. A forensic investigation is under way."
         }
-      ],
-      "file_url": null
+      ]
     },
     "09": {
       "title": "Email — security hardening guidance (Cobalt)",
@@ -5595,7 +5588,7 @@
       "category": "Correspondence",
       "tab": "09",
       "modality": "email",
-      "mime": "text/plain",
+      "mime": "email",
       "paras": [
         {
           "n": 1,
@@ -5605,8 +5598,7 @@
           "n": 2,
           "text": "Please enable multi-factor authentication on all Brightmarket administrator accounts on the shared console; leaving MFA disabled materially increases the risk of credential compromise. This is the Customer's responsibility under SOW Annex B."
         }
-      ],
-      "file_url": null
+      ]
     },
     "10": {
       "title": "Email — internal model-training note (Cobalt)",
@@ -5616,7 +5608,7 @@
       "category": "Correspondence",
       "tab": "10",
       "modality": "email",
-      "mime": "text/plain",
+      "mime": "email",
       "paras": [
         {
           "n": 1,
@@ -5626,8 +5618,7 @@
           "n": 2,
           "text": "We're using the merchant datasets, including Brightmarket's, to train the new forecasting model. Legal said to get controller consent first but we shipped it to hit the release date."
         }
-      ],
-      "file_url": null
+      ]
     },
     "11": {
       "title": "International Transfer Annex / 2021 SCC Module",
@@ -5637,7 +5628,7 @@
       "category": "Amendment",
       "tab": "11",
       "modality": "text",
-      "mime": "text/plain",
+      "mime": "text",
       "paras": [
         {
           "n": 1,
@@ -5651,8 +5642,7 @@
           "n": 4,
           "text": "Where required, the parties shall carry out a transfer impact assessment and adopt supplementary measures consistent with the Schrems II judgment (Case C-311/18)."
         }
-      ],
-      "file_url": null
+      ]
     },
     "12": {
       "title": "Internal Security Review (Brightmarket)",
@@ -5662,7 +5652,7 @@
       "category": "Internal record",
       "tab": "12",
       "modality": "text",
-      "mime": "text/plain",
+      "mime": "text",
       "paras": [
         {
           "n": 1,
@@ -5676,8 +5666,7 @@
           "n": 5,
           "text": "Recommendation: re-enable MFA immediately and review our own access-control configuration before attributing the incident externally."
         }
-      ],
-      "file_url": null
+      ]
     },
     "13": {
       "title": "Defect Log",
@@ -5687,7 +5676,7 @@
       "category": "Record",
       "tab": "13",
       "modality": "spreadsheet",
-      "mime": "text/plain",
+      "mime": "spreadsheet",
       "paras": [
         {
           "n": 1,
@@ -5697,8 +5686,7 @@
           "n": 3,
           "text": "DEF-204 | Severity 2 | Export module: monthly revenue figures overstated by 4-9% for multi-currency stores; reconciliation mismatch confirmed and reproduced."
         }
-      ],
-      "file_url": null
+      ]
     },
     "14": {
       "title": "Data Protection Impact Assessment",
@@ -5708,7 +5696,7 @@
       "category": "Internal record",
       "tab": "14",
       "modality": "text",
-      "mime": "text/plain",
+      "mime": "text",
       "paras": [
         {
           "n": 1,
@@ -5722,8 +5710,7 @@
           "n": 6,
           "text": "Assessment: the forecasting model is a B2B analytics aid producing aggregate outputs; it is not, on present design, a solely automated decision affecting individual data subjects, nor an Annex III high-risk AI system, and the AI Act's high-risk obligations are not yet in application."
         }
-      ],
-      "file_url": null
+      ]
     },
     "15": {
       "title": "Acquisition Clearance Memorandum",
@@ -5733,7 +5720,7 @@
       "category": "Record",
       "tab": "15",
       "modality": "text",
-      "mime": "text/plain",
+      "mime": "text",
       "paras": [
         {
           "n": 1,
@@ -5747,8 +5734,7 @@
           "n": 4,
           "text": "The transaction was assessed under Council Regulation (EC) No 139/2004 (the EU Merger Regulation); interoperability commitments were given and recorded."
         }
-      ],
-      "file_url": null
+      ]
     },
     "16": {
       "title": "Witness Statement — Lena Brandt (DPO, Brightmarket)",
@@ -5758,7 +5744,7 @@
       "category": "Witness (fact)",
       "tab": "16",
       "modality": "text",
-      "mime": "text/plain",
+      "mime": "text",
       "paras": [
         {
           "n": 1,
@@ -5772,8 +5758,7 @@
           "n": 6,
           "text": "I am told by our IT team that Cobalt's engineers had left a production database publicly accessible on the internet for about three weeks before the breach; I did not see this myself."
         }
-      ],
-      "file_url": null
+      ]
     },
     "17": {
       "title": "Witness Statement — Tomas Reyes (Security Lead, Cobalt)",
@@ -5783,7 +5768,7 @@
       "category": "Witness (fact)",
       "tab": "17",
       "modality": "text",
-      "mime": "text/plain",
+      "mime": "text",
       "paras": [
         {
           "n": 1,
@@ -5793,8 +5778,7 @@
           "n": 4,
           "text": "Our investigation traced the initial intrusion to a Brightmarket administrator account on which multi-factor authentication had been switched off on the customer side, despite our June 2025 guidance to enable it."
         }
-      ],
-      "file_url": null
+      ]
     },
     "18": {
       "title": "Witness Statement — Anya Sorokin (Programme Lead, Brightmarket)",
@@ -5804,7 +5788,7 @@
       "category": "Witness (fact)",
       "tab": "18",
       "modality": "text",
-      "mime": "text/plain",
+      "mime": "text",
       "paras": [
         {
           "n": 1,
@@ -5822,8 +5806,7 @@
           "n": 5,
           "text": "I am told by our marketing team that Cobalt's scripts set tracking cookies on the storefront without consent; I have not reviewed the configuration myself."
         }
-      ],
-      "file_url": null
+      ]
     },
     "19": {
       "title": "Expert Report — Dr Idris Vale (Forensic / Security, jointly instructed)",
@@ -5833,7 +5816,7 @@
       "category": "Witness (expert)",
       "tab": "19",
       "modality": "text",
-      "mime": "text/plain",
+      "mime": "text",
       "paras": [
         {
           "n": 1,
@@ -5859,8 +5842,7 @@
           "n": 8,
           "text": "I found no evidence that any breached data was unrecoverable; restoration of the affected records was not, on the material I reviewed, in issue."
         }
-      ],
-      "file_url": null
+      ]
     },
     "20": {
       "title": "Expert Report — M. Caron (Quantum, Claimant-instructed)",
@@ -5870,7 +5852,7 @@
       "category": "Witness (expert)",
       "tab": "20",
       "modality": "text",
-      "mime": "text/plain",
+      "mime": "text",
       "paras": [
         {
           "n": 1,
@@ -5888,8 +5870,7 @@
           "n": 6,
           "text": "A significant part of the Q4 downturn is attributable to a separate ransomware incident affecting the Claimant's own logistics provider and to wider market conditions, not to the Platform."
         }
-      ],
-      "file_url": null
+      ]
     },
     "21": {
       "title": "Expert Report — Prof. Helena Strand (Forensic / Security, Claimant-instructed)",
@@ -5899,7 +5880,7 @@
       "category": "Witness (expert)",
       "tab": "21",
       "modality": "text",
-      "mime": "text/plain",
+      "mime": "text",
       "paras": [
         {
           "n": 1,
@@ -5921,8 +5902,7 @@
           "n": 7,
           "text": "Standard contractual clauses alone may not suffice for transfers to the United States after Schrems II; I have not, however, seen a transfer impact assessment or evidence of supplementary measures either way."
         }
-      ],
-      "file_url": null
+      ]
     },
     "22": {
       "title": "Expert Report — Dr Pieter Roos (Quantum, Defendant-instructed)",
@@ -5932,7 +5912,7 @@
       "category": "Witness (expert)",
       "tab": "22",
       "modality": "text",
-      "mime": "text/plain",
+      "mime": "text",
       "paras": [
         {
           "n": 1,
@@ -5946,8 +5926,7 @@
           "n": 4,
           "text": "I agree the EUR 6,000,000 is unsupported. On my analysis any recoverable loss of profit is no more than about EUR 0.4 million, once the ransomware incident and market conditions are removed."
         }
-      ],
-      "file_url": null
+      ]
     },
     "23": {
       "title": "Letter — Data Protection Commission (Ireland)",
@@ -5957,7 +5936,7 @@
       "category": "Regulatory",
       "tab": "23",
       "modality": "letter",
-      "mime": "text/plain",
+      "mime": "letter",
       "paras": [
         {
           "n": 1,
@@ -5967,8 +5946,7 @@
           "n": 2,
           "text": "We acknowledge receipt of your breach notification under Article 33 GDPR. We note that notification was made outside the 72-hour period and that, on your account, the processor had informed you of the breach without undue delay; our assessment of controller and processor responsibilities is ongoing."
         }
-      ],
-      "file_url": null
+      ]
     },
     "24": {
       "title": "Breach Notification to the DPC (Brightmarket)",
@@ -5978,7 +5956,7 @@
       "category": "Regulatory",
       "tab": "24",
       "modality": "text",
-      "mime": "text/plain",
+      "mime": "text",
       "paras": [
         {
           "n": 1,
@@ -5992,8 +5970,7 @@
           "n": 3,
           "text": "On our current assessment the breach affected approximately 19,000 data subjects whose records were confirmed to have been accessed; investigation continues."
         }
-      ],
-      "file_url": null
+      ]
     },
     "25": {
       "title": "Sub-processor List & Transfer Schedule",
@@ -6003,7 +5980,7 @@
       "category": "Contract",
       "tab": "25",
       "modality": "text",
-      "mime": "text/plain",
+      "mime": "text",
       "paras": [
         {
           "n": 1,
@@ -6013,8 +5990,7 @@
           "n": 3,
           "text": "Cobalt Analytics Inc. (United States) is engaged as a sub-processor for elastic compute; transfers to it are made under the standard contractual clauses, which are in place and incorporated by the International Transfer Annex."
         }
-      ],
-      "file_url": null
+      ]
     },
     "26": {
       "title": "Penetration Test Report (pre-breach)",
@@ -6024,7 +6000,7 @@
       "category": "Record",
       "tab": "26",
       "modality": "text",
-      "mime": "text/plain",
+      "mime": "text",
       "paras": [
         {
           "n": 1,
@@ -6034,8 +6010,7 @@
           "n": 4,
           "text": "Finding PT-07 (Medium): a staging endpoint was reachable from the public internet during testing. We were unable to confirm whether this endpoint exposed the production database, or for how long it had been reachable; remediation was advised."
         }
-      ],
-      "file_url": null
+      ]
     },
     "27": {
       "title": "Certification / Surveillance-Audit Report (ISO 27001)",
@@ -6045,7 +6020,7 @@
       "category": "Record",
       "tab": "27",
       "modality": "text",
-      "mime": "text/plain",
+      "mime": "text",
       "paras": [
         {
           "n": 1,
@@ -6055,8 +6030,7 @@
           "n": 3,
           "text": "At the date of audit Cobalt held a valid ISO 27001 certificate covering its core hosting and platform operations; the analytics-export module was scheduled for inclusion at the next surveillance cycle and was not yet within the certified scope."
         }
-      ],
-      "file_url": null
+      ]
     },
     "28": {
       "title": "Witness Statement — Marcus Feld (CTO, Cobalt)",
@@ -6066,7 +6040,7 @@
       "category": "Witness (fact)",
       "tab": "28",
       "modality": "text",
-      "mime": "text/plain",
+      "mime": "text",
       "paras": [
         {
           "n": 1,
@@ -6080,8 +6054,7 @@
           "n": 4,
           "text": "The forecasting work used aggregated and de-identified datasets; to my knowledge it did not use identifiable Brightmarket customer records for training."
         }
-      ],
-      "file_url": null
+      ]
     },
     "29": {
       "title": "Incident Timeline / System Logs (extract)",
@@ -6091,7 +6064,7 @@
       "category": "Record",
       "tab": "29",
       "modality": "text",
-      "mime": "text/plain",
+      "mime": "text",
       "paras": [
         {
           "n": 1,
@@ -6105,8 +6078,7 @@
           "n": 5,
           "text": "A security-group rule permitting inbound access from any address was present on a staging subnet; the change history needed to establish how long it had been in place had been truncated by retention limits."
         }
-      ],
-      "file_url": null
+      ]
     },
     "30": {
       "title": "Email thread — pre-contract sales correspondence",
@@ -6116,7 +6088,7 @@
       "category": "Correspondence",
       "tab": "30",
       "modality": "email",
-      "mime": "text/plain",
+      "mime": "email",
       "paras": [
         {
           "n": 1,
@@ -6126,8 +6098,7 @@
           "n": 2,
           "text": "To answer your security questionnaire: the Platform is ISO 27001 certified and GDPR-compliant by design, and we would be happy to share our certificate."
         }
-      ],
-      "file_url": null
+      ]
     },
     "31": {
       "title": "Backup & Disaster-Recovery Runbook + Restore Test",
@@ -6137,7 +6108,7 @@
       "category": "Record",
       "tab": "31",
       "modality": "text",
-      "mime": "text/plain",
+      "mime": "text",
       "paras": [
         {
           "n": 1,
@@ -6155,8 +6126,7 @@
           "n": 4,
           "text": "The 0.6% not recovered relates to a known indexing gap in a legacy table flagged for decommissioning; it is unrelated to any specific incident."
         }
-      ],
-      "file_url": null
+      ]
     },
     "32": {
       "title": "Cookie / Consent Configuration Log",
@@ -6166,7 +6136,7 @@
       "category": "Record",
       "tab": "32",
       "modality": "text",
-      "mime": "text/plain",
+      "mime": "text",
       "paras": [
         {
           "n": 1,
@@ -6176,8 +6146,7 @@
           "n": 3,
           "text": "A consent banner was active. In a sample of 1,000 sessions, a small number of analytics cookies were observed to fire before consent was recorded; the log does not attribute these to a specific script owner (Cobalt tag or the Customer's own tag manager)."
         }
-      ],
-      "file_url": null
+      ]
     },
     "33": {
       "title": "DSAR & Erasure Register (extract)",
@@ -6187,7 +6156,7 @@
       "category": "Record",
       "tab": "33",
       "modality": "text",
-      "mime": "text/plain",
+      "mime": "text",
       "paras": [
         {
           "n": 1,
@@ -6197,8 +6166,7 @@
           "n": 3,
           "text": "412 data-subject access and erasure requests were received in the period; all are recorded as closed within the statutory time limit. No request is recorded as refused or unactioned by the processor."
         }
-      ],
-      "file_url": null
+      ]
     },
     "34": {
       "title": "Procurement Due-Diligence Note (Brightmarket)",
@@ -6208,7 +6176,7 @@
       "category": "Internal record",
       "tab": "34",
       "modality": "text",
-      "mime": "text/plain",
+      "mime": "text",
       "paras": [
         {
           "n": 1,
@@ -6218,8 +6186,7 @@
           "n": 3,
           "text": "We verified Cobalt's ISO 27001 certificate and reviewed the certified scope before signing; we are satisfied to rely on it for the hosting services we are procuring."
         }
-      ],
-      "file_url": null
+      ]
     },
     "35": {
       "title": "Service Level Annex (availability target)",
@@ -6229,7 +6196,7 @@
       "category": "Contract",
       "tab": "35",
       "modality": "document",
-      "mime": "text/plain",
+      "mime": "document",
       "paras": [
         {
           "n": 1,
@@ -6247,8 +6214,7 @@
           "n": 4,
           "text": "Service credits are capped at 10% of the monthly fee for the affected month and are the only compensation payable for a missed availability target."
         }
-      ],
-      "file_url": null
+      ]
     },
     "36": {
       "title": "Outage Impact Assessment (October 2025)",
@@ -6258,7 +6224,7 @@
       "category": "Record",
       "tab": "36",
       "modality": "document",
-      "mime": "text/plain",
+      "mime": "document",
       "paras": [
         {
           "n": 1,
@@ -6276,8 +6242,7 @@
           "n": 4,
           "text": "The public storefront remained available throughout; only the internal analytics dashboard was affected, and the estimated gross-margin impact of the outage is approximately EUR 30,000."
         }
-      ],
-      "file_url": null
+      ]
     },
     "37": {
       "title": "Email — post-breach follow-up (Brightmarket to Cobalt)",
@@ -6287,7 +6252,7 @@
       "category": "Correspondence",
       "tab": "37",
       "modality": "email",
-      "mime": "text/plain",
+      "mime": "email",
       "paras": [
         {
           "n": 1,
@@ -6297,8 +6262,7 @@
           "n": 2,
           "text": "Following the breach earlier this month, please review the security-group configuration; treat this email as a formal warning that any recurrence will be escalated."
         }
-      ],
-      "file_url": null
+      ]
     },
     "38": {
       "title": "Remediation Ticket Register (extract)",
@@ -6308,7 +6272,7 @@
       "category": "Record",
       "tab": "38",
       "modality": "document",
-      "mime": "text/plain",
+      "mime": "document",
       "paras": [
         {
           "n": 1,
@@ -6318,8 +6282,7 @@
           "n": 2,
           "text": "Ticket SEC-1187 was opened at 09:00 on 12 October 2025 and closed at 17:40 on 12 October 2025; the misconfiguration was remediated the same day."
         }
-      ],
-      "file_url": null
+      ]
     },
     "39": {
       "title": "Sub-processor Register (extract)",
@@ -6329,7 +6292,7 @@
       "category": "Contract",
       "tab": "39",
       "modality": "document",
-      "mime": "text/plain",
+      "mime": "document",
       "paras": [
         {
           "n": 1,
@@ -6339,8 +6302,7 @@
           "n": 2,
           "text": "The India-based sub-processor, Cobalt Analytics India Pvt Ltd, was de-listed and removed from the sub-processor register on 30 November 2023; no production personal data has been routed to it since."
         }
-      ],
-      "file_url": null
+      ]
     },
     "40": {
       "title": "Data-Flow Map (extract)",
@@ -6350,7 +6312,7 @@
       "category": "Record",
       "tab": "40",
       "modality": "document",
-      "mime": "text/plain",
+      "mime": "document",
       "paras": [
         {
           "n": 1,
@@ -6360,8 +6322,7 @@
           "n": 2,
           "text": "The India development sandbox processes synthetic and de-identified test data only; no EU customer personal data flows to the India environment."
         }
-      ],
-      "file_url": null
+      ]
     },
     "41": {
       "title": "Access Log (extract) — analytics tier",
@@ -6371,7 +6332,7 @@
       "category": "Record",
       "tab": "41",
       "modality": "document",
-      "mime": "text/plain",
+      "mime": "document",
       "paras": [
         {
           "n": 1,
@@ -6381,8 +6342,7 @@
           "n": 2,
           "text": "On investigation, that session resolves to an EU-based engineer connecting through the company's Mumbai VPN egress node; the underlying access originated from within the EU."
         }
-      ],
-      "file_url": null
+      ]
     },
     "42": {
       "title": "Data Processing Agreement — DRAFT v0.9 (subject to contract)",
@@ -6392,7 +6352,7 @@
       "category": "Amendment",
       "tab": "42",
       "modality": "document",
-      "mime": "text/plain",
+      "mime": "document",
       "paras": [
         {
           "n": 1,
@@ -6402,8 +6362,7 @@
           "n": 7,
           "text": "Indemnity (draft): the Supplier shall indemnify the Customer without limit for any data-protection breach."
         }
-      ],
-      "file_url": null
+      ]
     },
     "43": {
       "title": "Data Processing Agreement — EXECUTED (indemnity clause 11)",
@@ -6413,7 +6372,7 @@
       "category": "Contract",
       "tab": "43",
       "modality": "document",
-      "mime": "text/plain",
+      "mime": "document",
       "paras": [
         {
           "n": 1,
@@ -6423,8 +6382,7 @@
           "n": 11,
           "text": "Indemnity: the Supplier's indemnity for data-protection breaches is capped at the fees paid in the preceding 12 months; this executed Agreement supersedes any prior draft, including draft v0.9."
         }
-      ],
-      "file_url": null
+      ]
     },
     "44": {
       "title": "Encryption Configuration Note",
@@ -6434,7 +6392,7 @@
       "category": "Record",
       "tab": "44",
       "modality": "document",
-      "mime": "text/plain",
+      "mime": "document",
       "paras": [
         {
           "n": 1,
@@ -6448,8 +6406,7 @@
           "n": 3,
           "text": "A legacy archive tier still uses 3DES; migration of that tier to AES-256 is scheduled for Q4 2025."
         }
-      ],
-      "file_url": null
+      ]
     },
     "45": {
       "title": "Expert Addendum — Dr Vale (encryption sufficiency)",
@@ -6459,7 +6416,7 @@
       "category": "Witness (expert)",
       "tab": "45",
       "modality": "document",
-      "mime": "text/plain",
+      "mime": "document",
       "paras": [
         {
           "n": 1,
@@ -6469,8 +6426,7 @@
           "n": 2,
           "text": "I am unable to opine whether retaining 3DES on the legacy archive tier fell below the Article 32 standard; reasonable security experts may differ, and the answer turns on the residual risk of that specific tier."
         }
-      ],
-      "file_url": null
+      ]
     },
     "46": {
       "title": "Data Processing Agreement — clause 10 (DPIA allocation)",
@@ -6480,7 +6436,7 @@
       "category": "Contract",
       "tab": "46",
       "modality": "document",
-      "mime": "text/plain",
+      "mime": "document",
       "paras": [
         {
           "n": 1,
@@ -6490,8 +6446,7 @@
           "n": 2,
           "text": "The Controller is responsible for carrying out any data protection impact assessment required by Article 35 GDPR; the Processor shall provide reasonable assistance under Article 28(3)(f)."
         }
-      ],
-      "file_url": null
+      ]
     }
   },
   "chronology": [

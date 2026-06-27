@@ -1,0 +1,61 @@
+[
+  {
+    "claim_id": "C001",
+    "claim_text": "TechFlow delivered the Platform late, going live on 18 November 2024, some seven weeks after the contractual go-live date.",
+    "robustness_score": 80,
+    "verdict": "strong",
+    "supporting_evidence": [
+      {
+        "evidence_id": "E19",
+        "summary": "Whitfield confirms the Platform did not achieve go-live until 18 November 2024, some seven weeks after the 1 October contractual date.",
+        "score": 0.84
+      },
+      {
+        "evidence_id": "E09",
+        "summary": "The go-live readiness email shows the platform was not ready, with open Severity-1 defects, at the contractual date.",
+        "score": 0.62
+      }
+    ],
+    "challenging_evidence": [],
+    "missing_evidence": [],
+    "over_extrapolation_risks": [],
+    "legal_explanation": "The late-delivery allegation is corroborated by both the independent expert and contemporaneous correspondence. The contractual go-live date and the actual go-live date are not in dispute.",
+    "recommended_action": "Maintain the pleaded late-delivery allegation; rely on Whitfield and the readiness email."
+  },
+  {
+    "claim_id": "C002",
+    "claim_text": "Meridian did not at any time request any change to the agreed scope, and all delay was caused by TechFlow.",
+    "robustness_score": 32,
+    "verdict": "weak",
+    "supporting_evidence": [],
+    "challenging_evidence": [
+      {
+        "evidence_id": "E07",
+        "summary": "Change Order No. 3, made at the written request of Meridian dated 21 August 2024, adds the loyalty module and is acknowledged to be a change to the agreed scope of the works, revising the go-live date.",
+        "score": 0.88
+      }
+    ],
+    "missing_evidence": [],
+    "over_extrapolation_risks": [
+      "The unqualified assertion that Meridian requested no change is directly contradicted by a signed change order."
+    ],
+    "legal_explanation": "The pleaded assertion that Meridian requested no change to scope is contradicted by Change Order No. 3, which records Meridian's own written request for the loyalty module and a consequent revision of the go-live date. This is an own-goal: the claimant's own document undermines the no-change-and-all-TechFlow's-fault narrative.",
+    "recommended_action": "Withdraw or substantially re-plead the no-scope-change allegation; it is contradicted by the claimant's own signed change order."
+  },
+  {
+    "claim_id": "C003",
+    "claim_text": "TechFlow failed to provide adequate training to Meridian's staff in the use of the Platform.",
+    "robustness_score": 10,
+    "verdict": "unsupported",
+    "supporting_evidence": [],
+    "challenging_evidence": [],
+    "missing_evidence": [
+      "No training records, attendance sheets, or correspondence evidencing the alleged inadequacy of training."
+    ],
+    "over_extrapolation_risks": [
+      "The allegation asserts inadequacy of training without any documentary basis in the bundle."
+    ],
+    "legal_explanation": "There is no evidence in the bundle, one way or the other, addressing the adequacy of training. The allegation is asserted but not addressed by any document.",
+    "recommended_action": "Either obtain and disclose training records to support the allegation, or withdraw it."
+  }
+]

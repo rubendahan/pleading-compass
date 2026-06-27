@@ -276,10 +276,10 @@ function PropositionView({
         </ul>
       </div>
 
-      <p className="rounded border-l-2 pl-3 text-[11px] italic leading-relaxed text-ink-dim" style={{ borderColor: COLORS.accent }}>
-        Lawyer review required. The console reports coherence in this bundle — it does not
-        decide the case.
+      <p className="rounded border-l-2 pl-3 text-[11px] italic text-ink-dim" style={{ borderColor: COLORS.accent }}>
+        Coherence signal only — not a verdict.
       </p>
+
     </div>
   );
 }

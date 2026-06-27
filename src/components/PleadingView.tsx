@@ -56,12 +56,12 @@ export default function PleadingView({
             <div className="mt-0.5">Claim {data.meta.claim_no}</div>
           </div>
         </div>
-        <p className="mt-2 text-[12px] leading-snug text-ink-dim">
-          Highlighted spans are verbatim allegations; colour shows whether the bundle{" "}
-          <span style={{ color: COLORS.accepted }}>supports</span>,{" "}
-          <span style={{ color: COLORS.rejected }}>contradicts</span>, or{" "}
-          <span style={{ color: COLORS.absence }}>does not address</span> them.
-        </p>
+        <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-dim">
+          <KeyDot color={COLORS.accepted} label="supported" />
+          <KeyDot color={COLORS.rejected} label="contradicted" />
+          <KeyDot color={COLORS.absence} label="not addressed" />
+        </div>
+
       </header>
 
       <div id="pleading-scroll" className="flex-1 overflow-y-auto px-6 py-5">
@@ -161,12 +161,21 @@ export default function PleadingView({
             })}
           </ol>
 
-          <div
-            className="mt-10 border-t pt-4 text-right font-display text-[12px] italic text-ink-dim"
-            style={{ borderColor: COLORS.hair }}
-          >
-            Served this day on behalf of the Claimant.
-          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function KeyDot({ color, label }: { color: string; label: string }) {
+  return (
+    <span className="inline-flex items-center gap-1.5">
+      <span className="inline-block h-2 w-2 rounded-full" style={{ background: color }} />
+      {label}
+    </span>
+  );
+}
+
         </div>
       </div>
     </section>

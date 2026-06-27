@@ -5,7 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { getMyContext, listCases, createDemoCase, inviteLawyer, listFirmMembers } from "@/lib/firm.functions";
 import { COLORS } from "@/lib/pleading";
 
-export const Route = createFileRoute("/_authenticated/cases")({
+export const Route = createFileRoute("/_authenticated/cases/")({
   component: CasesPage,
 });
 

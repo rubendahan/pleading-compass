@@ -15,9 +15,9 @@ export const Route = createFileRoute("/_authenticated/cases/$caseId")({
   component: CasePage,
 });
 
-const CARD_W = 460;
-const CARD_H = 540;
-const HOLE_R = Math.hypot(CARD_W / 2, CARD_H / 2) + 28;
+const CARD_W = 640;
+const CARD_H = 680;
+const HOLE_R = Math.hypot(CARD_W / 2, CARD_H / 2) + 40;
 
 function CasePage() {
   const { caseId } = Route.useParams();

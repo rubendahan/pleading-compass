@@ -72,7 +72,7 @@ export default function PleadingView({
             </div>
           </div>
 
-          <ol className="space-y-5">
+          <ol className="space-y-6">
             {propositions.map((p, i) => {
               const pc = pleadingClaimByProp.get(p.label);
               const verdictC = verdictColor(p.verdict);

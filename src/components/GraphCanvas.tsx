@@ -24,8 +24,9 @@ interface Props {
   hideHub?: boolean;
   /** Called when a node is clicked, with container-relative pixel coords. */
   onNodeClickScreen?: (id: string, x: number, y: number) => void;
-  /** Imperative API ref: caller can pan/zoom to a set of node ids. */
-  apiRef?: React.MutableRefObject<{ focusNodes: (ids: string[]) => void } | null>;
+  /** Imperative API ref: caller can pan/zoom to a set of node ids, with an optional
+   * horizontal screen bias (px) so the nodes land to the right of a centre card. */
+  apiRef?: React.MutableRefObject<{ focusNodes: (ids: string[], biasX?: number) => void } | null>;
 
 }
 
@@ -176,7 +177,7 @@ export default function GraphCanvas({
   useEffect(() => {
     if (!apiRef) return;
     apiRef.current = {
-      focusNodes: (ids: string[]) => {
+      focusNodes: (ids: string[], biasX = 0) => {
         const fg = fgRef.current;
         if (!fg || !ids.length) return;
         const set = new Set(ids);
@@ -189,8 +190,11 @@ export default function GraphCanvas({
         const cx = sx / targets.length;
         const cy = sy / targets.length;
         try {
-          fg.centerAt?.(cx, cy, 600);
-          fg.zoom?.(Math.max(1, fg.zoom?.() ?? 1), 600);
+          const z = fg.zoom?.() ?? 1;
+          // Shift the view left by biasX/zoom so the focused nodes land to the RIGHT of
+          // the centre, clear of the pleading card (which we move left at the same time).
+          fg.centerAt?.(cx - biasX / z, cy, 600);
+          fg.zoom?.(Math.max(1, z), 600);
         } catch {/* noop */}
       },
     };
@@ -463,25 +467,55 @@ function useReducedMotion(): boolean {
 }
 
 function Legend({ mode }: { mode: Mode }) {
-  const items: Array<[string, string]> = [
+  const links: Array<[string, string]> = [
     ["supports", COLORS.accepted],
     ["contradicts", COLORS.rejected],
-    ["attacks", COLORS.orange],
-    ["legal bar", COLORS.legal],
+    ["supersedes / attacks", COLORS.orange],
+    ["caps / legal bar", COLORS.legal],
     ["asserts", COLORS.accent],
   ];
+  const verdicts: Array<[string, string]> = [
+    ["supported", COLORS.accepted],
+    ["contradicted", COLORS.rejected],
+    ["legal overlay", COLORS.legal],
+    ["not addressed", COLORS.absence],
+  ];
+  const div = <div className="my-1.5 h-px" style={{ background: COLORS.hair }} />;
 
   return (
     <div
-      className="pointer-events-none absolute bottom-3 right-3 rounded-sm border px-3 py-2 text-[10px] uppercase tracking-widest text-ink-dim"
+      className="pointer-events-none absolute bottom-3 left-3 rounded-sm border px-3 py-2 text-[10px] uppercase tracking-widest text-ink-dim"
       style={{
         borderColor: COLORS.hair,
-        background: withAlpha(COLORS.panel, 0.92),
+        background: withAlpha(COLORS.panel, 0.94),
         fontFamily: '"IBM Plex Mono", monospace',
       }}
     >
-      <div className="mb-1 text-ink">{mode === "stress" ? "Stress test" : "Bundle coherence"}</div>
-      {items.map(([k, c]) => (
+      <div className="mb-1 text-ink">Legend</div>
+
+      <div className="flex items-center gap-2 leading-5">
+        <span className="inline-block h-2.5 w-2.5 rounded-full" style={{ background: COLORS.inkDim }} />
+        <span>claim</span>
+      </div>
+      <div className="flex items-center gap-2 leading-5">
+        <span className="inline-block h-2.5 w-2.5" style={{ background: COLORS.accent }} />
+        <span>document</span>
+      </div>
+      <div className="flex items-center gap-2 leading-5">
+        <span className="inline-block h-2.5 w-2.5 rounded-full border" style={{ borderColor: COLORS.brass, borderWidth: 1.5 }} />
+        <span>load-bearing</span>
+      </div>
+
+      {div}
+      {verdicts.map(([k, c]) => (
+        <div key={k} className="flex items-center gap-2 leading-5">
+          <span className="inline-block h-2.5 w-2.5 rounded-full" style={{ background: c }} />
+          <span>{k}</span>
+        </div>
+      ))}
+
+      {div}
+      {links.map(([k, c]) => (
         <div key={k} className="flex items-center gap-2 leading-5">
           <span className="inline-block h-[2px] w-5" style={{ background: c }} />
           <span>{k}</span>

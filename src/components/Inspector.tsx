@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import type { AppData, ClaimNode, DataEdge, DataNode, PropositionNode } from "@/lib/pleading";
-import { COLORS, edgeColor, relLabel, verdictColor } from "@/lib/pleading";
+import { COLORS, anchorLabel, edgeColor, relLabel, verdictColor } from "@/lib/pleading";
 import { summariseNode } from "@/lib/summary.functions";
 import { AnchorButton } from "./SourceReader";
 
@@ -190,6 +190,51 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
   );
 }
 
+/** A small brass flag used for load-bearing / single-source warnings. */
+function FlagPill({ children }: { children: React.ReactNode }) {
+  return (
+    <span
+      className="verdict-pill"
+      style={{ borderColor: COLORS.brass, color: COLORS.brass, background: `${COLORS.brass}1A` }}
+    >
+      {children}
+    </span>
+  );
+}
+
+/** A demoted, clearly-labelled section. Collapsed by default so the verify path
+ *  stays front and centre; expand for the supporting analysis. */
+function Collapsible({
+  title,
+  count,
+  defaultOpen = false,
+  children,
+}: {
+  title: string;
+  count?: number;
+  defaultOpen?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <details
+      open={defaultOpen}
+      className="group rounded-md border"
+      style={{ borderColor: COLORS.hair, background: COLORS.panel2 }}
+    >
+      <summary className="flex cursor-pointer list-none items-center justify-between px-3 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-ink-dim [&::-webkit-details-marker]:hidden">
+        <span>
+          {title}
+          {count != null ? ` · ${count}` : ""}
+        </span>
+        <span aria-hidden className="transition-transform duration-150 group-open:rotate-90">
+          ›
+        </span>
+      </summary>
+      <div className="space-y-4 px-3 pb-3 pt-1">{children}</div>
+    </details>
+  );
+}
+
 function PropositionView({
   data,
   node,
@@ -217,67 +262,153 @@ function PropositionView({
     );
   }
   const impact = cluster?.impacts.find((i) => i.startsWith(`${node.label}:`));
+  // The single most decisive claim: prefer one we can verify (quote + anchor),
+  // then load-bearing, then heaviest.
+  const controlling = pickControlling(claims);
+  // A short, plain "why" for the verdict. The impact line carries it; otherwise
+  // fall back to the opening line of the coherent story. (No duplicate restatement.)
+  const why = impact
+    ? impact.slice(impact.indexOf(":") + 1).trim()
+    : cluster?.story[0] ?? null;
+  const hasAnalysis = Boolean(
+    cluster?.story.length || cluster?.amendments.length || claims.length,
+  );
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-4">
+      {/* What this is + the verdict. */}
       <div className="flex flex-wrap items-center gap-2">
         <VerdictPill verdict={node.verdict} />
         <OverlayChip overlay={node.overlay} />
       </div>
-      <p className="text-sm leading-relaxed text-ink">{node.text}</p>
+      <p className="text-[15px] leading-relaxed text-ink">{node.text}</p>
       <ReadinessBar value={node.readiness} />
 
-      {cluster && (
+      {/* The controlling evidence, with a one-click verify path. */}
+      {controlling ? (
+        <ControllingEvidence claim={controlling} documents={data.documents} onSelect={onSelect} />
+      ) : (
+        <div className="rounded border p-3 text-[12px] italic text-ink-dim" style={{ borderColor: COLORS.hair }}>
+          No claims are pleaded to this allegation yet.
+        </div>
+      )}
+
+      {/* A short, plain-language why. */}
+      {why && (
         <div>
-          <SectionHeading>Coherent story · {cluster.issue.toLowerCase()}</SectionHeading>
-          <ul className="space-y-1.5 text-sm leading-relaxed text-ink-dim">
-            {cluster.story.map((s, i) => (
-              <li key={i} className="flex gap-2">
-                <span className="mt-1 inline-block h-1 w-1 shrink-0 rounded-full" style={{ background: COLORS.accent }} />
-                <span>{s}</span>
-              </li>
-            ))}
-          </ul>
+          <SectionHeading>Why</SectionHeading>
+          <p className="text-[13px] leading-relaxed text-ink">{why}</p>
         </div>
       )}
 
-      {impact && (
-        <div className="rounded-md border p-3" style={{ borderColor: COLORS.hair, background: `${COLORS.rejected}0D` }}>
-          <SectionHeading>Impact</SectionHeading>
-          <p className="text-[13px] leading-relaxed text-ink">{impact}</p>
-        </div>
-      )}
+      {/* Everything supporting, tucked away and clearly labelled. */}
+      {hasAnalysis && (
+        <Collapsible title="Analysis">
+          {cluster && cluster.story.length > 0 && (
+            <div>
+              <SectionHeading>Coherent story · {cluster.issue.toLowerCase()}</SectionHeading>
+              <ul className="space-y-1.5 text-[13px] leading-relaxed text-ink-dim">
+                {cluster.story.map((s, i) => (
+                  <li key={i} className="flex gap-2">
+                    <span className="mt-1 inline-block h-1 w-1 shrink-0 rounded-full" style={{ background: COLORS.accent }} />
+                    <span>{s}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
-      {cluster && cluster.amendments.length > 0 && (
-        <div>
-          <SectionHeading>Suggested amendments</SectionHeading>
-          <ul className="space-y-2 text-sm leading-relaxed text-ink">
-            {cluster.amendments.map((a, i) => (
-              <li
-                key={i}
-                className="rounded border-l-2 pl-3"
-                style={{ borderColor: COLORS.legal }}
-              >
-                {a}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+          {claims.length > 0 && (
+            <div>
+              <SectionHeading>Claims targeting this allegation · {claims.length}</SectionHeading>
+              <ul className="space-y-2">
+                {claims.map((c) => (
+                  <ClaimRow key={c.id} claim={c} onSelect={onSelect} />
+                ))}
+              </ul>
+            </div>
+          )}
 
-      <div>
-        <SectionHeading>Claims targeting this proposition ({claims.length})</SectionHeading>
-        <ul className="space-y-2">
-          {claims.map((c) => (
-            <ClaimRow key={c.id} claim={c} onSelect={onSelect} />
-          ))}
-        </ul>
+          {cluster && cluster.amendments.length > 0 && (
+            <div>
+              <SectionHeading>Suggested amendments</SectionHeading>
+              <ul className="space-y-2 text-[13px] leading-relaxed text-ink">
+                {cluster.amendments.map((a, i) => (
+                  <li key={i} className="rounded border-l-2 pl-3" style={{ borderColor: COLORS.legal }}>
+                    {a}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <p className="text-[11px] italic text-ink-dim">Coherence signal, not a verdict.</p>
+        </Collapsible>
+      )}
+    </div>
+  );
+}
+
+/** Pick the most decisive claim for an allegation: verifiable first (quote +
+ *  anchor), then load-bearing, then heaviest weight. */
+function pickControlling(claims: ClaimNode[]): ClaimNode | null {
+  if (claims.length === 0) return null;
+  const verifiable = claims.filter((c) => c.quote && c.anchor);
+  const pool = verifiable.length > 0 ? verifiable : claims;
+  return [...pool].sort((a, b) => {
+    if (a.load_bearing !== b.load_bearing) return a.load_bearing ? -1 : 1;
+    return (b.weight ?? 0) - (a.weight ?? 0);
+  })[0];
+}
+
+/** The lead evidence card on an allegation: the claim, its verdict, and a clear
+ *  verify button straight to the source paragraph. */
+function ControllingEvidence({
+  claim,
+  documents,
+  onSelect,
+}: {
+  claim: ClaimNode;
+  documents: AppData["documents"];
+  onSelect: (id: string) => void;
+}) {
+  const c = verdictColor(claim.verdict);
+  return (
+    <div
+      className="rounded-md border p-3"
+      style={{ borderColor: COLORS.hair, borderLeftWidth: 3, borderLeftColor: c, background: COLORS.bg }}
+    >
+      <div className="mb-2 flex items-center justify-between gap-2">
+        <SectionHeading>Controlling evidence</SectionHeading>
+        <span className="font-mono text-[10px] uppercase tracking-widest" style={{ color: c }}>
+          {claim.verdict}
+        </span>
       </div>
-
-      <p className="rounded border-l-2 pl-3 text-[11px] italic text-ink-dim" style={{ borderColor: COLORS.accent }}>
-        Coherence signal, not a verdict.
-      </p>
-
+      <p className="text-[13px] leading-snug text-ink">{claim.fulltext}</p>
+      {claim.quote && (
+        <blockquote
+          className="mt-2 border-l-2 pl-3 font-mono text-[12px] leading-relaxed text-ink-dim"
+          style={{ borderColor: c }}
+        >
+          “{claim.quote}”
+        </blockquote>
+      )}
+      <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
+        <button
+          onClick={() => onSelect(claim.id)}
+          className="font-mono text-[10px] uppercase tracking-widest text-ink-dim underline-offset-2 hover:text-ink hover:underline"
+        >
+          open claim
+        </button>
+        {claim.anchor && (
+          <AnchorButton
+            anchor={claim.anchor}
+            quote={claim.quote}
+            documents={documents}
+            label={anchorLabel(claim.anchor)}
+          />
+        )}
+      </div>
     </div>
   );
 }
@@ -307,7 +438,7 @@ function ClaimRow({
         </div>
         <p className="mt-1 text-[13px] leading-snug text-ink">{claim.fulltext}</p>
         {claim.anchor && (
-          <div className="mt-1 font-mono text-[10px] text-ink-dim">{claim.anchor}</div>
+          <div className="mt-1 font-mono text-[10px] text-ink-dim">{anchorLabel(claim.anchor)}</div>
         )}
       </button>
     </li>
@@ -330,81 +461,60 @@ function ClaimView({
   const provenance = data.edges.filter(
     (e) => e.kind === "provenance" && e.target === node.id,
   );
+  const hasAnalysis = Boolean(
+    node.load_bearing ||
+      node.single_source ||
+      (node.blocks && node.blocks.length > 0) ||
+      provenance.length > 0 ||
+      relations.length > 0,
+  );
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-4">
+      {/* What this is + the verdict, with only the warning flags kept loud. */}
       <div className="flex flex-wrap items-center gap-2">
         <VerdictPill verdict={node.verdict} />
-        <span className="chip">{node.polarity}</span>
-        <span className="chip">{node.source_type.replace(/_/g, " ")}</span>
-        <span className="chip">weight {node.weight.toFixed(1)}</span>
-        {node.load_bearing && (
-          <span
-            className="verdict-pill"
-            style={{ borderColor: COLORS.brass, color: COLORS.brass, background: `${COLORS.brass}1A` }}
-          >
-            load-bearing
-          </span>
-        )}
-        {node.single_source && (
-          <span
-            className="verdict-pill"
-            style={{ borderColor: COLORS.brass, color: COLORS.brass, background: `${COLORS.brass}1A` }}
-          >
-            single source
-          </span>
-        )}
+        {node.load_bearing && <FlagPill>load-bearing</FlagPill>}
+        {node.single_source && <FlagPill>single source</FlagPill>}
+      </div>
+      <div className="font-mono text-[10px] uppercase tracking-widest text-ink-dim">
+        {node.polarity} · {node.source_type.replace(/_/g, " ")} · weight {node.weight.toFixed(1)}
       </div>
 
-      <p className="text-sm leading-relaxed text-ink">{node.fulltext}</p>
+      {/* The pleaded claim. */}
+      <p className="text-[15px] leading-relaxed text-ink">{node.fulltext}</p>
 
-      {(node.load_bearing || node.single_source) && (
-        <div className="rounded-md border-l-2 pl-3 text-[12px] leading-relaxed text-ink" style={{ borderColor: COLORS.brass, background: `${COLORS.brass}0D` }}>
-          <span className="font-mono uppercase tracking-widest" style={{ color: COLORS.brass }}>
-            Load-bearing.{" "}
-          </span>
-          This point rests on a single source. Discredit it and it falls.
-        </div>
-      )}
-
-      {node.blocks && node.blocks.length > 0 && (
-        <div className="rounded border p-3 text-[12px] leading-relaxed text-ink-dim" style={{ borderColor: COLORS.hair }}>
-          <SectionHeading>If discredited</SectionHeading>
-          Discredit this and{" "}
-          {node.blocks.map((b, i) => (
-            <span key={b}>
-              <button
-                className="font-mono text-[11px] underline-offset-2 hover:underline"
-                style={{ color: COLORS.accent }}
-                onClick={() => onSelect(`claim:${b}`)}
-              >
-                {b}
-              </button>
-              {i < node.blocks!.length - 1 ? ", " : ""}
-            </span>
-          ))}{" "}
-          would revive.
-        </div>
-      )}
-
+      {/* The verbatim quote and the one-click verify path: the heart of the job. */}
       {node.quote ? (
-        <div>
-          <SectionHeading>Verbatim quote</SectionHeading>
-          <blockquote
-            className="rounded border-l-2 p-3 font-mono text-[12px] leading-relaxed text-ink"
-            style={{ borderColor: c, background: COLORS.bg }}
-          >
-            “{node.quote}”
-          </blockquote>
-          <div className="mt-2 flex flex-wrap items-center gap-2">
+        <div className="rounded-md border p-3" style={{ borderColor: COLORS.hair, background: COLORS.bg }}>
+          <div className="mb-2 flex items-center justify-between gap-2">
+            <SectionHeading>Verbatim quote</SectionHeading>
             <span
               className="inline-flex items-center gap-1 rounded px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-widest"
               style={{ color: COLORS.accepted, background: `${COLORS.accepted}14` }}
             >
               ✓ verbatim
             </span>
-            <AnchorButton anchor={node.anchor} quote={node.quote} documents={data.documents} />
           </div>
+          <blockquote
+            className="border-l-2 pl-3 font-mono text-[12px] leading-relaxed text-ink"
+            style={{ borderColor: c }}
+          >
+            “{node.quote}”
+          </blockquote>
+          {node.anchor && (
+            <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-ink-dim">
+                Verify against source
+              </span>
+              <AnchorButton
+                anchor={node.anchor}
+                quote={node.quote}
+                documents={data.documents}
+                label={anchorLabel(node.anchor)}
+              />
+            </div>
+          )}
         </div>
       ) : (
         <div className="rounded border p-3 text-[12px] italic text-ink-dim" style={{ borderColor: COLORS.hair }}>
@@ -412,41 +522,76 @@ function ClaimView({
         </div>
       )}
 
-      {provenance.length > 0 && (
-        <div>
-          <SectionHeading>Source</SectionHeading>
-          <ul className="space-y-1">
-            {provenance.map((e) => {
-              const doc = data.nodes.find((n) => n.id === e.source);
-              if (!doc) return null;
-              return (
-                <li key={e.source}>
-                  <button
-                    onClick={() => onSelect(e.source)}
-                    className="flex w-full items-center justify-between rounded border px-2 py-1.5 text-left text-[12px] hover:bg-bg/40"
-                    style={{ borderColor: COLORS.hair }}
-                  >
-                    <span className="text-ink">
-                      {(doc as any).title}
-                    </span>
-                    <span className="font-mono text-[10px] text-ink-dim">{doc.label}</span>
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      )}
+      {/* Supporting analysis, demoted and out of the way until needed. */}
+      {hasAnalysis && (
+        <Collapsible title="Analysis">
+          {(node.load_bearing || node.single_source) && (
+            <div
+              className="rounded-md border-l-2 pl-3 text-[12px] leading-relaxed text-ink"
+              style={{ borderColor: COLORS.brass, background: `${COLORS.brass}0D` }}
+            >
+              <span className="font-mono uppercase tracking-widest" style={{ color: COLORS.brass }}>
+                Load-bearing.{" "}
+              </span>
+              This point rests on a single source. Discredit it and it falls.
+            </div>
+          )}
 
-      {relations.length > 0 && (
-        <div>
-          <SectionHeading>Coherence relations</SectionHeading>
-          <ul className="space-y-2">
-            {relations.map((e, i) => (
-              <RelationRow key={i} edge={e} self={node.id} data={data} onSelect={onSelect} />
-            ))}
-          </ul>
-        </div>
+          {node.blocks && node.blocks.length > 0 && (
+            <div className="rounded border p-3 text-[12px] leading-relaxed text-ink-dim" style={{ borderColor: COLORS.hair }}>
+              <SectionHeading>If discredited</SectionHeading>
+              Discredit this and{" "}
+              {node.blocks.map((b, i) => (
+                <span key={b}>
+                  <button
+                    className="font-mono text-[11px] underline-offset-2 hover:underline"
+                    style={{ color: COLORS.accent }}
+                    onClick={() => onSelect(`claim:${b}`)}
+                  >
+                    {b}
+                  </button>
+                  {i < node.blocks!.length - 1 ? ", " : ""}
+                </span>
+              ))}{" "}
+              would revive.
+            </div>
+          )}
+
+          {provenance.length > 0 && (
+            <div>
+              <SectionHeading>Source</SectionHeading>
+              <ul className="space-y-1">
+                {provenance.map((e) => {
+                  const doc = data.nodes.find((n) => n.id === e.source);
+                  if (!doc) return null;
+                  return (
+                    <li key={e.source}>
+                      <button
+                        onClick={() => onSelect(e.source)}
+                        className="flex w-full items-center justify-between rounded border px-2 py-1.5 text-left text-[12px] hover:bg-bg/40"
+                        style={{ borderColor: COLORS.hair }}
+                      >
+                        <span className="text-ink">{(doc as any).title}</span>
+                        <span className="font-mono text-[10px] text-ink-dim">{doc.label}</span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
+
+          {relations.length > 0 && (
+            <div>
+              <SectionHeading>Coherence relations</SectionHeading>
+              <ul className="space-y-2">
+                {relations.map((e, i) => (
+                  <RelationRow key={i} edge={e} self={node.id} data={data} onSelect={onSelect} />
+                ))}
+              </ul>
+            </div>
+          )}
+        </Collapsible>
       )}
     </div>
   );

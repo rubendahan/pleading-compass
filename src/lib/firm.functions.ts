@@ -1,6 +1,8 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import type { Json } from "@/integrations/supabase/types";
+import type { AppData } from "@/lib/pleading";
 import demoCase from "./demo-case.json";
 
 // Bootstrap context: returns the user's firm, role, full name.
@@ -154,6 +156,28 @@ export const getCase = createServerFn({ method: "GET" })
       .from("cases")
       .select("id, title, claim_no, court, data, updated_at")
       .eq("id", data.id)
+      .maybeSingle();
+    if (error) throw new Error(error.message);
+    if (!row) throw new Error("Case not found");
+    return row;
+  });
+
+// Persist a full AppData JSON back to the case row. Used by the annotated
+// pleading editor: the lawyer edits a pleaded paragraph, we write the whole
+// analysis document back to "cases.data" for that id. Auth + supabase usage
+// mirror getCase; RLS scopes the write to the caller's firm.
+export const updateCase = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: { id: string; data: AppData }) =>
+    z.object({ id: z.string().uuid(), data: z.custom<AppData>() }).parse(input),
+  )
+  .handler(async ({ data, context }) => {
+    const { supabase } = context;
+    const { data: row, error } = await supabase
+      .from("cases")
+      .update({ data: data.data as unknown as Json })
+      .eq("id", data.id)
+      .select("id, title, claim_no, court, data, updated_at")
       .maybeSingle();
     if (error) throw new Error(error.message);
     if (!row) throw new Error("Case not found");

@@ -166,24 +166,38 @@ export default function GraphCanvas({
     );
   }
 
+  // Wheel: scroll the page by default; hold ⌘/Ctrl to zoom the graph.
+  const onWheel: React.WheelEventHandler<HTMLDivElement> = (e) => {
+    if (!(e.ctrlKey || e.metaKey)) return; // let the page scroll
+    e.preventDefault();
+    const fg = fgRef.current;
+    if (!fg?.zoom) return;
+    const current = fg.zoom();
+    const factor = Math.exp(-e.deltaY * 0.0015);
+    fg.zoom(Math.max(0.3, Math.min(8, current * factor)), 80);
+  };
+
   return (
     <div
       ref={wrapRef}
-      className="relative h-full w-full overflow-hidden rounded-lg border"
-      style={{ borderColor: COLORS.hair, background: COLORS.bg }}
+      className="relative h-full w-full overflow-hidden rounded-sm border"
+      style={{ borderColor: COLORS.hair, background: COLORS.panel }}
+      onWheel={onWheel}
     >
       <ForceGraph
         ref={fgRef}
         graphData={graph}
         width={size.w}
         height={size.h}
-        backgroundColor={COLORS.bg}
+        backgroundColor={COLORS.panel}
         cooldownTicks={reducedMotion ? 0 : 120}
         warmupTicks={reducedMotion ? 200 : 30}
         d3VelocityDecay={0.35}
         linkDirectionalParticles={0}
         nodeRelSize={5}
         enableNodeDrag={true}
+        enableZoomInteraction={false}
+        enablePanInteraction={true}
         onNodeHover={(n: any) => onHover(n ? n.id : null)}
         onNodeClick={(n: any) => {
           onSelect(n?.id ?? null);
@@ -200,7 +214,7 @@ export default function GraphCanvas({
         linkColor={(l: any) => {
           const dimmed = focused && !isLinkFocused(l, focused);
           const c = edgeColor(l.rel);
-          return dimmed ? withAlpha(c, 0.12) : withAlpha(c, l.rel === "asserts" ? 0.55 : 0.85);
+          return dimmed ? withAlpha(c, 0.10) : withAlpha(c, l.rel === "asserts" ? 0.45 : 0.78);
         }}
         linkWidth={(l: any) => {
           const isFocus = focused && isLinkFocused(l, focused);

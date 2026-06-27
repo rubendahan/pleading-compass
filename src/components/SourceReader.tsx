@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { COLORS, anchorLabel } from "@/lib/pleading";
+import { VerifyChip } from "./TrustBadge";
 import demoCase from "@/lib/demo-case.json";
 
 type Para = { n: number; text: string };
@@ -13,16 +14,100 @@ function parseAnchor(a: string) {
   return m ? { doc: m[1], para: m[2] ? parseInt(m[2], 10) : undefined } : null;
 }
 
+/** Controlled source/PDF reader. Opens a document at `anchor`'s paragraph with the
+ *  verbatim `quote` highlighted (text docs) or renders the real file (PDF / image /
+ *  video) when a `file_url` + `mime` is supplied. With no anchor it shows a verify
+ *  call-to-action rather than a silent blank. Drives every click-to-source path:
+ *  graph node clicks, margin notes, claim rows, and the AnchorButton. */
+export function SourceReaderDialog({
+  open,
+  onOpenChange,
+  anchor,
+  quote,
+  documents,
+  onOpenAnalysis,
+}: {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  anchor: string | null | undefined;
+  quote?: string | null;
+  documents?: Docs;
+  /** Reveal the deeper Inspector affordance for the node this source was opened from. */
+  onOpenAnalysis?: () => void;
+}) {
+  const parsed = anchor ? parseAnchor(anchor) : null;
+  const docs: Docs = (documents ?? (demoCase as any).documents ?? {}) as Docs;
+  const doc = parsed ? docs[parsed.doc] : undefined;
+
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="max-w-2xl" style={{ background: COLORS.panel, borderColor: COLORS.hair }}>
+        <DialogHeader>
+          <DialogTitle className="flex items-center justify-between gap-3 pr-6 font-display text-[18px]">
+            <span>{doc ? doc.title : anchor ? `Document ${parsed?.doc ?? ""}` : "Nothing to verify yet"}</span>
+            {onOpenAnalysis && (
+              <button
+                type="button"
+                onClick={onOpenAnalysis}
+                className="shrink-0 rounded border px-2 py-1 font-mono text-[10px] uppercase tracking-widest text-ink-dim transition hover:text-ink"
+                style={{ borderColor: COLORS.hair }}
+                title="Open the full analysis in the inspector"
+              >
+                open full analysis
+              </button>
+            )}
+          </DialogTitle>
+        </DialogHeader>
+        {anchor && doc?.file_url ? (
+          <FileViewer doc={doc} anchor={anchor} quote={quote} />
+        ) : anchor && doc ? (
+          <Reader doc={doc} para={parsed?.para} quote={quote} />
+        ) : anchor ? (
+          <p className="text-sm text-ink-dim">
+            Full document text is not loaded for this case. Create a fresh demo case to read sources in context.
+          </p>
+        ) : (
+          <EmptySource quote={quote} />
+        )}
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+/** Shown when a node points at no grounded source: make the absence a call-to-action. */
+function EmptySource({ quote }: { quote?: string | null }) {
+  return (
+    <div className="space-y-3 py-2">
+      <div className="flex items-center gap-2">
+        <VerifyChip reason="No source paragraph is anchored to this point yet" />
+        <span className="font-mono text-[10px] uppercase tracking-widest text-ink-dim">
+          nothing grounded here
+        </span>
+      </div>
+      <p className="text-[13px] leading-relaxed text-ink-dim">
+        This point has no quote-grounded paragraph in the bundle. There is nothing to read against —
+        treat it as unverified and pleaded on assertion alone.
+      </p>
+      {quote && (
+        <blockquote
+          className="border-l-2 pl-3 font-mono text-[12px] leading-relaxed text-ink-dim"
+          style={{ borderColor: COLORS.legal }}
+        >
+          “{quote}”
+        </blockquote>
+      )}
+    </div>
+  );
+}
+
 /** A clickable source anchor (e.g. "08¶7"). Opens the source document at that
- *  paragraph, with the verbatim quote highlighted, so a lawyer can verify it fast. */
+ *  paragraph, with the verbatim quote highlighted, so a lawyer can verify it fast.
+ *  Thin wrapper over the controlled SourceReaderDialog. */
 export function AnchorButton({
   anchor, quote, documents, label,
 }: { anchor: string | null | undefined; quote?: string | null; documents?: Docs; label?: string }) {
   const [open, setOpen] = useState(false);
   if (!anchor) return null;
-  const parsed = parseAnchor(anchor);
-  const docs: Docs = (documents ?? (demoCase as any).documents ?? {}) as Docs;
-  const doc = parsed ? docs[parsed.doc] : undefined;
 
   return (
     <>
@@ -36,24 +121,7 @@ export function AnchorButton({
         {label ?? anchor}
         <span aria-hidden style={{ color: COLORS.inkDim }}>verify</span>
       </button>
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="max-w-2xl" style={{ background: COLORS.panel, borderColor: COLORS.hair }}>
-          <DialogHeader>
-            <DialogTitle className="font-display text-[18px]">
-              {doc ? doc.title : `Document ${parsed?.doc ?? ""}`}
-            </DialogTitle>
-          </DialogHeader>
-          {doc?.file_url ? (
-            <FileViewer doc={doc} anchor={anchor} quote={quote} />
-          ) : doc ? (
-            <Reader doc={doc} para={parsed?.para} quote={quote} />
-          ) : (
-            <p className="text-sm text-ink-dim">
-              Full document text is not loaded for this case. Create a fresh demo case to read sources in context.
-            </p>
-          )}
-        </DialogContent>
-      </Dialog>
+      <SourceReaderDialog open={open} onOpenChange={setOpen} anchor={anchor} quote={quote} documents={documents} />
     </>
   );
 }

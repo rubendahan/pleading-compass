@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { createDemoCase } from "@/lib/firm.functions";
+import { analyzeBundle, createDemoCase } from "@/lib/firm.functions";
 import { COLORS } from "@/lib/pleading";
 import UploadBundle from "@/components/UploadBundle";
 import AnalyzeProgress from "@/components/AnalyzeProgress";
@@ -16,6 +16,7 @@ type Phase = "upload" | "analyzing";
 function NewCasePage() {
   const navigate = useNavigate();
   const seed = useServerFn(createDemoCase);
+  const analyze = useServerFn(analyzeBundle);
 
   const [phase, setPhase] = useState<Phase>("upload");
   const [fileCount, setFileCount] = useState(0);
@@ -28,8 +29,11 @@ function NewCasePage() {
     setErr(null);
     setFileCount(files.length);
     setPhase("analyzing");
-    // SWAP POINT: replace createDemoCase() with analyzeBundle(files) when the backend is connected.
-    pending.current = seed();
+    // If an engine is wired up (ENGINE_URL set server-side), analyzeBundle posts the
+    // uploaded files to it and seeds a real case. With no engine it throws, and we
+    // fall back to the demo seed — the current behaviour, unchanged.
+    const descriptors = files.map((f) => ({ name: f.name, type: f.type, size: f.size }));
+    pending.current = analyze({ data: { files: descriptors } }).catch(() => seed());
   }
 
   async function handleDone() {

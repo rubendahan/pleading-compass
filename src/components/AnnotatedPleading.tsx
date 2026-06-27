@@ -3,9 +3,9 @@ import { useParams } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import type { AppData, DataNode } from "@/lib/pleading";
 import { COLORS, verdictColor, anchorLabel, srcId } from "@/lib/pleading";
-import { updateCase } from "@/lib/firm.functions";
+import { updateCase, reanalyzeCase } from "@/lib/firm.functions";
 import { AnchorButton } from "./SourceReader";
-import { TrustBadge } from "./TrustBadge";
+import { TrustBadge, VerifyChip } from "./TrustBadge";
 
 /**
  * The hero view: the Particulars of Claim rendered as a legal document, each pleaded
@@ -17,6 +17,10 @@ interface Props {
   selectedId: string | null;
   onSelect: (id: string | null) => void;
   onHover: (id: string | null) => void;
+  /** Open the in-site source reader for a node (margin notes wire this through). */
+  onOpenSource?: (id: string) => void;
+  /** Lift a fresh AppData up to the page after a successful engine re-analysis. */
+  onReanalyzed?: (data: AppData) => void;
 }
 
 type Controlling = { rel: string; src: DataNode & any; anchor: string | null; quote: string | null };
@@ -47,7 +51,7 @@ function controllingEvidence(pleadingClaimId: string, data: AppData): Controllin
   return best;
 }
 
-export default function AnnotatedPleading({ data, selectedId, onSelect, onHover }: Props) {
+export default function AnnotatedPleading({ data, selectedId, onSelect, onHover, onOpenSource, onReanalyzed }: Props) {
   const annotations = useMemo(() => {
     // anchor "02¶n" -> the pleaded allegations sitting at that paragraph
     const byPara = new Map<number, Array<{ prop: any; pc: any; ctrl: Controlling | null }>>();
@@ -72,6 +76,7 @@ export default function AnnotatedPleading({ data, selectedId, onSelect, onHover 
   const params = useParams({ strict: false }) as { caseId?: string };
   const caseId = params.caseId ?? null;
   const persist = useServerFn(updateCase);
+  const reanalyze = useServerFn(reanalyzeCase);
 
   const [editing, setEditing] = useState(false);
   // drafts: working textarea values while editing, keyed by paragraph number.
@@ -82,6 +87,7 @@ export default function AnnotatedPleading({ data, selectedId, onSelect, onHover 
   const [savedOnce, setSavedOnce] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [reanalyzeNote, setReanalyzeNote] = useState<string | null>(null);
+  const [reanalyzing, setReanalyzing] = useState(false);
 
   // The text shown for a paragraph: latest committed edit, else the source.
   const paraText = (n: number, original: string) => committed[n] ?? original;
@@ -126,11 +132,31 @@ export default function AnnotatedPleading({ data, selectedId, onSelect, onHover 
     }
   }
 
-  function handleReanalyze() {
-    // SWAP POINT: call analyzeBundle/reanalyze server-fn here when the backend is connected.
-    setReanalyzeNote(
-      "Re-analysis runs on the engine. Connect the backend to enable.",
-    );
+  async function handleReanalyze() {
+    setReanalyzeNote(null);
+    if (!caseId) {
+      setReanalyzeNote("Re-analysis runs on the engine. Connect the backend to enable.");
+      return;
+    }
+    setReanalyzing(true);
+    try {
+      // Send the latest pleading (with committed edits) + the bundle to the engine.
+      const next: AppData = JSON.parse(JSON.stringify(data));
+      const pleading = next.documents?.["02"];
+      if (pleading) {
+        pleading.paras = pleading.paras.map((p) => ({ ...p, text: committed[p.n] ?? p.text }));
+      }
+      const row: any = await reanalyze({
+        data: { id: caseId, pleading: pleading ?? null, bundle: next.documents ?? null },
+      });
+      // Lift the fresh AppData the engine returned up to the page.
+      if (row?.data) onReanalyzed?.(row.data as AppData);
+    } catch {
+      // No engine configured (or it failed): fall back to the existing note, unchanged.
+      setReanalyzeNote("Re-analysis runs on the engine. Connect the backend to enable.");
+    } finally {
+      setReanalyzing(false);
+    }
   }
 
   const btnBase =
@@ -166,10 +192,11 @@ export default function AnnotatedPleading({ data, selectedId, onSelect, onHover 
                 {savedOnce && (
                   <button
                     onClick={handleReanalyze}
+                    disabled={reanalyzing}
                     className={btnBase + " hover:shadow-sm"}
                     style={{ borderColor: COLORS.legal, color: COLORS.legal, background: `${COLORS.legal}10` }}
                   >
-                    Re-analyze
+                    {reanalyzing ? "Re-analyzing" : "Re-analyze"}
                   </button>
                 )}
                 <button
@@ -281,7 +308,8 @@ export default function AnnotatedPleading({ data, selectedId, onSelect, onHover 
                   <div className="space-y-2 lg:pt-1">
                     {anns.map((a) => (
                       <MarginNote key={a.prop.id} prop={a.prop} ctrl={a.ctrl} data={data}
-                        active={active} onSelect={() => onSelect(a.prop.id)} />
+                        active={active} onSelect={() => onSelect(a.prop.id)}
+                        onOpenSource={onOpenSource ? () => onOpenSource(a.prop.id) : undefined} />
                     ))}
                   </div>
                 </li>
@@ -297,8 +325,8 @@ export default function AnnotatedPleading({ data, selectedId, onSelect, onHover 
 }
 
 function MarginNote({
-  prop, ctrl, data, active, onSelect,
-}: { prop: any; ctrl: Controlling | null; data: AppData; active: boolean; onSelect: () => void }) {
+  prop, ctrl, data, active, onSelect, onOpenSource,
+}: { prop: any; ctrl: Controlling | null; data: AppData; active: boolean; onSelect: () => void; onOpenSource?: () => void }) {
   const color = verdictColor(prop.verdict);
   const phrase = VERDICT_PHRASE[prop.verdict] ?? prop.verdict;
   const overlay = prop.overlay && prop.overlay !== "NONE" ? prop.overlay : null;
@@ -327,7 +355,13 @@ function MarginNote({
         </div>
       )}
       {!ctrl && prop.verdict === "NOT_ADDRESSED" && (
-        <div className="mt-1 text-[11px] italic text-ink-dim">No supporting evidence in the bundle.</div>
+        <div className="mt-1.5 flex flex-wrap items-center gap-1.5 text-[11px] italic text-ink-dim">
+          <span>No supporting evidence in the bundle.</span>
+          <VerifyChip
+            reason="Pleaded on assertion — nothing in the bundle is anchored to this allegation"
+            onClick={onOpenSource}
+          />
+        </div>
       )}
 
       {overlay && (

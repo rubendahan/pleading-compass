@@ -53,6 +53,7 @@ export default function GraphCanvas({
   centerHole = 0,
   hideHub = false,
   onNodeClickScreen,
+  apiRef,
 }: Props) {
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const fgRef = useRef<any>(null);

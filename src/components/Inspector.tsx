@@ -1,16 +1,21 @@
+import { useEffect, useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
 import type { AppData, ClaimNode, DataEdge, DataNode, PropositionNode } from "@/lib/pleading";
 import { COLORS, edgeColor, relLabel, verdictColor } from "@/lib/pleading";
+import { summariseNode } from "@/lib/summary.functions";
 
 interface Props {
   data: AppData;
+  caseId?: string;
   selectedId: string | null;
   selectedEdge: DataEdge | null;
   onSelect: (id: string | null) => void;
   onClose: () => void;
 }
 
-export default function Inspector({ data, selectedId, selectedEdge, onSelect, onClose }: Props) {
+export default function Inspector({ data, caseId, selectedId, selectedEdge, onSelect, onClose }: Props) {
   const node = selectedId ? data.nodes.find((n) => n.id === selectedId) ?? null : null;
+
 
   return (
     <aside

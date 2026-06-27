@@ -1189,5 +1189,667 @@
       "single_source": [],
       "revives_if_removed": {}
     }
-  ]
+  ],
+  "documents": {
+    "02": {
+      "title": "Particulars of Claim",
+      "doc_type": "pleading",
+      "party": "claimant",
+      "paras": [
+        {
+          "n": 1,
+          "text": "The Claimant (\"Meridian\") is a public limited company and operates a chain of approximately 180 retail stores in the United Kingdom together with an online sales channel."
+        },
+        {
+          "n": 2,
+          "text": "The Defendant (\"TechFlow\") is a limited company which designs, supplies and implements retail software systems. The Agreement"
+        },
+        {
+          "n": 3,
+          "text": "By a written Master Services Agreement dated 14 March 2024 (\"the MSA\"), TechFlow agreed to design, build, configure and implement for Meridian a cloud-based inventory management and electronic point-of-sale platform (\"the Platform\")."
+        },
+        {
+          "n": 4,
+          "text": "The MSA incorporated a Statement of Work (\"the SOW\") at Schedule 1, which set out the scope of the works, the implementation plan and the milestones."
+        },
+        {
+          "n": 5,
+          "text": "The total charges payable under the MSA were £2,400,000 (excluding VAT), payable against milestones."
+        },
+        {
+          "n": 6,
+          "text": "It was an express term of the MSA and the SOW that the go-live date for the Platform was fixed at 1 October 2024, and that time was of the essence in respect of that date. The pre-contractual representation"
+        },
+        {
+          "n": 7,
+          "text": "At a meeting on or about 5 February 2024, prior to entering into the MSA, TechFlow by its Sales Director Mr Daniel Frost orally represented to Meridian that the Platform would reliably support at least 10,000 concurrent transactions (\"the Representation\"). Meridian entered into the MSA in reliance upon the Representation. The Representation was false: the Platform was incapable of supporting that volume. Breaches"
+        },
+        {
+          "n": 8,
+          "text": "In breach of the MSA, TechFlow delivered the Platform late. The Platform did not go live until 18 November 2024, some seven weeks after the contractual go-live date."
+        },
+        {
+          "n": 9,
+          "text": "Meridian did not at any time request any change to the agreed scope of the works. All delay was caused by TechFlow’s failure to allocate adequate and competent resources to the project."
+        },
+        {
+          "n": 10,
+          "text": "On numerous occasions prior to go-live, Meridian warned TechFlow that the Platform was not ready and requested that go-live be deferred. TechFlow ignored those warnings and proceeded to go-live on 18 November 2024."
+        },
+        {
+          "n": 11,
+          "text": "Following go-live, the Platform was unavailable for more than 40% of trading hours during November and December 2024, causing widespread till failures and an inability to process sales across Meridian’s store estate."
+        },
+        {
+          "n": 12,
+          "text": "The Platform contained numerous defects, including critical (Severity 1) failures in the stock-synchronisation module which caused stores to display and sell against incorrect stock figures. By reason of those defects the Platform was not of satisfactory quality and was not reasonably fit for its purpose."
+        },
+        {
+          "n": 13,
+          "text": "Meridian did not accept the Platform or any part of it, and no acceptance or sign-off was given by Meridian at any time."
+        },
+        {
+          "n": 14,
+          "text": "Further, TechFlow failed to provide adequate training to Meridian’s staff in the use of the Platform. Loss and damage"
+        },
+        {
+          "n": 15,
+          "text": "By reason of the matters aforesaid Meridian has suffered loss and damage. PARTICULARS: (a) Wasted expenditure, being sums paid to TechFlow under the MSA: £1,800,000. (b) Loss of profit during the peak trading period of November and December 2024: £4,200,000."
+        },
+        {
+          "n": 16,
+          "text": "Further, Meridian claims interest on such sums as may be found due, pursuant to section 35A of the Senior Courts Act 1981, at such rate and for such period as the Court thinks fit. AND THE CLAIMANT CLAIMS: (1) Damages in the sum of approximately £6,000,000; (2) Interest pursuant to section 35A of the Senior Courts Act 1981; (3) Costs. ALEXANDRA HUNTER Gray’s Court Chambers"
+        }
+      ]
+    },
+    "03": {
+      "title": "Master Services Agreement",
+      "doc_type": "contract",
+      "party": "neutral",
+      "paras": [
+        {
+          "n": 1,
+          "text": "MASTER SERVICES AGREEMENT"
+        },
+        {
+          "n": 2,
+          "text": "relating to the supply and implementation of a retail inventory and EPOS platform"
+        },
+        {
+          "n": 3,
+          "text": "Date: 14 March 2024"
+        },
+        {
+          "n": 4,
+          "text": "Parties:"
+        },
+        {
+          "n": 5,
+          "text": "(1) MERIDIAN RETAIL GROUP PLC (company no. 03992145) of Meridian House, 40 Kingsway, London WC2B 6EX (\"the Customer\"); and"
+        },
+        {
+          "n": 6,
+          "text": "(2) TECHFLOW SOLUTIONS LIMITED (company no. 07781230) of Optimum Park, 12 Brindley Way, Reading RG1 8DF (\"the Supplier\")."
+        },
+        {
+          "n": 7,
+          "text": "1. Definitions and scope"
+        },
+        {
+          "n": 8,
+          "text": "1.1 The Supplier shall design, build, configure, test and implement the cloud-based inventory management and EPOS platform (\"the Platform\") in accordance with the Statement of Work set out at Schedule 1 (the \"SOW\")."
+        },
+        {
+          "n": 9,
+          "text": "1.2 The Supplier shall perform the Services with reasonable skill and care and in accordance with good industry practice."
+        },
+        {
+          "n": 10,
+          "text": "2. Charges"
+        },
+        {
+          "n": 11,
+          "text": "2.1 The total charges for the Services are £2,400,000 (excluding VAT), payable against the milestones set out in the SOW and as may be varied by agreement in writing."
+        },
+        {
+          "n": 12,
+          "text": "3. Timetable and change control"
+        },
+        {
+          "n": 13,
+          "text": "3.1 The Supplier shall use reasonable endeavours to achieve the target go-live date stated in the SOW. The parties acknowledge that the implementation timetable is a planning estimate and may be adjusted through the change control procedure."
+        },
+        {
+          "n": 14,
+          "text": "3.2 Any change to the scope, deliverables or timetable shall be agreed in writing by both parties by means of a signed Change Order. A signed Change Order varies this Agreement to the extent stated in it."
+        },
+        {
+          "n": 15,
+          "text": "14. Limitation of liability"
+        },
+        {
+          "n": 16,
+          "text": "14.1 Subject to clause 14.3, the Supplier shall not be liable to the Customer, whether in contract, tort (including negligence) or otherwise, for any loss of profit, loss of revenue, loss of anticipated savings, or any indirect or consequential loss."
+        },
+        {
+          "n": 17,
+          "text": "14.2 Subject to clause 14.3, the Supplier’s total aggregate liability arising under or in connection with this Agreement shall not exceed the total charges actually paid by the Customer under this Agreement in the twelve months preceding the event giving rise to the claim."
+        },
+        {
+          "n": 18,
+          "text": "14.3 Nothing in this Agreement limits liability for death or personal injury caused by negligence, for fraud, or for any other liability that cannot lawfully be excluded."
+        },
+        {
+          "n": 19,
+          "text": "22. Entire agreement"
+        },
+        {
+          "n": 20,
+          "text": "22.1 This Agreement, together with its Schedules, constitutes the entire agreement between the parties and supersedes all prior representations, statements or agreements, whether written or oral."
+        },
+        {
+          "n": 21,
+          "text": "22.2 Each party acknowledges that it has not relied on, and shall have no remedy in respect of, any representation or statement not expressly set out in this Agreement (save in the case of fraud)."
+        },
+        {
+          "n": 22,
+          "text": "25. Governing law and jurisdiction"
+        },
+        {
+          "n": 23,
+          "text": "25.1 This Agreement is governed by the law of England and Wales, and the parties submit to the exclusive jurisdiction of the courts of England and Wales."
+        },
+        {
+          "n": 24,
+          "text": "Signed for and on behalf of MERIDIAN RETAIL GROUP PLC .................................... Name: Priya Nair Title: Head of Procurement | Signed for and on behalf of TECHFLOW SOLUTIONS LIMITED .................................... Name: Gregory Manton Title: Commercial Director"
+        }
+      ]
+    },
+    "07": {
+      "title": "Change Order No 3",
+      "doc_type": "contract",
+      "party": "neutral",
+      "paras": [
+        {
+          "n": 1,
+          "text": "CHANGE ORDER No. 3"
+        },
+        {
+          "n": 2,
+          "text": "under the change control procedure (clause 3, MSA dated 14 March 2024)"
+        },
+        {
+          "n": 3,
+          "text": "Change Order Ref: MRG-TF-CO-003"
+        },
+        {
+          "n": 4,
+          "text": "Date: 2 September 2024"
+        },
+        {
+          "n": 5,
+          "text": "Requested by: Helena Vance, Programme Director, Meridian Retail Group plc"
+        },
+        {
+          "n": 6,
+          "text": "1. Description of change"
+        },
+        {
+          "n": 7,
+          "text": "1.1 At the Customer’s request, the Supplier shall design, build and implement a customer loyalty module (\"the Loyalty Module\"), comprising points accrual, redemption at EPOS, and a loyalty member database. The Loyalty Module was not part of the original scope under SOW-01."
+        },
+        {
+          "n": 8,
+          "text": "2. Effect on timetable"
+        },
+        {
+          "n": 9,
+          "text": "2.1 The parties agree that, to accommodate the additional works, the go-live date is revised from 1 October 2024 to 18 November 2024. The revised date applies to the Platform as a whole."
+        },
+        {
+          "n": 10,
+          "text": "3. Effect on charges"
+        },
+        {
+          "n": 11,
+          "text": "3.1 The additional charge for the Loyalty Module is £180,000, payable on go-live."
+        },
+        {
+          "n": 12,
+          "text": "Agreed and signed by the parties:"
+        },
+        {
+          "n": 13,
+          "text": "For the Customer .................................... Name: Priya Nair Title: Head of Procurement Date: 2 September 2024 | For the Supplier .................................... Name: Marcus Reilly Title: Project Director Date: 2 September 2024"
+        }
+      ]
+    },
+    "08": {
+      "title": "UAT Acceptance Certificate",
+      "doc_type": "record",
+      "party": "neutral",
+      "paras": [
+        {
+          "n": 1,
+          "text": "PHASE 1 - USER ACCEPTANCE TESTING"
+        },
+        {
+          "n": 2,
+          "text": "ACCEPTANCE CERTIFICATE"
+        },
+        {
+          "n": 3,
+          "text": "Project: Meridian Platform implementation (MSA 14 March 2024)"
+        },
+        {
+          "n": 4,
+          "text": "Certificate ref: UAT-P1-CERT"
+        },
+        {
+          "n": 5,
+          "text": "Date: 12 November 2024"
+        },
+        {
+          "n": 6,
+          "text": "This certificate confirms that User Acceptance Testing of Phase 1 of the Platform (core inventory and EPOS) was carried out between 21 October and 11 November 2024."
+        },
+        {
+          "n": 7,
+          "text": "Meridian confirms that Phase 1 has passed User Acceptance Testing and is accepted, subject to the resolution of the outstanding minor (Severity 3 and 4) items listed in the snag log appended to the UAT report. No outstanding Severity 1 or Severity 2 items were recorded at the date of this certificate."
+        },
+        {
+          "n": 8,
+          "text": "Accepted for Meridian .................................... Priya Nair Head of Procurement 12 November 2024 | Submitted by TechFlow .................................... Marcus Reilly Project Director 12 November 2024"
+        }
+      ]
+    },
+    "09": {
+      "title": "Email Go-Live Readiness",
+      "doc_type": "correspondence",
+      "party": "neutral",
+      "paras": [
+        {
+          "n": 1,
+          "text": "EMAIL CORRESPONDENCE"
+        },
+        {
+          "n": 2,
+          "text": "Thread: Go-live decision"
+        },
+        {
+          "n": 3,
+          "text": "Helena,"
+        },
+        {
+          "n": 4,
+          "text": "Following today’s readiness review, I want to put our recommendation in writing. The core build is in good shape and Phase 1 passed the bulk of UAT, but the loyalty module added under Change Order 3 is still being hardened and we have a handful of stock-sync issues we would like to close out under controlled conditions."
+        },
+        {
+          "n": 5,
+          "text": "Our clear recommendation is to defer go-live to mid-January 2025, after the peak trading period. Going live on 18 November, immediately before Black Friday and Christmas, carries real risk and removes our contingency. We can hold the 18 November date if Meridian instructs us to, but we would be doing so against our advice."
+        },
+        {
+          "n": 6,
+          "text": "Please let me know how you wish to proceed."
+        },
+        {
+          "n": 7,
+          "text": "Marcus Reilly | Project Director | TechFlow Solutions"
+        },
+        {
+          "n": 8,
+          "text": "Marcus,"
+        },
+        {
+          "n": 9,
+          "text": "Thank you, but the board has been clear that we need the new platform live for peak trading - that is the whole point of doing this now. Missing Black Friday and Christmas is not acceptable commercially."
+        },
+        {
+          "n": 10,
+          "text": "Please proceed to go-live on 18 November 2024 as planned. I understand your team’s reservations and I am content to take that risk on Meridian’s side. Let’s get the remaining stock-sync items onto the snag list and press on."
+        },
+        {
+          "n": 11,
+          "text": "Helena Vance | Programme Director | Meridian Retail Group"
+        },
+        {
+          "n": 12,
+          "text": "From: | Marcus Reilly <m.reilly@techflow-solutions.co.uk>"
+        },
+        {
+          "n": 13,
+          "text": "To: | Helena Vance <h.vance@meridianretail.co.uk>"
+        },
+        {
+          "n": 14,
+          "text": "Cc: | Priya Nair <p.nair@meridianretail.co.uk>; Gregory Manton <g.manton@techflow-solutions.co.uk>"
+        },
+        {
+          "n": 15,
+          "text": "Sent: | 24 October 2024 16:52"
+        },
+        {
+          "n": 16,
+          "text": "Subject: | RECOMMENDATION: defer go-live to January 2025"
+        },
+        {
+          "n": 17,
+          "text": "From: | Helena Vance <h.vance@meridianretail.co.uk>"
+        },
+        {
+          "n": 18,
+          "text": "To: | Marcus Reilly <m.reilly@techflow-solutions.co.uk>"
+        },
+        {
+          "n": 19,
+          "text": "Cc: | Priya Nair <p.nair@meridianretail.co.uk>"
+        },
+        {
+          "n": 20,
+          "text": "Sent: | 24 October 2024 18:20"
+        },
+        {
+          "n": 21,
+          "text": "Subject: | RE: RECOMMENDATION: defer go-live to January 2025"
+        }
+      ]
+    },
+    "10": {
+      "title": "Email Loyalty Module Change Request",
+      "doc_type": "correspondence",
+      "party": "neutral",
+      "paras": [
+        {
+          "n": 1,
+          "text": "EMAIL CORRESPONDENCE"
+        },
+        {
+          "n": 2,
+          "text": "Thread: New requirement - loyalty module"
+        },
+        {
+          "n": 3,
+          "text": "Marcus,"
+        },
+        {
+          "n": 4,
+          "text": "Following the marketing review, the board wants a customer loyalty capability included in the platform before we go live - points accrual, redemption at the till, and a member database. I appreciate this was not in the original SOW, but it is now a priority for us."
+        },
+        {
+          "n": 5,
+          "text": "Can you scope this as a change and let us have the cost and any timetable impact? We accept there may be a knock-on to the go-live date and we are willing to discuss a revised date to accommodate it."
+        },
+        {
+          "n": 6,
+          "text": "Helena"
+        },
+        {
+          "n": 7,
+          "text": "Helena,"
+        },
+        {
+          "n": 8,
+          "text": "Thanks. We’ve scoped the loyalty module. The additional cost is £180,000 and, given the additional build and test, we will need to move go-live from 1 October to 18 November 2024. I’ll issue Change Order 3 for Priya’s signature to confirm both the scope and the revised date."
+        },
+        {
+          "n": 9,
+          "text": "Marcus"
+        },
+        {
+          "n": 10,
+          "text": "From: | Helena Vance <h.vance@meridianretail.co.uk>"
+        },
+        {
+          "n": 11,
+          "text": "To: | Marcus Reilly <m.reilly@techflow-solutions.co.uk>"
+        },
+        {
+          "n": 12,
+          "text": "Cc: | Priya Nair <p.nair@meridianretail.co.uk>"
+        },
+        {
+          "n": 13,
+          "text": "Sent: | 21 August 2024 09:14"
+        },
+        {
+          "n": 14,
+          "text": "Subject: | New requirement - customer loyalty module"
+        },
+        {
+          "n": 15,
+          "text": "From: | Marcus Reilly <m.reilly@techflow-solutions.co.uk>"
+        },
+        {
+          "n": 16,
+          "text": "To: | Helena Vance <h.vance@meridianretail.co.uk>"
+        },
+        {
+          "n": 17,
+          "text": "Cc: | Priya Nair <p.nair@meridianretail.co.uk>"
+        },
+        {
+          "n": 18,
+          "text": "Sent: | 27 August 2024 15:39"
+        },
+        {
+          "n": 19,
+          "text": "Subject: | RE: New requirement - customer loyalty module"
+        }
+      ]
+    },
+    "13": {
+      "title": "Defect Log",
+      "doc_type": "record",
+      "party": "neutral",
+      "paras": [
+        {
+          "n": 1,
+          "text": "PLATFORM DEFECT / ISSUE LOG"
+        },
+        {
+          "n": 2,
+          "text": "Extract - 18 November 2024 to 10 January 2025"
+        },
+        {
+          "n": 3,
+          "text": "Note: Recorded Platform unavailability attributable to Platform defects over the period was modest; the single largest outage (D-003) and the intermittent till freezes (D-006) were attributable to network connectivity provided by Meridian, not to the Platform."
+        },
+        {
+          "n": 4,
+          "text": "Ref | Date raised | Severity | Description | Status / cause"
+        },
+        {
+          "n": 5,
+          "text": "D-001 | 19 Nov 2024 | Sev 1 | Stock-sync: tills show incorrect stock counts; oversell on promotional lines | Platform defect - fixed 31 Dec 2024"
+        },
+        {
+          "n": 6,
+          "text": "D-002 | 22 Nov 2024 | Sev 1 | Stock-sync: overnight reconciliation job fails intermittently | Platform defect - fixed 2 Jan 2025"
+        },
+        {
+          "n": 7,
+          "text": "D-003 | 25 Nov 2024 | Sev 1 | Total loss of EPOS connectivity, all stores, ~5 hours | Network (Northgate Telecom) - not Platform"
+        },
+        {
+          "n": 8,
+          "text": "D-004 | 29 Nov 2024 | Sev 3 | Receipt printer formatting incorrect on loyalty redemptions | Platform defect - fixed 6 Dec 2024"
+        },
+        {
+          "n": 9,
+          "text": "D-005 | 2 Dec 2024 | Sev 4 | Report export to CSV mis-orders columns | Platform defect - fixed 9 Dec 2024"
+        },
+        {
+          "n": 10,
+          "text": "D-006 | 11 Dec 2024 | Sev 2 | Intermittent till freezes traced to in-store broadband dropouts | Store network - not Platform"
+        }
+      ]
+    },
+    "16": {
+      "title": "Witness Statement Helena Vance",
+      "doc_type": "witness",
+      "party": "claimant",
+      "paras": [
+        {
+          "n": 1,
+          "text": "I am Helena Vance, Programme Director at Meridian Retail Group plc. I make this statement from my own knowledge, save where I indicate otherwise. I had overall responsibility for the Platform implementation programme on Meridian’s side."
+        },
+        {
+          "n": 2,
+          "text": "I was the main day-to-day contact with TechFlow. I worked closely with their Project Director, Marcus Reilly."
+        },
+        {
+          "n": 3,
+          "text": "In around August 2024, our marketing team and the board decided we wanted a customer loyalty capability built into the new platform. I asked TechFlow to add a loyalty module. I accept this was not in the original Statement of Work. It was documented in Change Order No. 3, which my colleague Priya Nair signed on 2 September 2024, and which also moved the go-live date to 18 November 2024."
+        },
+        {
+          "n": 4,
+          "text": "As we approached go-live, Marcus Reilly recommended in writing that we delay until January 2025, after the Christmas period. I decided that we should go live on 18 November 2024. The board was firm that we needed the platform live for peak trading, and I took the decision to proceed despite TechFlow’s advice. With hindsight, going live just before Black Friday was optimistic."
+        },
+        {
+          "n": 5,
+          "text": "After go-live there were real problems with the stock-synchronisation module. Tills in some stores showed the wrong stock numbers, and on promotional lines we oversold in places. These problems were serious and took several weeks to bring under control. They caused a great deal of disruption for store teams during our busiest period."
+        },
+        {
+          "n": 6,
+          "text": "There were also occasions when tills went down. I could not say for how long in total, and I understand some of the connectivity problems were to do with our own store broadband rather than the platform itself, but from where I sat it felt constant during the early weeks."
+        },
+        {
+          "n": 7,
+          "text": "I considered that the platform we were given was not what we had paid for, and that is why Meridian decided to bring the relationship to an end."
+        }
+      ]
+    },
+    "17": {
+      "title": "Witness Statement Raymond Okafor",
+      "doc_type": "witness",
+      "party": "claimant",
+      "paras": [
+        {
+          "n": 1,
+          "text": "I am Raymond Okafor, Head of Retail Operations at Meridian Retail Group plc. I make this statement from my own knowledge save where otherwise indicated. I am responsible for the running of our store estate."
+        },
+        {
+          "n": 2,
+          "text": "The new platform went live on 18 November 2024, immediately before our peak trading period. The first few weeks were very difficult for store teams, particularly because of stock figures being wrong at the tills on the new system."
+        },
+        {
+          "n": 3,
+          "text": "That said, I should be straight about the wider picture. A number of the till outages in stores turned out to be caused by the broadband connections in the stores dropping out, rather than the platform itself. There was also a complete outage on 25 November that I am told was a network failure at our data centre provider, not the platform."
+        },
+        {
+          "n": 4,
+          "text": "Our trading in December 2024 was poor, but the platform was not the only reason. Our distribution centre at Lutterworth flooded on 3 December 2024 and was effectively out of action for about ten days, which left around 40 stores short of stock on key lines in the first half of December. The market was also weak that quarter, with footfall down across the sector and heavy discounting by competitors."
+        },
+        {
+          "n": 5,
+          "text": "I raised these points internally at the time, including in an email to Helena Vance on 8 December 2024, because I was concerned we should not put the whole of a bad December down to the platform when there were other significant factors."
+        },
+        {
+          "n": 6,
+          "text": "None of this is to say the platform problems did not hurt us - they did, especially the stock-sync issues - but they were one factor among several."
+        }
+      ]
+    },
+    "18": {
+      "title": "Witness Statement Priya Nair",
+      "doc_type": "witness",
+      "party": "claimant",
+      "paras": [
+        {
+          "n": 1,
+          "text": "I am Priya Nair, Head of Procurement at Meridian Retail Group plc. I make this statement from my own knowledge. I was responsible for the contractual and commercial administration of the TechFlow contract."
+        },
+        {
+          "n": 2,
+          "text": "I signed the Master Services Agreement on Meridian’s behalf on 14 March 2024, and the related Order Form. The total contract value was £2.4 million."
+        },
+        {
+          "n": 3,
+          "text": "On 2 September 2024 I signed Change Order No. 3. This added the customer loyalty module, which Helena Vance had asked TechFlow to provide and which was not in the original Statement of Work, and it revised the go-live date from 1 October to 18 November 2024. I understood at the time that we were changing both the scope and the date."
+        },
+        {
+          "n": 4,
+          "text": "On 12 November 2024 I signed the Phase 1 Acceptance Certificate, confirming that Phase 1 of the platform had passed user acceptance testing. There were some minor snags listed, but no critical items were outstanding at that point."
+        },
+        {
+          "n": 5,
+          "text": "In total Meridian paid TechFlow £1.8 million. We withheld the final two milestone payments of £300,000 each - £600,000 in total - because of the problems we experienced after go-live."
+        },
+        {
+          "n": 6,
+          "text": "I am not in a position to comment on the technical performance of the platform; that is a matter for my operational and technical colleagues."
+        }
+      ]
+    },
+    "19": {
+      "title": "Expert Report Whitfield IT",
+      "doc_type": "expert",
+      "party": "claimant",
+      "paras": [
+        {
+          "n": 1,
+          "text": "Introduction and instructions 1. I am Dr Alan Whitfield, BSc PhD CEng FBCS. I have 28 years’ experience in the design and assurance of enterprise retail IT systems. I am instructed by Caldwell Pryce LLP, solicitors for the Claimant, to give my independent opinion on (a) the availability of the Platform following go-live and (b) whether the Platform contained defects falling below the standard reasonably to be expected."
+        },
+        {
+          "n": 2,
+          "text": "Availability of the Platform 2. I was provided with the Platform application and database logs, the network monitoring data and the defect log for the period 18 November 2024 to 10 January 2025. Having analysed the logs, my opinion is that the total Platform unavailability attributable to the Platform itself was approximately 6.2% of trading hours over the period."
+        },
+        {
+          "n": 3,
+          "text": "That figure is materially lower than the figure of \"more than 40% of trading hours\" referred to in the pleadings. I have found no support in the logs for a figure of that order."
+        },
+        {
+          "n": 4,
+          "text": "The single largest outage occurred on 25 November 2024 and lasted approximately five hours. In my opinion this outage was not caused by the Platform. The application and database remained healthy throughout; the cause was a loss of wide-area network connectivity at the Claimant’s data-centre provider (Northgate Telecom). A number of shorter in-store till interruptions were likewise attributable to in-store broadband, not to the Platform. 3. Defects"
+        },
+        {
+          "n": 5,
+          "text": "Notwithstanding the above, my opinion is that the Platform did contain genuine and serious defects in the stock-synchronisation module (defects D-001 and D-002 in the log). These were correctly categorised as Severity 1. They caused incorrect stock figures at the point of sale and overselling on certain lines, and persisted for approximately six weeks before being resolved."
+        },
+        {
+          "n": 6,
+          "text": "In my opinion the presence of Severity 1 stock-synchronisation defects of this kind, persisting for around six weeks across a live store estate, falls below the standard reasonably to be expected of a competent supplier exercising reasonable skill and care. 4. Summary of opinion"
+        },
+        {
+          "n": 7,
+          "text": "In summary: (a) the Platform contained genuine and serious stock-synchronisation defects which fell below the expected standard; but (b) the pleaded allegation that the Platform was unavailable for more than 40% of trading hours is not supported by the evidence, and the largest single outage was caused by the Claimant’s own network provider rather than the Platform. Expert’s declaration I understand that my duty is to help the court on matters within my expertise, and that this duty overrides any obligation to those instructing or paying me. I have complied with that duty. I have set out the substance of all facts and instructions which are material to the opinions I have expressed. I confirm that I have made clear which of the facts stated in this report are within my own knowledge and which are not, and that the opinions I have expressed represent my true and complete professional opinions. I believe that the facts I have stated in this report are true and that the opinions I have expressed are correct. Signed: Dr Alan Whitfield Dated: 24 April 2026"
+        }
+      ]
+    },
+    "20": {
+      "title": "Expert Report Greenhalgh Quantum",
+      "doc_type": "expert",
+      "party": "claimant",
+      "paras": [
+        {
+          "n": 1,
+          "text": "Introduction and instructions 1. I am Fiona Greenhalgh, a Fellow of the Institute of Chartered Accountants in England and Wales, and a partner in a forensic accounting practice. I am instructed by Caldwell Pryce LLP to give my independent opinion on the quantum of the Claimant’s pleaded losses, namely wasted expenditure of £1,800,000 and loss of profit of £4,200,000."
+        },
+        {
+          "n": 2,
+          "text": "Wasted expenditure 2. The pleaded wasted expenditure of £1,800,000 is consistent with the Claimant’s accounting records and the sums invoiced and paid under the Master Services Agreement. I have no reason to challenge this element on a wasted-expenditure basis."
+        },
+        {
+          "n": 3,
+          "text": "Loss of profit 3. I have analysed the Claimant’s management accounts, EPOS sales data and prior-year comparatives for the November-December 2024 period. In my opinion the pleaded loss of profit of £4,200,000 is substantially overstated."
+        },
+        {
+          "n": 4,
+          "text": "On the most supportable basis, the incremental lost gross profit capable of being attributed to the Platform’s defects is of the order of £1,300,000, not £4,200,000."
+        },
+        {
+          "n": 5,
+          "text": "A material part of the Q4 sales shortfall is, in my opinion, attributable to causes unconnected with the Platform. In particular: (a) the flooding of the Claimant’s Lutterworth distribution centre in early December 2024, which disrupted stock to approximately 40 stores for around ten days; and (b) a sector-wide downturn in retail trading in the relevant quarter, evident in the Claimant’s own like-for-like data from October 2024 (i.e. before go-live). I estimate that approximately £1,500,000 of the claimed decline is attributable to these non-Platform factors, with the balance unsupported on the material I have seen. 4. Contractual limitation (matter for the Court)"
+        },
+        {
+          "n": 6,
+          "text": "I note, as a matter for the Court rather than for me, that clause 14 of the Master Services Agreement appears to exclude liability for loss of profit and to cap the Supplier’s liability at the charges paid (approximately £1,800,000). If that clause is effective, it would significantly affect the recoverability of the loss-of-profit claim regardless of my quantification. 5. Summary of opinion"
+        },
+        {
+          "n": 7,
+          "text": "In summary: the wasted expenditure of £1,800,000 is supportable; the pleaded loss of profit of £4,200,000 is substantially overstated, with a supportable figure of around £1,300,000 before considering causation and the contractual limitation, and a significant part of the Q4 shortfall attributable to the distribution-centre flood and the wider market. Expert’s declaration I understand that my duty is to help the court on matters within my expertise, and that this duty overrides any obligation to those instructing or paying me. I have complied with that duty and will continue to do so. I believe that the facts I have stated in this report are true and that the opinions I have expressed are correct. Signed: Fiona Greenhalgh FCA Dated: 24 April 2026"
+        }
+      ]
+    }
+  }
 }

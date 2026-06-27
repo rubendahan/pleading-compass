@@ -108,18 +108,19 @@ export type Mode = "stress" | "coherence";
 
 // Colours (tokens mirrored from styles.css).
 export const COLORS = {
-  bg: "#0A0E16",
-  panel: "#10151F",
-  hair: "#1B2536",
-  ink: "#E7EDF6",
-  inkDim: "#8A97AE",
-  accepted: "#46C68E",
-  rejected: "#E2574A",
-  legal: "#E7B45A",
-  absence: "#6A788F",
-  accent: "#3FD3CB",
-  brass: "#C9A24B",
-  orange: "#E08A45",
+  bg: "#f5f3ee",
+  panel: "#fbfaf6",
+  panel2: "#efece4",
+  hair: "#d8d3c7",
+  ink: "#14110d",
+  inkDim: "#6b6760",
+  accepted: "#2f7a55",
+  rejected: "#a83a2b",
+  legal: "#a87422",
+  absence: "#8a857a",
+  accent: "#14110d",
+  brass: "#8b6f3c",
+  orange: "#b0561f",
 } as const;
 
 export function verdictColor(v: string | undefined | null): string {

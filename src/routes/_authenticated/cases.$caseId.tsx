@@ -10,8 +10,9 @@ import Inspector from "@/components/Inspector";
 import GraphCanvas from "@/components/GraphCanvas";
 import BundlePiecePopover from "@/components/BundlePiecePopover";
 import AnnotatedPleading from "@/components/AnnotatedPleading";
+import Chronology from "@/components/Chronology";
 
-type View = "pleading" | "stress" | "graph";
+type View = "pleading" | "chronology" | "stress" | "graph";
 
 export const Route = createFileRoute("/_authenticated/cases/$caseId")({
   component: CasePage,
@@ -359,6 +360,12 @@ function CasePage() {
             )}
           </div>
         </main>
+      ) : view === "chronology" ? (
+        <main className="relative flex-1 p-4 sm:p-6">
+          <div className="relative h-[calc(100vh-160px)] min-h-[640px] w-full overflow-hidden rounded-sm border" style={{ borderColor: COLORS.hair, background: COLORS.panel }}>
+            <Chronology data={data} />
+          </div>
+        </main>
       ) : view === "pleading" ? (
         <main className="relative flex-1 p-4 sm:p-6">
           <div className="relative h-[calc(100vh-160px)] min-h-[640px] w-full overflow-hidden rounded-sm border" style={{ borderColor: COLORS.hair, background: COLORS.panel }}>
@@ -426,6 +433,7 @@ function CasePage() {
 function ViewToggle({ view, setView }: { view: View; setView: (v: View) => void }) {
   const opts: Array<{ k: View; label: string }> = [
     { k: "pleading", label: "Pleading" },
+    { k: "chronology", label: "Chronology" },
     { k: "graph", label: "Graph" },
   ];
 

@@ -103,7 +103,20 @@ export interface AppData {
     revives_if_removed: Record<string, string[]>;
   }>;
   /** Full paragraph text per cited document, for in-context source verification. */
-  documents?: Record<string, { title: string; doc_type: string; party: string; paras: Array<{ n: number; text: string }> }>;
+  documents?: Record<string, {
+    title: string; doc_type: string; party: string;
+    tab?: string; date?: string | null; category?: string;
+    modality?: string; mime?: string; file_url?: string | null; description?: string;
+    paras: Array<{ n: number; text: string }>;
+  }>;
+  /** All tabs with date + legal category — the chronology of documents. */
+  doc_index?: Array<{ tab: string; title: string; party: string; date?: string | null; category?: string }>;
+  /** Chronology of facts, each anchored for one-click verify. */
+  chronology?: Array<{
+    n: number; date?: string | null; event: string;
+    evidence?: Array<{ tab: string; para?: number | null }>;
+    remarks?: string; source?: string;
+  }>;
 }
 
 export type Mode = "stress" | "coherence";

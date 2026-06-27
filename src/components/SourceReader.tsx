@@ -8,15 +8,16 @@ type Doc = { title: string; doc_type: string; party: string; paras: Para[] };
 type Docs = Record<string, Doc>;
 
 function parseAnchor(a: string) {
-  const m = a.match(/^([0-9A-Za-z]+)¶(\d+)$/); // e.g. "08¶7"
-  return m ? { doc: m[1], para: parseInt(m[2], 10) } : null;
+  // "08¶7" (doc + paragraph) or a bare "08" (whole document, no highlight).
+  const m = a.match(/^([0-9A-Za-z]+)(?:¶(\d+))?$/);
+  return m ? { doc: m[1], para: m[2] ? parseInt(m[2], 10) : undefined } : null;
 }
 
 /** A clickable source anchor (e.g. "08¶7"). Opens the source document at that
  *  paragraph, with the verbatim quote highlighted, so a lawyer can verify it fast. */
 export function AnchorButton({
-  anchor, quote, documents,
-}: { anchor: string | null | undefined; quote?: string | null; documents?: Docs }) {
+  anchor, quote, documents, label,
+}: { anchor: string | null | undefined; quote?: string | null; documents?: Docs; label?: string }) {
   const [open, setOpen] = useState(false);
   if (!anchor) return null;
   const parsed = parseAnchor(anchor);
@@ -32,7 +33,7 @@ export function AnchorButton({
         style={{ borderColor: COLORS.hair, color: COLORS.brass }}
         title="Open the source document at this paragraph"
       >
-        {anchor}
+        {label ?? anchor}
         <span aria-hidden style={{ color: COLORS.inkDim }}>verify</span>
       </button>
       <Dialog open={open} onOpenChange={setOpen}>

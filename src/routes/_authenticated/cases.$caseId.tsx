@@ -196,8 +196,11 @@ function CasePage() {
       // For a pleaded sentence, slide the central card left and bring its related
       // nodes into the clear space on its right, instead of hiding them behind it.
       if (!isBundleNode(node)) {
-        const L = Math.min(280, Math.max(150, graphSize.w * 0.21));
-        const B = Math.min(150, Math.max(60, graphSize.w * 0.08));
+        // Narrow the card (see width below) and hug it to the left edge so the focused
+        // node and its connections land in the cleared space on its right.
+        const cw = Math.min(460, graphSize.w - (inspectorOpen ? 480 : 120));
+        const L = Math.max(0, graphSize.w / 2 - cw / 2 - 40);
+        const B = Math.min(300, Math.max(180, graphSize.w * 0.13));
         setPleadingOffset({ x: -L, y: 0 });
         graphApi.current?.focusNodes(targetIds, B);
       }
@@ -278,7 +281,7 @@ function CasePage() {
               className="pointer-events-none absolute left-1/2 top-1/2"
               style={{
                 transform: `translate(calc(-50% + ${pleadingOffset.x}px), calc(-50% + ${pleadingOffset.y}px))`,
-                width: `min(${CARD_W}px, calc(100vw - ${inspectorOpen ? 480 : 120}px))`,
+                width: `min(${pleadingOffset.x < 0 ? 460 : CARD_W}px, calc(100vw - ${inspectorOpen ? 480 : 120}px))`,
                 height: `min(${CARD_H}px, calc(100vh - 200px))`,
               }}
             >

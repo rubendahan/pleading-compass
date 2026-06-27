@@ -10,7 +10,7 @@ import Inspector from "@/components/Inspector";
 import GraphCanvas from "@/components/GraphCanvas";
 import BundlePiecePopover from "@/components/BundlePiecePopover";
 
-type View = "stress" | "coherence" | "graph";
+type View = "stress" | "graph";
 
 export const Route = createFileRoute("/_authenticated/cases/$caseId")({
   component: CasePage,
@@ -392,10 +392,10 @@ function CasePage() {
 
 function ViewToggle({ view, setView }: { view: View; setView: (v: View) => void }) {
   const opts: Array<{ k: View; label: string }> = [
-    { k: "stress", label: "Pleading Stress Test" },
-    { k: "coherence", label: "Bundle Coherence" },
+    { k: "stress", label: "Pleading" },
     { k: "graph", label: "Graph" },
   ];
+
   return (
     <div className="inline-flex rounded-sm border p-0.5" style={{ borderColor: COLORS.hair, background: COLORS.panel2 }}>
       {opts.map((o) => {

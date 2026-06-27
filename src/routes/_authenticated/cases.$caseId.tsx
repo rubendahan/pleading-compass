@@ -68,7 +68,7 @@ function CasePage() {
 
   useEffect(() => {
     if (selectedId || selectedEdge) setInspectorOpen(true);
-    else setPopover(null);
+    else { setInspectorOpen(false); setPopover(null); }
   }, [selectedId, selectedEdge]);
 
   if (err) return <div className="grid min-h-screen place-items-center bg-bg p-6" style={{ color: COLORS.rejected }}>{err}</div>;

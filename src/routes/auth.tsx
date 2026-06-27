@@ -122,7 +122,7 @@ function AuthPage() {
               className="w-full rounded-sm px-3 py-2.5 font-mono text-[11px] uppercase tracking-[0.2em] disabled:opacity-50"
               style={{ background: COLORS.ink, color: COLORS.panel }}
             >
-              {loading ? "..." : mode === "signin" ? "Sign in" : "Create cabinet"}
+              {loading ? "Working" : mode === "signin" ? "Sign in" : "Create cabinet"}
             </button>
           </form>
 

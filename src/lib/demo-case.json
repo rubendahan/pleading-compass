@@ -1238,8 +1238,8 @@
       "date": "2025-06-05",
       "category": "Pleading",
       "modality": "document",
-      "mime": "text/plain",
-      "file_url": null,
+      "mime": "application/pdf",
+      "file_url": "/sources/02.pdf",
       "description": "Particulars of Claim",
       "paras": [
         {
@@ -1316,8 +1316,8 @@
       "date": "2024-03-14",
       "category": "Contract",
       "modality": "document",
-      "mime": "text/plain",
-      "file_url": null,
+      "mime": "application/pdf",
+      "file_url": "/sources/03.pdf",
       "description": "Master Services Agreement",
       "paras": [
         {
@@ -1426,8 +1426,8 @@
       "date": "2024-03-14",
       "category": "Contract",
       "modality": "document",
-      "mime": "text/plain",
-      "file_url": null,
+      "mime": "application/pdf",
+      "file_url": "/sources/04.pdf",
       "description": "Statement of Work",
       "paras": [
         {
@@ -1504,8 +1504,8 @@
       "date": "2024-09-02",
       "category": "Amendment",
       "modality": "document",
-      "mime": "text/plain",
-      "file_url": null,
+      "mime": "application/pdf",
+      "file_url": "/sources/07.pdf",
       "description": "Change Order No 3",
       "paras": [
         {
@@ -1570,8 +1570,8 @@
       "date": "2024-11-12",
       "category": "Record",
       "modality": "document",
-      "mime": "text/plain",
-      "file_url": null,
+      "mime": "application/pdf",
+      "file_url": "/sources/08.pdf",
       "description": "UAT Acceptance Certificate",
       "paras": [
         {
@@ -1616,8 +1616,8 @@
       "date": "2024-10-24",
       "category": "Correspondence",
       "modality": "email",
-      "mime": "text/plain",
-      "file_url": null,
+      "mime": "application/pdf",
+      "file_url": "/sources/09.pdf",
       "description": "Email Go-Live Readiness",
       "paras": [
         {
@@ -1714,8 +1714,8 @@
       "date": "2024-08-21",
       "category": "Correspondence",
       "modality": "email",
-      "mime": "text/plain",
-      "file_url": null,
+      "mime": "application/pdf",
+      "file_url": "/sources/10.pdf",
       "description": "Email Loyalty Module Change Request",
       "paras": [
         {
@@ -1804,8 +1804,8 @@
       "date": "2024-11-30",
       "category": "Internal record",
       "modality": "email",
-      "mime": "text/plain",
-      "file_url": null,
+      "mime": "application/pdf",
+      "file_url": "/sources/13.pdf",
       "description": "Defect Log",
       "paras": [
         {
@@ -1858,8 +1858,8 @@
       "date": "2026-03-13",
       "category": "Witness (fact)",
       "modality": "document",
-      "mime": "text/plain",
-      "file_url": null,
+      "mime": "application/pdf",
+      "file_url": "/sources/16.pdf",
       "description": "Witness Statement Helena Vance",
       "paras": [
         {
@@ -1900,8 +1900,8 @@
       "date": "2026-03-13",
       "category": "Witness (fact)",
       "modality": "document",
-      "mime": "text/plain",
-      "file_url": null,
+      "mime": "application/pdf",
+      "file_url": "/sources/17.pdf",
       "description": "Witness Statement Raymond Okafor",
       "paras": [
         {
@@ -1938,8 +1938,8 @@
       "date": "2026-03-13",
       "category": "Witness (fact)",
       "modality": "document",
-      "mime": "text/plain",
-      "file_url": null,
+      "mime": "application/pdf",
+      "file_url": "/sources/18.pdf",
       "description": "Witness Statement Priya Nair",
       "paras": [
         {
@@ -1976,8 +1976,8 @@
       "date": "2026-04-24",
       "category": "Witness (expert)",
       "modality": "document",
-      "mime": "text/plain",
-      "file_url": null,
+      "mime": "application/pdf",
+      "file_url": "/sources/19.pdf",
       "description": "Expert Report Whitfield IT",
       "paras": [
         {
@@ -2018,8 +2018,8 @@
       "date": "2026-04-24",
       "category": "Witness (expert)",
       "modality": "document",
-      "mime": "text/plain",
-      "file_url": null,
+      "mime": "application/pdf",
+      "file_url": "/sources/20.pdf",
       "description": "Expert Report Greenhalgh Quantum",
       "paras": [
         {

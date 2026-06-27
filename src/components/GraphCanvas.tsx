@@ -30,6 +30,13 @@ interface Props {
 
 }
 
+// Labels are decluttered by zoom: anything that is not focused or a key corpus
+// anchor stays hidden until the reader zooms past these thresholds.
+const LABEL_ZOOM = 1.6;
+const LABEL_ZOOM_PROP = 2.4;
+
+interface LabelBox { x0: number; y0: number; x1: number; y1: number }
+
 type GraphNode = DataNode & {
   x?: number;
   y?: number;
@@ -63,6 +70,9 @@ export default function GraphCanvas({
 
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const fgRef = useRef<any>(null);
+  // Rectangles already taken by labels this frame, so the sparse zoom-in labels
+  // can be skipped when they would collide with text already on screen.
+  const placedLabelsRef = useRef<LabelBox[]>([]);
   const [ForceGraph, setForceGraph] = useState<any>(null);
   const [size, setSize] = useState({ w: 600, h: 600 });
   const reducedMotion = useReducedMotion();
@@ -212,6 +222,43 @@ export default function GraphCanvas({
     return map;
   }, [data.edges]);
 
+  // Connectivity drives importance: a heavily cited document or a high-weight /
+  // load-bearing claim reads as a larger, always-labelled corpus anchor.
+  const degree = useMemo(() => {
+    const m = new Map<string, number>();
+    for (const n of data.nodes) m.set(n.id, neighbours.get(n.id)?.size ?? 0);
+    return m;
+  }, [data.nodes, neighbours]);
+
+  const keyLabelIds = useMemo(() => {
+    const docDegs = data.nodes
+      .filter((n) => n.layer === "document")
+      .map((n) => degree.get(n.id) ?? 0)
+      .sort((a, b) => b - a);
+    // Keep the most-connected ~40% of documents permanently labelled.
+    const docCut = docDegs.length
+      ? docDegs[Math.min(docDegs.length - 1, Math.floor((docDegs.length - 1) * 0.4))]
+      : 0;
+    const set = new Set<string>();
+    for (const n of data.nodes as any[]) {
+      if (n.load_bearing) { set.add(n.id); continue; }
+      if (n.layer === "document" && (degree.get(n.id) ?? 0) >= Math.max(3, docCut)) set.add(n.id);
+      else if (n.layer === "claim" && (n.weight ?? 1) >= 4) set.add(n.id);
+    }
+    return set;
+  }, [data.nodes, degree]);
+
+  // Radius encodes importance; load-bearing keeps the gold ring drawn separately.
+  const radiusFor = (node: any): number => {
+    if (node.layer === "proposition") return 11;
+    if (node.layer === "document") {
+      const d = degree.get(node.id) ?? 0;
+      return 7 + Math.min(6, d * 1.2);
+    }
+    const w = node.weight ?? 1;
+    return 5 + Math.min(5, (w - 1) * 1.3) + (node.load_bearing ? 1.6 : 0);
+  };
+
   const focusId = hoveredId ?? selectedId;
   const focused = useMemo(() => {
     if (!focusId) return null;
@@ -219,6 +266,35 @@ export default function GraphCanvas({
     neighbours.get(focusId)?.forEach((id) => set.add(id));
     return set;
   }, [focusId, neighbours]);
+
+  // Decide whether a node shows its label, and whether that label has reserved
+  // priority (it is drawn no matter what) or is a sparse zoom-in label (drawn
+  // only if it does not collide with text already placed this frame).
+  const wantsLabel = (node: any, scale: number): { show: boolean; priority: boolean } => {
+    if (focused) {
+      // Under focus only the focused neighbourhood speaks; the rest goes quiet.
+      return focused.has(node.id)
+        ? { show: true, priority: true }
+        : { show: false, priority: false };
+    }
+    if (node.layer === "proposition") {
+      return scale > LABEL_ZOOM_PROP ? { show: true, priority: false } : { show: false, priority: false };
+    }
+    if (keyLabelIds.has(node.id)) return { show: true, priority: true };
+    return scale > LABEL_ZOOM ? { show: true, priority: false } : { show: false, priority: false };
+  };
+
+  // Measure a node's label box (sets the font as a side effect, so the caller
+  // can immediately draw using the same metrics).
+  const labelRect = (node: any, ctx: CanvasRenderingContext2D) => {
+    setLabelFont(ctx, node);
+    const text = labelTextFor(node);
+    const r = radiusFor(node);
+    const w = ctx.measureText(text).width;
+    const pad = 4;
+    const lx = node.x + r + 6;
+    return { text, lx, x0: lx - pad, y0: node.y - 9, x1: lx + w + pad, y1: node.y + 9 };
+  };
 
   useEffect(() => {
     if (!fgRef.current || !reducedMotion) return;
@@ -274,7 +350,20 @@ export default function GraphCanvas({
         enableNodeDrag={true}
         enableZoomInteraction={false}
         enablePanInteraction={true}
-        onRenderFramePre={(ctx: CanvasRenderingContext2D) => {
+        onRenderFramePre={(ctx: CanvasRenderingContext2D, globalScale: number) => {
+          // Lay out labels once per frame: reserve the priority labels first so
+          // the sparse zoom-in labels can dodge them and text never overlaps.
+          const placed: LabelBox[] = [];
+          for (const node of graph.nodes as any[]) {
+            if (typeof node.x !== "number" || typeof node.y !== "number") continue;
+            const { show, priority } = wantsLabel(node, globalScale);
+            if (show && priority) {
+              const rect = labelRect(node, ctx);
+              placed.push({ x0: rect.x0, y0: rect.y0, x1: rect.x1, y1: rect.y1 });
+            }
+          }
+          placedLabelsRef.current = placed;
+
           if (hideHub) return;
           const radius = geom.hole;
           ctx.save();
@@ -312,15 +401,19 @@ export default function GraphCanvas({
           onSelectEdge(null);
         }}
         linkColor={(l: any) => {
-          const dimmed = focused && !isLinkFocused(l, focused);
           const c = edgeColor(l.rel);
-          return dimmed ? withAlpha(c, 0.10) : withAlpha(c, l.rel === "asserts" ? 0.45 : 0.78);
+          if (focused) {
+            return isLinkFocused(l, focused)
+              ? withAlpha(c, l.rel === "asserts" ? 0.7 : 0.9)
+              : withAlpha(c, 0.06);
+          }
+          return withAlpha(c, l.rel === "asserts" ? 0.4 : 0.7);
         }}
         linkWidth={(l: any) => {
           const isFocus = focused && isLinkFocused(l, focused);
-          if (l.raw?.hard) return isFocus ? 2.4 : 1.5;
-          if (l.rel === "asserts") return isFocus ? 1.2 : 0.6;
-          return isFocus ? 2 : 1.1;
+          if (l.raw?.hard) return isFocus ? 3 : 1.5;
+          if (l.rel === "asserts") return isFocus ? 1.6 : 0.6;
+          return isFocus ? 2.6 : 1.1;
         }}
         linkLineDash={(l: any) => (l.rel === "asserts" ? [2, 3] : null)}
         linkCurvature={(l: any) => (l.rel === "belongs_to" ? 0 : 0.18)}
@@ -332,17 +425,15 @@ export default function GraphCanvas({
         nodeCanvasObject={(node: any, ctx: CanvasRenderingContext2D, scale: number) => {
           const isHover = hoveredId === node.id;
           const isSelected = selectedId === node.id;
-          const dimmed = focused && !focused.has(node.id);
+          const inFocus = !focused || focused.has(node.id);
+          const dimmed = !!focused && !focused.has(node.id);
           const color = nodeColor(node);
-          const r =
-            node.layer === "proposition" ? 11
-              : node.layer === "document" ? 8 + Math.min(4, (node.weight ?? 1) * 0.5)
-              : 5 + Math.min(3, (node.weight ?? 1) * 0.6);
+          const r = radiusFor(node);
 
           if (isHover || isSelected) {
             ctx.beginPath();
-            ctx.arc(node.x, node.y, r + 8, 0, 2 * Math.PI);
-            ctx.fillStyle = withAlpha(color, 0.18);
+            ctx.arc(node.x, node.y, r + 9, 0, 2 * Math.PI);
+            ctx.fillStyle = withAlpha(color, 0.16);
             ctx.fill();
           }
 
@@ -352,14 +443,22 @@ export default function GraphCanvas({
           } else {
             ctx.arc(node.x, node.y, r, 0, 2 * Math.PI);
           }
-          ctx.fillStyle = dimmed ? withAlpha(color, 0.18) : color;
+          // Dim the rest harder so the focused subgraph keeps its full colour.
+          ctx.fillStyle = dimmed ? withAlpha(color, 0.12) : color;
           ctx.fill();
+
+          // A crisp hairline on in-focus nodes makes the focused cluster read solid.
+          if (focused && inFocus && !isSelected) {
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = withAlpha(COLORS.ink, 0.25);
+            ctx.stroke();
+          }
 
           if (node.load_bearing) {
             ctx.beginPath();
             ctx.arc(node.x, node.y, r + 2.5, 0, 2 * Math.PI);
             ctx.lineWidth = 1.4;
-            ctx.strokeStyle = withAlpha(COLORS.brass, dimmed ? 0.35 : 1);
+            ctx.strokeStyle = withAlpha(COLORS.brass, dimmed ? 0.3 : 1);
             ctx.stroke();
           }
 
@@ -371,33 +470,31 @@ export default function GraphCanvas({
             ctx.stroke();
           }
 
-          const showLabel =
-            node.layer === "document" || isHover || isSelected || scale > 1.8;
-          if (showLabel) {
-            ctx.font = `${node.layer === "proposition" ? 600 : 500} ${
-              node.layer === "proposition" ? 11 : 10
-            }px "IBM Plex Sans", sans-serif`;
-            ctx.textAlign = "left";
-            ctx.textBaseline = "middle";
-            const text =
-              node.layer === "proposition"
-                ? ""
-                : node.layer === "document"
-                  ? `${node.label} · ${truncate(node.title, 28)}`
-                  : truncate(node.fulltext ?? node.label, 36);
-            if (!text) return;
-            const pad = 4;
-            const x = node.x + r + 6;
-            const y = node.y;
-            const w = ctx.measureText(text).width;
-            ctx.fillStyle = withAlpha(COLORS.panel, dimmed ? 0.6 : 0.92);
-            ctx.fillRect(x - pad, y - 8, w + pad * 2, 16);
-            ctx.fillStyle = dimmed ? COLORS.inkDim : COLORS.ink;
-            ctx.fillText(text, x, y);
+          // Decluttered labels. Priority labels were reserved in onRenderFramePre;
+          // sparse zoom-in labels draw only when they do not collide.
+          const { show, priority } = wantsLabel(node, scale);
+          if (!show) return;
+          const rect = labelRect(node, ctx);
+          if (!rect.text) return;
+          const box: LabelBox = { x0: rect.x0, y0: rect.y0, x1: rect.x1, y1: rect.y1 };
+          if (!priority) {
+            for (const p of placedLabelsRef.current) {
+              if (rectsOverlap(box, p)) return;
+            }
+            placedLabelsRef.current.push(box);
           }
+          const emphasised = isHover || isSelected;
+          ctx.fillStyle = withAlpha(COLORS.panel, emphasised ? 0.96 : 0.9);
+          ctx.fillRect(box.x0, box.y0, box.x1 - box.x0, box.y1 - box.y0);
+          ctx.textAlign = "left";
+          ctx.textBaseline = "middle";
+          ctx.fillStyle = emphasised ? COLORS.ink : withAlpha(COLORS.ink, 0.9);
+          ctx.fillText(rect.text, rect.lx, node.y);
         }}
         nodePointerAreaPaint={(node: any, color: string, ctx: CanvasRenderingContext2D) => {
-          const r = node.layer === "proposition" ? 14 : node.layer === "document" ? 11 : 9;
+          // Comfortable click target: always a little larger than what is drawn.
+          const pad = node.layer === "document" ? 6 : 5;
+          const r = Math.max(node.layer === "proposition" ? 15 : 12, radiusFor(node) + pad);
           ctx.fillStyle = color;
           if (node.layer === "document") {
             ctx.fillRect(node.x - r, node.y - r, r * 2, r * 2);
@@ -454,6 +551,21 @@ function truncate(s: string, n: number): string {
   return s.length > n ? s.slice(0, n - 1) + "..." : s;
 }
 
+function rectsOverlap(a: LabelBox, b: LabelBox): boolean {
+  return a.x0 < b.x1 && a.x1 > b.x0 && a.y0 < b.y1 && a.y1 > b.y0;
+}
+
+function labelTextFor(node: any): string {
+  if (node.layer === "proposition") return truncate(node.label ?? "", 22);
+  if (node.layer === "document") return `${node.label} · ${truncate(node.title, 26)}`;
+  return truncate(node.fulltext ?? node.label, 34);
+}
+
+function setLabelFont(ctx: CanvasRenderingContext2D, node: any): void {
+  const isProp = node.layer === "proposition";
+  ctx.font = `${isProp ? 600 : 500} ${isProp ? 11 : 10}px "IBM Plex Sans", sans-serif`;
+}
+
 function useReducedMotion(): boolean {
   const [reduced, setReduced] = useState(false);
   useEffect(() => {
@@ -504,6 +616,13 @@ function Legend({ mode }: { mode: Mode }) {
       <div className="flex items-center gap-2 leading-5">
         <span className="inline-block h-2.5 w-2.5 rounded-full border" style={{ borderColor: COLORS.brass, borderWidth: 1.5 }} />
         <span>load-bearing</span>
+      </div>
+      <div className="flex items-center gap-2 leading-5">
+        <span className="inline-flex items-center gap-0.5">
+          <span className="inline-block rounded-full" style={{ width: 5, height: 5, background: COLORS.inkDim }} />
+          <span className="inline-block rounded-full" style={{ width: 9, height: 9, background: COLORS.inkDim }} />
+        </span>
+        <span>size = how load-bearing</span>
       </div>
 
       {div}

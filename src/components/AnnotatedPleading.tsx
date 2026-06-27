@@ -1,6 +1,9 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+import { useParams } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import type { AppData, DataNode } from "@/lib/pleading";
 import { COLORS, verdictColor, anchorLabel, srcId } from "@/lib/pleading";
+import { updateCase } from "@/lib/firm.functions";
 import { AnchorButton } from "./SourceReader";
 import { TrustBadge } from "./TrustBadge";
 
@@ -64,9 +67,147 @@ export default function AnnotatedPleading({ data, selectedId, onSelect, onHover 
   const particulars = data.documents?.["02"];
   const meta = data.meta;
 
+  // ---- Edit-the-pleading state --------------------------------------------
+  // caseId comes from the route, so we never need a new prop from the page.
+  const params = useParams({ strict: false }) as { caseId?: string };
+  const caseId = params.caseId ?? null;
+  const persist = useServerFn(updateCase);
+
+  const [editing, setEditing] = useState(false);
+  // drafts: working textarea values while editing, keyed by paragraph number.
+  const [drafts, setDrafts] = useState<Record<number, string>>({});
+  // committed: edits that have been persisted, so the read-only view keeps them.
+  const [committed, setCommitted] = useState<Record<number, string>>({});
+  const [saving, setSaving] = useState(false);
+  const [savedOnce, setSavedOnce] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
+  const [reanalyzeNote, setReanalyzeNote] = useState<string | null>(null);
+
+  // The text shown for a paragraph: latest committed edit, else the source.
+  const paraText = (n: number, original: string) => committed[n] ?? original;
+
+  function startEdit() {
+    const seed: Record<number, string> = {};
+    for (const p of particulars?.paras ?? []) seed[p.n] = committed[p.n] ?? p.text;
+    setDrafts(seed);
+    setSaveError(null);
+    setReanalyzeNote(null);
+    setEditing(true);
+  }
+
+  function cancelEdit() {
+    setEditing(false);
+    setSaveError(null);
+  }
+
+  async function handleSave() {
+    if (!caseId) {
+      setSaveError("No case id in route; cannot save.");
+      return;
+    }
+    setSaving(true);
+    setSaveError(null);
+    try {
+      // Deep-clone the analysis document and replace only the pleaded text in
+      // the Particulars of Claim (documents["02"]). Verdicts/edges are untouched.
+      const next: AppData = JSON.parse(JSON.stringify(data));
+      const doc = next.documents?.["02"];
+      if (doc) {
+        doc.paras = doc.paras.map((p) => ({ ...p, text: drafts[p.n] ?? p.text }));
+      }
+      await persist({ data: { id: caseId, data: next } });
+      setCommitted({ ...drafts });
+      setSavedOnce(true);
+      setEditing(false);
+    } catch (e: any) {
+      setSaveError(String(e?.message ?? e));
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  function handleReanalyze() {
+    // SWAP POINT: call analyzeBundle/reanalyze server-fn here when the backend is connected.
+    setReanalyzeNote(
+      "Re-analysis runs on the engine. Connect the backend to enable.",
+    );
+  }
+
+  const btnBase =
+    "rounded-sm border px-2.5 py-1 font-mono text-[10px] uppercase tracking-widest transition disabled:opacity-50";
+
   return (
     <div className="h-full overflow-y-auto bg-bg">
       <div className="mx-auto max-w-[1180px] px-4 py-8 sm:px-8">
+        {/* Edit controls: counsel can amend a pleaded paragraph and re-run analysis. */}
+        {particulars && (
+          <div className="mb-3 flex flex-wrap items-center justify-end gap-2">
+            {editing ? (
+              <>
+                <button
+                  onClick={cancelEdit}
+                  disabled={saving}
+                  className={btnBase + " text-ink-dim hover:text-ink"}
+                  style={{ borderColor: COLORS.hair, background: COLORS.panel }}
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleSave}
+                  disabled={saving}
+                  className={btnBase}
+                  style={{ borderColor: COLORS.ink, background: COLORS.ink, color: COLORS.panel }}
+                >
+                  {saving ? "Saving" : "Save"}
+                </button>
+              </>
+            ) : (
+              <>
+                {savedOnce && (
+                  <button
+                    onClick={handleReanalyze}
+                    className={btnBase + " hover:shadow-sm"}
+                    style={{ borderColor: COLORS.legal, color: COLORS.legal, background: `${COLORS.legal}10` }}
+                  >
+                    Re-analyze
+                  </button>
+                )}
+                <button
+                  onClick={startEdit}
+                  className={btnBase + " text-ink-dim hover:text-ink"}
+                  style={{ borderColor: COLORS.hair, background: COLORS.panel }}
+                >
+                  Edit
+                </button>
+              </>
+            )}
+          </div>
+        )}
+
+        {saveError && (
+          <div
+            className="mb-3 rounded-sm border px-3 py-2 font-mono text-[11px]"
+            style={{ borderColor: COLORS.rejected, color: COLORS.rejected, background: `${COLORS.rejected}10` }}
+          >
+            {saveError}
+          </div>
+        )}
+
+        {reanalyzeNote && (
+          <div
+            className="mb-3 flex items-start gap-2 rounded-sm border px-3 py-2 text-[12px]"
+            style={{ borderColor: COLORS.legal, background: `${COLORS.legal}0d`, color: COLORS.ink }}
+          >
+            <span
+              className="mt-px font-mono text-[9px] uppercase tracking-widest"
+              style={{ color: COLORS.legal }}
+            >
+              backend
+            </span>
+            <span className="text-ink-dim">{reanalyzeNote}</span>
+          </div>
+        )}
+
         {/* Document head */}
         <div className="mb-7 border-b pb-5 text-center" style={{ borderColor: COLORS.hair }}>
           <div className="font-mono text-[10px] uppercase tracking-[0.28em] text-ink-dim">
@@ -77,6 +218,11 @@ export default function AnnotatedPleading({ data, selectedId, onSelect, onHover 
           </div>
           <h2 className="mt-4 font-display text-[26px] leading-tight">Particulars of Claim</h2>
           <div className="mt-1.5 font-display italic text-[14px] text-ink-dim">{meta.case}</div>
+          {editing && (
+            <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.22em]" style={{ color: COLORS.legal }}>
+              Editing. Amend pleaded paragraphs, then Save.
+            </div>
+          )}
         </div>
 
         {particulars ? (
@@ -86,7 +232,8 @@ export default function AnnotatedPleading({ data, selectedId, onSelect, onHover 
               const active = anns.some(
                 (a) => selectedId === a.prop.id || selectedId === a.pc.id,
               );
-              const clickable = anns.length > 0;
+              // While editing, the paragraph row is a text field, not a selector.
+              const clickable = anns.length > 0 && !editing;
               return (
                 <li
                   key={p.n}
@@ -106,12 +253,28 @@ export default function AnnotatedPleading({ data, selectedId, onSelect, onHover 
                     }}
                   >
                     <span className="shrink-0 pt-0.5 font-mono text-[11px] text-ink-dim">{p.n}</span>
-                    <p
-                      className="font-display text-[15px] leading-[1.7]"
-                      style={{ color: clickable ? COLORS.ink : COLORS.inkDim }}
-                    >
-                      {p.text}
-                    </p>
+                    {editing ? (
+                      <textarea
+                        value={drafts[p.n] ?? p.text}
+                        onChange={(e) =>
+                          setDrafts((d) => ({ ...d, [p.n]: e.target.value }))
+                        }
+                        rows={Math.max(2, Math.ceil((drafts[p.n] ?? p.text).length / 88))}
+                        className="w-full resize-y rounded-sm border px-2 py-1.5 font-display text-[15px] leading-[1.7] focus:outline-none"
+                        style={{
+                          color: COLORS.ink,
+                          background: COLORS.panel,
+                          borderColor: COLORS.hair,
+                        }}
+                      />
+                    ) : (
+                      <p
+                        className="font-display text-[15px] leading-[1.7]"
+                        style={{ color: anns.length > 0 ? COLORS.ink : COLORS.inkDim }}
+                      >
+                        {paraText(p.n, p.text)}
+                      </p>
+                    )}
                   </div>
 
                   {/* Margin annotations (counsel-style) */}

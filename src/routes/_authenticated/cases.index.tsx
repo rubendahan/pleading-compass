@@ -76,21 +76,32 @@ function CasesPage() {
         <section className="mb-10">
           <div className="mb-3 flex items-end justify-between">
             <h2 className="font-display text-[18px]">Case files</h2>
-            <button
-              disabled={busy}
-              onClick={async () => {
-                setBusy(true);
-                try { const r = await seed(); navigate({ to: "/cases/$caseId", params: { caseId: r.id } }); }
-                finally { setBusy(false); }
-              }}
-              className="rounded-sm px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em]"
-              style={{ background: COLORS.ink, color: COLORS.panel }}
-            >
-              + New demo case
-            </button>
+            <div className="flex items-center gap-2">
+              <Link
+                to="/cases/new"
+                className="rounded-sm px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em]"
+                style={{ background: COLORS.ink, color: COLORS.panel }}
+              >
+                + New case
+              </Link>
+              <button
+                disabled={busy}
+                onClick={async () => {
+                  setBusy(true);
+                  try { const r = await seed(); navigate({ to: "/cases/$caseId", params: { caseId: r.id } }); }
+                  finally { setBusy(false); }
+                }}
+                className="rounded-sm border px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] disabled:opacity-50"
+                style={{ borderColor: COLORS.hair }}
+              >
+                + New demo case
+              </button>
+            </div>
           </div>
           {cases.length === 0 ? (
-            <p className="font-mono text-[12px] text-ink-dim">No cases yet. Seed a demo case to explore the console.</p>
+            <p className="font-mono text-[12px] text-ink-dim">
+              No cases yet. Start a <Link to="/cases/new" className="underline">new case</Link> or seed a demo case to explore the console.
+            </p>
           ) : (
             <ul className="divide-y rounded-sm border bg-panel" style={{ borderColor: COLORS.hair }}>
               {cases.map((c) => (

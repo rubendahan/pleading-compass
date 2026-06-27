@@ -6,16 +6,43 @@
     "seeded": false
   },
   "stats": {
-    "readiness": 20,
+    "readiness": 38,
     "own_goal": 6,
-    "props": 10,
+    "props": 13,
     "docs": 12,
-    "claims": 27,
+    "claims": 33,
     "rejected_pleadings": 7,
     "exposure_from": "£6.0m",
     "exposure_to": "£1.8m"
   },
   "nodes": [
+    {
+      "id": "prop:PR3",
+      "layer": "proposition",
+      "label": "PR3",
+      "verdict": "SUPPORTED",
+      "overlay": "NONE",
+      "readiness": 100,
+      "text": "By a written Master Services Agreement dated 14 March 2024 ('the MSA'), which the parties executed, TechFlow agreed to design, build, configure and implement for Meridian a cloud-based inventory management and EPOS platform ('the Platform')."
+    },
+    {
+      "id": "prop:PR4",
+      "layer": "proposition",
+      "label": "PR4",
+      "verdict": "SUPPORTED",
+      "overlay": "NONE",
+      "readiness": 100,
+      "text": "The MSA incorporated a Statement of Work ('the SOW') at Schedule 1, which set out the scope of the works, the implementation plan and the milestones."
+    },
+    {
+      "id": "prop:PR5",
+      "layer": "proposition",
+      "label": "PR5",
+      "verdict": "SUPPORTED",
+      "overlay": "NONE",
+      "readiness": 100,
+      "text": "The total charges payable under the MSA were GBP 2,400,000 (excluding VAT), payable against milestones."
+    },
     {
       "id": "prop:P1",
       "layer": "proposition",
@@ -456,6 +483,118 @@
       "single_source": false
     },
     {
+      "id": "claim:pr3_msa",
+      "layer": "claim",
+      "label": "TechFlow agreed under the executed MSA (14",
+      "fulltext": "TechFlow agreed under the executed MSA (14 Mar 2024) to design, build, configure and implement the Platform.",
+      "issue": "RECITALS",
+      "polarity": "pleading",
+      "source_type": "pleading",
+      "weight": 1.0,
+      "verdict": "accepted",
+      "anchor": "02¶3",
+      "quote": "By a written Master Services Agreement dated 14 March 2024 (\"the MSA\"), TechFlow agreed to design, build, configure and implement for Meridian a cloud-based inventory management and electronic point-of-sale platform (\"the Platform\").",
+      "prop": "PR3",
+      "load_bearing": false,
+      "single_source": true
+    },
+    {
+      "id": "claim:pr4_sow",
+      "layer": "claim",
+      "label": "The MSA incorporated the SOW at Schedule 1",
+      "fulltext": "The MSA incorporated the SOW at Schedule 1, setting the scope, implementation plan and milestones.",
+      "issue": "RECITALS",
+      "polarity": "pleading",
+      "source_type": "pleading",
+      "weight": 1.0,
+      "verdict": "accepted",
+      "anchor": "02¶4",
+      "quote": "The MSA incorporated a Statement of Work (\"the SOW\") at Schedule 1, which set out the scope of the works, the implementation plan and the milestones.",
+      "prop": "PR4",
+      "load_bearing": false,
+      "single_source": true
+    },
+    {
+      "id": "claim:pr5_charges",
+      "layer": "claim",
+      "label": "The total charges payable under the MSA we",
+      "fulltext": "The total charges payable under the MSA were £2,400,000 (excl VAT), payable against milestones.",
+      "issue": "RECITALS",
+      "polarity": "pleading",
+      "source_type": "pleading",
+      "weight": 1.0,
+      "verdict": "accepted",
+      "anchor": "02¶5",
+      "quote": "The total charges payable under the MSA were £2,400,000 (excluding VAT), payable against milestones.",
+      "prop": "PR5",
+      "load_bearing": false,
+      "single_source": true
+    },
+    {
+      "id": "claim:msa_scope",
+      "layer": "claim",
+      "label": "MSA cl 1.1: the Supplier shall design, bui",
+      "fulltext": "MSA cl 1.1: the Supplier shall design, build, configure, test and implement the Platform in accordance with the SOW at Schedule 1 (signed by both parties).",
+      "issue": "RECITALS",
+      "polarity": "bundle",
+      "source_type": "signed_contract",
+      "weight": 5.0,
+      "verdict": "accepted",
+      "anchor": "03¶8",
+      "quote": "1.1 The Supplier shall design, build, configure, test and implement the cloud-based inventory management and EPOS platform (\"the Platform\") in accordance with the Statement of Work set out at Schedule 1 (the \"SOW\").",
+      "prop": null,
+      "load_bearing": true,
+      "single_source": false
+    },
+    {
+      "id": "doc:03",
+      "layer": "document",
+      "label": "03",
+      "title": "Master Services Agreement",
+      "doc_type": "contract",
+      "party": "neutral"
+    },
+    {
+      "id": "claim:sow_schedule",
+      "layer": "claim",
+      "label": "SOW (Schedule 1 to the MSA): sets the scop",
+      "fulltext": "SOW (Schedule 1 to the MSA): sets the scope of the works, with the implementation timetable and payment milestones.",
+      "issue": "RECITALS",
+      "polarity": "bundle",
+      "source_type": "signed_contract",
+      "weight": 5.0,
+      "verdict": "accepted",
+      "anchor": "04¶4",
+      "quote": "1.1 The Supplier shall deliver the Platform in two phases: Phase 1 (core inventory and EPOS); Phase 2 (reporting and analytics). The agreed scope does not include a customer loyalty module.",
+      "prop": null,
+      "load_bearing": true,
+      "single_source": false
+    },
+    {
+      "id": "doc:04",
+      "layer": "document",
+      "label": "04",
+      "title": "Statement of Work",
+      "doc_type": "contract",
+      "party": "neutral"
+    },
+    {
+      "id": "claim:msa_charges",
+      "layer": "claim",
+      "label": "MSA cl 2.1: the total charges for the Serv",
+      "fulltext": "MSA cl 2.1: the total charges for the Services are £2,400,000 (excl VAT), payable against the milestones set out in the SOW.",
+      "issue": "RECITALS",
+      "polarity": "bundle",
+      "source_type": "signed_contract",
+      "weight": 5.0,
+      "verdict": "accepted",
+      "anchor": "03¶11",
+      "quote": "2.1 The total charges for the Services are £2,400,000 (excluding VAT), payable against the milestones set out in the SOW and as may be varied by agreement in writing.",
+      "prop": null,
+      "load_bearing": true,
+      "single_source": false
+    },
+    {
       "id": "claim:p9a_wasted",
       "layer": "claim",
       "label": "Wasted expenditure of £1.8m paid to TechFl",
@@ -547,14 +686,6 @@
       "single_source": false
     },
     {
-      "id": "doc:03",
-      "layer": "document",
-      "label": "03",
-      "title": "Master Services Agreement",
-      "doc_type": "contract",
-      "party": "neutral"
-    },
-    {
       "id": "claim:p9b_profit",
       "layer": "claim",
       "label": "Loss of profit of £4.2m during the Nov-Dec",
@@ -588,14 +719,6 @@
       "blocks": [
         "p8_training"
       ]
-    },
-    {
-      "id": "doc:04",
-      "layer": "document",
-      "label": "04",
-      "title": "Statement of Work",
-      "doc_type": "contract",
-      "party": "neutral"
     },
     {
       "id": "claim:p8_training",
@@ -879,6 +1002,81 @@
       "load_bearing": true
     },
     {
+      "source": "claim:pr3_msa",
+      "target": "prop:PR3",
+      "rel": "belongs_to",
+      "kind": "impact",
+      "hard": false,
+      "verdict": "accepted"
+    },
+    {
+      "source": "claim:pr4_sow",
+      "target": "prop:PR4",
+      "rel": "belongs_to",
+      "kind": "impact",
+      "hard": false,
+      "verdict": "accepted"
+    },
+    {
+      "source": "claim:pr5_charges",
+      "target": "prop:PR5",
+      "rel": "belongs_to",
+      "kind": "impact",
+      "hard": false,
+      "verdict": "accepted"
+    },
+    {
+      "source": "doc:03",
+      "target": "claim:msa_scope",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "doc:04",
+      "target": "claim:sow_schedule",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "doc:03",
+      "target": "claim:msa_charges",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "claim:msa_scope",
+      "target": "claim:pr3_msa",
+      "rel": "supports",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "The signed MSA (cl 1.1, executed by both parties) grounds the recital that TechFlow agreed to build the Platform.",
+      "own_goal": false,
+      "load_bearing": true
+    },
+    {
+      "source": "claim:sow_schedule",
+      "target": "claim:pr4_sow",
+      "rel": "supports",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "The SOW at Schedule 1 grounds the recital that the MSA incorporated the SOW setting scope, plan and milestones.",
+      "own_goal": false,
+      "load_bearing": true
+    },
+    {
+      "source": "claim:msa_charges",
+      "target": "claim:pr5_charges",
+      "rel": "supports",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "MSA cl 2.1 grounds the recital that the total charges were £2,400,000.",
+      "own_goal": false,
+      "load_bearing": true
+    },
+    {
       "source": "claim:p9a_wasted",
       "target": "prop:P9a",
       "rel": "belongs_to",
@@ -1092,6 +1290,25 @@
       ]
     },
     {
+      "issue": "RECITALS",
+      "solver": "brute_force",
+      "story": [
+        "The Particulars' factual recitals (¶3-5) are the agreed contractual background.",
+        "The signed MSA (Tab 3) records that TechFlow agreed to build the Platform and was executed by both parties.",
+        "The MSA incorporates the SOW (Tab 4) at Schedule 1, which sets the scope, plan and milestones.",
+        "The MSA fixes the total charges at £2,400,000 (excl VAT) against milestones.",
+        "So every recital is grounded in a signed contract document and is well supported."
+      ],
+      "impacts": [
+        "PR3: SURVIVES - Grounded in the signed MSA: cl 1.1 (Tab 3 / doc 03 ¶8) records that the Supplier shall design, build, configure, test and implement the Platform per the SOW at Schedule 1; the agreement is executed by both parties (¶24).",
+        "PR4: SURVIVES - MSA cl 1.1 (Tab 3 ¶8) incorporates the SOW at Schedule 1; the SOW (Tab 4) sets out the scope (cl 1.1 / ¶4), the implementation timetable (cl 2.1 / ¶6) and the payment milestones (cl 4 / ¶11).",
+        "PR5: SURVIVES - MSA cl 2.1 (Tab 3 / doc 03 ¶11) fixes the total charges at GBP 2,400,000 (excl VAT), payable against the milestones; the SOW cl 4 (Tab 4 ¶11) sets the milestone payment schedule (25% on each of M1-M4)."
+      ],
+      "amendments": [
+        "Keep the recital paragraphs (PR3-PR5) - they are agreed background, grounded in the signed MSA/SOW; annotate each as supported by the contract clause."
+      ]
+    },
+    {
       "issue": "QUANTUM/CAP",
       "solver": "brute_force",
       "story": [
@@ -1197,6 +1414,26 @@
       "revives_if_removed": {}
     },
     {
+      "issue": "RECITALS",
+      "load_bearing": {
+        "pr3_msa": [
+          "msa_scope"
+        ],
+        "pr4_sow": [
+          "sow_schedule"
+        ],
+        "pr5_charges": [
+          "msa_charges"
+        ]
+      },
+      "single_source": [
+        "pr3_msa",
+        "pr4_sow",
+        "pr5_charges"
+      ],
+      "revives_if_removed": {}
+    },
+    {
       "issue": "QUANTUM/CAP",
       "load_bearing": {
         "p9a_wasted": [
@@ -1238,8 +1475,8 @@
       "date": "2025-06-05",
       "category": "Pleading",
       "modality": "document",
-      "mime": "application/pdf",
-      "file_url": "/sources/02.pdf",
+      "mime": "text/plain",
+      "file_url": null,
       "description": "Particulars of Claim",
       "paras": [
         {
@@ -1316,8 +1553,8 @@
       "date": "2024-03-14",
       "category": "Contract",
       "modality": "document",
-      "mime": "application/pdf",
-      "file_url": "/sources/03.pdf",
+      "mime": "text/plain",
+      "file_url": null,
       "description": "Master Services Agreement",
       "paras": [
         {
@@ -1426,8 +1663,8 @@
       "date": "2024-03-14",
       "category": "Contract",
       "modality": "document",
-      "mime": "application/pdf",
-      "file_url": "/sources/04.pdf",
+      "mime": "text/plain",
+      "file_url": null,
       "description": "Statement of Work",
       "paras": [
         {
@@ -1504,8 +1741,8 @@
       "date": "2024-09-02",
       "category": "Amendment",
       "modality": "document",
-      "mime": "application/pdf",
-      "file_url": "/sources/07.pdf",
+      "mime": "text/plain",
+      "file_url": null,
       "description": "Change Order No 3",
       "paras": [
         {
@@ -1570,8 +1807,8 @@
       "date": "2024-11-12",
       "category": "Record",
       "modality": "document",
-      "mime": "application/pdf",
-      "file_url": "/sources/08.pdf",
+      "mime": "text/plain",
+      "file_url": null,
       "description": "UAT Acceptance Certificate",
       "paras": [
         {
@@ -1616,8 +1853,8 @@
       "date": "2024-10-24",
       "category": "Correspondence",
       "modality": "email",
-      "mime": "application/pdf",
-      "file_url": "/sources/09.pdf",
+      "mime": "text/plain",
+      "file_url": null,
       "description": "Email Go-Live Readiness",
       "paras": [
         {
@@ -1714,8 +1951,8 @@
       "date": "2024-08-21",
       "category": "Correspondence",
       "modality": "email",
-      "mime": "application/pdf",
-      "file_url": "/sources/10.pdf",
+      "mime": "text/plain",
+      "file_url": null,
       "description": "Email Loyalty Module Change Request",
       "paras": [
         {
@@ -1804,8 +2041,8 @@
       "date": "2024-11-30",
       "category": "Internal record",
       "modality": "email",
-      "mime": "application/pdf",
-      "file_url": "/sources/13.pdf",
+      "mime": "text/plain",
+      "file_url": null,
       "description": "Defect Log",
       "paras": [
         {
@@ -1858,8 +2095,8 @@
       "date": "2026-03-13",
       "category": "Witness (fact)",
       "modality": "document",
-      "mime": "application/pdf",
-      "file_url": "/sources/16.pdf",
+      "mime": "text/plain",
+      "file_url": null,
       "description": "Witness Statement Helena Vance",
       "paras": [
         {
@@ -1900,8 +2137,8 @@
       "date": "2026-03-13",
       "category": "Witness (fact)",
       "modality": "document",
-      "mime": "application/pdf",
-      "file_url": "/sources/17.pdf",
+      "mime": "text/plain",
+      "file_url": null,
       "description": "Witness Statement Raymond Okafor",
       "paras": [
         {
@@ -1938,8 +2175,8 @@
       "date": "2026-03-13",
       "category": "Witness (fact)",
       "modality": "document",
-      "mime": "application/pdf",
-      "file_url": "/sources/18.pdf",
+      "mime": "text/plain",
+      "file_url": null,
       "description": "Witness Statement Priya Nair",
       "paras": [
         {
@@ -1976,8 +2213,8 @@
       "date": "2026-04-24",
       "category": "Witness (expert)",
       "modality": "document",
-      "mime": "application/pdf",
-      "file_url": "/sources/19.pdf",
+      "mime": "text/plain",
+      "file_url": null,
       "description": "Expert Report Whitfield IT",
       "paras": [
         {
@@ -2018,8 +2255,8 @@
       "date": "2026-04-24",
       "category": "Witness (expert)",
       "modality": "document",
-      "mime": "application/pdf",
-      "file_url": "/sources/20.pdf",
+      "mime": "text/plain",
+      "file_url": null,
       "description": "Expert Report Greenhalgh Quantum",
       "paras": [
         {

@@ -27,7 +27,11 @@ function CasePage() {
   const [err, setErr] = useState<string | null>(null);
   const [view, setView] = useState<View>("graph");
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  // Inspector can be focused on a different node than the main selection — e.g.
+  // when clicking a pleading claim, the inspector follows the scrolled-to bundle item.
+  const [inspectorId, setInspectorId] = useState<string | null>(null);
   const [selectedEdge, setSelectedEdge] = useState<DataEdge | null>(null);
+
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [inspectorOpen, setInspectorOpen] = useState(false);
   const [popover, setPopover] = useState<{ id: string; x: number; y: number } | null>(null);
@@ -175,19 +179,31 @@ function CasePage() {
       targetIds = Array.from(direct).sort((a, b) => score(b) - score(a));
     }
 
-    if (!targetIds.length) return;
+    if (!targetIds.length) {
+      setInspectorId(selectedId);
+      return;
+    }
+
+    const first = targetIds[0];
+    // Inspector follows the scrolled-to / focused bundle target, while the
+    // pleading-side selection stays highlighted in the pleading view.
+    setInspectorId(isBundleNode(node) ? node.id : first);
 
     if (view === "graph") {
       graphApi.current?.focusNodes(targetIds);
     } else {
-      // Dual-pane: scroll bundle to the top-ranked target.
-      const first = targetIds[0];
       requestAnimationFrame(() => {
         const el = document.querySelector(`[data-bundle-id="${CSS.escape(first)}"]`);
         el?.scrollIntoView({ behavior: "smooth", block: "center" });
       });
     }
   }, [selectedId, data, adjacency, view]);
+
+  // Clear inspector focus when nothing is selected.
+  useEffect(() => {
+    if (!selectedId) setInspectorId(null);
+  }, [selectedId]);
+
 
 
   if (err) return <div className="grid min-h-screen place-items-center bg-bg p-6" style={{ color: COLORS.rejected }}>{err}</div>;
@@ -325,11 +341,12 @@ function CasePage() {
                 >
                   <Inspector caseId={caseId}
                     data={data}
-                    selectedId={selectedId}
+                    selectedId={inspectorId ?? selectedId}
                     selectedEdge={selectedEdge}
-                    onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); }}
+                    onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); setInspectorId(id); }}
                     onClose={() => { setSelectedEdge(null); setInspectorOpen(false); }}
                   />
+
                 </div>
               </div>
             )}
@@ -359,10 +376,11 @@ function CasePage() {
           {inspectorOpen && (
             <div className="h-[calc(100vh-200px)] min-h-[560px]">
               <Inspector caseId={caseId}
-                data={data} selectedId={selectedId} selectedEdge={selectedEdge}
-                onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); }}
-                onClose={() => { setSelectedId(null); setSelectedEdge(null); setInspectorOpen(false); }}
+                data={data} selectedId={inspectorId ?? selectedId} selectedEdge={selectedEdge}
+                onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); setInspectorId(id); }}
+                onClose={() => { setSelectedId(null); setInspectorId(null); setSelectedEdge(null); setInspectorOpen(false); }}
               />
+
             </div>
           )}
         </main>

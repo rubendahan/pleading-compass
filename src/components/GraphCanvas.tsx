@@ -114,8 +114,8 @@ export default function GraphCanvas({
     try {
       const sim = fg.d3Force ? fg : null;
       if (!sim) return;
-      // Charge: keep things from clumping
-      fg.d3Force("charge")?.strength(-140);
+      // Gentler charge so nodes don't fly off-screen
+      fg.d3Force("charge")?.strength(-90).distanceMax(420);
       // Custom radial repulsion pushing free nodes outside the hole.
       const holeForce = (alpha: number) => {
         const r0 = geom.hole + 30;
@@ -131,6 +131,33 @@ export default function GraphCanvas({
         }
       };
       fg.d3Force("centerHole", holeForce);
+      // Keep nodes inside the visible viewport (with a small margin).
+      const boundsForce = () => {
+        const padX = 40;
+        const padY = 40;
+        const maxX = size.w / 2 - padX;
+        const maxY = size.h / 2 - padY;
+        for (const n of graph.nodes as any[]) {
+          if (n.fx != null || n.fy != null) continue;
+          if (n.x != null && Math.abs(n.x) > maxX) {
+            n.x = Math.sign(n.x) * maxX;
+            n.vx = (n.vx ?? 0) * -0.5;
+          }
+          if (n.y != null && Math.abs(n.y) > maxY) {
+            n.y = Math.sign(n.y) * maxY;
+            n.vy = (n.vy ?? 0) * -0.5;
+          }
+        }
+      };
+      fg.d3Force("bounds", boundsForce);
+      // Soft pull toward center so nodes don't drift away
+      fg.d3Force("centerPull", (alpha: number) => {
+        for (const n of graph.nodes as any[]) {
+          if (n.layer === "proposition") continue;
+          n.vx = (n.vx ?? 0) - (n.x ?? 0) * 0.008 * alpha;
+          n.vy = (n.vy ?? 0) - (n.y ?? 0) * 0.008 * alpha;
+        }
+      });
       // Shorter distance for belongs_to so claims cluster around their document.
       const linkF = fg.d3Force("link");
       if (linkF) {
@@ -139,7 +166,7 @@ export default function GraphCanvas({
       }
       fg.d3ReheatSimulation();
     } catch {/* noop */}
-  }, [ForceGraph, geom.hole, graph.nodes]);
+  }, [ForceGraph, geom.hole, graph.nodes, size.w, size.h]);
 
   const neighbours = useMemo(() => {
     const map = new Map<string, Set<string>>();

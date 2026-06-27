@@ -9,8 +9,9 @@ import BundleView from "@/components/BundleView";
 import Inspector from "@/components/Inspector";
 import GraphCanvas from "@/components/GraphCanvas";
 import BundlePiecePopover from "@/components/BundlePiecePopover";
+import AnnotatedPleading from "@/components/AnnotatedPleading";
 
-type View = "stress" | "graph";
+type View = "pleading" | "stress" | "graph";
 
 export const Route = createFileRoute("/_authenticated/cases/$caseId")({
   component: CasePage,
@@ -25,7 +26,7 @@ function CasePage() {
 
   const [row, setRow] = useState<any>(null);
   const [err, setErr] = useState<string | null>(null);
-  const [view, setView] = useState<View>("graph");
+  const [view, setView] = useState<View>("pleading");
   const [selectedId, setSelectedId] = useState<string | null>(null);
   // Inspector can be focused on a different node than the main selection - e.g.
   // when clicking a pleading claim, the inspector follows the scrolled-to bundle item.
@@ -358,6 +359,32 @@ function CasePage() {
             )}
           </div>
         </main>
+      ) : view === "pleading" ? (
+        <main className="relative flex-1 p-4 sm:p-6">
+          <div className="relative h-[calc(100vh-160px)] min-h-[640px] w-full overflow-hidden rounded-sm border" style={{ borderColor: COLORS.hair, background: COLORS.panel }}>
+            <div className="h-full transition-all" style={{ width: inspectorOpen ? "calc(100% - 440px)" : "100%" }}>
+              <AnnotatedPleading
+                data={data}
+                selectedId={selectedId}
+                onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); }}
+                onHover={setHoveredId}
+              />
+            </div>
+            {inspectorOpen && (
+              <div className="absolute right-4 top-4 bottom-4 z-20 w-[420px] max-w-[calc(100vw-32px)] animate-in slide-in-from-right-4 fade-in duration-150">
+                <div className="h-full w-full overflow-hidden rounded-sm border shadow-[0_32px_70px_-25px_rgba(20,17,13,0.55)]" style={{ borderColor: COLORS.hair, background: COLORS.panel }}>
+                  <Inspector caseId={caseId}
+                    data={data}
+                    selectedId={inspectorId ?? selectedId}
+                    selectedEdge={selectedEdge}
+                    onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); setInspectorId(id); }}
+                    onClose={() => { setSelectedId(null); setInspectorId(null); setSelectedEdge(null); setInspectorOpen(false); }}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        </main>
       ) : (
 
         <main className={`flex-1 grid gap-4 p-4 sm:p-6 ${
@@ -398,7 +425,7 @@ function CasePage() {
 
 function ViewToggle({ view, setView }: { view: View; setView: (v: View) => void }) {
   const opts: Array<{ k: View; label: string }> = [
-    { k: "stress", label: "Pleading" },
+    { k: "pleading", label: "Pleading" },
     { k: "graph", label: "Graph" },
   ];
 

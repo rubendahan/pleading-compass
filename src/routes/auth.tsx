@@ -8,7 +8,7 @@ import { COLORS } from "@/lib/pleading";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Sign in — Coherence Console" },
+      { title: "Sign in" },
       { name: "description", content: "Sign in to your cabinet to manage cases." },
     ],
   }),
@@ -122,7 +122,7 @@ function AuthPage() {
               className="w-full rounded-sm px-3 py-2.5 font-mono text-[11px] uppercase tracking-[0.2em] disabled:opacity-50"
               style={{ background: COLORS.ink, color: COLORS.panel }}
             >
-              {loading ? "…" : mode === "signin" ? "Sign in" : "Create cabinet"}
+              {loading ? "..." : mode === "signin" ? "Sign in" : "Create cabinet"}
             </button>
           </form>
 

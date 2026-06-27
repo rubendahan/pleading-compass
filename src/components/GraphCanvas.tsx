@@ -232,7 +232,7 @@ export default function GraphCanvas({
         style={{ borderColor: COLORS.hair, background: COLORS.panel }}
       >
         <div className="absolute inset-0 grid place-items-center font-mono text-[10px] uppercase tracking-[0.25em] text-ink-dim">
-          initialising graph…
+          initialising graph...
         </div>
       </div>
     );
@@ -447,7 +447,7 @@ function withAlpha(hex: string, a: number): string {
 
 function truncate(s: string, n: number): string {
   if (!s) return "";
-  return s.length > n ? s.slice(0, n - 1) + "…" : s;
+  return s.length > n ? s.slice(0, n - 1) + "..." : s;
 }
 
 function useReducedMotion(): boolean {

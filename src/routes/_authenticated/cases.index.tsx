@@ -39,7 +39,7 @@ function CasesPage() {
   }
 
   if (!ctx) {
-    return <div className="grid min-h-screen place-items-center bg-bg font-mono text-[11px] text-ink-dim">{err ?? "loading…"}</div>;
+    return <div className="grid min-h-screen place-items-center bg-bg font-mono text-[11px] text-ink-dim">{err ?? "loading..."}</div>;
   }
 
   if (!ctx.firm) {
@@ -101,7 +101,7 @@ function CasesPage() {
                   >
                     <div className="font-display text-[15px]">{c.title}</div>
                     <div className="mt-0.5 font-mono text-[11px] text-ink-dim">
-                      {c.claim_no ?? "—"} · {c.court ?? "—"} · updated {new Date(c.updated_at).toLocaleDateString()}
+                      {c.claim_no ?? "n/a"} · {c.court ?? "n/a"} · updated {new Date(c.updated_at).toLocaleDateString()}
                     </div>
                   </Link>
                 </li>
@@ -139,11 +139,11 @@ function CasesPage() {
             {members.map((m) => (
               <li key={m.id} className="flex items-center justify-between px-4 py-2.5">
                 <div>
-                  <div className="text-[14px]">{m.full_name ?? "—"}</div>
+                  <div className="text-[14px]">{m.full_name ?? "n/a"}</div>
                   <div className="font-mono text-[11px] text-ink-dim">{m.email}</div>
                 </div>
                 <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-dim">
-                  {m.roles.join(" · ") || "—"}
+                  {m.roles.join(" · ") || "n/a"}
                 </span>
               </li>
             ))}
@@ -172,7 +172,7 @@ function InviteForm({ busy, onSubmit }: { busy: boolean; onSubmit: (v: { email: 
         placeholder="Temp password (8+)" type="text" minLength={8} value={password} onChange={(e) => setPassword(e.target.value)} required />
       <button disabled={busy} type="submit" className="rounded-sm px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] disabled:opacity-50"
         style={{ background: COLORS.ink, color: COLORS.panel }}>
-        {busy ? "…" : "Add lawyer"}
+        {busy ? "..." : "Add lawyer"}
       </button>
     </form>
   );

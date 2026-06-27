@@ -95,14 +95,14 @@ function AiSummary({ caseId, nodeId }: { caseId: string; nodeId: string }) {
   return (
     <div className="rounded-md border p-3" style={{ borderColor: COLORS.hair, background: COLORS.panel2 }}>
       <div className="mb-2 flex items-center justify-between">
-        <SectionHeading>AI bundle note</SectionHeading>
+        <SectionHeading>Note</SectionHeading>
         <button
           onClick={run}
           disabled={state.loading}
           className="rounded border px-2 py-1 font-mono text-[10px] uppercase tracking-widest transition hover:bg-bg/40 disabled:opacity-50"
           style={{ borderColor: COLORS.hair, color: COLORS.ink }}
         >
-          {state.loading ? "drafting…" : state.text ? "regenerate" : "generate"}
+          {state.loading ? "writing" : state.text ? "regenerate" : "generate"}
         </button>
       </div>
       {state.text && (
@@ -113,7 +113,7 @@ function AiSummary({ caseId, nodeId }: { caseId: string; nodeId: string }) {
       )}
       {!state.text && !state.err && !state.loading && (
         <p className="text-[11px] italic text-ink-dim">
-          One-paragraph forensic note grounded in this node and its relations.
+          A short note on this node and its links.
         </p>
       )}
     </div>
@@ -130,13 +130,10 @@ function EmptyState() {
         graph.
       </p>
       <ul className="mt-4 space-y-2 font-mono text-[11px] uppercase tracking-widest">
-        <li>· proposition → why it stands or falls</li>
-        <li>· claim → verbatim quote + anchor</li>
-        <li>· edge → relation and explanation</li>
+        <li>· allegation: why it holds or falls</li>
+        <li>· claim: the exact quote and where it comes from</li>
+        <li>· link: the relation and the reason</li>
       </ul>
-      <p className="mt-6 text-[12px] italic text-ink-dim">
-        "The strongest coherent bundle story suggests…" — lawyer review required.
-      </p>
     </div>
   );
 }
@@ -231,7 +228,7 @@ function PropositionView({
 
       {cluster && (
         <div>
-          <SectionHeading>Coherent story — {cluster.issue.toLowerCase()}</SectionHeading>
+          <SectionHeading>Coherent story · {cluster.issue.toLowerCase()}</SectionHeading>
           <ul className="space-y-1.5 text-sm leading-relaxed text-ink-dim">
             {cluster.story.map((s, i) => (
               <li key={i} className="flex gap-2">
@@ -277,7 +274,7 @@ function PropositionView({
       </div>
 
       <p className="rounded border-l-2 pl-3 text-[11px] italic text-ink-dim" style={{ borderColor: COLORS.accent }}>
-        Coherence signal only — not a verdict.
+        Coherence signal, not a verdict.
       </p>
 
     </div>
@@ -363,9 +360,9 @@ function ClaimView({
       {(node.load_bearing || node.single_source) && (
         <div className="rounded-md border-l-2 pl-3 text-[12px] leading-relaxed text-ink" style={{ borderColor: COLORS.brass, background: `${COLORS.brass}0D` }}>
           <span className="font-mono uppercase tracking-widest" style={{ color: COLORS.brass }}>
-            Load-bearing —{" "}
+            Load-bearing.{" "}
           </span>
-          this point rests on a single source; discredit it and it collapses.
+          This point rests on a single source. Discredit it and it falls.
         </div>
       )}
 
@@ -468,7 +465,7 @@ function RelationRow({
       : other?.layer === "claim"
         ? (other as ClaimNode).fulltext
         : other
-          ? `Doc ${(other as any).label} — ${(other as any).title}`
+          ? `Doc ${(other as any).label} · ${(other as any).title}`
           : otherId;
 
   return (
@@ -545,7 +542,7 @@ function EdgeView({
     if (!n) return "?";
     if (n.layer === "proposition") return n.label;
     if (n.layer === "claim") return n.fulltext;
-    return `Doc ${n.label} — ${(n as any).title}`;
+    return `Doc ${n.label} · ${(n as any).title}`;
   };
 
   return (
@@ -600,9 +597,9 @@ function EdgeView({
       {edge.own_goal && (
         <p className="rounded border-l-2 p-3 text-[12px] leading-relaxed text-ink" style={{ borderColor: COLORS.orange, background: `${COLORS.orange}0D` }}>
           <strong className="font-mono uppercase tracking-widest" style={{ color: COLORS.orange }}>
-            Own goal —{" "}
+            Own goal.{" "}
           </strong>
-          the claimant's own document undermines its pleaded case.
+          The claimant's own document undermines its pleaded case.
         </p>
       )}
     </div>

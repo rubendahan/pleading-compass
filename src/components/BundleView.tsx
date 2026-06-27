@@ -406,7 +406,7 @@ function ClaimRow({
             <span
               className="rounded-sm border px-1 py-px font-mono text-[9px] uppercase tracking-widest"
               style={{ borderColor: COLORS.brass, color: COLORS.brass }}
-              title="Load-bearing — removing this revives a pleading"
+              title="Load-bearing. Removing this revives a pleading"
             >
               load-bearing
             </span>
@@ -435,5 +435,5 @@ function ClaimRow({
 }
 
 function truncate(s: string, n: number) {
-  return s.length > n ? s.slice(0, n - 1) + "…" : s;
+  return s.length > n ? s.slice(0, n - 1) + "..." : s;
 }

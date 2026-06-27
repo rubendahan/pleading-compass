@@ -126,8 +126,8 @@ function CasePage() {
             <div
               className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
               style={{
-                width: `min(${CARD_W}px, calc(100vw - ${inspectorOpen ? 460 : 80}px))`,
-                height: `min(${CARD_H}px, calc(100vh - 240px))`,
+                width: `min(${CARD_W}px, calc(100vw - ${inspectorOpen ? 480 : 120}px))`,
+                height: `min(${CARD_H}px, calc(100vh - 200px))`,
               }}
             >
               <div

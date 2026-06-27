@@ -30,6 +30,7 @@ interface Props {
   highlightedIds: Set<string>;
   onSelect: (id: string) => void;
   onHover: (id: string | null) => void;
+  mode?: "stress" | "coherence";
 }
 
 interface BundleItem {

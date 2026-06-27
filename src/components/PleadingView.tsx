@@ -9,6 +9,7 @@ interface Props {
   highlightedIds: Set<string>;
   onSelect: (id: string) => void;
   onHover: (id: string | null) => void;
+  mode?: "stress" | "coherence";
 }
 
 // The pleading is presented as a legal document. Each proposition becomes a

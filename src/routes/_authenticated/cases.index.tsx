@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { supabase } from "@/integrations/supabase/client";
-import { getMyContext, listCases, createDemoCase, inviteLawyer, listFirmMembers } from "@/lib/firm.functions";
+import { getMyContext, listCases, createDemoCase, createEuCase, inviteLawyer, listFirmMembers } from "@/lib/firm.functions";
 import { COLORS } from "@/lib/pleading";
 
 export const Route = createFileRoute("/_authenticated/cases/")({
@@ -14,6 +14,7 @@ function CasesPage() {
   const fetchCtx = useServerFn(getMyContext);
   const fetchCases = useServerFn(listCases);
   const seed = useServerFn(createDemoCase);
+  const seedEu = useServerFn(createEuCase);
   const invite = useServerFn(inviteLawyer);
   const fetchMembers = useServerFn(listFirmMembers);
 
@@ -95,6 +96,18 @@ function CasesPage() {
                 style={{ borderColor: COLORS.hair }}
               >
                 + New demo case
+              </button>
+              <button
+                disabled={busy}
+                onClick={async () => {
+                  setBusy(true);
+                  try { const r = await seedEu(); navigate({ to: "/cases/$caseId", params: { caseId: r.id } }); }
+                  finally { setBusy(false); }
+                }}
+                className="rounded-sm border px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-dim hover:text-ink disabled:opacity-50"
+                style={{ borderColor: COLORS.hair }}
+              >
+                + EU test case
               </button>
             </div>
           </div>

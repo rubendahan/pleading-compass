@@ -13,6 +13,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedCasesRouteImport } from './routes/_authenticated/cases'
+import { Route as AuthenticatedCasesCaseIdRouteImport } from './routes/_authenticated/cases.$caseId'
 
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
@@ -33,30 +34,45 @@ const AuthenticatedCasesRoute = AuthenticatedCasesRouteImport.update({
   path: '/cases',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedCasesCaseIdRoute =
+  AuthenticatedCasesCaseIdRouteImport.update({
+    id: '/$caseId',
+    path: '/$caseId',
+    getParentRoute: () => AuthenticatedCasesRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
-  '/cases': typeof AuthenticatedCasesRoute
+  '/cases': typeof AuthenticatedCasesRouteWithChildren
+  '/cases/$caseId': typeof AuthenticatedCasesCaseIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
-  '/cases': typeof AuthenticatedCasesRoute
+  '/cases': typeof AuthenticatedCasesRouteWithChildren
+  '/cases/$caseId': typeof AuthenticatedCasesCaseIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
-  '/_authenticated/cases': typeof AuthenticatedCasesRoute
+  '/_authenticated/cases': typeof AuthenticatedCasesRouteWithChildren
+  '/_authenticated/cases/$caseId': typeof AuthenticatedCasesCaseIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/cases'
+  fullPaths: '/' | '/auth' | '/cases' | '/cases/$caseId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/cases'
-  id: '__root__' | '/' | '/_authenticated' | '/auth' | '/_authenticated/cases'
+  to: '/' | '/auth' | '/cases' | '/cases/$caseId'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/_authenticated/cases'
+    | '/_authenticated/cases/$caseId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -95,15 +111,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCasesRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/cases/$caseId': {
+      id: '/_authenticated/cases/$caseId'
+      path: '/$caseId'
+      fullPath: '/cases/$caseId'
+      preLoaderRoute: typeof AuthenticatedCasesCaseIdRouteImport
+      parentRoute: typeof AuthenticatedCasesRoute
+    }
   }
 }
 
+interface AuthenticatedCasesRouteChildren {
+  AuthenticatedCasesCaseIdRoute: typeof AuthenticatedCasesCaseIdRoute
+}
+
+const AuthenticatedCasesRouteChildren: AuthenticatedCasesRouteChildren = {
+  AuthenticatedCasesCaseIdRoute: AuthenticatedCasesCaseIdRoute,
+}
+
+const AuthenticatedCasesRouteWithChildren =
+  AuthenticatedCasesRoute._addFileChildren(AuthenticatedCasesRouteChildren)
+
 interface AuthenticatedRouteRouteChildren {
-  AuthenticatedCasesRoute: typeof AuthenticatedCasesRoute
+  AuthenticatedCasesRoute: typeof AuthenticatedCasesRouteWithChildren
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
-  AuthenticatedCasesRoute: AuthenticatedCasesRoute,
+  AuthenticatedCasesRoute: AuthenticatedCasesRouteWithChildren,
 }
 
 const AuthenticatedRouteRouteWithChildren =

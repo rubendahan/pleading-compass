@@ -1,0 +1,2810 @@
+{
+  "meta": {
+    "case": "Brightmarket Retail GmbH  v  Cobalt Cloud Analytics Ltd",
+    "claim_no": "2026/0417 COM",
+    "court": "Commercial Court (Ireland) - applying EU law",
+    "seeded": false,
+    "synthetic": true,
+    "theme": "B2B SaaS analytics platform / GDPR data-processing dispute (EU law)",
+    "eu_acts": [
+      {
+        "celex": "32016R0679",
+        "title": "Regulation (EU) 2016/679 (General Data Protection Regulation)",
+        "short": "GDPR",
+        "articles": "Arts 28, 32, 33, 82, 94",
+        "in_data_eu": false
+      },
+      {
+        "celex": "31995L0046",
+        "title": "Directive 95/46/EC (Data Protection Directive)",
+        "short": "DP Directive (repealed)",
+        "articles": "repealed by GDPR Art 94",
+        "in_data_eu": false
+      },
+      {
+        "celex": "32019L0770",
+        "title": "Directive (EU) 2019/770 (supply of digital content and services)",
+        "short": "Digital Content Directive",
+        "articles": "Art 8 (conformity)",
+        "in_data_eu": false
+      },
+      {
+        "celex": "32019R1150",
+        "title": "Regulation (EU) 2019/1150 (fairness and transparency for business users of online intermediation services)",
+        "short": "Platform-to-Business Regulation",
+        "articles": "Art 3 (T&C changes)",
+        "in_data_eu": false
+      },
+      {
+        "celex": "32023R2854",
+        "title": "Regulation (EU) 2023/2854 (Data Act)",
+        "short": "Data Act",
+        "articles": "switching / data portability",
+        "in_data_eu": false
+      },
+      {
+        "celex": "32004R0139",
+        "title": "Council Regulation (EC) No 139/2004 (EC Merger Regulation)",
+        "short": "EU Merger Regulation",
+        "articles": "Arts 1, 4 (thresholds / notification)",
+        "in_data_eu": true
+      }
+    ]
+  },
+  "stats": {
+    "readiness": 25,
+    "own_goal": 1,
+    "props": 12,
+    "docs": 17,
+    "claims": 42,
+    "rejected_pleadings": 6,
+    "exposure_from": "€6.9m",
+    "exposure_to": "€0.9m"
+  },
+  "nodes": [
+    {
+      "id": "prop:P1",
+      "layer": "proposition",
+      "label": "P1",
+      "verdict": "NOT_ADDRESSED",
+      "overlay": "CONTRACTUALLY_BARRED",
+      "readiness": 0,
+      "acts": [],
+      "text": "Before contract Cobalt represented that the Platform was 'ISO 27001 certified and fully GDPR-compliant by design', and that representation was false."
+    },
+    {
+      "id": "prop:P2",
+      "layer": "proposition",
+      "label": "P2",
+      "verdict": "SUPPORTED",
+      "overlay": "NONE",
+      "readiness": 100,
+      "acts": [
+        "32016R0679"
+      ],
+      "text": "Cobalt processed Brightmarket's customer personal data for its own product / model-training purposes without instruction, contrary to its processor duty to act only on the controller's documented instructions (GDPR Art 28(3)(a))."
+    },
+    {
+      "id": "prop:P3",
+      "layer": "proposition",
+      "label": "P3",
+      "verdict": "CONTRADICTED",
+      "overlay": "CAUSATION_PROBLEM",
+      "readiness": 0,
+      "acts": [
+        "32016R0679"
+      ],
+      "text": "The October 2025 personal-data breach exposed the personal data of approximately 2.3 million customers."
+    },
+    {
+      "id": "prop:P4",
+      "layer": "proposition",
+      "label": "P4",
+      "verdict": "CONTRADICTED",
+      "overlay": "CONTRACTUALLY_BARRED",
+      "readiness": 0,
+      "acts": [
+        "32016R0679"
+      ],
+      "text": "Cobalt failed to notify the relevant supervisory authority of the breach within 72 hours as required."
+    },
+    {
+      "id": "prop:P5",
+      "layer": "proposition",
+      "label": "P5",
+      "verdict": "CONTRADICTED",
+      "overlay": "CAUSATION_PROBLEM",
+      "readiness": 0,
+      "acts": [
+        "32016R0679"
+      ],
+      "text": "The breach was caused solely by Cobalt's failure to implement appropriate technical and organisational measures (GDPR Art 32)."
+    },
+    {
+      "id": "prop:P6",
+      "layer": "proposition",
+      "label": "P6",
+      "verdict": "UNVERIFIED",
+      "overlay": "BURDEN_PROBLEM",
+      "readiness": 0,
+      "acts": [],
+      "text": "Cobalt's engineers left a production database publicly accessible on the internet for approximately three weeks before the breach."
+    },
+    {
+      "id": "prop:P7",
+      "layer": "proposition",
+      "label": "P7",
+      "verdict": "SUPPORTED",
+      "overlay": "NONE",
+      "readiness": 100,
+      "acts": [
+        "32019L0770"
+      ],
+      "text": "The Platform was not in conformity with the agreed specification: the analytics export module produced materially inaccurate revenue figures."
+    },
+    {
+      "id": "prop:P8",
+      "layer": "proposition",
+      "label": "P8",
+      "verdict": "CONTRADICTED",
+      "overlay": "SUPERSEDED",
+      "readiness": 0,
+      "acts": [
+        "31995L0046",
+        "32016R0679"
+      ],
+      "text": "Cobalt breached the data-transfer restrictions in Directive 95/46/EC (the standard incorporated by the 2017 DPA) by transferring data to a US sub-processor."
+    },
+    {
+      "id": "prop:P9",
+      "layer": "proposition",
+      "label": "P9",
+      "verdict": "NOT_ADDRESSED",
+      "overlay": "BURDEN_PROBLEM",
+      "readiness": 0,
+      "acts": [],
+      "text": "Cobalt failed to maintain adequate backups, so data could not be restored after the breach."
+    },
+    {
+      "id": "prop:P10a",
+      "layer": "proposition",
+      "label": "P10a",
+      "verdict": "SUPPORTED",
+      "overlay": "CAPPED",
+      "readiness": 100,
+      "acts": [],
+      "text": "Brightmarket suffered wasted expenditure of EUR 900,000, being subscription fees paid to Cobalt."
+    },
+    {
+      "id": "prop:P10b",
+      "layer": "proposition",
+      "label": "P10b",
+      "verdict": "CONTRADICTED",
+      "overlay": "CAPPED",
+      "readiness": 0,
+      "acts": [
+        "32016R0679"
+      ],
+      "text": "Brightmarket suffered loss of profit and further GDPR Art 82 / regulatory exposure of EUR 6,000,000 caused by the breach and outage."
+    },
+    {
+      "id": "prop:P11",
+      "layer": "proposition",
+      "label": "P11",
+      "verdict": "CONTRADICTED",
+      "overlay": "CONTRACTUALLY_BARRED",
+      "readiness": 0,
+      "acts": [
+        "32004R0139",
+        "32023R2854",
+        "32019R1150"
+      ],
+      "text": "Cobalt's 2024 acquisition of Brightmarket's previous analytics supplier (NorthStar) was implemented without the required EU merger clearance, and Cobalt then degraded interoperability to lock Brightmarket in."
+    },
+    {
+      "id": "claim:p1_rep",
+      "layer": "claim",
+      "label": "Pre-contract representation that the Platf",
+      "fulltext": "Pre-contract representation that the Platform was ISO 27001 certified and GDPR-compliant by design, false.",
+      "issue": "ORAL_REP/NON_RELIANCE",
+      "polarity": "pleading",
+      "source_type": "pleading",
+      "weight": 1.0,
+      "verdict": "accepted",
+      "anchor": "02¶7",
+      "quote": "Before contract the Defendant represented that the Platform was ISO 27001 certified and fully GDPR-compliant by design. That representation was false.",
+      "prop": "P1",
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "02",
+        "note": "Pleaded allegation - to be proved."
+      },
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:absence_rep",
+      "layer": "claim",
+      "label": "No document evidences the alleged pre-cont",
+      "fulltext": "No document evidences the alleged pre-contract compliance representation.",
+      "issue": "ORAL_REP/NON_RELIANCE",
+      "polarity": "bundle",
+      "source_type": "absence",
+      "weight": 1.0,
+      "verdict": "accepted",
+      "anchor": null,
+      "quote": null,
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": null,
+        "note": "No evidence in the bundle (absence) - burden / evidence gap."
+      },
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:nonreliance_cl24",
+      "layer": "claim",
+      "label": "MSA cl.24 (entire agreement / non-reliance",
+      "fulltext": "MSA cl.24 (entire agreement / non-reliance) bars reliance on pre-contract representations.",
+      "issue": "ORAL_REP/NON_RELIANCE",
+      "polarity": "legal_overlay",
+      "source_type": "legal_clause",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "03¶24",
+      "quote": "Entire agreement. This Agreement is the entire agreement between the parties. Each party confirms it has not relied on any statement or representation not set out in this Agreement.",
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "03",
+        "note": "Contemporaneous documentary record."
+      },
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "doc:03",
+      "layer": "document",
+      "label": "03",
+      "title": "Master Subscription Agreement",
+      "doc_type": "contract",
+      "party": "neutral",
+      "date": "2017-03-01",
+      "category": "Contract",
+      "tab": "03",
+      "modality": "text"
+    },
+    {
+      "id": "claim:p2_purpose",
+      "layer": "claim",
+      "label": "Cobalt processed the data for its own mode",
+      "fulltext": "Cobalt processed the data for its own model-training without instruction (GDPR Art 28(3)(a)).",
+      "issue": "PURPOSE_LIMITATION",
+      "polarity": "pleading",
+      "source_type": "pleading",
+      "weight": 1.0,
+      "verdict": "accepted",
+      "anchor": "02¶8",
+      "quote": "The Defendant processed the Claimant's customer personal data for its own product and model-training purposes without the Claimant's instruction.",
+      "prop": "P2",
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "02",
+        "note": "Pleaded allegation - to be proved."
+      },
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:training_admission",
+      "layer": "claim",
+      "label": "Cobalt internal email admits training a fo",
+      "fulltext": "Cobalt internal email admits training a forecasting model on the merchant datasets without controller consent.",
+      "issue": "PURPOSE_LIMITATION",
+      "polarity": "bundle",
+      "source_type": "admission",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "10¶2",
+      "quote": "We're using the merchant datasets, including Brightmarket's, to train the new forecasting model. Legal said to get controller consent first but we shipped it to hit the release date.",
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "10",
+        "note": "Contemporaneous documentary record."
+      },
+      "load_bearing": true,
+      "single_source": false
+    },
+    {
+      "id": "doc:10",
+      "layer": "document",
+      "label": "10",
+      "title": "Email - internal model-training note (Cobalt)",
+      "doc_type": "correspondence",
+      "party": "neutral",
+      "date": "2025-02-18",
+      "category": "Correspondence",
+      "tab": "10",
+      "modality": "email"
+    },
+    {
+      "id": "claim:dpia_crossuse",
+      "layer": "claim",
+      "label": "The DPIA records the secondary cross-use a",
+      "fulltext": "The DPIA records the secondary cross-use as outside the documented processing instructions.",
+      "issue": "PURPOSE_LIMITATION",
+      "polarity": "bundle",
+      "source_type": "defect_log",
+      "weight": 4.5,
+      "verdict": "accepted",
+      "anchor": "14¶4",
+      "quote": "Processing note: the Supplier has indicated it may reuse aggregated and identifiable merchant datasets to improve and train its own analytics and forecasting models; this secondary use is outside the documented processing instructions and requires a controller decision.",
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "14",
+        "note": "Contemporaneous documentary record."
+      },
+      "load_bearing": true,
+      "single_source": false
+    },
+    {
+      "id": "doc:14",
+      "layer": "document",
+      "label": "14",
+      "title": "Data Protection Impact Assessment",
+      "doc_type": "record",
+      "party": "claimant",
+      "date": "2024-05-02",
+      "category": "Internal record",
+      "tab": "14",
+      "modality": "text"
+    },
+    {
+      "id": "claim:art28_overlay",
+      "layer": "claim",
+      "label": "GDPR Art 28(3)(a) / DPA cl.5: process only",
+      "fulltext": "GDPR Art 28(3)(a) / DPA cl.5: process only on the controller's documented instructions.",
+      "issue": "PURPOSE_LIMITATION",
+      "polarity": "legal_overlay",
+      "source_type": "legal_clause",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "04¶5",
+      "quote": "The Processor shall process the personal data only on the documented instructions of the Controller (Article 28(3)(a) GDPR), and shall not use it for its own purposes.",
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "04",
+        "note": "Contemporaneous documentary record."
+      },
+      "load_bearing": true,
+      "single_source": false
+    },
+    {
+      "id": "doc:04",
+      "layer": "document",
+      "label": "04",
+      "title": "Data Processing Agreement",
+      "doc_type": "contract",
+      "party": "neutral",
+      "date": "2017-03-01",
+      "category": "Contract",
+      "tab": "04",
+      "modality": "text"
+    },
+    {
+      "id": "claim:expert_14k",
+      "layer": "claim",
+      "label": "Forensic expert: about 14,000 records actu",
+      "fulltext": "Forensic expert: about 14,000 records actually exfiltrated; the 2.3m figure is unsupported by the logs.",
+      "issue": "BREACH_SCALE",
+      "polarity": "bundle",
+      "source_type": "expert_report",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "19¶3",
+      "quote": "On the forensic evidence, approximately 14,000 customer records were actually exfiltrated. The remainder of the dataset was pseudonymised at rest and shows no evidence of access; the figure of 2.3 million is not supported by the logs.",
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": true,
+        "source": "19",
+        "note": "Independent expert opinion within the expert's expertise."
+      },
+      "load_bearing": false,
+      "single_source": false,
+      "blocks": [
+        "p3_scale"
+      ]
+    },
+    {
+      "id": "doc:19",
+      "layer": "document",
+      "label": "19",
+      "title": "Expert Report - Dr Idris Vale (Forensic / Security)",
+      "doc_type": "expert",
+      "party": "neutral",
+      "date": "2026-04-30",
+      "category": "Witness (expert)",
+      "tab": "19",
+      "modality": "text"
+    },
+    {
+      "id": "claim:p3_scale",
+      "layer": "claim",
+      "label": "The breach exposed the personal data of ap",
+      "fulltext": "The breach exposed the personal data of approximately 2.3 million customers.",
+      "issue": "BREACH_SCALE",
+      "polarity": "pleading",
+      "source_type": "pleading",
+      "weight": 1.0,
+      "verdict": "rejected",
+      "anchor": "02¶9",
+      "quote": "On or about 10 October 2025 a personal-data breach exposed the personal data of approximately 2.3 million of the Claimant's customers.",
+      "prop": "P3",
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "02",
+        "note": "Pleaded allegation - to be proved."
+      },
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:dpo_23m",
+      "layer": "claim",
+      "label": "DPO: approximately 2.3 million customers w",
+      "fulltext": "DPO: approximately 2.3 million customers were exposed (belief from database size).",
+      "issue": "BREACH_SCALE",
+      "polarity": "bundle",
+      "source_type": "witness_statement",
+      "weight": 2.0,
+      "verdict": "rejected",
+      "anchor": "16¶3",
+      "quote": "From the customer database size at the time, I believe the breach exposed the personal data of approximately 2.3 million of our customers.",
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": true,
+        "source": "16",
+        "note": "First-hand witness recollection."
+      },
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "doc:16",
+      "layer": "document",
+      "label": "16",
+      "title": "Witness Statement - Lena Brandt (DPO, Brightmarket)",
+      "doc_type": "witness",
+      "party": "claimant",
+      "date": "2026-03-15",
+      "category": "Witness (fact)",
+      "tab": "16",
+      "modality": "text"
+    },
+    {
+      "id": "claim:dpa_alloc_cl92",
+      "layer": "claim",
+      "label": "DPA cl 9.2 / GDPR Art 33: the CONTROLLER n",
+      "fulltext": "DPA cl 9.2 / GDPR Art 33: the CONTROLLER notifies the supervisory authority within 72h; the processor notifies the controller without undue delay.",
+      "issue": "BREACH_NOTIFICATION",
+      "polarity": "legal_overlay",
+      "source_type": "legal_clause",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "04¶9",
+      "quote": "Breach notification. The Controller shall notify the supervisory authority within 72 hours where required (Article 33(1) GDPR). The Processor shall notify the Controller without undue delay after becoming aware of a personal-data breach (Article 33(2)).",
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "04",
+        "note": "Contemporaneous documentary record."
+      },
+      "load_bearing": false,
+      "single_source": false,
+      "blocks": [
+        "p4_notify"
+      ]
+    },
+    {
+      "id": "claim:cobalt_notice",
+      "layer": "claim",
+      "label": "Cobalt notified Brightmarket of the breach",
+      "fulltext": "Cobalt notified Brightmarket of the breach within 18 hours.",
+      "issue": "BREACH_NOTIFICATION",
+      "polarity": "bundle",
+      "source_type": "contemporaneous_email",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "08¶2",
+      "quote": "We are notifying you, within 18 hours of becoming aware, of a personal-data breach affecting a subset of the customer dataset, so that you can assess notification to your supervisory authority. A forensic investigation is under way.",
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "08",
+        "note": "Contemporaneous documentary record."
+      },
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "doc:08",
+      "layer": "document",
+      "label": "08",
+      "title": "Email - breach notification (Cobalt to Brightmarket)",
+      "doc_type": "correspondence",
+      "party": "defendant",
+      "date": "2025-10-11",
+      "category": "Correspondence",
+      "tab": "08",
+      "modality": "email"
+    },
+    {
+      "id": "claim:p4_notify",
+      "layer": "claim",
+      "label": "Cobalt failed to notify the supervisory au",
+      "fulltext": "Cobalt failed to notify the supervisory authority within 72 hours.",
+      "issue": "BREACH_NOTIFICATION",
+      "polarity": "pleading",
+      "source_type": "pleading",
+      "weight": 1.0,
+      "verdict": "rejected",
+      "anchor": "02¶10",
+      "quote": "The Defendant failed to notify the relevant supervisory authority of the breach within 72 hours as required.",
+      "prop": "P4",
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "02",
+        "note": "Pleaded allegation - to be proved."
+      },
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:internal_review",
+      "layer": "claim",
+      "label": "Brightmarket's own internal review: its ad",
+      "fulltext": "Brightmarket's own internal review: its admins disabled MFA against Cobalt's guidance, materially contributing to the breach.",
+      "issue": "TOMS/CAUSATION",
+      "polarity": "bundle",
+      "source_type": "admission",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "12¶4",
+      "quote": "Finding: our administrators had disabled multi-factor authentication on the shared admin console in March 2025, contrary to Cobalt's written hardening guidance, and this materially contributed to the credential compromise behind the breach.",
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "12",
+        "note": "Contemporaneous documentary record."
+      },
+      "load_bearing": false,
+      "single_source": false,
+      "blocks": [
+        "p5_solecause"
+      ]
+    },
+    {
+      "id": "doc:12",
+      "layer": "document",
+      "label": "12",
+      "title": "Internal Security Review (Brightmarket)",
+      "doc_type": "record",
+      "party": "claimant",
+      "date": "2025-11-05",
+      "category": "Internal record",
+      "tab": "12",
+      "modality": "text"
+    },
+    {
+      "id": "claim:hardening_email",
+      "layer": "claim",
+      "label": "Cobalt advised Brightmarket in writing to ",
+      "fulltext": "Cobalt advised Brightmarket in writing to enable administrator MFA.",
+      "issue": "TOMS/CAUSATION",
+      "polarity": "bundle",
+      "source_type": "contemporaneous_email",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "09¶2",
+      "quote": "Please enable multi-factor authentication on all Brightmarket administrator accounts on the shared console; leaving MFA disabled materially increases the risk of credential compromise. This is the Customer's responsibility under SOW Annex B.",
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "09",
+        "note": "Contemporaneous documentary record."
+      },
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "doc:09",
+      "layer": "document",
+      "label": "09",
+      "title": "Email - security hardening guidance (Cobalt)",
+      "doc_type": "correspondence",
+      "party": "defendant",
+      "date": "2025-06-03",
+      "category": "Correspondence",
+      "tab": "09",
+      "modality": "email"
+    },
+    {
+      "id": "claim:reyes_cause",
+      "layer": "claim",
+      "label": "Cobalt's security lead traced the intrusio",
+      "fulltext": "Cobalt's security lead traced the intrusion to a customer account with MFA switched off.",
+      "issue": "TOMS/CAUSATION",
+      "polarity": "bundle",
+      "source_type": "witness_statement",
+      "weight": 2.0,
+      "verdict": "accepted",
+      "anchor": "17¶4",
+      "quote": "Our investigation traced the initial intrusion to a Brightmarket administrator account on which multi-factor authentication had been switched off on the customer side, despite our June 2025 guidance to enable it.",
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": true,
+        "source": "17",
+        "note": "First-hand witness recollection."
+      },
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "doc:17",
+      "layer": "document",
+      "label": "17",
+      "title": "Witness Statement - Tomas Reyes (Security Lead, Cobalt)",
+      "doc_type": "witness",
+      "party": "defendant",
+      "date": "2026-03-20",
+      "category": "Witness (fact)",
+      "tab": "17",
+      "modality": "text"
+    },
+    {
+      "id": "claim:art32_overlay",
+      "layer": "claim",
+      "label": "GDPR Art 32 / DPA cl 8: administrator-MFA ",
+      "fulltext": "GDPR Art 32 / DPA cl 8: administrator-MFA configuration is the controller's responsibility (SOW Annex B).",
+      "issue": "TOMS/CAUSATION",
+      "polarity": "legal_overlay",
+      "source_type": "legal_clause",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "04¶8",
+      "quote": "The Processor shall implement appropriate technical and organisational measures (Article 32 GDPR). Configuration of multi-factor authentication on the Controller's administrator accounts is the Controller's responsibility (see SOW Annex B).",
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "04",
+        "note": "Contemporaneous documentary record."
+      },
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:p5_solecause",
+      "layer": "claim",
+      "label": "The breach was caused solely by Cobalt's f",
+      "fulltext": "The breach was caused solely by Cobalt's failure of Art 32 measures.",
+      "issue": "TOMS/CAUSATION",
+      "polarity": "pleading",
+      "source_type": "pleading",
+      "weight": 1.0,
+      "verdict": "rejected",
+      "anchor": "02¶11",
+      "quote": "The breach was caused solely by the Defendant's failure to implement appropriate technical and organisational measures.",
+      "prop": "P5",
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "02",
+        "note": "Pleaded allegation - to be proved."
+      },
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:p6_exposed",
+      "layer": "claim",
+      "label": "Cobalt left a production database publicly",
+      "fulltext": "Cobalt left a production database publicly accessible for ~3 weeks.",
+      "issue": "PUBLIC_EXPOSURE/HEARSAY",
+      "polarity": "pleading",
+      "source_type": "pleading",
+      "weight": 1.0,
+      "verdict": "accepted",
+      "anchor": "02¶12",
+      "quote": "The Defendant's engineers left a production database publicly accessible on the internet for approximately three weeks before the breach.",
+      "prop": "P6",
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "02",
+        "note": "Pleaded allegation - to be proved."
+      },
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:dpo_hearsay",
+      "layer": "claim",
+      "label": "DPO relays, second-hand ('I am told by our",
+      "fulltext": "DPO relays, second-hand ('I am told by our IT team...'), that a database was left publicly accessible - hearsay, no personal knowledge.",
+      "issue": "PUBLIC_EXPOSURE/HEARSAY",
+      "polarity": "bundle",
+      "source_type": "witness_statement",
+      "weight": 2.0,
+      "verdict": "accepted",
+      "anchor": "16¶6",
+      "quote": "I am told by our IT team that Cobalt's engineers had left a production database publicly accessible on the internet for about three weeks before the breach; I did not see this myself.",
+      "prop": null,
+      "admissibility": {
+        "hearsay": true,
+        "personal_knowledge": false,
+        "source": "16",
+        "note": "Witness relays what others told them ('I am told...') - hearsay; no personal knowledge; weight reduced."
+      },
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:absence_exposure",
+      "layer": "claim",
+      "label": "No contemporaneous log, ticket or expert f",
+      "fulltext": "No contemporaneous log, ticket or expert finding corroborates the public-exposure allegation.",
+      "issue": "PUBLIC_EXPOSURE/HEARSAY",
+      "polarity": "bundle",
+      "source_type": "absence",
+      "weight": 1.0,
+      "verdict": "accepted",
+      "anchor": null,
+      "quote": null,
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": null,
+        "note": "No evidence in the bundle (absence) - burden / evidence gap."
+      },
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:p7_defect",
+      "layer": "claim",
+      "label": "The export module produced materially inac",
+      "fulltext": "The export module produced materially inaccurate revenue figures (non-conformity).",
+      "issue": "CONFORMITY/DEFECT",
+      "polarity": "pleading",
+      "source_type": "pleading",
+      "weight": 1.0,
+      "verdict": "accepted",
+      "anchor": "02¶13",
+      "quote": "The Platform was not in conformity with the agreed specification: the analytics export module produced materially inaccurate revenue figures.",
+      "prop": "P7",
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "02",
+        "note": "Pleaded allegation - to be proved."
+      },
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:defect_log",
+      "layer": "claim",
+      "label": "Defect Log: export module overstates multi",
+      "fulltext": "Defect Log: export module overstates multi-currency revenue by 4-9% (reproduced).",
+      "issue": "CONFORMITY/DEFECT",
+      "polarity": "bundle",
+      "source_type": "defect_log",
+      "weight": 4.5,
+      "verdict": "accepted",
+      "anchor": "13¶3",
+      "quote": "DEF-204 | Severity 2 | Export module: monthly revenue figures overstated by 4-9% for multi-currency stores; reconciliation mismatch confirmed and reproduced.",
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "13",
+        "note": "Contemporaneous documentary record."
+      },
+      "load_bearing": true,
+      "single_source": false
+    },
+    {
+      "id": "doc:13",
+      "layer": "document",
+      "label": "13",
+      "title": "Defect Log",
+      "doc_type": "record",
+      "party": "neutral",
+      "date": "2025-09-20",
+      "category": "Record",
+      "tab": "13",
+      "modality": "spreadsheet"
+    },
+    {
+      "id": "claim:expert_defect",
+      "layer": "claim",
+      "label": "Forensic expert: the export module is a ge",
+      "fulltext": "Forensic expert: the export module is a genuine non-conformity with the spec.",
+      "issue": "CONFORMITY/DEFECT",
+      "polarity": "bundle",
+      "source_type": "expert_report",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "19¶5",
+      "quote": "The export module did produce materially inaccurate revenue figures for multi-currency stores; in my opinion this is a genuine non-conformity with the agreed specification.",
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": true,
+        "source": "19",
+        "note": "Independent expert opinion within the expert's expertise."
+      },
+      "load_bearing": true,
+      "single_source": false
+    },
+    {
+      "id": "claim:dcd_overlay",
+      "layer": "claim",
+      "label": "Conformity is assessed under Directive (EU",
+      "fulltext": "Conformity is assessed under Directive (EU) 2019/770 Art 8 (digital content/services).",
+      "issue": "CONFORMITY/DEFECT",
+      "polarity": "legal_overlay",
+      "source_type": "legal_clause",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "05¶5",
+      "quote": "Conformity of the digital service is assessed against the agreed specification and Directive (EU) 2019/770 (supply of digital content and digital services).",
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "05",
+        "note": "Contemporaneous documentary record."
+      },
+      "load_bearing": true,
+      "single_source": false
+    },
+    {
+      "id": "doc:05",
+      "layer": "document",
+      "label": "05",
+      "title": "Statement of Work",
+      "doc_type": "contract",
+      "party": "neutral",
+      "date": "2017-03-01",
+      "category": "Contract",
+      "tab": "05",
+      "modality": "text"
+    },
+    {
+      "id": "claim:gdpr_repeal",
+      "layer": "claim",
+      "label": "GDPR Art 94 repealed Directive 95/46/EC fr",
+      "fulltext": "GDPR Art 94 repealed Directive 95/46/EC from 25 May 2018; transfers now under GDPR Chapter V (2018 Addendum).",
+      "issue": "DATA_TRANSFER/SUPERSESSION",
+      "polarity": "legal_overlay",
+      "source_type": "legal_clause",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "07¶3",
+      "quote": "All references in the 2017 Agreement to Directive 95/46/EC are replaced: that Directive was repealed by Article 94 GDPR, and international transfers are henceforth governed by Chapter V of the GDPR and the Commission's standard contractual clauses.",
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "07",
+        "note": "Contemporaneous documentary record."
+      },
+      "load_bearing": false,
+      "single_source": false,
+      "blocks": [
+        "p8_transfer"
+      ]
+    },
+    {
+      "id": "doc:07",
+      "layer": "document",
+      "label": "07",
+      "title": "Data Processing Addendum (GDPR, 2018)",
+      "doc_type": "contract",
+      "party": "neutral",
+      "date": "2018-05-20",
+      "category": "Amendment",
+      "tab": "07",
+      "modality": "text"
+    },
+    {
+      "id": "claim:p8_transfer",
+      "layer": "claim",
+      "label": "Cobalt breached the data-transfer restrict",
+      "fulltext": "Cobalt breached the data-transfer restrictions of Directive 95/46/EC.",
+      "issue": "DATA_TRANSFER/SUPERSESSION",
+      "polarity": "pleading",
+      "source_type": "pleading",
+      "weight": 1.0,
+      "verdict": "rejected",
+      "anchor": "02¶14",
+      "quote": "The Defendant transferred the Claimant's data to a sub-processor in the United States in breach of the data-transfer restrictions of Directive 95/46/EC as incorporated by the Data Processing Agreement.",
+      "prop": "P8",
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "02",
+        "note": "Pleaded allegation - to be proved."
+      },
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:p9_backups",
+      "layer": "claim",
+      "label": "Cobalt failed to maintain adequate backups",
+      "fulltext": "Cobalt failed to maintain adequate backups.",
+      "issue": "BACKUPS/ABSENCE",
+      "polarity": "pleading",
+      "source_type": "pleading",
+      "weight": 1.0,
+      "verdict": "accepted",
+      "anchor": "02¶15",
+      "quote": "The Defendant failed to maintain adequate backups, so the Claimant's data could not be restored after the breach.",
+      "prop": "P9",
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "02",
+        "note": "Pleaded allegation - to be proved."
+      },
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:absence_backups",
+      "layer": "claim",
+      "label": "No document in the bundle addresses backup",
+      "fulltext": "No document in the bundle addresses backup or restore provision.",
+      "issue": "BACKUPS/ABSENCE",
+      "polarity": "bundle",
+      "source_type": "absence",
+      "weight": 1.0,
+      "verdict": "accepted",
+      "anchor": null,
+      "quote": null,
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": null,
+        "note": "No evidence in the bundle (absence) - burden / evidence gap."
+      },
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:p10a_wasted",
+      "layer": "claim",
+      "label": "Wasted subscription fees of EUR 900,000.",
+      "fulltext": "Wasted subscription fees of EUR 900,000.",
+      "issue": "QUANTUM/CAP",
+      "polarity": "pleading",
+      "source_type": "pleading",
+      "weight": 1.0,
+      "verdict": "accepted",
+      "anchor": "02¶16",
+      "quote": "The Claimant has suffered loss, namely wasted subscription fees of EUR 900,000 and loss of profit and further exposure of EUR 6,000,000.",
+      "prop": "P10a",
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "02",
+        "note": "Pleaded allegation - to be proved."
+      },
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:order_fee",
+      "layer": "claim",
+      "label": "Order Form: annual subscription fee EUR 90",
+      "fulltext": "Order Form: annual subscription fee EUR 900,000.",
+      "issue": "QUANTUM/CAP",
+      "polarity": "bundle",
+      "source_type": "signed_contract",
+      "weight": 5.0,
+      "verdict": "accepted",
+      "anchor": "06¶2",
+      "quote": "Annual subscription fee: EUR 900,000, payable in advance.",
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "06",
+        "note": "Contemporaneous documentary record."
+      },
+      "load_bearing": true,
+      "single_source": false
+    },
+    {
+      "id": "doc:06",
+      "layer": "document",
+      "label": "06",
+      "title": "Order Form",
+      "doc_type": "contract",
+      "party": "neutral",
+      "date": "2024-04-15",
+      "category": "Contract",
+      "tab": "06",
+      "modality": "text"
+    },
+    {
+      "id": "claim:expert_wasted",
+      "layer": "claim",
+      "label": "Quantum expert accepts the ~EUR 900k as wa",
+      "fulltext": "Quantum expert accepts the ~EUR 900k as wasted expenditure.",
+      "issue": "QUANTUM/CAP",
+      "polarity": "bundle",
+      "source_type": "expert_report",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "20¶2",
+      "quote": "I accept that the EUR 900,000 of subscription fees can properly be characterised as wasted expenditure.",
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": true,
+        "source": "20",
+        "note": "Independent expert opinion within the expert's expertise."
+      },
+      "load_bearing": true,
+      "single_source": false
+    },
+    {
+      "id": "doc:20",
+      "layer": "document",
+      "label": "20",
+      "title": "Expert Report - M. Caron (Quantum)",
+      "doc_type": "expert",
+      "party": "neutral",
+      "date": "2026-04-30",
+      "category": "Witness (expert)",
+      "tab": "20",
+      "modality": "text"
+    },
+    {
+      "id": "claim:expert_profit",
+      "layer": "claim",
+      "label": "Quantum expert: supportable loss of profit",
+      "fulltext": "Quantum expert: supportable loss of profit ~EUR 1.1m, not EUR 6.0m.",
+      "issue": "QUANTUM/CAP",
+      "polarity": "bundle",
+      "source_type": "expert_report",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "20¶4",
+      "quote": "The claimed EUR 6,000,000 is not supported. On my analysis the supportable loss of profit is of the order of EUR 1.1 million.",
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": true,
+        "source": "20",
+        "note": "Independent expert opinion within the expert's expertise."
+      },
+      "load_bearing": false,
+      "single_source": false,
+      "blocks": [
+        "p10b_profit"
+      ]
+    },
+    {
+      "id": "claim:ransomware_market",
+      "layer": "claim",
+      "label": "Much of the Q4 downturn is attributable to",
+      "fulltext": "Much of the Q4 downturn is attributable to a separate ransomware incident and the market.",
+      "issue": "QUANTUM/CAP",
+      "polarity": "bundle",
+      "source_type": "expert_report",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "20¶6",
+      "quote": "A significant part of the Q4 downturn is attributable to a separate ransomware incident affecting the Claimant's own logistics provider and to wider market conditions, not to the Platform.",
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": true,
+        "source": "20",
+        "note": "Independent expert opinion within the expert's expertise."
+      },
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:cap_cl14",
+      "layer": "claim",
+      "label": "MSA cl 14 excludes consequential loss and ",
+      "fulltext": "MSA cl 14 excludes consequential loss and caps liability near fees paid.",
+      "issue": "QUANTUM/CAP",
+      "polarity": "legal_overlay",
+      "source_type": "legal_clause",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "03¶14",
+      "quote": "Liability cap. Save for liability that cannot be excluded by law, the Supplier's total liability shall not exceed the fees paid in the 12 months preceding the claim, and the Supplier shall not be liable for loss of profit or other consequential loss.",
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "03",
+        "note": "Contemporaneous documentary record."
+      },
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:art82_overlay",
+      "layer": "claim",
+      "label": "GDPR Art 82 compensation is a separate sta",
+      "fulltext": "GDPR Art 82 compensation is a separate statutory head, apportioned by responsibility.",
+      "issue": "QUANTUM/CAP",
+      "polarity": "legal_overlay",
+      "source_type": "legal_clause",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "04¶14",
+      "quote": "Nothing in this Agreement limits a data subject's right to compensation under Article 82 GDPR, liability for which is apportioned according to each party's responsibility for the damage.",
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "04",
+        "note": "Contemporaneous documentary record."
+      },
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:p10b_profit",
+      "layer": "claim",
+      "label": "Loss of profit and Art 82 / regulatory exp",
+      "fulltext": "Loss of profit and Art 82 / regulatory exposure of EUR 6,000,000.",
+      "issue": "QUANTUM/CAP",
+      "polarity": "pleading",
+      "source_type": "pleading",
+      "weight": 1.0,
+      "verdict": "rejected",
+      "anchor": "02¶16",
+      "quote": "The Claimant has suffered loss, namely wasted subscription fees of EUR 900,000 and loss of profit and further exposure of EUR 6,000,000.",
+      "prop": "P10b",
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "02",
+        "note": "Pleaded allegation - to be proved."
+      },
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:sorokin_lockin",
+      "layer": "claim",
+      "label": "Brightmarket programme lead: after the acq",
+      "fulltext": "Brightmarket programme lead: after the acquisition export became harder - perceived lock-in.",
+      "issue": "ACQUISITION/MERGER",
+      "polarity": "bundle",
+      "source_type": "witness_statement",
+      "weight": 2.0,
+      "verdict": "accepted",
+      "anchor": "18¶3",
+      "quote": "After Cobalt acquired NorthStar I found it harder to export our data to alternative tools, and I considered we were being locked into the Cobalt platform.",
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": true,
+        "source": "18",
+        "note": "First-hand witness recollection."
+      },
+      "load_bearing": true,
+      "single_source": false
+    },
+    {
+      "id": "doc:18",
+      "layer": "document",
+      "label": "18",
+      "title": "Witness Statement - Anya Sorokin (Programme Lead, Brightmarket)",
+      "doc_type": "witness",
+      "party": "claimant",
+      "date": "2026-03-18",
+      "category": "Witness (fact)",
+      "tab": "18",
+      "modality": "text"
+    },
+    {
+      "id": "claim:clearance_doc",
+      "layer": "claim",
+      "label": "Clearance memorandum: the deal fell below ",
+      "fulltext": "Clearance memorandum: the deal fell below the EU Merger Regulation thresholds and was notified and cleared.",
+      "issue": "ACQUISITION/MERGER",
+      "polarity": "bundle",
+      "source_type": "legal_clause",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "15¶2",
+      "quote": "The combined EU turnover of the parties fell below the thresholds of the EU Merger Regulation; the transaction was nonetheless notified to, and cleared by, the competent authority on 9 September 2024.",
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "15",
+        "note": "Contemporaneous documentary record."
+      },
+      "load_bearing": false,
+      "single_source": false,
+      "blocks": [
+        "p11_merger"
+      ]
+    },
+    {
+      "id": "doc:15",
+      "layer": "document",
+      "label": "15",
+      "title": "Acquisition Clearance Memorandum",
+      "doc_type": "record",
+      "party": "neutral",
+      "date": "2024-09-12",
+      "category": "Record",
+      "tab": "15",
+      "modality": "text"
+    },
+    {
+      "id": "claim:eumr_overlay",
+      "layer": "claim",
+      "label": "Council Regulation (EC) No 139/2004 (EU Me",
+      "fulltext": "Council Regulation (EC) No 139/2004 (EU Merger Regulation): thresholds / notification regime.",
+      "issue": "ACQUISITION/MERGER",
+      "polarity": "legal_overlay",
+      "source_type": "legal_clause",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "15¶4",
+      "quote": "The transaction was assessed under Council Regulation (EC) No 139/2004 (the EU Merger Regulation); interoperability commitments were given and recorded.",
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "15",
+        "note": "Contemporaneous documentary record."
+      },
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:dataact_overlay",
+      "layer": "claim",
+      "label": "Switching / interoperability is governed b",
+      "fulltext": "Switching / interoperability is governed by the Data Act (Reg (EU) 2023/2854) and DPA cl 12.",
+      "issue": "ACQUISITION/MERGER",
+      "polarity": "legal_overlay",
+      "source_type": "legal_clause",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "04¶12",
+      "quote": "On termination the Processor shall make the data available for return or export via the self-service export API; switching and portability are governed by Regulation (EU) 2023/2854 (Data Act).",
+      "prop": null,
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "04",
+        "note": "Contemporaneous documentary record."
+      },
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:p11_merger",
+      "layer": "claim",
+      "label": "The NorthStar acquisition was implemented ",
+      "fulltext": "The NorthStar acquisition was implemented without required EU merger clearance and used to lock Brightmarket in.",
+      "issue": "ACQUISITION/MERGER",
+      "polarity": "pleading",
+      "source_type": "pleading",
+      "weight": 1.0,
+      "verdict": "rejected",
+      "anchor": "02¶17",
+      "quote": "The Defendant's 2024 acquisition of the Claimant's previous supplier, NorthStar, was implemented without the required merger clearance, and the Defendant thereafter degraded interoperability to lock the Claimant in.",
+      "prop": "P11",
+      "admissibility": {
+        "hearsay": false,
+        "personal_knowledge": null,
+        "source": "02",
+        "note": "Pleaded allegation - to be proved."
+      },
+      "load_bearing": false,
+      "single_source": true
+    }
+  ],
+  "edges": [
+    {
+      "source": "claim:p1_rep",
+      "target": "prop:P1",
+      "rel": "belongs_to",
+      "kind": "impact",
+      "hard": false,
+      "verdict": "accepted"
+    },
+    {
+      "source": "doc:03",
+      "target": "claim:nonreliance_cl24",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "claim:nonreliance_cl24",
+      "target": "claim:p1_rep",
+      "rel": "legal_bar",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "A non-reliance clause is a legal blocker, not a factual contradiction.",
+      "own_goal": false
+    },
+    {
+      "source": "claim:p2_purpose",
+      "target": "prop:P2",
+      "rel": "belongs_to",
+      "kind": "impact",
+      "hard": false,
+      "verdict": "accepted"
+    },
+    {
+      "source": "doc:10",
+      "target": "claim:training_admission",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "doc:14",
+      "target": "claim:dpia_crossuse",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "doc:04",
+      "target": "claim:art28_overlay",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "claim:training_admission",
+      "target": "claim:p2_purpose",
+      "rel": "supports",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "Cobalt's own admission supports the unlawful secondary processing.",
+      "own_goal": false,
+      "load_bearing": true
+    },
+    {
+      "source": "claim:dpia_crossuse",
+      "target": "claim:p2_purpose",
+      "rel": "supports",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "The DPIA independently records the cross-use.",
+      "own_goal": false,
+      "load_bearing": true
+    },
+    {
+      "source": "claim:art28_overlay",
+      "target": "claim:p2_purpose",
+      "rel": "supports",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "Art 28(3)(a) sets the documented-instruction standard the conduct breaches.",
+      "own_goal": false,
+      "load_bearing": true
+    },
+    {
+      "source": "doc:19",
+      "target": "claim:expert_14k",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "claim:p3_scale",
+      "target": "prop:P3",
+      "rel": "belongs_to",
+      "kind": "impact",
+      "hard": false,
+      "verdict": "rejected"
+    },
+    {
+      "source": "doc:16",
+      "target": "claim:dpo_23m",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "claim:expert_14k",
+      "target": "claim:p3_scale",
+      "rel": "contradicts",
+      "kind": "coherence",
+      "hard": true,
+      "explanation": "The forensic ~14,000 is disjoint from the pleaded ~2.3 million.",
+      "own_goal": false,
+      "blocking": true
+    },
+    {
+      "source": "claim:expert_14k",
+      "target": "claim:dpo_23m",
+      "rel": "contradicts",
+      "kind": "coherence",
+      "hard": true,
+      "explanation": "The forensic finding displaces the DPO's untested estimate (witness-vs-expert conflict).",
+      "own_goal": false,
+      "blocking": true
+    },
+    {
+      "source": "doc:04",
+      "target": "claim:dpa_alloc_cl92",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "doc:08",
+      "target": "claim:cobalt_notice",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "claim:p4_notify",
+      "target": "prop:P4",
+      "rel": "belongs_to",
+      "kind": "impact",
+      "hard": false,
+      "verdict": "rejected"
+    },
+    {
+      "source": "claim:dpa_alloc_cl92",
+      "target": "claim:p4_notify",
+      "rel": "contradicts",
+      "kind": "coherence",
+      "hard": true,
+      "explanation": "The 72-hour supervisory-authority duty is allocated to the controller; the allegation mis-assigns it to the processor (an allocation trap).",
+      "own_goal": false,
+      "blocking": true
+    },
+    {
+      "source": "claim:cobalt_notice",
+      "target": "claim:p4_notify",
+      "rel": "attacks",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "Cobalt discharged its Art 33(2) duty by notifying the controller in 18h.",
+      "own_goal": false
+    },
+    {
+      "source": "doc:12",
+      "target": "claim:internal_review",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "doc:09",
+      "target": "claim:hardening_email",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "doc:17",
+      "target": "claim:reyes_cause",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "doc:04",
+      "target": "claim:art32_overlay",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "claim:p5_solecause",
+      "target": "prop:P5",
+      "rel": "belongs_to",
+      "kind": "impact",
+      "hard": false,
+      "verdict": "rejected"
+    },
+    {
+      "source": "claim:internal_review",
+      "target": "claim:p5_solecause",
+      "rel": "contradicts",
+      "kind": "coherence",
+      "hard": true,
+      "explanation": "The Claimant's own review admits a contributing cause it caused - an own goal.",
+      "own_goal": true,
+      "blocking": true
+    },
+    {
+      "source": "claim:hardening_email",
+      "target": "claim:p5_solecause",
+      "rel": "attacks",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "Cobalt had advised enabling MFA; the omission was the Claimant's.",
+      "own_goal": false
+    },
+    {
+      "source": "claim:reyes_cause",
+      "target": "claim:p5_solecause",
+      "rel": "attacks",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "The intrusion traced to the customer's disabled-MFA account.",
+      "own_goal": false
+    },
+    {
+      "source": "claim:art32_overlay",
+      "target": "claim:p5_solecause",
+      "rel": "qualifies",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "MFA configuration was allocated to the controller - shared responsibility.",
+      "own_goal": false
+    },
+    {
+      "source": "claim:p6_exposed",
+      "target": "prop:P6",
+      "rel": "belongs_to",
+      "kind": "impact",
+      "hard": false,
+      "verdict": "accepted"
+    },
+    {
+      "source": "doc:16",
+      "target": "claim:dpo_hearsay",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "claim:absence_exposure",
+      "target": "claim:p6_exposed",
+      "rel": "qualifies",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "The sole support is uncorroborated hearsay - the point is unverified, not a contradiction.",
+      "own_goal": false
+    },
+    {
+      "source": "claim:p7_defect",
+      "target": "prop:P7",
+      "rel": "belongs_to",
+      "kind": "impact",
+      "hard": false,
+      "verdict": "accepted"
+    },
+    {
+      "source": "doc:13",
+      "target": "claim:defect_log",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "doc:19",
+      "target": "claim:expert_defect",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "doc:05",
+      "target": "claim:dcd_overlay",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "claim:defect_log",
+      "target": "claim:p7_defect",
+      "rel": "supports",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "Contemporaneous Defect Log records the inaccurate-revenue defect.",
+      "own_goal": false,
+      "load_bearing": true
+    },
+    {
+      "source": "claim:expert_defect",
+      "target": "claim:p7_defect",
+      "rel": "supports",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "The expert independently finds a genuine non-conformity.",
+      "own_goal": false,
+      "load_bearing": true
+    },
+    {
+      "source": "claim:dcd_overlay",
+      "target": "claim:p7_defect",
+      "rel": "supports",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "Directive (EU) 2019/770 Art 8 supplies the conformity standard.",
+      "own_goal": false,
+      "load_bearing": true
+    },
+    {
+      "source": "doc:07",
+      "target": "claim:gdpr_repeal",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "claim:p8_transfer",
+      "target": "prop:P8",
+      "rel": "belongs_to",
+      "kind": "impact",
+      "hard": false,
+      "verdict": "rejected"
+    },
+    {
+      "source": "claim:gdpr_repeal",
+      "target": "claim:p8_transfer",
+      "rel": "supersedes",
+      "kind": "coherence",
+      "hard": true,
+      "explanation": "A claim on the repealed Directive 95/46/EC is superseded by the GDPR; it must be re-pleaded under the current law.",
+      "own_goal": false,
+      "blocking": true
+    },
+    {
+      "source": "claim:p9_backups",
+      "target": "prop:P9",
+      "rel": "belongs_to",
+      "kind": "impact",
+      "hard": false,
+      "verdict": "accepted"
+    },
+    {
+      "source": "claim:p10a_wasted",
+      "target": "prop:P10a",
+      "rel": "belongs_to",
+      "kind": "impact",
+      "hard": false,
+      "verdict": "accepted"
+    },
+    {
+      "source": "doc:06",
+      "target": "claim:order_fee",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "doc:20",
+      "target": "claim:expert_wasted",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "doc:20",
+      "target": "claim:expert_profit",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "doc:20",
+      "target": "claim:ransomware_market",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "doc:03",
+      "target": "claim:cap_cl14",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "doc:04",
+      "target": "claim:art82_overlay",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "claim:p10b_profit",
+      "target": "prop:P10b",
+      "rel": "belongs_to",
+      "kind": "impact",
+      "hard": false,
+      "verdict": "rejected"
+    },
+    {
+      "source": "claim:expert_wasted",
+      "target": "claim:p10a_wasted",
+      "rel": "supports",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "The quantum expert supports the ~EUR 900k wasted expenditure.",
+      "own_goal": false,
+      "load_bearing": true
+    },
+    {
+      "source": "claim:order_fee",
+      "target": "claim:p10a_wasted",
+      "rel": "supports",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "The Order Form evidences the EUR 900k of fees paid.",
+      "own_goal": false,
+      "load_bearing": true
+    },
+    {
+      "source": "claim:expert_profit",
+      "target": "claim:p10b_profit",
+      "rel": "contradicts",
+      "kind": "coherence",
+      "hard": true,
+      "explanation": "Pleaded EUR 6.0m is disjoint from the expert-supported ~EUR 1.1m.",
+      "own_goal": false,
+      "blocking": true
+    },
+    {
+      "source": "claim:ransomware_market",
+      "target": "claim:p10b_profit",
+      "rel": "qualifies",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "A separate ransomware incident and the market are alternative causes.",
+      "own_goal": false
+    },
+    {
+      "source": "claim:cap_cl14",
+      "target": "claim:p10b_profit",
+      "rel": "caps",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "cl 14 caps recovery and excludes consequential loss - a legal overlay.",
+      "own_goal": false
+    },
+    {
+      "source": "claim:art82_overlay",
+      "target": "claim:p10b_profit",
+      "rel": "qualifies",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "Art 82 liability is apportioned for the Claimant's contributory fault.",
+      "own_goal": false
+    },
+    {
+      "source": "doc:18",
+      "target": "claim:sorokin_lockin",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "doc:15",
+      "target": "claim:clearance_doc",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "doc:15",
+      "target": "claim:eumr_overlay",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "doc:04",
+      "target": "claim:dataact_overlay",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "claim:p11_merger",
+      "target": "prop:P11",
+      "rel": "belongs_to",
+      "kind": "impact",
+      "hard": false,
+      "verdict": "rejected"
+    },
+    {
+      "source": "claim:clearance_doc",
+      "target": "claim:p11_merger",
+      "rel": "contradicts",
+      "kind": "coherence",
+      "hard": true,
+      "explanation": "A notified-and-cleared, below-threshold deal contradicts 'implemented without required clearance'.",
+      "own_goal": false,
+      "blocking": true
+    },
+    {
+      "source": "claim:eumr_overlay",
+      "target": "claim:p11_merger",
+      "rel": "legal_bar",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "The EU Merger Regulation regime bars the unlawful-acquisition framing.",
+      "own_goal": false
+    },
+    {
+      "source": "claim:dataact_overlay",
+      "target": "claim:p11_merger",
+      "rel": "qualifies",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "Lock-in / interoperability belongs under the Data Act and P2B Regulation, not merger control.",
+      "own_goal": false
+    },
+    {
+      "source": "claim:sorokin_lockin",
+      "target": "claim:p11_merger",
+      "rel": "supports",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "The programme lead perceived lock-in (untested, and not the pleaded merger-control basis).",
+      "own_goal": false,
+      "load_bearing": true
+    }
+  ],
+  "clusters": [
+    {
+      "issue": "ORAL_REP/NON_RELIANCE",
+      "solver": "brute_force",
+      "story": [
+        "No document in the bundle evidences the alleged pre-contract 'ISO 27001 / GDPR-compliant by design' representation.",
+        "MSA clause 24 (entire agreement / non-reliance) would in any event bar reliance.",
+        "This is a legal-risk overlay, not a factual contradiction."
+      ],
+      "impacts": [
+        "P1: NOT_ADDRESSED  [legal overlay: CONTRACTUALLY_BARRED] - No document evidences the alleged pre-contract 'ISO 27001 / GDPR-compliant by design' representation; MSA cl.24 (entire agreement / non-reliance) would in any event bar reliance on it."
+      ],
+      "amendments": [
+        "Mark the representation claim as not addressed plus a contractual non-reliance blocker; do not treat non-reliance as a factual contradiction. Lawyer review required."
+      ]
+    },
+    {
+      "issue": "PURPOSE_LIMITATION",
+      "solver": "brute_force",
+      "story": [
+        "Cobalt's own internal email admits the merchant datasets were used to train its forecasting model.",
+        "The DPIA independently records the secondary cross-use as outside instructions.",
+        "A processor acting beyond the controller's documented instructions breaches GDPR Art 28(3)(a) - the allegation is supported."
+      ],
+      "impacts": [
+        "P2: SURVIVES - Cobalt's own internal email admits the merchant datasets were used to train a forecasting model, and the DPIA records the cross-use - a processor acting beyond the controller's documented instructions (GDPR Art 28(3)(a))."
+      ],
+      "amendments": [
+        "Keep the purpose-limitation allegation (P2) - it is the Claimant's strongest, admission-backed point."
+      ]
+    },
+    {
+      "issue": "BREACH_SCALE",
+      "solver": "brute_force",
+      "story": [
+        "The DPO swears approximately 2.3 million customers were exposed.",
+        "The independent forensic expert finds only about 14,000 records were exfiltrated, the rest pseudonymised and unaffected.",
+        "The higher-weight expert evidence displaces the pleaded figure and the witness estimate - the 2.3m allegation is contradicted."
+      ],
+      "impacts": [
+        "P3: REJECTED_BY_COHERENT_STORY  [legal overlay: CAUSATION_PROBLEM] - The DPO swears ~2.3m customers were exposed; the independent forensic expert finds only ~14,000 records were actually exfiltrated, the remainder pseudonymised and unaffected - a witness-vs-expert conflict resolved against the pleaded figure."
+      ],
+      "amendments": [
+        "Do not plead the 2.3m figure on the DPO's estimate alone; reduce the breach-scale case to the forensic ~14,000 records or adduce log evidence to the contrary."
+      ]
+    },
+    {
+      "issue": "BREACH_NOTIFICATION",
+      "solver": "brute_force",
+      "story": [
+        "The pleading reads as 'Cobalt never notified the regulator' - an apparent gap.",
+        "But GDPR Art 33(1) and DPA cl 9.2 put 72-hour notification to the supervisory authority on the CONTROLLER (Brightmarket).",
+        "The processor's duty (Art 33(2)) is to notify the controller, which Cobalt did within 18 hours - so the duty pleaded against Cobalt was the Claimant's own."
+      ],
+      "impacts": [
+        "P4: REJECTED_BY_COHERENT_STORY  [legal overlay: CONTRACTUALLY_BARRED] - ALLOCATION TRAP: under GDPR Art 33(1) and DPA cl 9.2 it is the CONTROLLER (Brightmarket) that must notify the supervisory authority within 72h; the processor's duty (Art 33(2)) is only to notify the controller, which Cobalt did within 18 hours. The duty pleaded against Cobalt was Brightmarket's own."
+      ],
+      "amendments": [
+        "Withdraw the 72-hour allegation against the processor: the supervisory-authority duty is allocated to the controller by GDPR Art 33(1) and DPA cl 9.2."
+      ]
+    },
+    {
+      "issue": "TOMS/CAUSATION",
+      "solver": "brute_force",
+      "story": [
+        "P5 alleges the breach was caused solely by Cobalt's failure of GDPR Art 32 measures.",
+        "Brightmarket's OWN internal security review finds its admins disabled MFA against Cobalt's written guidance - a contributing cause attributable to the Claimant.",
+        "Cobalt's security lead traces the intrusion to that disabled-MFA account.",
+        "So 'caused solely by Cobalt' cannot stand - the Claimant's own document defeats it."
+      ],
+      "impacts": [
+        "P5: REJECTED_BY_COHERENT_STORY  [legal overlay: CAUSATION_PROBLEM] - OWN-GOAL: Brightmarket's own internal security review shows its administrators disabled MFA on the shared admin console against Cobalt's written hardening guidance - a contributing cause attributable to the Claimant, defeating 'caused solely by Cobalt'."
+      ],
+      "amendments": [
+        "Withdraw or recast 'caused solely by Cobalt': the Claimant's own internal review admits a contributing cause (disabled MFA). Plead apportionment instead."
+      ]
+    },
+    {
+      "issue": "PUBLIC_EXPOSURE/HEARSAY",
+      "solver": "brute_force",
+      "story": [
+        "P6 (a production database left publicly accessible for ~3 weeks) rests only on a witness saying 'I am told by our IT team...'.",
+        "That is hearsay with no personal knowledge, and no contemporaneous log, ticket or expert finding corroborates it.",
+        "So the allegation is unverified, not proven - a burden / admissibility gap."
+      ],
+      "impacts": [
+        "P6: SURVIVES (LEGALLY_RISKY)  [legal overlay: BURDEN_PROBLEM] - The only support is a witness saying 'I am told by our IT team...' - hearsay, no personal knowledge, and no contemporaneous log, ticket or expert finding corroborates the public-exposure allegation. The burden is the Claimant's."
+      ],
+      "amendments": [
+        "Do not plead the public-exposure allegation on hearsay alone; obtain the underlying logs / first-hand evidence or a witness with personal knowledge. Lawyer review required."
+      ]
+    },
+    {
+      "issue": "CONFORMITY/DEFECT",
+      "solver": "brute_force",
+      "story": [
+        "The contemporaneous Defect Log records the export module overstating revenue.",
+        "The forensic expert independently finds a genuine non-conformity.",
+        "Conformity is assessed under the Digital Content Directive (EU) 2019/770 - the defect allegation is supported."
+      ],
+      "impacts": [
+        "P7: SURVIVES - Genuine, evidence-backed point: the contemporaneous Defect Log and the forensic expert both find the export module produced inaccurate revenue figures - non-conformity (cf. Digital Content Directive (EU) 2019/770 Art 8)."
+      ],
+      "amendments": [
+        "Keep the conformity / defect allegation (P7) - it is evidence-backed (Defect Log + expert) and squarely within Directive (EU) 2019/770 Art 8."
+      ]
+    },
+    {
+      "issue": "DATA_TRANSFER/SUPERSESSION",
+      "solver": "brute_force",
+      "story": [
+        "P8 is pleaded on the data-transfer standard of Directive 95/46/EC.",
+        "The GDPR (Reg (EU) 2016/679, Art 94) repealed that Directive from 25 May 2018.",
+        "The parties' 2018 Addendum replaced the standard with the GDPR Chapter V regime.",
+        "A claim resting on the superseded instrument cannot stand without re-pleading."
+      ],
+      "impacts": [
+        "P8: REJECTED_BY_COHERENT_STORY  [legal overlay: SUPERSEDED] - PARTIAL SUPERSESSION: the obligation pleaded rests on Directive 95/46/EC, which the GDPR (Reg (EU) 2016/679, Art 94) repealed from 25 May 2018; the parties' 2018 Addendum replaced that standard with the GDPR Chapter V regime. The transfer point must be re-pleaded under the current law."
+      ],
+      "amendments": [
+        "Re-plead the international-transfer point under GDPR Chapter V (and the current standard contractual clauses), not the repealed Directive 95/46/EC."
+      ]
+    },
+    {
+      "issue": "BACKUPS/ABSENCE",
+      "solver": "brute_force",
+      "story": [
+        "No quote-grounded document in the bundle addresses backup or restore provision.",
+        "Absence of evidence is an evidence gap, not a contradiction - the burden is the Claimant's."
+      ],
+      "impacts": [
+        "P9: NOT_ADDRESSED  [legal overlay: BURDEN_PROBLEM] - No document in the bundle addresses backup or restore provision; absence of evidence is an evidence gap, not a contradiction, and the burden is the Claimant's."
+      ],
+      "amendments": [
+        "Add backup / restore records, run-books or correspondence before pleading the backup failure strongly. Lawyer review required."
+      ]
+    },
+    {
+      "issue": "QUANTUM/CAP",
+      "solver": "brute_force",
+      "story": [
+        "The quantum expert accepts ~EUR 900k of subscription fees as wasted expenditure.",
+        "The pleaded EUR 6.0m loss is unsupported; the expert supports ~EUR 1.1m.",
+        "A separate ransomware incident and the market explain much of the Q4 downturn.",
+        "MSA cl 14 excludes consequential loss and caps liability near fees paid.",
+        "GDPR Art 82 compensation is a separate head, apportioned for contributory fault."
+      ],
+      "impacts": [
+        "P10a: SURVIVES (LEGALLY_RISKY)  [legal overlay: CAPPED] - The quantum expert accepts the ~EUR 900k of subscription fees as wasted expenditure - at/around the MSA cl.14 liability cap.",
+        "P10b: REJECTED_BY_COHERENT_STORY  [legal overlay: CAPPED] - The quantum expert supports only ~EUR 1.1m of loss of profit (much of the downturn attributable to a separate ransomware event and the market); MSA cl.14 excludes consequential loss and caps liability near fees paid. GDPR Art 82 compensation is a separate statutory head, apportioned for the Claimant's contributory fault."
+      ],
+      "amendments": [
+        "Keep the wasted-expenditure claim (P10a). Reduce / qualify the EUR 6.0m claim (P10b): address the expert figure, the cl.14 cap, the alternative causation, and apportionment under GDPR Art 82."
+      ]
+    },
+    {
+      "issue": "ACQUISITION/MERGER",
+      "solver": "brute_force",
+      "story": [
+        "P11 alleges the NorthStar acquisition was implemented without required merger clearance and used to lock Brightmarket in.",
+        "The clearance memorandum records the deal fell below the EU Merger Regulation (Reg (EC) No 139/2004) thresholds and was in any event notified and cleared.",
+        "The interoperability / lock-in complaint is governed by the Data Act and the P2B Regulation, under which it is not pleaded."
+      ],
+      "impacts": [
+        "P11: REJECTED_BY_COHERENT_STORY  [legal overlay: CONTRACTUALLY_BARRED] - The clearance memorandum records that the NorthStar acquisition fell below the EU Merger Regulation (Reg (EC) No 139/2004) thresholds and was in any event notified and cleared; the interoperability / lock-in complaint is governed by the Data Act (Reg (EU) 2023/2854) and the P2B Regulation (Reg (EU) 2019/1150), under which it is not pleaded."
+      ],
+      "amendments": [
+        "Withdraw the unlawful-acquisition allegation (the deal was cleared); if pursued, re-plead lock-in under the Data Act (Reg (EU) 2023/2854) switching rules, not merger control."
+      ]
+    }
+  ],
+  "sensitivity": [
+    {
+      "issue": "ORAL_REP/NON_RELIANCE",
+      "load_bearing": {},
+      "single_source": [],
+      "revives_if_removed": {}
+    },
+    {
+      "issue": "PURPOSE_LIMITATION",
+      "load_bearing": {
+        "p2_purpose": [
+          "training_admission",
+          "dpia_crossuse",
+          "art28_overlay"
+        ]
+      },
+      "single_source": [],
+      "revives_if_removed": {}
+    },
+    {
+      "issue": "BREACH_SCALE",
+      "load_bearing": {},
+      "single_source": [],
+      "revives_if_removed": {
+        "expert_14k": [
+          "p3_scale"
+        ]
+      }
+    },
+    {
+      "issue": "BREACH_NOTIFICATION",
+      "load_bearing": {},
+      "single_source": [],
+      "revives_if_removed": {
+        "dpa_alloc_cl92": [
+          "p4_notify"
+        ]
+      }
+    },
+    {
+      "issue": "TOMS/CAUSATION",
+      "load_bearing": {},
+      "single_source": [],
+      "revives_if_removed": {
+        "internal_review": [
+          "p5_solecause"
+        ]
+      }
+    },
+    {
+      "issue": "PUBLIC_EXPOSURE/HEARSAY",
+      "load_bearing": {},
+      "single_source": [],
+      "revives_if_removed": {}
+    },
+    {
+      "issue": "CONFORMITY/DEFECT",
+      "load_bearing": {
+        "p7_defect": [
+          "defect_log",
+          "expert_defect",
+          "dcd_overlay"
+        ]
+      },
+      "single_source": [],
+      "revives_if_removed": {}
+    },
+    {
+      "issue": "DATA_TRANSFER/SUPERSESSION",
+      "load_bearing": {},
+      "single_source": [],
+      "revives_if_removed": {
+        "gdpr_repeal": [
+          "p8_transfer"
+        ]
+      }
+    },
+    {
+      "issue": "BACKUPS/ABSENCE",
+      "load_bearing": {},
+      "single_source": [],
+      "revives_if_removed": {}
+    },
+    {
+      "issue": "QUANTUM/CAP",
+      "load_bearing": {
+        "p10a_wasted": [
+          "expert_wasted",
+          "order_fee"
+        ]
+      },
+      "single_source": [],
+      "revives_if_removed": {
+        "expert_profit": [
+          "p10b_profit"
+        ]
+      }
+    },
+    {
+      "issue": "ACQUISITION/MERGER",
+      "load_bearing": {
+        "p11_merger": [
+          "sorokin_lockin"
+        ]
+      },
+      "single_source": [
+        "p11_merger"
+      ],
+      "revives_if_removed": {
+        "clearance_doc": [
+          "p11_merger"
+        ]
+      }
+    }
+  ],
+  "documents": {
+    "02": {
+      "title": "Particulars of Claim",
+      "doc_type": "pleading",
+      "party": "claimant",
+      "date": "2026-02-10",
+      "category": "Pleading",
+      "tab": "02",
+      "modality": "text",
+      "mime": "text",
+      "paras": [
+        {
+          "n": 1,
+          "text": "The Claimant (\"Brightmarket\") is a company incorporated in Germany which operates online retail stores across several EU member states and is the controller of its customers' personal data."
+        },
+        {
+          "n": 2,
+          "text": "The Defendant (\"Cobalt\") supplies a cloud analytics platform and acted as the Claimant's processor under a Data Processing Agreement."
+        },
+        {
+          "n": 3,
+          "text": "By a Master Subscription Agreement, a Data Processing Agreement and a Statement of Work each dated 1 March 2017 the Claimant engaged the Defendant to host and analyse its customer and transaction data."
+        },
+        {
+          "n": 7,
+          "text": "Before contract the Defendant represented that the Platform was ISO 27001 certified and fully GDPR-compliant by design. That representation was false."
+        },
+        {
+          "n": 8,
+          "text": "The Defendant processed the Claimant's customer personal data for its own product and model-training purposes without the Claimant's instruction."
+        },
+        {
+          "n": 9,
+          "text": "On or about 10 October 2025 a personal-data breach exposed the personal data of approximately 2.3 million of the Claimant's customers."
+        },
+        {
+          "n": 10,
+          "text": "The Defendant failed to notify the relevant supervisory authority of the breach within 72 hours as required."
+        },
+        {
+          "n": 11,
+          "text": "The breach was caused solely by the Defendant's failure to implement appropriate technical and organisational measures."
+        },
+        {
+          "n": 12,
+          "text": "The Defendant's engineers left a production database publicly accessible on the internet for approximately three weeks before the breach."
+        },
+        {
+          "n": 13,
+          "text": "The Platform was not in conformity with the agreed specification: the analytics export module produced materially inaccurate revenue figures."
+        },
+        {
+          "n": 14,
+          "text": "The Defendant transferred the Claimant's data to a sub-processor in the United States in breach of the data-transfer restrictions of Directive 95/46/EC as incorporated by the Data Processing Agreement."
+        },
+        {
+          "n": 15,
+          "text": "The Defendant failed to maintain adequate backups, so the Claimant's data could not be restored after the breach."
+        },
+        {
+          "n": 16,
+          "text": "The Claimant has suffered loss, namely wasted subscription fees of EUR 900,000 and loss of profit and further exposure of EUR 6,000,000."
+        },
+        {
+          "n": 17,
+          "text": "The Defendant's 2024 acquisition of the Claimant's previous supplier, NorthStar, was implemented without the required merger clearance, and the Defendant thereafter degraded interoperability to lock the Claimant in."
+        }
+      ]
+    },
+    "03": {
+      "title": "Master Subscription Agreement",
+      "doc_type": "contract",
+      "party": "neutral",
+      "date": "2017-03-01",
+      "category": "Contract",
+      "tab": "03",
+      "modality": "text",
+      "mime": "text",
+      "paras": [
+        {
+          "n": 1,
+          "text": "This Master Subscription Agreement is made between Brightmarket Retail GmbH and Cobalt Cloud Analytics Ltd and is governed by the laws of Ireland."
+        },
+        {
+          "n": 14,
+          "text": "Liability cap. Save for liability that cannot be excluded by law, the Supplier's total liability shall not exceed the fees paid in the 12 months preceding the claim, and the Supplier shall not be liable for loss of profit or other consequential loss."
+        },
+        {
+          "n": 18,
+          "text": "Changes to platform terms, ranking and presentation are notified and governed in accordance with Regulation (EU) 2019/1150 (Platform-to-Business)."
+        },
+        {
+          "n": 24,
+          "text": "Entire agreement. This Agreement is the entire agreement between the parties. Each party confirms it has not relied on any statement or representation not set out in this Agreement."
+        }
+      ]
+    },
+    "04": {
+      "title": "Data Processing Agreement",
+      "doc_type": "contract",
+      "party": "neutral",
+      "date": "2017-03-01",
+      "category": "Contract",
+      "tab": "04",
+      "modality": "text",
+      "mime": "text",
+      "paras": [
+        {
+          "n": 1,
+          "text": "This Data Processing Agreement appoints the Supplier as processor of the customer personal data described in Schedule 1, the Customer being the controller."
+        },
+        {
+          "n": 5,
+          "text": "The Processor shall process the personal data only on the documented instructions of the Controller (Article 28(3)(a) GDPR), and shall not use it for its own purposes."
+        },
+        {
+          "n": 8,
+          "text": "The Processor shall implement appropriate technical and organisational measures (Article 32 GDPR). Configuration of multi-factor authentication on the Controller's administrator accounts is the Controller's responsibility (see SOW Annex B)."
+        },
+        {
+          "n": 9,
+          "text": "Breach notification. The Controller shall notify the supervisory authority within 72 hours where required (Article 33(1) GDPR). The Processor shall notify the Controller without undue delay after becoming aware of a personal-data breach (Article 33(2))."
+        },
+        {
+          "n": 12,
+          "text": "On termination the Processor shall make the data available for return or export via the self-service export API; switching and portability are governed by Regulation (EU) 2023/2854 (Data Act)."
+        },
+        {
+          "n": 14,
+          "text": "Nothing in this Agreement limits a data subject's right to compensation under Article 82 GDPR, liability for which is apportioned according to each party's responsibility for the damage."
+        }
+      ]
+    },
+    "05": {
+      "title": "Statement of Work",
+      "doc_type": "contract",
+      "party": "neutral",
+      "date": "2017-03-01",
+      "category": "Contract",
+      "tab": "05",
+      "modality": "text",
+      "mime": "text",
+      "paras": [
+        {
+          "n": 1,
+          "text": "Statement of Work. The Supplier shall provide hosting, analytics and an export module to the specification in Annex A."
+        },
+        {
+          "n": 3,
+          "text": "Annex B (shared responsibility): the Customer is responsible for enabling and enforcing multi-factor authentication on its own administrator accounts and for the configuration of its endpoint access controls."
+        },
+        {
+          "n": 5,
+          "text": "Conformity of the digital service is assessed against the agreed specification and Directive (EU) 2019/770 (supply of digital content and digital services)."
+        }
+      ]
+    },
+    "06": {
+      "title": "Order Form",
+      "doc_type": "contract",
+      "party": "neutral",
+      "date": "2024-04-15",
+      "category": "Contract",
+      "tab": "06",
+      "modality": "text",
+      "mime": "text",
+      "paras": [
+        {
+          "n": 1,
+          "text": "Order Form, dated 15 April 2024, for the Brightmarket subscription to the Cobalt Analytics Platform."
+        },
+        {
+          "n": 2,
+          "text": "Annual subscription fee: EUR 900,000, payable in advance."
+        }
+      ]
+    },
+    "07": {
+      "title": "Data Processing Addendum (GDPR, 2018)",
+      "doc_type": "contract",
+      "party": "neutral",
+      "date": "2018-05-20",
+      "category": "Amendment",
+      "tab": "07",
+      "modality": "text",
+      "mime": "text",
+      "paras": [
+        {
+          "n": 1,
+          "text": "Data Processing Addendum, dated 20 May 2018, amending the 2017 Data Processing Agreement."
+        },
+        {
+          "n": 2,
+          "text": "The parties record that the General Data Protection Regulation (Regulation (EU) 2016/679) applies from 25 May 2018."
+        },
+        {
+          "n": 3,
+          "text": "All references in the 2017 Agreement to Directive 95/46/EC are replaced: that Directive was repealed by Article 94 GDPR, and international transfers are henceforth governed by Chapter V of the GDPR and the Commission's standard contractual clauses."
+        }
+      ]
+    },
+    "08": {
+      "title": "Email - breach notification (Cobalt to Brightmarket)",
+      "doc_type": "correspondence",
+      "party": "defendant",
+      "date": "2025-10-11",
+      "category": "Correspondence",
+      "tab": "08",
+      "modality": "email",
+      "mime": "email",
+      "paras": [
+        {
+          "n": 1,
+          "text": "From: Cobalt Security. To: Brightmarket DPO. Sent: 11 October 2025, 09:14. Subject: Personal-data breach notification."
+        },
+        {
+          "n": 2,
+          "text": "We are notifying you, within 18 hours of becoming aware, of a personal-data breach affecting a subset of the customer dataset, so that you can assess notification to your supervisory authority. A forensic investigation is under way."
+        }
+      ]
+    },
+    "09": {
+      "title": "Email - security hardening guidance (Cobalt)",
+      "doc_type": "correspondence",
+      "party": "defendant",
+      "date": "2025-06-03",
+      "category": "Correspondence",
+      "tab": "09",
+      "modality": "email",
+      "mime": "email",
+      "paras": [
+        {
+          "n": 1,
+          "text": "From: Cobalt Onboarding. To: Brightmarket IT. Sent: 3 June 2025. Subject: Security hardening - action required."
+        },
+        {
+          "n": 2,
+          "text": "Please enable multi-factor authentication on all Brightmarket administrator accounts on the shared console; leaving MFA disabled materially increases the risk of credential compromise. This is the Customer's responsibility under SOW Annex B."
+        }
+      ]
+    },
+    "10": {
+      "title": "Email - internal model-training note (Cobalt)",
+      "doc_type": "correspondence",
+      "party": "neutral",
+      "date": "2025-02-18",
+      "category": "Correspondence",
+      "tab": "10",
+      "modality": "email",
+      "mime": "email",
+      "paras": [
+        {
+          "n": 1,
+          "text": "From: Cobalt Data Science. To: Cobalt Product (internal). Sent: 18 February 2025. Subject: forecasting model."
+        },
+        {
+          "n": 2,
+          "text": "We're using the merchant datasets, including Brightmarket's, to train the new forecasting model. Legal said to get controller consent first but we shipped it to hit the release date."
+        }
+      ]
+    },
+    "12": {
+      "title": "Internal Security Review (Brightmarket)",
+      "doc_type": "record",
+      "party": "claimant",
+      "date": "2025-11-05",
+      "category": "Internal record",
+      "tab": "12",
+      "modality": "text",
+      "mime": "text",
+      "paras": [
+        {
+          "n": 1,
+          "text": "Internal Security Review - Brightmarket, 5 November 2025 (privileged and confidential; prepared by the Claimant's security team)."
+        },
+        {
+          "n": 4,
+          "text": "Finding: our administrators had disabled multi-factor authentication on the shared admin console in March 2025, contrary to Cobalt's written hardening guidance, and this materially contributed to the credential compromise behind the breach."
+        },
+        {
+          "n": 5,
+          "text": "Recommendation: re-enable MFA immediately and review our own access-control configuration before attributing the incident externally."
+        }
+      ]
+    },
+    "13": {
+      "title": "Defect Log",
+      "doc_type": "record",
+      "party": "neutral",
+      "date": "2025-09-20",
+      "category": "Record",
+      "tab": "13",
+      "modality": "spreadsheet",
+      "mime": "spreadsheet",
+      "paras": [
+        {
+          "n": 1,
+          "text": "Defect Log - Brightmarket / Cobalt Platform (extract)."
+        },
+        {
+          "n": 3,
+          "text": "DEF-204 | Severity 2 | Export module: monthly revenue figures overstated by 4-9% for multi-currency stores; reconciliation mismatch confirmed and reproduced."
+        }
+      ]
+    },
+    "14": {
+      "title": "Data Protection Impact Assessment",
+      "doc_type": "record",
+      "party": "claimant",
+      "date": "2024-05-02",
+      "category": "Internal record",
+      "tab": "14",
+      "modality": "text",
+      "mime": "text",
+      "paras": [
+        {
+          "n": 1,
+          "text": "Data Protection Impact Assessment - Brightmarket analytics processing, 2 May 2024."
+        },
+        {
+          "n": 4,
+          "text": "Processing note: the Supplier has indicated it may reuse aggregated and identifiable merchant datasets to improve and train its own analytics and forecasting models; this secondary use is outside the documented processing instructions and requires a controller decision."
+        }
+      ]
+    },
+    "15": {
+      "title": "Acquisition Clearance Memorandum",
+      "doc_type": "record",
+      "party": "neutral",
+      "date": "2024-09-12",
+      "category": "Record",
+      "tab": "15",
+      "modality": "text",
+      "mime": "text",
+      "paras": [
+        {
+          "n": 1,
+          "text": "Acquisition Clearance Memorandum - Cobalt acquisition of NorthStar Analytics, 12 September 2024."
+        },
+        {
+          "n": 2,
+          "text": "The combined EU turnover of the parties fell below the thresholds of the EU Merger Regulation; the transaction was nonetheless notified to, and cleared by, the competent authority on 9 September 2024."
+        },
+        {
+          "n": 4,
+          "text": "The transaction was assessed under Council Regulation (EC) No 139/2004 (the EU Merger Regulation); interoperability commitments were given and recorded."
+        }
+      ]
+    },
+    "16": {
+      "title": "Witness Statement - Lena Brandt (DPO, Brightmarket)",
+      "doc_type": "witness",
+      "party": "claimant",
+      "date": "2026-03-15",
+      "category": "Witness (fact)",
+      "tab": "16",
+      "modality": "text",
+      "mime": "text",
+      "paras": [
+        {
+          "n": 1,
+          "text": "Witness Statement of Lena Brandt, Data Protection Officer of Brightmarket. I make this statement from my own knowledge save where otherwise indicated."
+        },
+        {
+          "n": 3,
+          "text": "From the customer database size at the time, I believe the breach exposed the personal data of approximately 2.3 million of our customers."
+        },
+        {
+          "n": 6,
+          "text": "I am told by our IT team that Cobalt's engineers had left a production database publicly accessible on the internet for about three weeks before the breach; I did not see this myself."
+        }
+      ]
+    },
+    "17": {
+      "title": "Witness Statement - Tomas Reyes (Security Lead, Cobalt)",
+      "doc_type": "witness",
+      "party": "defendant",
+      "date": "2026-03-20",
+      "category": "Witness (fact)",
+      "tab": "17",
+      "modality": "text",
+      "mime": "text",
+      "paras": [
+        {
+          "n": 1,
+          "text": "Witness Statement of Tomas Reyes, Security Lead at Cobalt."
+        },
+        {
+          "n": 4,
+          "text": "Our investigation traced the initial intrusion to a Brightmarket administrator account on which multi-factor authentication had been switched off on the customer side, despite our June 2025 guidance to enable it."
+        }
+      ]
+    },
+    "18": {
+      "title": "Witness Statement - Anya Sorokin (Programme Lead, Brightmarket)",
+      "doc_type": "witness",
+      "party": "claimant",
+      "date": "2026-03-18",
+      "category": "Witness (fact)",
+      "tab": "18",
+      "modality": "text",
+      "mime": "text",
+      "paras": [
+        {
+          "n": 1,
+          "text": "Witness Statement of Anya Sorokin, Programme Lead at Brightmarket."
+        },
+        {
+          "n": 3,
+          "text": "After Cobalt acquired NorthStar I found it harder to export our data to alternative tools, and I considered we were being locked into the Cobalt platform."
+        }
+      ]
+    },
+    "19": {
+      "title": "Expert Report - Dr Idris Vale (Forensic / Security)",
+      "doc_type": "expert",
+      "party": "neutral",
+      "date": "2026-04-30",
+      "category": "Witness (expert)",
+      "tab": "19",
+      "modality": "text",
+      "mime": "text",
+      "paras": [
+        {
+          "n": 1,
+          "text": "Expert Report of Dr Idris Vale, instructed jointly on forensic and security issues."
+        },
+        {
+          "n": 3,
+          "text": "On the forensic evidence, approximately 14,000 customer records were actually exfiltrated. The remainder of the dataset was pseudonymised at rest and shows no evidence of access; the figure of 2.3 million is not supported by the logs."
+        },
+        {
+          "n": 5,
+          "text": "The export module did produce materially inaccurate revenue figures for multi-currency stores; in my opinion this is a genuine non-conformity with the agreed specification."
+        },
+        {
+          "n": 7,
+          "text": "The proximate cause of the intrusion was a compromised administrator credential on an account where MFA had been disabled by the Customer; this was a substantial contributing cause of the breach."
+        }
+      ]
+    },
+    "20": {
+      "title": "Expert Report - M. Caron (Quantum)",
+      "doc_type": "expert",
+      "party": "neutral",
+      "date": "2026-04-30",
+      "category": "Witness (expert)",
+      "tab": "20",
+      "modality": "text",
+      "mime": "text",
+      "paras": [
+        {
+          "n": 1,
+          "text": "Expert Report of M. Caron on quantum."
+        },
+        {
+          "n": 2,
+          "text": "I accept that the EUR 900,000 of subscription fees can properly be characterised as wasted expenditure."
+        },
+        {
+          "n": 4,
+          "text": "The claimed EUR 6,000,000 is not supported. On my analysis the supportable loss of profit is of the order of EUR 1.1 million."
+        },
+        {
+          "n": 6,
+          "text": "A significant part of the Q4 downturn is attributable to a separate ransomware incident affecting the Claimant's own logistics provider and to wider market conditions, not to the Platform."
+        }
+      ]
+    }
+  },
+  "chronology": [
+    {
+      "n": 1,
+      "date": "2017-03-01",
+      "event": "Parties enter the MSA, DPA and SOW; Cobalt appointed as Brightmarket's processor.",
+      "evidence": [
+        {
+          "tab": "03",
+          "para": 1
+        },
+        {
+          "tab": "04",
+          "para": 1
+        }
+      ],
+      "remarks": "",
+      "source": "counsel"
+    },
+    {
+      "n": 2,
+      "date": "2018-05-20",
+      "event": "GDPR Addendum: references to Directive 95/46/EC replaced with the GDPR Chapter V regime.",
+      "evidence": [
+        {
+          "tab": "07",
+          "para": 3
+        }
+      ],
+      "remarks": "Supersedes the data-transfer standard pleaded in P8.",
+      "source": "ai"
+    },
+    {
+      "n": 3,
+      "date": "2024-09-12",
+      "event": "Cobalt's acquisition of NorthStar notified and cleared; below EU Merger Regulation thresholds.",
+      "evidence": [
+        {
+          "tab": "15",
+          "para": 2
+        },
+        {
+          "tab": "15",
+          "para": 4
+        }
+      ],
+      "remarks": "Contradicts P11 (acquisition 'without required clearance').",
+      "source": "ai"
+    },
+    {
+      "n": 4,
+      "date": "2025-02-18",
+      "event": "Internal Cobalt email: merchant datasets used to train a forecasting model without consent.",
+      "evidence": [
+        {
+          "tab": "10",
+          "para": 2
+        }
+      ],
+      "remarks": "Admission underpinning P2.",
+      "source": "ai"
+    },
+    {
+      "n": 5,
+      "date": "2025-06-03",
+      "event": "Cobalt issues written security-hardening guidance: enable administrator MFA.",
+      "evidence": [
+        {
+          "tab": "09",
+          "para": 2
+        }
+      ],
+      "remarks": "",
+      "source": "counsel"
+    },
+    {
+      "n": 6,
+      "date": "2025-09-20",
+      "event": "Defect Log records the export module overstating multi-currency revenue.",
+      "evidence": [
+        {
+          "tab": "13",
+          "para": 3
+        }
+      ],
+      "remarks": "Supports P7 (conformity).",
+      "source": "counsel"
+    },
+    {
+      "n": 7,
+      "date": "2025-10-10",
+      "event": "Personal-data breach detected.",
+      "evidence": [
+        {
+          "tab": "02",
+          "para": 9
+        }
+      ],
+      "remarks": "",
+      "source": "counsel"
+    },
+    {
+      "n": 8,
+      "date": "2025-10-11",
+      "event": "Cobalt notifies Brightmarket of the breach within 18 hours.",
+      "evidence": [
+        {
+          "tab": "08",
+          "para": 1
+        },
+        {
+          "tab": "08",
+          "para": 2
+        }
+      ],
+      "remarks": "Processor's Art 33(2) duty discharged; supervisory-authority notice was the controller's (P4 allocation trap).",
+      "source": "ai"
+    },
+    {
+      "n": 9,
+      "date": "2025-11-05",
+      "event": "Brightmarket's own internal security review finds its admins had disabled MFA.",
+      "evidence": [
+        {
+          "tab": "12",
+          "para": 4
+        }
+      ],
+      "remarks": "Own-goal undermining P5 (sole cause).",
+      "source": "ai"
+    },
+    {
+      "n": 10,
+      "date": "2026-02-10",
+      "event": "Brightmarket issues proceedings (Particulars of Claim).",
+      "evidence": [
+        {
+          "tab": "02",
+          "para": 7
+        }
+      ],
+      "remarks": "",
+      "source": "counsel"
+    },
+    {
+      "n": 11,
+      "date": "2026-04-30",
+      "event": "Forensic expert: ~14,000 records exfiltrated, not 2.3 million.",
+      "evidence": [
+        {
+          "tab": "19",
+          "para": 3
+        }
+      ],
+      "remarks": "Contradicts P3; conflicts with the DPO's witness estimate.",
+      "source": "ai"
+    }
+  ]
+}

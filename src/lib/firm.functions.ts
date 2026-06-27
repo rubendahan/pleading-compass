@@ -4,6 +4,7 @@ import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import type { Json } from "@/integrations/supabase/types";
 import type { AppData } from "@/lib/pleading";
 import demoCase from "./demo-case.json";
+import euCase from "./eu-case.json";
 
 // Bootstrap context: returns the user's firm, role, full name.
 export const getMyContext = createServerFn({ method: "GET" })
@@ -207,6 +208,30 @@ export const createDemoCase = createServerFn({ method: "POST" })
       })
       .select("id")
       .single();
+    if (error) throw new Error(error.message);
+    return data;
+  });
+
+// A second, harder demo case grounded in real EU law (Brightmarket v Cobalt).
+export const createEuCase = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    const { supabase, userId } = context;
+    const { data: prof } = await supabase
+      .from("profiles").select("firm_id").eq("id", userId).maybeSingle();
+    if (!prof?.firm_id) throw new Error("No firm");
+    const m = (euCase as any).meta ?? {};
+    const { data, error } = await supabase
+      .from("cases")
+      .insert({
+        firm_id: prof.firm_id,
+        title: m.case ?? "EU Case",
+        claim_no: m.claim_no ?? null,
+        court: m.court ?? null,
+        data: euCase,
+        created_by: userId,
+      })
+      .select("id").single();
     if (error) throw new Error(error.message);
     return data;
   });

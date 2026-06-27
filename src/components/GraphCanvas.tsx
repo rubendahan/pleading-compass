@@ -225,9 +225,10 @@ export default function GraphCanvas({
         linkLineDash={(l: any) => (l.rel === "asserts" ? [2, 3] : null)}
         linkCurvature={(l: any) => (l.rel === "belongs_to" ? 0 : 0.18)}
         linkDirectionalArrowLength={(l: any) =>
-          l.rel === "asserts" || l.rel === "belongs_to" ? 0 : 4
+          l.rel === "belongs_to" ? 0 : l.rel === "asserts" ? 2.5 : 4.5
         }
-        linkDirectionalArrowRelPos={0.85}
+        linkDirectionalArrowRelPos={0.88}
+        linkDirectionalParticleWidth={2}
         nodeCanvasObject={(node: any, ctx: CanvasRenderingContext2D, scale: number) => {
           const isHover = hoveredId === node.id;
           const isSelected = selectedId === node.id;

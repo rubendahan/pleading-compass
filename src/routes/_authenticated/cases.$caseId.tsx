@@ -341,11 +341,12 @@ function CasePage() {
                 >
                   <Inspector caseId={caseId}
                     data={data}
-                    selectedId={selectedId}
+                    selectedId={inspectorId ?? selectedId}
                     selectedEdge={selectedEdge}
-                    onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); }}
+                    onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); setInspectorId(id); }}
                     onClose={() => { setSelectedEdge(null); setInspectorOpen(false); }}
                   />
+
                 </div>
               </div>
             )}
@@ -375,10 +376,11 @@ function CasePage() {
           {inspectorOpen && (
             <div className="h-[calc(100vh-200px)] min-h-[560px]">
               <Inspector caseId={caseId}
-                data={data} selectedId={selectedId} selectedEdge={selectedEdge}
-                onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); }}
-                onClose={() => { setSelectedId(null); setSelectedEdge(null); setInspectorOpen(false); }}
+                data={data} selectedId={inspectorId ?? selectedId} selectedEdge={selectedEdge}
+                onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); setInspectorId(id); }}
+                onClose={() => { setSelectedId(null); setInspectorId(null); setSelectedEdge(null); setInspectorOpen(false); }}
               />
+
             </div>
           )}
         </main>

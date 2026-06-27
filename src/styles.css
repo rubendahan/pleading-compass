@@ -7,6 +7,7 @@
 @theme inline {
   --color-bg: var(--bg);
   --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
   --color-hair: var(--hair);
   --color-ink: var(--ink);
   --color-ink-dim: var(--ink-dim);
@@ -17,36 +18,38 @@
   --color-accent: var(--accent);
   --color-brass: var(--brass);
   --color-orange: var(--orange);
-  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-display: "Libre Baskerville", ui-serif, Georgia, serif;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
 
   --color-background: var(--bg);
   --color-foreground: var(--ink);
   --color-border: var(--hair);
-  --color-primary: var(--accent);
-  --color-primary-foreground: var(--bg);
-  --color-muted: var(--panel);
+  --color-primary: var(--ink);
+  --color-primary-foreground: var(--panel);
+  --color-muted: var(--panel-2);
   --color-muted-foreground: var(--ink-dim);
   --color-card: var(--panel);
   --color-card-foreground: var(--ink);
-  --color-ring: var(--accent);
+  --color-ring: var(--ink);
 }
 
 :root {
-  --bg: #0A0E16;
-  --panel: #10151F;
-  --hair: #1B2536;
-  --ink: #E7EDF6;
-  --ink-dim: #8A97AE;
-  --accepted: #46C68E;
-  --rejected: #E2574A;
-  --legal: #E7B45A;
-  --absence: #6A788F;
-  --accent: #3FD3CB;
-  --brass: #C9A24B;
-  --orange: #E08A45;
-  --radius: 0.5rem;
+  /* Paper & Ink — refined business palette */
+  --bg: #f5f3ee;        /* warm off-white */
+  --panel: #fbfaf6;     /* paper white */
+  --panel-2: #efece4;   /* recessed paper */
+  --hair: #d8d3c7;      /* divider */
+  --ink: #14110d;       /* near black */
+  --ink-dim: #6b6760;   /* warm gray */
+  --accepted: #2f7a55;  /* sage authority */
+  --rejected: #a83a2b;  /* terracotta */
+  --legal: #a87422;     /* mustard */
+  --absence: #8a857a;
+  --accent: #14110d;    /* structural = ink */
+  --brass: #8b6f3c;
+  --orange: #b0561f;
+  --radius: 0.375rem;
 }
 
 @layer base {
@@ -58,10 +61,12 @@
     color: var(--ink);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01", "cv11";
   }
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
+    font-weight: 700;
   }
   ::-webkit-scrollbar { width: 8px; height: 8px; }
   ::-webkit-scrollbar-track { background: transparent; }
@@ -74,12 +79,13 @@
   align-items: center;
   gap: 0.375rem;
   padding: 0.125rem 0.5rem;
-  border-radius: 999px;
+  border-radius: 2px;
   font-family: var(--font-mono);
   font-size: 0.6875rem;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   border: 1px solid;
+  font-weight: 500;
 }
 
 @utility chip {
@@ -87,10 +93,18 @@
   align-items: center;
   gap: 0.375rem;
   padding: 0.25rem 0.625rem;
-  border-radius: 0.375rem;
+  border-radius: 2px;
   border: 1px solid var(--hair);
-  background: color-mix(in oklab, var(--panel) 70%, transparent);
+  background: var(--panel);
   font-size: 0.75rem;
+  color: var(--ink-dim);
+}
+
+@utility rule-label {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
   color: var(--ink-dim);
 }
 

@@ -207,7 +207,7 @@ function CasePage() {
 
 
   if (err) return <div className="grid min-h-screen place-items-center bg-bg p-6" style={{ color: COLORS.rejected }}>{err}</div>;
-  if (!data) return <div className="grid min-h-screen place-items-center bg-bg font-mono text-[11px] text-ink-dim">loading case...</div>;
+  if (!data) return <div className="grid min-h-screen place-items-center bg-bg font-mono text-[11px] text-ink-dim">Loading case</div>;
 
   const caseTitle = (row.title as string).replace(/\s+v\s+/i, " §V§ ").split("§V§");
 
@@ -234,8 +234,7 @@ function CasePage() {
               <StatChip label="trial readiness" value={`${data.stats.readiness}/100`}
                 color={data.stats.readiness >= 70 ? COLORS.accepted : data.stats.readiness >= 30 ? COLORS.legal : COLORS.rejected} />
               <StatChip label="own goals" value={`${data.stats.own_goal}/10`} color={COLORS.orange} />
-              <StatChip label="exposure" value={`${data.stats.exposure_from} → ${data.stats.exposure_to}`} color={COLORS.ink} />
-              <StatChip label="docs" value={String(data.stats.docs)} color={COLORS.inkDim} />
+              <StatChip label="exposure" value={`${data.stats.exposure_from} to ${data.stats.exposure_to}`} color={COLORS.ink} />
             </div>
           </div>
         </div>

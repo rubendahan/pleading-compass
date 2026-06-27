@@ -379,11 +379,11 @@ function Legend({ mode }: { mode: Mode }) {
   ];
   return (
     <div
-      className="pointer-events-none absolute bottom-3 right-3 rounded-md border px-3 py-2 text-[10px] uppercase tracking-widest text-ink-dim backdrop-blur"
+      className="pointer-events-none absolute bottom-3 right-3 rounded-sm border px-3 py-2 text-[10px] uppercase tracking-widest text-ink-dim"
       style={{
         borderColor: COLORS.hair,
-        background: withAlpha(COLORS.panel, 0.7),
-        fontFamily: "JetBrains Mono, monospace",
+        background: withAlpha(COLORS.panel, 0.92),
+        fontFamily: '"IBM Plex Mono", monospace',
       }}
     >
       <div className="mb-1 text-ink">{mode === "stress" ? "Stress test" : "Bundle coherence"}</div>

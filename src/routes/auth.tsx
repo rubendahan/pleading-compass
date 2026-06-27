@@ -25,6 +25,25 @@ function AuthPage() {
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const createFirm = useServerFn(createFirmWithDemo);
+  const ensureDemo = useServerFn(ensureDemoAdmin);
+
+  async function handleDemoAdmin() {
+    setErr(null);
+    setLoading(true);
+    try {
+      const creds = await ensureDemo();
+      const { error } = await supabase.auth.signInWithPassword({
+        email: creds.email,
+        password: creds.password,
+      });
+      if (error) throw error;
+      navigate({ to: "/cases" });
+    } catch (e: any) {
+      setErr(e?.message ?? String(e));
+    } finally {
+      setLoading(false);
+    }
+  }
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {

@@ -18,14 +18,14 @@ interface Props {
   onSelectEdge: (e: DataEdge | null) => void;
 }
 
-interface GraphNode extends DataNode {
+type GraphNode = DataNode & {
   x?: number;
   y?: number;
   vx?: number;
   vy?: number;
   fx?: number | null;
   fy?: number | null;
-}
+};
 
 interface GraphLink {
   source: GraphNode | string;

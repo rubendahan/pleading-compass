@@ -102,6 +102,8 @@ export interface AppData {
     single_source: string[];
     revives_if_removed: Record<string, string[]>;
   }>;
+  /** Full paragraph text per cited document, for in-context source verification. */
+  documents?: Record<string, { title: string; doc_type: string; party: string; paras: Array<{ n: number; text: string }> }>;
 }
 
 export type Mode = "stress" | "coherence";

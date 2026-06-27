@@ -3,6 +3,7 @@ import { useServerFn } from "@tanstack/react-start";
 import type { AppData, ClaimNode, DataEdge, DataNode, PropositionNode } from "@/lib/pleading";
 import { COLORS, edgeColor, relLabel, verdictColor } from "@/lib/pleading";
 import { summariseNode } from "@/lib/summary.functions";
+import { AnchorButton } from "./SourceReader";
 
 interface Props {
   data: AppData;
@@ -388,15 +389,22 @@ function ClaimView({
 
       {node.quote ? (
         <div>
-          <SectionHeading>
-            Verbatim quote {node.anchor && <span style={{ color: COLORS.accent }}>· {node.anchor}</span>}
-          </SectionHeading>
+          <SectionHeading>Verbatim quote</SectionHeading>
           <blockquote
             className="rounded border-l-2 p-3 font-mono text-[12px] leading-relaxed text-ink"
             style={{ borderColor: c, background: COLORS.bg }}
           >
             “{node.quote}”
           </blockquote>
+          <div className="mt-2 flex flex-wrap items-center gap-2">
+            <span
+              className="inline-flex items-center gap-1 rounded px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-widest"
+              style={{ color: COLORS.accepted, background: `${COLORS.accepted}14` }}
+            >
+              ✓ verbatim
+            </span>
+            <AnchorButton anchor={node.anchor} quote={node.quote} documents={data.documents} />
+          </div>
         </div>
       ) : (
         <div className="rounded border p-3 text-[12px] italic text-ink-dim" style={{ borderColor: COLORS.hair }}>

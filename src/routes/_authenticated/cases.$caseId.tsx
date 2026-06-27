@@ -122,10 +122,13 @@ function CasePage() {
               onNodeClickScreen={(_id, x, y) => setPopover({ x, y })}
             />
 
-            {/* Central Pleading card — the hero piece, sits in the graph's hole. */}
+            {/* Central Pleading card — hero piece in the graph's hole. */}
             <div
               className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-              style={{ width: CARD_W, height: CARD_H }}
+              style={{
+                width: `min(${CARD_W}px, calc(100vw - ${inspectorOpen ? 460 : 80}px))`,
+                height: `min(${CARD_H}px, calc(100vh - 240px))`,
+              }}
             >
               <div
                 className="pointer-events-auto h-full w-full overflow-hidden rounded-sm border shadow-[0_24px_60px_-30px_rgba(20,17,13,0.45)]"
@@ -143,33 +146,23 @@ function CasePage() {
               </div>
             </div>
 
-            {/* Floating Inspector popover, anchored to the clicked node. */}
-            {inspectorOpen && popover && (
-              <FloatingInspector
-                x={popover.x}
-                y={popover.y}
-                containerSelector
+            {/* Inspector as a stable right-side drawer — doesn't overlap the pleading. */}
+            {inspectorOpen && (
+              <div
+                className="absolute right-4 top-4 bottom-4 z-20 w-[420px] max-w-[calc(100vw-32px)] animate-in slide-in-from-right-4 fade-in duration-150"
               >
-                <Inspector
-                  data={data}
-                  selectedId={selectedId}
-                  selectedEdge={selectedEdge}
-                  onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); }}
-                  onClose={() => { setSelectedId(null); setSelectedEdge(null); setInspectorOpen(false); setPopover(null); }}
-                />
-              </FloatingInspector>
-            )}
-
-            {/* Edge clicks have no screen coords — fall back to a side drawer. */}
-            {inspectorOpen && !popover && (
-              <div className="absolute right-4 top-4 z-20 h-[min(560px,calc(100vh-220px))] w-[380px]">
-                <Inspector
-                  data={data}
-                  selectedId={selectedId}
-                  selectedEdge={selectedEdge}
-                  onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); }}
-                  onClose={() => { setSelectedId(null); setSelectedEdge(null); setInspectorOpen(false); }}
-                />
+                <div
+                  className="h-full w-full overflow-hidden rounded-sm border shadow-[0_32px_70px_-25px_rgba(20,17,13,0.55)]"
+                  style={{ borderColor: COLORS.hair, background: COLORS.panel }}
+                >
+                  <Inspector
+                    data={data}
+                    selectedId={selectedId}
+                    selectedEdge={selectedEdge}
+                    onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); }}
+                    onClose={() => { setSelectedId(null); setSelectedEdge(null); setInspectorOpen(false); setPopover(null); }}
+                  />
+                </div>
               </div>
             )}
           </div>

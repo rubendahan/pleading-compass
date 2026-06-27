@@ -185,6 +185,99 @@ export const updateCase = createServerFn({ method: "POST" })
     return row;
   });
 
+// ---- Engine seam ----------------------------------------------------------
+// The analysis engine is a separate service. When ENGINE_URL is set we POST the
+// pleading + bundle (re-analysis) or the uploaded files (fresh analysis) to
+// `${ENGINE_URL}/analyze` and expect a full AppData object back. When it is not
+// set, these throw a typed EngineNotConfigured so the UI degrades gracefully.
+
+/** Thrown when no engine is wired up. The client treats any failure as "fall back
+ *  to the existing note", so this is mainly for server-side clarity/logging. */
+export class EngineNotConfigured extends Error {
+  constructor() {
+    super("Re-analysis runs on the engine. Connect the backend to enable.");
+    this.name = "EngineNotConfigured";
+  }
+}
+
+const APP_DATA_KEYS = ["meta", "stats", "nodes", "edges", "clusters"] as const;
+
+/** Validate that the engine returned something shaped like AppData. */
+function assertAppData(x: any): asserts x is AppData {
+  if (!x || typeof x !== "object") throw new Error("Engine returned a non-object payload");
+  for (const k of APP_DATA_KEYS) {
+    if (!(k in x)) throw new Error(`Engine returned malformed AppData (missing "${k}")`);
+  }
+}
+
+async function callEngine(payload: unknown): Promise<AppData> {
+  const ENGINE_URL = process.env.ENGINE_URL;
+  if (!ENGINE_URL) throw new EngineNotConfigured();
+  const res = await fetch(`${ENGINE_URL.replace(/\/$/, "")}/analyze`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) throw new Error(`Engine error ${res.status} ${res.statusText}`);
+  const appData = await res.json();
+  assertAppData(appData);
+  return appData;
+}
+
+// Re-run the analysis for an existing case after the pleading was edited. Mirrors
+// updateCase: validates input, persists the returned AppData to cases.data, RLS
+// scopes the write to the caller's firm.
+export const reanalyzeCase = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: { id: string; pleading: unknown; bundle: unknown }) =>
+    z.object({ id: z.string().uuid(), pleading: z.any(), bundle: z.any() }).parse(input),
+  )
+  .handler(async ({ data, context }) => {
+    const appData = await callEngine({ pleading: data.pleading, bundle: data.bundle });
+    const { supabase } = context;
+    const { data: row, error } = await supabase
+      .from("cases")
+      .update({ data: appData as unknown as Json })
+      .eq("id", data.id)
+      .select("id, title, claim_no, court, data, updated_at")
+      .maybeSingle();
+    if (error) throw new Error(error.message);
+    if (!row) throw new Error("Case not found");
+    return row;
+  });
+
+// Fresh analysis from an uploaded bundle. Posts the file descriptors to the engine
+// and seeds a new case from the AppData it returns (mirrors createDemoCase's insert).
+export const analyzeBundle = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: { files: Array<{ name: string; type: string; size: number }> }) =>
+    z.object({
+      files: z.array(z.object({ name: z.string(), type: z.string(), size: z.number() })),
+    }).parse(input),
+  )
+  .handler(async ({ data, context }) => {
+    const appData = await callEngine({ files: data.files });
+    const { supabase, userId } = context;
+    const { data: prof } = await supabase
+      .from("profiles").select("firm_id").eq("id", userId).maybeSingle();
+    if (!prof?.firm_id) throw new Error("No firm");
+    const m = (appData as any).meta ?? {};
+    const { data: row, error } = await supabase
+      .from("cases")
+      .insert({
+        firm_id: prof.firm_id,
+        title: m.case ?? "Analysed Case",
+        claim_no: m.claim_no ?? null,
+        court: m.court ?? null,
+        data: appData as unknown as Json,
+        created_by: userId,
+      })
+      .select("id")
+      .single();
+    if (error) throw new Error(error.message);
+    return row;
+  });
+
 export const createDemoCase = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {

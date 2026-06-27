@@ -202,27 +202,6 @@ function CasePage() {
   );
 }
 
-function FloatingInspector({
-  x, y, children,
-}: { x: number; y: number; containerSelector?: boolean; children: React.ReactNode }) {
-  // Clamp the popover inside the visible viewport-ish area.
-  const W = 360, H = 460;
-  const left = Math.max(8, Math.min(x + 18, (typeof window !== "undefined" ? window.innerWidth : 1200) - W - 16));
-  const top = Math.max(8, y - 40);
-  return (
-    <div
-      className="absolute z-30 animate-in fade-in zoom-in-95 duration-150"
-      style={{ left, top, width: W, height: H }}
-    >
-      <div
-        className="h-full w-full overflow-hidden rounded-sm border shadow-[0_32px_70px_-25px_rgba(20,17,13,0.55)]"
-        style={{ borderColor: COLORS.hair, background: COLORS.panel }}
-      >
-        {children}
-      </div>
-    </div>
-  );
-}
 
 function ViewToggle({ view, setView }: { view: View; setView: (v: View) => void }) {
   const opts: Array<{ k: View; label: string }> = [

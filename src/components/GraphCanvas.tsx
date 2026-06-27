@@ -16,14 +16,17 @@ interface Props {
   onSelect: (id: string | null) => void;
   onHover: (id: string | null) => void;
   onSelectEdge: (e: DataEdge | null) => void;
-  /** Pixel radius of an empty hole at the centre (for an overlay card). */
+  /** Pixel radius of an empty circular hole at the centre (for an overlay card). */
   centerHole?: number;
+  /** Elliptical hole (overrides centerHole). Pushes free nodes outside the ellipse. */
+  centerHoleRect?: { rx: number; ry: number };
   /** Hide the default "PLEADING" hub disc (use when an overlay card sits there). */
   hideHub?: boolean;
   /** Called when a node is clicked, with container-relative pixel coords. */
   onNodeClickScreen?: (id: string, x: number, y: number) => void;
   /** Imperative API ref: caller can pan/zoom to a set of node ids. */
   apiRef?: React.MutableRefObject<{ focusNodes: (ids: string[]) => void } | null>;
+
 }
 
 type GraphNode = DataNode & {
@@ -51,10 +54,12 @@ export default function GraphCanvas({
   onHover,
   onSelectEdge,
   centerHole = 0,
+  centerHoleRect,
   hideHub = false,
   onNodeClickScreen,
   apiRef,
 }: Props) {
+
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const fgRef = useRef<any>(null);
   const [ForceGraph, setForceGraph] = useState<any>(null);
@@ -79,14 +84,17 @@ export default function GraphCanvas({
     return () => ro.disconnect();
   }, []);
 
-  // Compute geometry: hole radius for centre card, ring radius for propositions.
+  // Compute geometry: hole shape for centre card, ring radius for propositions.
   const geom = useMemo(() => {
     const minDim = Math.min(size.w, size.h);
-    const hole = centerHole > 0 ? centerHole : Math.max(90, minDim * 0.16);
-    const ringR = centerHole > 0 ? hole + 70 : hole;
-    const outerR = Math.max(ringR + 140, minDim * 0.46);
-    return { hole, ringR, outerR };
-  }, [size.w, size.h, centerHole]);
+    const rx = centerHoleRect?.rx ?? (centerHole > 0 ? centerHole : Math.max(90, minDim * 0.16));
+    const ry = centerHoleRect?.ry ?? (centerHole > 0 ? centerHole : Math.max(90, minDim * 0.16));
+    const hole = Math.min(rx, ry);
+    // Place propositions on an ellipse just outside the card.
+    const ringRx = rx + 32;
+    const ringRy = ry + 32;
+    return { hole, rx, ry, ringRx, ringRy };
+  }, [size.w, size.h, centerHole, centerHoleRect]);
 
   const graph = useMemo(() => {
     const nodes: GraphNode[] = data.nodes.map((n) => ({ ...n }));
@@ -101,63 +109,68 @@ export default function GraphCanvas({
     const props = nodes.filter((n) => n.layer === "proposition");
     props.forEach((p, i) => {
       const a = (i / props.length) * Math.PI * 2 - Math.PI / 2;
-      p.fx = Math.cos(a) * geom.ringR;
-      p.fy = Math.sin(a) * geom.ringR;
+      p.fx = Math.cos(a) * geom.ringRx;
+      p.fy = Math.sin(a) * geom.ringRy;
     });
     const links: GraphLink[] = edges.map((e) => ({
       source: e.source, target: e.target, rel: e.rel, raw: e,
     }));
     return { nodes, links };
-  }, [data, mode, geom.ringR]);
+  }, [data, mode, geom.ringRx, geom.ringRy]);
 
-  // Apply a centre-hole repulsion force when the hole is large.
+  // Apply a centre-hole repulsion + tighter bounds so nodes stay on-screen.
   useEffect(() => {
     const fg = fgRef.current;
     if (!fg) return;
     try {
       const sim = fg.d3Force ? fg : null;
       if (!sim) return;
-      fg.d3Force("charge")?.strength(-110).distanceMax(500);
+      fg.d3Force("charge")?.strength(-70).distanceMax(260);
+      // Elliptical hole repulsion.
       const holeForce = (alpha: number) => {
-        const r0 = geom.hole + 30;
+        const rx = geom.rx + 18;
+        const ry = geom.ry + 18;
         for (const n of graph.nodes as any[]) {
           if (n.layer === "proposition") continue;
           const x = n.x ?? 0, y = n.y ?? 0;
-          const d = Math.sqrt(x * x + y * y) || 0.0001;
-          if (d < r0) {
-            const push = (r0 - d) * 0.25 * alpha * 4;
-            n.vx = (n.vx ?? 0) + (x / d) * push;
-            n.vy = (n.vy ?? 0) + (y / d) * push;
+          const nx = x / rx, ny = y / ry;
+          const d = Math.sqrt(nx * nx + ny * ny) || 0.0001;
+          if (d < 1) {
+            // Push along the ellipse normal direction.
+            const push = (1 - d) * 1.6 * alpha;
+            n.vx = (n.vx ?? 0) + (nx / d) * push * rx * 0.06;
+            n.vy = (n.vy ?? 0) + (ny / d) * push * ry * 0.06;
           }
         }
       };
       fg.d3Force("centerHole", holeForce);
-      // Elastic bounds: pull nodes back smoothly when outside viewport, no hard clamp.
+      // Strong elastic bounds so nothing flies out of the visible canvas.
       const boundsForce = (alpha: number) => {
-        const padX = 60;
-        const padY = 60;
+        const padX = 50;
+        const padY = 50;
         const maxX = size.w / 2 - padX;
         const maxY = size.h / 2 - padY;
         for (const n of graph.nodes as any[]) {
           if (n.fx != null || n.fy != null) continue;
           const x = n.x ?? 0, y = n.y ?? 0;
           if (Math.abs(x) > maxX) {
-            n.vx = (n.vx ?? 0) - (x - Math.sign(x) * maxX) * 0.08 * alpha;
+            n.vx = (n.vx ?? 0) - (x - Math.sign(x) * maxX) * 0.28 * alpha;
           }
           if (Math.abs(y) > maxY) {
-            n.vy = (n.vy ?? 0) - (y - Math.sign(y) * maxY) * 0.08 * alpha;
+            n.vy = (n.vy ?? 0) - (y - Math.sign(y) * maxY) * 0.28 * alpha;
           }
         }
       };
       fg.d3Force("bounds", boundsForce);
       const linkF = fg.d3Force("link");
       if (linkF) {
-        linkF.distance((l: any) => (l.rel === "belongs_to" ? 22 : 70));
-        linkF.strength((l: any) => (l.rel === "belongs_to" ? 0.9 : 0.25));
+        linkF.distance((l: any) => (l.rel === "belongs_to" ? 20 : 48));
+        linkF.strength((l: any) => (l.rel === "belongs_to" ? 0.95 : 0.35));
       }
       fg.d3ReheatSimulation();
     } catch {/* noop */}
-  }, [ForceGraph, geom.hole, graph.nodes, size.w, size.h]);
+  }, [ForceGraph, geom.rx, geom.ry, graph.nodes, size.w, size.h]);
+
 
   // Expose imperative focusNodes(ids): pan/zoom to the centroid of the given nodes.
   useEffect(() => {

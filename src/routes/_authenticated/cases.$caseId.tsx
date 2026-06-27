@@ -22,7 +22,7 @@ function CasePage() {
 
   const [row, setRow] = useState<any>(null);
   const [err, setErr] = useState<string | null>(null);
-  const [view, setView] = useState<View>("stress");
+  const [view, setView] = useState<View>("graph");
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [selectedEdge, setSelectedEdge] = useState<DataEdge | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);

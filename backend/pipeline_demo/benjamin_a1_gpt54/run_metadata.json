@@ -1,0 +1,14 @@
+{
+  "run_id": "phase2_live",
+  "timestamp": "2026-06-27T16:55:34+00:00",
+  "case_id": "cms_synthetic",
+  "source_phase1_dir": "outputs/phase1_live_with_reasoning",
+  "config_path": "configs/default.yaml",
+  "prompt_id": "claim_robustness_review.v1",
+  "llm_provider": "azure_openai",
+  "llm_model_id": "gpt-5.4-benjamin",
+  "claim_evidence_top_k": 5,
+  "claim_reports": 33,
+  "warnings": [],
+  "errors": []
+}

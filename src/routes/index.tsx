@@ -76,53 +76,55 @@ function Page() {
     <div className="flex min-h-screen flex-col bg-bg text-ink">
       {/* Header */}
       <header
-        className="border-b px-4 py-3 sm:px-6"
-        style={{ borderColor: COLORS.hair, background: `${COLORS.panel}CC`, backdropFilter: "blur(8px)" }}
+        className="border-b px-5 py-4 sm:px-8"
+        style={{ borderColor: COLORS.hair, background: COLORS.panel }}
       >
-        <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-ink-dim">
-              <span style={{ color: COLORS.accent }}>●</span>
+            <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.28em] text-ink-dim">
+              <span
+                className="inline-block h-1.5 w-1.5 rounded-full"
+                style={{ background: COLORS.ink }}
+              />
               Pleading-to-Proof · Coherence Console
             </div>
-            <h1 className="mt-0.5 font-display text-xl text-ink sm:text-2xl">
-              {caseTitle[0]}
-              <span className="mx-1.5 italic text-ink-dim">v</span>
-              {caseTitle[1]}
+            <h1 className="mt-1.5 font-display text-[26px] leading-tight text-ink sm:text-[30px]">
+              {caseTitle[0]?.trim()}
+              <span className="mx-2 italic font-normal text-ink-dim">v.</span>
+              {caseTitle[1]?.trim()}
             </h1>
-            <div className="mt-0.5 font-mono text-[11px] text-ink-dim">
-              {data.meta.claim_no} · {data.meta.court}
+            <div className="mt-1 font-mono text-[11px] tracking-wide text-ink-dim">
+              {data.meta.claim_no} &nbsp;·&nbsp; {data.meta.court}
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-end gap-2">
             <ModeToggle mode={mode} setMode={setMode} />
-            <StatChip
-              label="readiness"
-              value={`${data.stats.readiness}/100`}
-              color={
-                data.stats.readiness >= 70
-                  ? COLORS.accepted
-                  : data.stats.readiness >= 30
-                    ? COLORS.legal
-                    : COLORS.rejected
-              }
-            />
-            <StatChip
-              label="own-goal"
-              value={`${data.stats.own_goal}/10`}
-              color={COLORS.orange}
-            />
-            <StatChip
-              label="exposure"
-              value={`${data.stats.exposure_from}→${data.stats.exposure_to}`}
-              color={COLORS.accent}
-            />
-            <StatChip label="claims" value={String(data.stats.claims)} color={COLORS.inkDim} />
+            <div className="ml-1 flex flex-wrap gap-2">
+              <StatChip
+                label="trial readiness"
+                value={`${data.stats.readiness}/100`}
+                color={
+                  data.stats.readiness >= 70
+                    ? COLORS.accepted
+                    : data.stats.readiness >= 30
+                      ? COLORS.legal
+                      : COLORS.rejected
+                }
+              />
+              <StatChip
+                label="own goals"
+                value={`${data.stats.own_goal}/10`}
+                color={COLORS.orange}
+              />
+              <StatChip
+                label="exposure"
+                value={`${data.stats.exposure_from} → ${data.stats.exposure_to}`}
+                color={COLORS.ink}
+              />
+              <StatChip label="claims" value={String(data.stats.claims)} color={COLORS.inkDim} />
+            </div>
           </div>
-        </div>
-        <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.25em] text-ink-dim">
-          LLM local · solver global · lawyer in control
         </div>
       </header>
 

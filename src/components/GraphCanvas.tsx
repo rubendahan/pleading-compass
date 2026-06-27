@@ -156,11 +156,11 @@ export default function GraphCanvas({
     return (
       <div
         ref={wrapRef}
-        className="relative h-full w-full overflow-hidden rounded-lg border bg-bg"
-        style={{ borderColor: COLORS.hair }}
+        className="relative h-full w-full overflow-hidden rounded-sm border"
+        style={{ borderColor: COLORS.hair, background: COLORS.panel }}
       >
         <div className="absolute inset-0 grid place-items-center text-sm text-ink-dim">
-          <div className="font-mono uppercase tracking-widest">initialising graph…</div>
+          <div className="font-mono text-[10px] uppercase tracking-[0.25em]">initialising graph…</div>
         </div>
       </div>
     );

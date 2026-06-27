@@ -12,6 +12,7 @@
 [![Vite](https://img.shields.io/badge/Vite-build-646CFF?logo=vite&logoColor=white)](https://vitejs.dev)
 [![Neo4j](https://img.shields.io/badge/Neo4j-graph-008CC1?logo=neo4j&logoColor=white)](https://neo4j.com)
 [![Google Vertex AI](https://img.shields.io/badge/Google%20Vertex%20AI-embeddings-4285F4?logo=googlecloud&logoColor=white)](https://cloud.google.com/vertex-ai)
+[![EU Cellar](https://img.shields.io/badge/EU%20Cellar-data-003399)](https://op.europa.eu/en/web/cellar)
 [![Python 3.13](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)](https://www.python.org)
 
 **Team Behemoth: Benjamin Lapostolle, Daryl Lee, Ruben Dahan.** Built for the CMS x Harvey Pleading-to-Proof challenge, Hack the Law 2026.
@@ -75,6 +76,7 @@ Each tool does one clear job:
 - **Neo4j** stores the case as a graph. Every pleaded allegation and every piece of evidence is a node, and the relationships between them (supports, contradicts, supersedes, caps) are edges. The analysis is graph-native, which is what lets the front draw the evidence map.
 - **Google Vertex AI** provides the embeddings. We embed every paragraph of the bundle and every pleaded point, then retrieve by similarity, so the one clause that decides a point (a change order, an acceptance certificate) surfaces instead of being lost in a long document.
 - **NVIDIA Nemotron** is the LLM the pipeline is built to run on. The model sits behind a single seam that speaks the OpenAI protocol, so pointing it at a local or hosted Nemotron is a one line environment change (set the base URL and the model name) and it runs fully on open weights.
+- **EU Publications Office (Cellar API)** supplies the data behind the second bundle. The Brightmarket GDPR dispute is grounded in real EU legislation pulled by its CELEX identifiers from the Cellar API (the GDPR and the related regulations and directives), so the legal references in that case are authentic rather than invented.
 
 ## Repository layout
 

@@ -205,3 +205,69 @@ export const listFirmMembers = createServerFn({ method: "GET" })
     });
     return (members ?? []).map((m) => ({ ...m, roles: roleByUser.get(m.id) ?? [] }));
   });
+
+// Demo-only: idempotently ensure a fixed demo admin account exists, with a
+// firm and a seeded case. Returns credentials the client can then use to
+// sign in. PUBLIC ENDPOINT — intentionally exposes a known demo password.
+export const DEMO_ADMIN_EMAIL = "demo-admin@coherence.app";
+export const DEMO_ADMIN_PASSWORD = "DemoAdmin!2026";
+
+export const ensureDemoAdmin = createServerFn({ method: "POST" }).handler(async () => {
+  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+
+  // 1) Find existing user via listUsers (no direct getByEmail in v2 admin).
+  let userId: string | null = null;
+  const { data: list } = await supabaseAdmin.auth.admin.listUsers({ page: 1, perPage: 200 });
+  const existing = list?.users?.find((u) => u.email?.toLowerCase() === DEMO_ADMIN_EMAIL);
+  if (existing) {
+    userId = existing.id;
+  } else {
+    const { data: created, error } = await supabaseAdmin.auth.admin.createUser({
+      email: DEMO_ADMIN_EMAIL,
+      password: DEMO_ADMIN_PASSWORD,
+      email_confirm: true,
+      user_metadata: { full_name: "Demo Admin" },
+    });
+    if (error || !created.user) throw new Error(error?.message || "demo user creation failed");
+    userId = created.user.id;
+  }
+
+  // 2) Ensure profile exists.
+  const { data: prof } = await supabaseAdmin
+    .from("profiles")
+    .select("id, firm_id")
+    .eq("id", userId)
+    .maybeSingle();
+  if (!prof) {
+    await supabaseAdmin
+      .from("profiles")
+      .insert({ id: userId, email: DEMO_ADMIN_EMAIL, full_name: "Demo Admin" });
+  }
+
+  // 3) Ensure firm + admin role + seeded case.
+  let firmId = prof?.firm_id ?? null;
+  if (!firmId) {
+    const { data: firm, error: fErr } = await supabaseAdmin
+      .from("firms")
+      .insert({ name: "Demo Cabinet" })
+      .select("id")
+      .single();
+    if (fErr || !firm) throw new Error(fErr?.message || "firm insert failed");
+    firmId = firm.id;
+    await supabaseAdmin.from("profiles").update({ firm_id: firmId }).eq("id", userId);
+    await supabaseAdmin
+      .from("user_roles")
+      .insert({ user_id: userId, role: "firm_admin", firm_id: firmId });
+    const m = (demoCase as any).meta ?? {};
+    await supabaseAdmin.from("cases").insert({
+      firm_id: firmId,
+      title: m.case ?? "Demo Case",
+      claim_no: m.claim_no ?? null,
+      court: m.court ?? null,
+      data: demoCase,
+      created_by: userId,
+    });
+  }
+
+  return { email: DEMO_ADMIN_EMAIL, password: DEMO_ADMIN_PASSWORD };
+});

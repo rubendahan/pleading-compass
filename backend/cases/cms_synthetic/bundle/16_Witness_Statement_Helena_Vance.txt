@@ -1,0 +1,30 @@
+Claim No. HT-2025-000231
+Claimant — First witness  |  H. Vance  |  Exhibit "HV1"  |  13 March 2026
+Claim No. HT-2025-000231
+IN THE HIGH COURT OF JUSTICE
+BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES
+TECHNOLOGY AND CONSTRUCTION COURT (KBD)
+
+B E T W E E N :
+MERIDIAN RETAIL GROUP PLC
+Claimant
+- and -
+TECHFLOW SOLUTIONS LIMITED
+Defendant
+
+WITNESS STATEMENT OF HELENA VANCE
+1.	I am Helena Vance, Programme Director at Meridian Retail Group plc. I make this statement from my own knowledge, save where I indicate otherwise. I had overall responsibility for the Platform implementation programme on Meridian’s side.
+2.	I was the main day-to-day contact with TechFlow. I worked closely with their Project Director, Marcus Reilly.
+3.	In around August 2024, our marketing team and the board decided we wanted a customer loyalty capability built into the new platform. I asked TechFlow to add a loyalty module. I accept this was not in the original Statement of Work. It was documented in Change Order No. 3, which my colleague Priya Nair signed on 2 September 2024, and which also moved the go-live date to 18 November 2024.
+4.	As we approached go-live, Marcus Reilly recommended in writing that we delay until January 2025, after the Christmas period. I decided that we should go live on 18 November 2024. The board was firm that we needed the platform live for peak trading, and I took the decision to proceed despite TechFlow’s advice. With hindsight, going live just before Black Friday was optimistic.
+5.	After go-live there were real problems with the stock-synchronisation module. Tills in some stores showed the wrong stock numbers, and on promotional lines we oversold in places. These problems were serious and took several weeks to bring under control. They caused a great deal of disruption for store teams during our busiest period.
+6.	There were also occasions when tills went down. I could not say for how long in total, and I understand some of the connectivity problems were to do with our own store broadband rather than the platform itself, but from where I sat it felt constant during the early weeks.
+7.	I considered that the platform we were given was not what we had paid for, and that is why Meridian decided to bring the relationship to an end.
+
+Statement of Truth
+I believe that the facts stated in this witness statement are true. I understand that proceedings for contempt of court may be brought against anyone who makes, or causes to be made, a false statement in a document verified by a statement of truth without an honest belief in its truth.
+
+Signed:	............................................
+Name:	Helena Vance
+Position:	Programme Director, Meridian Retail Group plc
+Dated:	

@@ -1,0 +1,5 @@
+WITNESS STATEMENT — TOMAS REYES (SECURITY LEAD, COBALT)
+
+Witness Statement of Tomas Reyes, Security Lead at Cobalt.
+
+Our investigation traced the initial intrusion to a Brightmarket administrator account on which multi-factor authentication had been switched off on the customer side, despite our June 2025 guidance to enable it.

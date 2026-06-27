@@ -1,0 +1,405 @@
+case_id: eu_brightmarket
+case_name: Brightmarket Retail GmbH  v  Cobalt Cloud Analytics Ltd
+court: Commercial Court (Ireland) — applying EU law
+claim_number: "2026/0417 COM"
+pleading: pleading.md
+bundle_index: bundle_index.md
+bundle_dir: bundle
+source_documents_dir: null
+evidence:
+  - id: E003
+    tab: 3
+    path: bundle/03_Master_Subscription_Agreement.txt
+    type: contract
+    format: text
+    date: "2017-03-01"
+    period: null
+    description_hint: Master Subscription Agreement
+    cited_by_claim_ids: []
+  - id: E004
+    tab: 4
+    path: bundle/04_Data_Processing_Agreement.txt
+    type: contract
+    format: text
+    date: "2017-03-01"
+    period: null
+    description_hint: Data Processing Agreement
+    cited_by_claim_ids: []
+  - id: E005
+    tab: 5
+    path: bundle/05_Statement_of_Work.txt
+    type: contract
+    format: text
+    date: "2017-03-01"
+    period: null
+    description_hint: Statement of Work
+    cited_by_claim_ids: []
+  - id: E006
+    tab: 6
+    path: bundle/06_Order_Form.txt
+    type: contract
+    format: text
+    date: "2024-04-15"
+    period: null
+    description_hint: Order Form
+    cited_by_claim_ids: []
+  - id: E007
+    tab: 7
+    path: bundle/07_Data_Processing_Addendum_GDPR_2018.txt
+    type: contract
+    format: text
+    date: "2018-05-20"
+    period: null
+    description_hint: Data Processing Addendum (GDPR, 2018)
+    cited_by_claim_ids: []
+  - id: E008
+    tab: 8
+    path: bundle/08_Email_breach_notification_Cobalt_to_Brightmarket.txt
+    type: correspondence
+    format: text
+    date: "2025-10-11"
+    period: null
+    description_hint: Email — breach notification (Cobalt to Brightmarket)
+    cited_by_claim_ids: []
+  - id: E009
+    tab: 9
+    path: bundle/09_Email_security_hardening_guidance_Cobalt.txt
+    type: correspondence
+    format: text
+    date: "2025-06-03"
+    period: null
+    description_hint: Email — security hardening guidance (Cobalt)
+    cited_by_claim_ids: []
+  - id: E010
+    tab: 10
+    path: bundle/10_Email_internal_model_training_note_Cobalt.txt
+    type: correspondence
+    format: text
+    date: "2025-02-18"
+    period: null
+    description_hint: Email — internal model-training note (Cobalt)
+    cited_by_claim_ids: []
+  - id: E011
+    tab: 11
+    path: bundle/11_International_Transfer_Annex_2021_SCC_Module.txt
+    type: contract
+    format: text
+    date: "2021-11-30"
+    period: null
+    description_hint: International Transfer Annex / 2021 SCC Module
+    cited_by_claim_ids: []
+  - id: E012
+    tab: 12
+    path: bundle/12_Internal_Security_Review_Brightmarket.txt
+    type: record
+    format: text
+    date: "2025-11-05"
+    period: null
+    description_hint: Internal Security Review (Brightmarket)
+    cited_by_claim_ids: []
+  - id: E013
+    tab: 13
+    path: bundle/13_Defect_Log.txt
+    type: record
+    format: text
+    date: "2025-09-20"
+    period: null
+    description_hint: Defect Log
+    cited_by_claim_ids: []
+  - id: E014
+    tab: 14
+    path: bundle/14_Data_Protection_Impact_Assessment.txt
+    type: record
+    format: text
+    date: "2024-05-02"
+    period: null
+    description_hint: Data Protection Impact Assessment
+    cited_by_claim_ids: []
+  - id: E015
+    tab: 15
+    path: bundle/15_Acquisition_Clearance_Memorandum.txt
+    type: record
+    format: text
+    date: "2024-09-12"
+    period: null
+    description_hint: Acquisition Clearance Memorandum
+    cited_by_claim_ids: []
+  - id: E016
+    tab: 16
+    path: bundle/16_Witness_Statement_Lena_Brandt_DPO_Brightmarket.txt
+    type: witness
+    format: text
+    date: "2026-03-15"
+    period: null
+    description_hint: Witness Statement — Lena Brandt (DPO, Brightmarket)
+    cited_by_claim_ids: []
+  - id: E017
+    tab: 17
+    path: bundle/17_Witness_Statement_Tomas_Reyes_Security_Lead_Coba.txt
+    type: witness
+    format: text
+    date: "2026-03-20"
+    period: null
+    description_hint: Witness Statement — Tomas Reyes (Security Lead, Cobalt)
+    cited_by_claim_ids: []
+  - id: E018
+    tab: 18
+    path: bundle/18_Witness_Statement_Anya_Sorokin_Programme_Lead_Br.txt
+    type: witness
+    format: text
+    date: "2026-03-18"
+    period: null
+    description_hint: Witness Statement — Anya Sorokin (Programme Lead, Brightmarket)
+    cited_by_claim_ids: []
+  - id: E019
+    tab: 19
+    path: bundle/19_Expert_Report_Dr_Idris_Vale_Forensic_Security_jo.txt
+    type: expert
+    format: text
+    date: "2026-04-30"
+    period: null
+    description_hint: Expert Report — Dr Idris Vale (Forensic / Security, jointly instructed)
+    cited_by_claim_ids: []
+  - id: E020
+    tab: 20
+    path: bundle/20_Expert_Report_M_Caron_Quantum_Claimant_instructe.txt
+    type: expert
+    format: text
+    date: "2026-04-30"
+    period: null
+    description_hint: Expert Report — M. Caron (Quantum, Claimant-instructed)
+    cited_by_claim_ids: []
+  - id: E021
+    tab: 21
+    path: bundle/21_Expert_Report_Prof_Helena_Strand_Forensic_Securi.txt
+    type: expert
+    format: text
+    date: "2026-05-12"
+    period: null
+    description_hint: Expert Report — Prof. Helena Strand (Forensic / Security, Claimant-instructed)
+    cited_by_claim_ids: []
+  - id: E022
+    tab: 22
+    path: bundle/22_Expert_Report_Dr_Pieter_Roos_Quantum_Defendant_i.txt
+    type: expert
+    format: text
+    date: "2026-05-12"
+    period: null
+    description_hint: Expert Report — Dr Pieter Roos (Quantum, Defendant-instructed)
+    cited_by_claim_ids: []
+  - id: E023
+    tab: 23
+    path: bundle/23_Letter_Data_Protection_Commission_Ireland.txt
+    type: correspondence
+    format: text
+    date: "2025-12-02"
+    period: null
+    description_hint: Letter — Data Protection Commission (Ireland)
+    cited_by_claim_ids: []
+  - id: E024
+    tab: 24
+    path: bundle/24_Breach_Notification_to_the_DPC_Brightmarket.txt
+    type: record
+    format: text
+    date: "2025-10-16"
+    period: null
+    description_hint: Breach Notification to the DPC (Brightmarket)
+    cited_by_claim_ids: []
+  - id: E025
+    tab: 25
+    path: bundle/25_Sub_processor_List_Transfer_Schedule.txt
+    type: contract
+    format: text
+    date: "2024-04-15"
+    period: null
+    description_hint: Sub-processor List & Transfer Schedule
+    cited_by_claim_ids: []
+  - id: E026
+    tab: 26
+    path: bundle/26_Penetration_Test_Report_pre_breach.txt
+    type: record
+    format: text
+    date: "2025-08-08"
+    period: null
+    description_hint: Penetration Test Report (pre-breach)
+    cited_by_claim_ids: []
+  - id: E027
+    tab: 27
+    path: bundle/27_Certification_Surveillance_Audit_Report_ISO_2700.txt
+    type: record
+    format: text
+    date: "2016-11-20"
+    period: null
+    description_hint: Certification / Surveillance-Audit Report (ISO 27001)
+    cited_by_claim_ids: []
+  - id: E028
+    tab: 28
+    path: bundle/28_Witness_Statement_Marcus_Feld_CTO_Cobalt.txt
+    type: witness
+    format: text
+    date: "2026-03-22"
+    period: null
+    description_hint: Witness Statement — Marcus Feld (CTO, Cobalt)
+    cited_by_claim_ids: []
+  - id: E029
+    tab: 29
+    path: bundle/29_Incident_Timeline_System_Logs_extract.txt
+    type: record
+    format: text
+    date: "2025-10-12"
+    period: null
+    description_hint: Incident Timeline / System Logs (extract)
+    cited_by_claim_ids: []
+  - id: E030
+    tab: 30
+    path: bundle/30_Email_thread_pre_contract_sales_correspondence.txt
+    type: correspondence
+    format: text
+    date: "2016-12-05"
+    period: null
+    description_hint: Email thread — pre-contract sales correspondence
+    cited_by_claim_ids: []
+  - id: E031
+    tab: 31
+    path: bundle/31_Backup_Disaster_Recovery_Runbook_Restore_Test.txt
+    type: record
+    format: text
+    date: "2025-07-15"
+    period: null
+    description_hint: Backup & Disaster-Recovery Runbook + Restore Test
+    cited_by_claim_ids: []
+  - id: E032
+    tab: 32
+    path: bundle/32_Cookie_Consent_Configuration_Log.txt
+    type: record
+    format: text
+    date: "2025-09-01"
+    period: null
+    description_hint: Cookie / Consent Configuration Log
+    cited_by_claim_ids: []
+  - id: E033
+    tab: 33
+    path: bundle/33_DSAR_Erasure_Register_extract.txt
+    type: record
+    format: text
+    date: "2025-10-20"
+    period: null
+    description_hint: DSAR & Erasure Register (extract)
+    cited_by_claim_ids: []
+  - id: E034
+    tab: 34
+    path: bundle/34_Procurement_Due_Diligence_Note_Brightmarket.txt
+    type: record
+    format: text
+    date: "2016-12-20"
+    period: null
+    description_hint: Procurement Due-Diligence Note (Brightmarket)
+    cited_by_claim_ids: []
+  - id: E035
+    tab: 35
+    path: bundle/35_Service_Level_Annex_availability_target.txt
+    type: contract
+    format: text
+    date: "2017-03-01"
+    period: null
+    description_hint: Service Level Annex (availability target)
+    cited_by_claim_ids: []
+  - id: E036
+    tab: 36
+    path: bundle/36_Outage_Impact_Assessment_October_2025.txt
+    type: record
+    format: text
+    date: "2025-10-12"
+    period: null
+    description_hint: Outage Impact Assessment (October 2025)
+    cited_by_claim_ids: []
+  - id: E037
+    tab: 37
+    path: bundle/37_Email_post_breach_follow_up_Brightmarket_to_Coba.txt
+    type: correspondence
+    format: text
+    date: "2025-10-25"
+    period: null
+    description_hint: Email — post-breach follow-up (Brightmarket to Cobalt)
+    cited_by_claim_ids: []
+  - id: E038
+    tab: 38
+    path: bundle/38_Remediation_Ticket_Register_extract.txt
+    type: record
+    format: text
+    date: "2025-10-12"
+    period: null
+    description_hint: Remediation Ticket Register (extract)
+    cited_by_claim_ids: []
+  - id: E039
+    tab: 39
+    path: bundle/39_Sub_processor_Register_extract.txt
+    type: contract
+    format: text
+    date: "2024-04-15"
+    period: null
+    description_hint: Sub-processor Register (extract)
+    cited_by_claim_ids: []
+  - id: E040
+    tab: 40
+    path: bundle/40_Data_Flow_Map_extract.txt
+    type: record
+    format: text
+    date: "2025-09-01"
+    period: null
+    description_hint: Data-Flow Map (extract)
+    cited_by_claim_ids: []
+  - id: E041
+    tab: 41
+    path: bundle/41_Access_Log_extract_analytics_tier.txt
+    type: record
+    format: text
+    date: "2025-10-12"
+    period: null
+    description_hint: Access Log (extract) — analytics tier
+    cited_by_claim_ids: []
+  - id: E042
+    tab: 42
+    path: bundle/42_Data_Processing_Agreement_DRAFT_v0_9_subject_to_.txt
+    type: contract
+    format: text
+    date: "2017-02-01"
+    period: null
+    description_hint: Data Processing Agreement — DRAFT v0.9 (subject to contract)
+    cited_by_claim_ids: []
+  - id: E043
+    tab: 43
+    path: bundle/43_Data_Processing_Agreement_EXECUTED_indemnity_cla.txt
+    type: contract
+    format: text
+    date: "2017-03-01"
+    period: null
+    description_hint: Data Processing Agreement — EXECUTED (indemnity clause 11)
+    cited_by_claim_ids: []
+  - id: E044
+    tab: 44
+    path: bundle/44_Encryption_Configuration_Note.txt
+    type: record
+    format: text
+    date: "2025-09-01"
+    period: null
+    description_hint: Encryption Configuration Note
+    cited_by_claim_ids: []
+  - id: E045
+    tab: 45
+    path: bundle/45_Expert_Addendum_Dr_Vale_encryption_sufficiency.txt
+    type: expert
+    format: text
+    date: "2026-05-12"
+    period: null
+    description_hint: Expert Addendum — Dr Vale (encryption sufficiency)
+    cited_by_claim_ids: []
+  - id: E046
+    tab: 46
+    path: bundle/46_Data_Processing_Agreement_clause_10_DPIA_allocat.txt
+    type: contract
+    format: text
+    date: "2017-03-01"
+    period: null
+    description_hint: Data Processing Agreement — clause 10 (DPIA allocation)
+    cited_by_claim_ids: []

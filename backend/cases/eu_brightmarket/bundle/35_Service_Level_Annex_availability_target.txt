@@ -1,0 +1,9 @@
+SERVICE LEVEL ANNEX (AVAILABILITY TARGET)
+
+Service Level Annex to the Master Subscription Agreement, between Brightmarket Retail GmbH and Cobalt Cloud Analytics Ltd.
+
+The Platform has a monthly availability target of 99.9%.
+
+This figure is a service-level target only and is not a warranty or guarantee of uptime; the Customer's sole and exclusive remedy for any failure to meet the target is the service credits set out in paragraph 4, and the Supplier shall have no liability in damages for unavailability.
+
+Service credits are capped at 10% of the monthly fee for the affected month and are the only compensation payable for a missed availability target.

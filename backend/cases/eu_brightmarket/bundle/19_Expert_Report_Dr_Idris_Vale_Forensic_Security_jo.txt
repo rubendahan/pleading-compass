@@ -1,0 +1,13 @@
+EXPERT REPORT — DR IDRIS VALE (FORENSIC / SECURITY, JOINTLY INSTRUCTED)
+
+Expert Report of Dr Idris Vale, instructed jointly on forensic and security issues.
+
+On the forensic evidence, approximately 14,000 customer records were actually exfiltrated. The remainder of the dataset was pseudonymised at rest and shows no evidence of access; the figure of 2.3 million is not supported by the logs.
+
+In my opinion the pseudonymised remainder cannot be said to have been 'exposed': there is no log evidence of read access to it, and pseudonymisation materially reduced the risk to those data subjects.
+
+The export module did produce materially inaccurate revenue figures for multi-currency stores; in my opinion this is a genuine non-conformity with the agreed specification.
+
+The proximate cause of the intrusion was a compromised administrator credential on an account where MFA had been disabled by the Customer; this was a substantial contributing cause of the breach.
+
+I found no evidence that any breached data was unrecoverable; restoration of the affected records was not, on the material I reviewed, in issue.

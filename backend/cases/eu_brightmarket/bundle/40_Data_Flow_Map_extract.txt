@@ -1,0 +1,5 @@
+DATA-FLOW MAP (EXTRACT)
+
+Data-Flow Map (extract) — Brightmarket processing environments.
+
+The India development sandbox processes synthetic and de-identified test data only; no EU customer personal data flows to the India environment.

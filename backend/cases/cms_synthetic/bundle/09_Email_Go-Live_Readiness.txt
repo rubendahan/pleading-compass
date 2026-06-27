@@ -1,0 +1,34 @@
+EMAIL CORRESPONDENCE
+Thread: Go-live decision
+From:
+Marcus Reilly <m.reilly@techflow-solutions.co.uk>
+To:
+Helena Vance <h.vance@meridianretail.co.uk>
+Cc:
+Priya Nair <p.nair@meridianretail.co.uk>; Gregory Manton <g.manton@techflow-solutions.co.uk>
+Sent:
+24 October 2024 16:52
+Subject:
+RECOMMENDATION: defer go-live to January 2025
+
+Helena,
+Following today’s readiness review, I want to put our recommendation in writing. The core build is in good shape and Phase 1 passed the bulk of UAT, but the loyalty module added under Change Order 3 is still being hardened and we have a handful of stock-sync issues we would like to close out under controlled conditions.
+Our clear recommendation is to defer go-live to mid-January 2025, after the peak trading period. Going live on 18 November, immediately before Black Friday and Christmas, carries real risk and removes our contingency. We can hold the 18 November date if Meridian instructs us to, but we would be doing so against our advice.
+Please let me know how you wish to proceed.
+Marcus Reilly | Project Director | TechFlow Solutions
+
+From:
+Helena Vance <h.vance@meridianretail.co.uk>
+To:
+Marcus Reilly <m.reilly@techflow-solutions.co.uk>
+Cc:
+Priya Nair <p.nair@meridianretail.co.uk>
+Sent:
+24 October 2024 18:20
+Subject:
+RE: RECOMMENDATION: defer go-live to January 2025
+
+Marcus,
+Thank you, but the board has been clear that we need the new platform live for peak trading — that is the whole point of doing this now. Missing Black Friday and Christmas is not acceptable commercially.
+Please proceed to go-live on 18 November 2024 as planned. I understand your team’s reservations and I am content to take that risk on Meridian’s side. Let’s get the remaining stock-sync items onto the snag list and press on.
+Helena Vance | Programme Director | Meridian Retail Group

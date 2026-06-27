@@ -1,0 +1,7 @@
+INCIDENT TIMELINE / SYSTEM LOGS (EXTRACT)
+
+Incident Timeline and System Logs (extract), compiled 12 October 2025.
+
+Access logging for the affected storage tier was incomplete for part of the incident window owing to a log-rotation gap; the number of records actually read cannot be determined from the available logs.
+
+A security-group rule permitting inbound access from any address was present on a staging subnet; the change history needed to establish how long it had been in place had been truncated by retention limits.

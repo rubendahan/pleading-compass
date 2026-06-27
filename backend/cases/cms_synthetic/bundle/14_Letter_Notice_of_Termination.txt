@@ -1,0 +1,16 @@
+CALDWELL PRYCE LLP
+Solicitors  |  18 Bishopsgate, London EC2N 4AJ
+Our ref: CP/MRG/4471  |  By email and post
+
+The Directors
+TechFlow Solutions Limited
+Optimum Park, 12 Brindley Way, Reading RG1 8DF
+20 January 2025
+Dear Sirs
+Meridian Retail Group plc – Master Services Agreement dated 14 March 2024 – NOTICE OF TERMINATION AND LETTER BEFORE ACTION
+We act for Meridian Retail Group plc ("our client"). We write in connection with your design, build and implementation of the inventory and EPOS platform under the above Agreement ("the MSA").
+Our client’s position is that you are in repudiatory breach of the MSA. In particular: (i) you delivered the Platform late; (ii) following go-live on 18 November 2024 the Platform suffered serious and repeated failures, including critical defects in the stock-synchronisation module; and (iii) the Platform was not of satisfactory quality nor fit for purpose. These failures occurred during our client’s most important trading period and caused substantial loss.
+Our client accepts your conduct as terminating the MSA with immediate effect and reserves all of its rights. Our client will be seeking damages, including wasted expenditure and loss of profit during the peak trading period, which are substantial.
+This letter is sent in accordance with the Practice Direction on Pre-Action Conduct. We require your substantive response within 14 days.
+Yours faithfully
+Caldwell Pryce LLP

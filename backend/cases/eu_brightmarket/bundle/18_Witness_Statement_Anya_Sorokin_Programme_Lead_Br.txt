@@ -1,0 +1,9 @@
+WITNESS STATEMENT — ANYA SOROKIN (PROGRAMME LEAD, BRIGHTMARKET)
+
+Witness Statement of Anya Sorokin, Programme Lead at Brightmarket.
+
+After Cobalt acquired NorthStar I found it harder to export our data to alternative tools, and I considered we were being locked into the Cobalt platform.
+
+I understand that the forecasting model was used to make automated decisions about individual customers, although I was not involved in that workstream and did not see it operate.
+
+I am told by our marketing team that Cobalt's scripts set tracking cookies on the storefront without consent; I have not reviewed the configuration myself.

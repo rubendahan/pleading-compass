@@ -1,0 +1,32 @@
+EMAIL CORRESPONDENCE
+Thread: New requirement — loyalty module
+From:
+Helena Vance <h.vance@meridianretail.co.uk>
+To:
+Marcus Reilly <m.reilly@techflow-solutions.co.uk>
+Cc:
+Priya Nair <p.nair@meridianretail.co.uk>
+Sent:
+21 August 2024 09:14
+Subject:
+New requirement — customer loyalty module
+
+Marcus,
+Following the marketing review, the board wants a customer loyalty capability included in the platform before we go live — points accrual, redemption at the till, and a member database. I appreciate this was not in the original SOW, but it is now a priority for us.
+Can you scope this as a change and let us have the cost and any timetable impact? We accept there may be a knock-on to the go-live date and we are willing to discuss a revised date to accommodate it.
+Helena
+
+From:
+Marcus Reilly <m.reilly@techflow-solutions.co.uk>
+To:
+Helena Vance <h.vance@meridianretail.co.uk>
+Cc:
+Priya Nair <p.nair@meridianretail.co.uk>
+Sent:
+27 August 2024 15:39
+Subject:
+RE: New requirement — customer loyalty module
+
+Helena,
+Thanks. We’ve scoped the loyalty module. The additional cost is £180,000 and, given the additional build and test, we will need to move go-live from 1 October to 18 November 2024. I’ll issue Change Order 3 for Priya’s signature to confirm both the scope and the revised date.
+Marcus

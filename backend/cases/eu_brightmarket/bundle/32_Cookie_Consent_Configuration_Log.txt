@@ -1,0 +1,5 @@
+COOKIE / CONSENT CONFIGURATION LOG
+
+Cookie / Consent Configuration Log — Brightmarket storefront, 1 September 2025.
+
+A consent banner was active. In a sample of 1,000 sessions, a small number of analytics cookies were observed to fire before consent was recorded; the log does not attribute these to a specific script owner (Cobalt tag or the Customer's own tag manager).

@@ -1,0 +1,5 @@
+EXPERT ADDENDUM — DR VALE (ENCRYPTION SUFFICIENCY)
+
+Expert Addendum — Dr Idris Vale, on encryption sufficiency.
+
+I am unable to opine whether retaining 3DES on the legacy archive tier fell below the Article 32 standard; reasonable security experts may differ, and the answer turns on the residual risk of that specific tier.

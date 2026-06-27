@@ -1,0 +1,7 @@
+ENCRYPTION CONFIGURATION NOTE
+
+Encryption Configuration Note — Brightmarket / Cobalt platform.
+
+Customer data at rest is encrypted with AES-256.
+
+A legacy archive tier still uses 3DES; migration of that tier to AES-256 is scheduled for Q4 2025.

@@ -1,0 +1,9 @@
+STATEMENT OF WORK
+
+Statement of Work. The Supplier shall provide hosting, analytics and an export module to the specification in Annex A.
+
+Annex B (shared responsibility): the Customer is responsible for enabling and enforcing multi-factor authentication on its own administrator accounts and for the configuration of its endpoint access controls.
+
+Conformity of the digital service is assessed against the agreed specification and Directive (EU) 2019/770 (supply of digital content and digital services).
+
+The Customer operates and configures its own consent-management and tag-manager on the storefront; cookies and similar technologies are governed by Article 5(3) of Directive 2002/58/EC (ePrivacy) and the Customer's own cookie policy.

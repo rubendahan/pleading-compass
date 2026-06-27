@@ -1,0 +1,15 @@
+DATA PROCESSING AGREEMENT
+
+This Data Processing Agreement appoints the Supplier as processor of the customer personal data described in Schedule 1, the Customer being the controller.
+
+The Processor shall process the personal data only on the documented instructions of the Controller (Article 28(3)(a) GDPR), and shall not use it for its own purposes.
+
+The Processor shall assist the Controller, by appropriate technical and organisational measures, in responding to data-subject requests under Articles 12 to 23 GDPR, including access and erasure requests.
+
+The Processor shall implement appropriate technical and organisational measures (Article 32 GDPR). Configuration of multi-factor authentication on the Controller's administrator accounts is the Controller's responsibility (see SOW Annex B).
+
+Breach notification. The Controller shall notify the supervisory authority within 72 hours where required (Article 33(1) GDPR). The Processor shall notify the Controller without undue delay after becoming aware of a personal-data breach (Article 33(2)).
+
+On termination the Processor shall make the data available for return or export via the self-service export API; switching and portability are governed by Regulation (EU) 2023/2854 (Data Act).
+
+Nothing in this Agreement limits a data subject's right to compensation under Article 82 GDPR, liability for which is apportioned according to each party's responsibility for the damage.

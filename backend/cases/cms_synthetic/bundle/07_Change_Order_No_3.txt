@@ -1,0 +1,27 @@
+CHANGE ORDER No. 3
+under the change control procedure (clause 3, MSA dated 14 March 2024)
+Change Order Ref:	MRG-TF-CO-003
+Date:	2 September 2024
+Requested by:	Helena Vance, Programme Director, Meridian Retail Group plc
+
+1.  Description of change
+1.1  At the Customer’s request, the Supplier shall design, build and implement a customer loyalty module ("the Loyalty Module"), comprising points accrual, redemption at EPOS, and a loyalty member database. The Loyalty Module was not part of the original scope under SOW-01.
+2.  Effect on timetable
+2.1  The parties agree that, to accommodate the additional works, the go-live date is revised from 1 October 2024 to 18 November 2024. The revised date applies to the Platform as a whole.
+3.  Effect on charges
+3.1  The additional charge for the Loyalty Module is £180,000, payable on go-live.
+
+Agreed and signed by the parties:
+
+For the Customer
+
+....................................
+Name: Priya Nair
+Title: Head of Procurement
+Date: 2 September 2024
+For the Supplier
+
+....................................
+Name: Marcus Reilly
+Title: Project Director
+Date: 2 September 2024

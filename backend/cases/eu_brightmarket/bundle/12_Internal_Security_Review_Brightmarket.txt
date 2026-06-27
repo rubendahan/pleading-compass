@@ -1,0 +1,7 @@
+INTERNAL SECURITY REVIEW (BRIGHTMARKET)
+
+Internal Security Review — Brightmarket, 5 November 2025 (privileged and confidential; prepared by the Claimant's security team).
+
+Finding: our administrators had disabled multi-factor authentication on the shared admin console in March 2025, contrary to Cobalt's written hardening guidance, and this materially contributed to the credential compromise behind the breach.
+
+Recommendation: re-enable MFA immediately and review our own access-control configuration before attributing the incident externally.

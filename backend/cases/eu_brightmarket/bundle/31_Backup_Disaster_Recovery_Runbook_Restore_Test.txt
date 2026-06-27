@@ -1,0 +1,9 @@
+BACKUP & DISASTER-RECOVERY RUNBOOK + RESTORE TEST
+
+Backup & Disaster-Recovery Runbook and Restore-Test Record, 15 July 2025.
+
+Backups: hourly snapshots of the production data stores are taken and retained for 30 days, with daily off-region copies.
+
+Restore test of 15 July 2025: a full restore from snapshot recovered 99.4% of the test dataset within the four-hour recovery-time objective.
+
+The 0.6% not recovered relates to a known indexing gap in a legacy table flagged for decommissioning; it is unrelated to any specific incident.

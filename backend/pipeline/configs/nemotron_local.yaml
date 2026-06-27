@@ -1,0 +1,44 @@
+run:
+  name: cms_synthetic
+  fail_on_unsupported_evidence: false
+
+llm:
+  provider: hf_local_nemotron
+  model_id: nvidia/Llama-3.1-Nemotron-Nano-8B-v1
+  local_model_id_env: LOCAL_NEMOTRON_MODEL_ID
+  hf_token_env: HF_TOKEN
+  hf_device: auto
+  hf_device_env: LOCAL_NEMOTRON_DEVICE
+  hf_torch_dtype: auto
+  hf_torch_dtype_env: LOCAL_NEMOTRON_TORCH_DTYPE
+  hf_trust_remote_code: true
+  hf_max_input_tokens: 12000
+  hf_local_files_only: false
+  timeout_seconds: 120
+  max_output_tokens: 4096
+  temperature: 0.0
+  trace: true
+  confidence:
+    enabled: true
+    method: label_logits
+
+embeddings:
+  provider: vertex_ai
+  model_id: gemini-embedding-001
+  project_id_env: GOOGLE_CLOUD_PROJECT
+  location: us-central1
+  max_chunk_chars: 12000
+
+neo4j:
+  enabled: true
+  uri_env: NEO4J_URI
+  user_env: NEO4J_USER
+  password_env: NEO4J_PASSWORD
+  database: null
+
+phase2:
+  claim_evidence_top_k: 5
+
+outputs:
+  include_embeddings_in_json: true
+  write_llm_traces: true

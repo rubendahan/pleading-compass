@@ -85,14 +85,14 @@ export default function GraphCanvas({
       // Coherence: foreground claim↔claim, keep impact for grounding, dim provenance.
       edges = edges.filter((e) => e.kind !== "provenance" || e.rel === "asserts");
     }
-    // Pin propositions in a vertical column on the left side of the canvas.
+    // Pin propositions in a small ring at the centre — they are the pleading core
+    // around which claims and documents gravitate.
     const props = nodes.filter((n) => n.layer === "proposition");
-    const colX = -size.w * 0.18;
-    const span = Math.min(size.h * 0.85, props.length * 70);
-    const step = props.length > 1 ? span / (props.length - 1) : 0;
+    const radius = Math.max(90, Math.min(size.w, size.h) * 0.16);
     props.forEach((p, i) => {
-      p.fx = colX;
-      p.fy = -span / 2 + i * step;
+      const a = (i / props.length) * Math.PI * 2 - Math.PI / 2;
+      p.fx = Math.cos(a) * radius;
+      p.fy = Math.sin(a) * radius;
     });
     const links: GraphLink[] = edges.map((e) => ({
       source: e.source,

@@ -379,6 +379,7 @@ function ClaimRow({
   return (
     <button
       type="button"
+      data-bundle-id={claim.id}
       onClick={() => onSelect(claim.id)}
       onMouseEnter={() => onHover(claim.id)}
       onMouseLeave={() => onHover(null)}

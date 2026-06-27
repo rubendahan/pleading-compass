@@ -8,7 +8,6 @@ import PleadingView from "@/components/PleadingView";
 import BundleView from "@/components/BundleView";
 import Inspector from "@/components/Inspector";
 import GraphCanvas from "@/components/GraphCanvas";
-import BundlePiecePopover from "@/components/BundlePiecePopover";
 import AnnotatedPleading from "@/components/AnnotatedPleading";
 import Chronology from "@/components/Chronology";
 
@@ -37,8 +36,8 @@ function CasePage() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [inspectorOpen, setInspectorOpen] = useState(false);
   const [popover, setPopover] = useState<{ id: string; x: number; y: number } | null>(null);
-  const [pleadingOffset, setPleadingOffset] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
-  const pleadingDragRef = useRef<{ ox: number; oy: number; sx: number; sy: number } | null>(null);
+  const [pleadingW, setPleadingW] = useState(560);
+  const pleadingResizeRef = useRef<{ startW: number; startX: number } | null>(null);
   const graphContainerRef = useRef<HTMLDivElement | null>(null);
   const [graphSize, setGraphSize] = useState<{ w: number; h: number }>({ w: 1000, h: 700 });
   const graphApi = useRef<{ focusNodes: (ids: string[], biasX?: number) => void } | null>(null);
@@ -98,14 +97,14 @@ function CasePage() {
     return () => ro.disconnect();
   }, []);
 
-  // Drag the central pleading card by its header.
+  // Resize the docked pleading panel by dragging its right edge.
   useEffect(() => {
     function onMove(e: PointerEvent) {
-      const d = pleadingDragRef.current;
-      if (!d) return;
-      setPleadingOffset({ x: d.ox + (e.clientX - d.sx), y: d.oy + (e.clientY - d.sy) });
+      const r = pleadingResizeRef.current;
+      if (!r) return;
+      setPleadingW(Math.min(760, Math.max(380, r.startW + (e.clientX - r.startX))));
     }
-    function onUp() { pleadingDragRef.current = null; }
+    function onUp() { pleadingResizeRef.current = null; }
     window.addEventListener("pointermove", onMove);
     window.addEventListener("pointerup", onUp);
     return () => {
@@ -192,18 +191,9 @@ function CasePage() {
     setInspectorId(node.id);
 
     if (view === "graph") {
-      // A directly clicked bundle node stays where it is (just highlight + inspect).
-      // For a pleaded sentence, slide the central card left and bring its related
-      // nodes into the clear space on its right, instead of hiding them behind it.
-      if (!isBundleNode(node)) {
-        // Narrow the card (see width below) and hug it to the left edge so the focused
-        // node and its connections land in the cleared space on its right.
-        const cw = Math.min(460, graphSize.w - (inspectorOpen ? 480 : 120));
-        const L = Math.max(0, graphSize.w / 2 - cw / 2 - 40);
-        const B = Math.min(300, Math.max(180, graphSize.w * 0.13));
-        setPleadingOffset({ x: -L, y: 0 });
-        graphApi.current?.focusNodes(targetIds, B);
-      }
+      // The pleading is docked left and the graph fills the centre, so just centre the
+      // related evidence in the clear graph area.
+      graphApi.current?.focusNodes(targetIds);
     } else {
       requestAnimationFrame(() => {
         const el = document.querySelector(`[data-bundle-id="${CSS.escape(first)}"]`);
@@ -212,9 +202,9 @@ function CasePage() {
     }
   }, [selectedId, data, adjacency, view]);
 
-  // Clear inspector focus and recentre the pleading card when nothing is selected.
+  // Clear inspector focus when nothing is selected.
   useEffect(() => {
-    if (!selectedId) { setInspectorId(null); setPleadingOffset({ x: 0, y: 0 }); }
+    if (!selectedId) setInspectorId(null);
   }, [selectedId]);
 
 
@@ -255,110 +245,58 @@ function CasePage() {
 
       {view === "graph" ? (
         <main className="relative flex-1 p-4 sm:p-6">
-          <div ref={graphContainerRef} className="relative h-[calc(100vh-160px)] min-h-[640px] w-full">
-            <GraphCanvas
-              data={data}
-              mode="stress"
-              selectedId={selectedId}
-              hoveredId={hoveredId}
-              onSelect={(id) => {
-                setSelectedEdge(null);
-                setSelectedId(id);
-                if (!id) setPopover(null);
-              }}
-              onHover={setHoveredId}
-              onSelectEdge={(e) => { setSelectedId(null); setSelectedEdge(e); }}
-              centerHoleRect={{
-                rx: Math.min(CARD_W, graphSize.w - 80) / 2 + 24,
-                ry: Math.min(CARD_H, graphSize.h - 80) / 2 + 24,
-              }}
-              hideHub
-              apiRef={graphApi}
-            />
-
-            {/* Central Pleading card - draggable hero piece. */}
-            <div
-              className="pointer-events-none absolute left-1/2 top-1/2"
-              style={{
-                transform: `translate(calc(-50% + ${pleadingOffset.x}px), calc(-50% + ${pleadingOffset.y}px))`,
-                width: `min(${pleadingOffset.x < 0 ? 460 : CARD_W}px, calc(100vw - ${inspectorOpen ? 480 : 120}px))`,
-                height: `min(${CARD_H}px, calc(100vh - 200px))`,
-              }}
-            >
-              <div
-                className="pointer-events-auto relative flex h-full w-full flex-col overflow-hidden rounded-sm border shadow-[0_24px_60px_-30px_rgba(20,17,13,0.45)]"
-                style={{ borderColor: COLORS.hair, background: COLORS.panel }}
-              >
-                {/* Drag handle bar at the very top of the card. */}
-                <div
-                  className="flex items-center justify-between gap-2 border-b px-3 py-1.5 cursor-grab active:cursor-grabbing select-none"
-                  style={{ borderColor: COLORS.hair, background: COLORS.panel2 }}
-                  onPointerDown={(e) => {
-                    (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
-                    pleadingDragRef.current = {
-                      ox: pleadingOffset.x, oy: pleadingOffset.y,
-                      sx: e.clientX, sy: e.clientY,
-                    };
-                  }}
-                >
-                  <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-ink-dim">
-                    ⋮⋮ drag pleading
-                  </span>
-                  {(pleadingOffset.x !== 0 || pleadingOffset.y !== 0) && (
-                    <button
-                      onClick={() => setPleadingOffset({ x: 0, y: 0 })}
-                      className="rounded-sm border px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-widest text-ink-dim hover:text-ink"
-                      style={{ borderColor: COLORS.hair }}
-                    >
-                      recentre
-                    </button>
-                  )}
-                </div>
-                <div className="flex-1 overflow-hidden">
-                  <PleadingView
-                    data={data}
-                    selectedId={selectedId}
-                    hoveredId={hoveredId}
-                    highlightedIds={highlightedIds}
-                    onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); setPopover(null); }}
-                    onHover={setHoveredId}
-                    mode="stress"
-                  />
-                </div>
-              </div>
+          <div className="flex h-[calc(100vh-160px)] min-h-[640px] w-full">
+            {/* Pleading - docked left, resizable. */}
+            <div className="h-full shrink-0 overflow-hidden rounded-sm border" style={{ width: pleadingW, borderColor: COLORS.hair, background: COLORS.panel }}>
+              <PleadingView
+                data={data}
+                selectedId={selectedId}
+                hoveredId={hoveredId}
+                highlightedIds={highlightedIds}
+                onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); }}
+                onHover={setHoveredId}
+                mode="stress"
+              />
             </div>
 
-            {/* Floating bundle-piece popover anchored at the clicked node. */}
-            {popover && (
-              <BundlePiecePopover
+            {/* Drag to resize the pleading. */}
+            <div
+              className="group relative w-3 shrink-0 cursor-col-resize select-none"
+              title="Drag to resize the pleading"
+              onPointerDown={(e) => {
+                (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
+                pleadingResizeRef.current = { startW: pleadingW, startX: e.clientX };
+              }}
+            >
+              <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 transition-all group-hover:w-[3px]" style={{ background: COLORS.hair }} />
+            </div>
+
+            {/* Graph - fills the centre. */}
+            <div ref={graphContainerRef} className="relative h-full flex-1 overflow-hidden rounded-sm border" style={{ borderColor: COLORS.hair, background: COLORS.panel }}>
+              <GraphCanvas
                 data={data}
-                nodeId={popover.id}
-                anchor={{ x: popover.x, y: popover.y }}
-                container={{ w: graphSize.w, h: graphSize.h }}
-                onClose={() => { setPopover(null); setSelectedId(null); }}
-                onSelect={(id) => { setSelectedId(id); }}
-                onOpenInspector={() => setInspectorOpen(true)}
+                mode="stress"
+                selectedId={selectedId}
+                hoveredId={hoveredId}
+                onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); }}
+                onHover={setHoveredId}
+                onSelectEdge={(e) => { setSelectedId(null); setSelectedEdge(e); }}
+                centerHole={140}
+                hideHub
+                apiRef={graphApi}
               />
-            )}
+            </div>
 
-            {/* Inspector as a stable right-side drawer - opens on demand. */}
+            {/* Inspector - docked right when open. */}
             {inspectorOpen && (
-              <div
-                className="absolute right-4 top-4 bottom-4 z-20 w-[420px] max-w-[calc(100vw-32px)] animate-in slide-in-from-right-4 fade-in duration-150"
-              >
-                <div
-                  className="h-full w-full overflow-hidden rounded-sm border shadow-[0_32px_70px_-25px_rgba(20,17,13,0.55)]"
-                  style={{ borderColor: COLORS.hair, background: COLORS.panel }}
-                >
-                  <Inspector caseId={caseId}
-                    data={data}
-                    selectedId={inspectorId ?? selectedId}
-                    selectedEdge={selectedEdge}
-                    onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); setInspectorId(id); }}
-                    onClose={() => { setSelectedEdge(null); setInspectorOpen(false); }}
-                  />
-
-                </div>
+              <div className="ml-3 h-full w-[420px] shrink-0 overflow-hidden rounded-sm border animate-in slide-in-from-right-4 fade-in duration-150" style={{ borderColor: COLORS.hair, background: COLORS.panel }}>
+                <Inspector caseId={caseId}
+                  data={data}
+                  selectedId={inspectorId ?? selectedId}
+                  selectedEdge={selectedEdge}
+                  onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); setInspectorId(id); }}
+                  onClose={() => { setSelectedEdge(null); setInspectorOpen(false); }}
+                />
               </div>
             )}
           </div>

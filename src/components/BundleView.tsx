@@ -117,11 +117,10 @@ export default function BundleView(props: Props) {
             <h2 className="mt-1 font-display text-[20px] italic leading-tight">
               Evidence &amp; coherent claims
             </h2>
-            <p className="mt-1.5 text-[12px] leading-relaxed text-ink-dim">
-              Each item is a document in the bundle. Drag to re-order. The claims
-              nested under each document are the quote-grounded statements drawn
-              from it.
+            <p className="mt-1.5 text-[12px] leading-snug text-ink-dim">
+              Documents in the bundle. Drag to re-order; quoted claims sit under each piece.
             </p>
+
           </div>
           <div className="hidden shrink-0 flex-col items-end gap-0.5 sm:flex">
             <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-ink-dim">

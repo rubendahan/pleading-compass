@@ -176,8 +176,3 @@ function KeyDot({ color, label }: { color: string; label: string }) {
   );
 }
 
-        </div>
-      </div>
-    </section>
-  );
-}

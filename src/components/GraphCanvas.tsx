@@ -283,7 +283,7 @@ export default function GraphCanvas({
           if (showLabel) {
             ctx.font = `${node.layer === "proposition" ? 600 : 500} ${
               node.layer === "proposition" ? 11 : 10
-            }px Inter, sans-serif`;
+            }px "IBM Plex Sans", sans-serif`;
             ctx.textAlign = "left";
             ctx.textBaseline = "middle";
             const text =
@@ -296,7 +296,7 @@ export default function GraphCanvas({
             const x = node.x + r + 6;
             const y = node.y;
             const w = ctx.measureText(text).width;
-            ctx.fillStyle = withAlpha(COLORS.panel, dimmed ? 0.5 : 0.85);
+            ctx.fillStyle = withAlpha(COLORS.panel, dimmed ? 0.6 : 0.92);
             ctx.fillRect(x - pad, y - 8, w + pad * 2, 16);
             ctx.fillStyle = dimmed ? COLORS.inkDim : COLORS.ink;
             ctx.fillText(text, x, y);

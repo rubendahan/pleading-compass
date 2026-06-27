@@ -76,78 +76,78 @@ function Page() {
     <div className="flex min-h-screen flex-col bg-bg text-ink">
       {/* Header */}
       <header
-        className="border-b px-4 py-3 sm:px-6"
-        style={{ borderColor: COLORS.hair, background: `${COLORS.panel}CC`, backdropFilter: "blur(8px)" }}
+        className="border-b px-5 py-4 sm:px-8"
+        style={{ borderColor: COLORS.hair, background: COLORS.panel }}
       >
-        <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-ink-dim">
-              <span style={{ color: COLORS.accent }}>●</span>
+            <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.28em] text-ink-dim">
+              <span
+                className="inline-block h-1.5 w-1.5 rounded-full"
+                style={{ background: COLORS.ink }}
+              />
               Pleading-to-Proof · Coherence Console
             </div>
-            <h1 className="mt-0.5 font-display text-xl text-ink sm:text-2xl">
-              {caseTitle[0]}
-              <span className="mx-1.5 italic text-ink-dim">v</span>
-              {caseTitle[1]}
+            <h1 className="mt-1.5 font-display text-[26px] leading-tight text-ink sm:text-[30px]">
+              {caseTitle[0]?.trim()}
+              <span className="mx-2 italic font-normal text-ink-dim">v.</span>
+              {caseTitle[1]?.trim()}
             </h1>
-            <div className="mt-0.5 font-mono text-[11px] text-ink-dim">
-              {data.meta.claim_no} · {data.meta.court}
+            <div className="mt-1 font-mono text-[11px] tracking-wide text-ink-dim">
+              {data.meta.claim_no} &nbsp;·&nbsp; {data.meta.court}
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-end gap-2">
             <ModeToggle mode={mode} setMode={setMode} />
-            <StatChip
-              label="readiness"
-              value={`${data.stats.readiness}/100`}
-              color={
-                data.stats.readiness >= 70
-                  ? COLORS.accepted
-                  : data.stats.readiness >= 30
-                    ? COLORS.legal
-                    : COLORS.rejected
-              }
-            />
-            <StatChip
-              label="own-goal"
-              value={`${data.stats.own_goal}/10`}
-              color={COLORS.orange}
-            />
-            <StatChip
-              label="exposure"
-              value={`${data.stats.exposure_from}→${data.stats.exposure_to}`}
-              color={COLORS.accent}
-            />
-            <StatChip label="claims" value={String(data.stats.claims)} color={COLORS.inkDim} />
+            <div className="ml-1 flex flex-wrap gap-2">
+              <StatChip
+                label="trial readiness"
+                value={`${data.stats.readiness}/100`}
+                color={
+                  data.stats.readiness >= 70
+                    ? COLORS.accepted
+                    : data.stats.readiness >= 30
+                      ? COLORS.legal
+                      : COLORS.rejected
+                }
+              />
+              <StatChip
+                label="own goals"
+                value={`${data.stats.own_goal}/10`}
+                color={COLORS.orange}
+              />
+              <StatChip
+                label="exposure"
+                value={`${data.stats.exposure_from} → ${data.stats.exposure_to}`}
+                color={COLORS.ink}
+              />
+              <StatChip label="claims" value={String(data.stats.claims)} color={COLORS.inkDim} />
+            </div>
           </div>
-        </div>
-        <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.25em] text-ink-dim">
-          LLM local · solver global · lawyer in control
         </div>
       </header>
 
       {/* Main layout */}
-      <main className="flex-1 grid gap-3 p-3 sm:p-4 lg:grid-cols-[minmax(320px,380px)_1fr_minmax(320px,400px)]">
+      <main className="flex-1 grid gap-4 p-4 sm:p-6 lg:grid-cols-[minmax(320px,400px)_1fr_minmax(320px,420px)]">
         {/* Pleading column */}
         <section
-          className="flex h-[calc(100vh-180px)] min-h-[520px] flex-col overflow-hidden rounded-lg border lg:h-auto"
+          className="flex h-[calc(100vh-200px)] min-h-[520px] flex-col overflow-hidden rounded-sm border lg:h-auto"
           style={{ borderColor: COLORS.hair, background: COLORS.panel }}
         >
-          <div className="border-b px-4 py-3" style={{ borderColor: COLORS.hair }}>
-            <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-dim">
-              Particulars of Claim
-            </div>
-            <h2 className="font-display text-base">Pleaded allegations</h2>
-            <p className="mt-1 text-[11px] text-ink-dim">
-              Each block is a proposition. Click one to see what stands or falls and why.
+          <div className="border-b px-5 py-4" style={{ borderColor: COLORS.hair }}>
+            <div className="rule-label">Particulars of Claim</div>
+            <h2 className="mt-1 font-display text-[18px] italic">Pleaded allegations</h2>
+            <p className="mt-1.5 text-[12px] leading-relaxed text-ink-dim">
+              Each block is a proposition. Select one to see what stands or falls, and why.
             </p>
           </div>
-          <ol className="flex-1 overflow-y-auto px-3 py-3">
+          <ol className="flex-1 overflow-y-auto px-4 py-4">
             {propositions.map((p) => {
               const c = verdictColor(p.verdict);
               const active = selectedId === p.id;
               return (
-                <li key={p.id} className="mb-2">
+                <li key={p.id} className="mb-2.5">
                   <button
                     onClick={() => {
                       setSelectedEdge(null);
@@ -155,16 +155,19 @@ function Page() {
                     }}
                     onMouseEnter={() => setHoveredId(p.id)}
                     onMouseLeave={() => setHoveredId(null)}
-                    className="group block w-full rounded-md border p-3 text-left transition focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                    className="group block w-full rounded-sm border p-3.5 text-left transition focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/30"
                     style={{
-                      borderColor: active ? c : COLORS.hair,
-                      borderLeftWidth: 4,
+                      borderColor: active ? COLORS.ink : COLORS.hair,
+                      borderLeftWidth: 3,
                       borderLeftColor: c,
-                      background: active ? `${c}14` : COLORS.bg,
+                      background: active ? COLORS.panel2 : COLORS.panel,
                     }}
                   >
                     <div className="flex items-center justify-between gap-2">
-                      <span className="font-display text-sm" style={{ color: c }}>
+                      <span
+                        className="font-mono text-[11px] uppercase tracking-[0.18em]"
+                        style={{ color: COLORS.ink }}
+                      >
                         {p.label}
                       </span>
                       <span
@@ -172,19 +175,21 @@ function Page() {
                         style={{
                           borderColor: c,
                           color: c,
-                          background: `${c}1A`,
+                          background: `${c}12`,
                         }}
                       >
                         {p.verdict.replace("_", " ")}
                       </span>
                     </div>
-                    <p className="mt-2 text-[13px] leading-snug text-ink">{p.text}</p>
+                    <p className="mt-2 font-display text-[14px] leading-snug text-ink">
+                      {p.text}
+                    </p>
                     {p.overlay && p.overlay !== "NONE" && (
                       <div
-                        className="mt-2 inline-flex items-center gap-1 rounded border px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-widest"
+                        className="mt-2.5 inline-flex items-center gap-1 rounded-sm border px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-widest"
                         style={{ borderColor: COLORS.legal, color: COLORS.legal }}
                       >
-                        legal · {p.overlay.replace(/_/g, " ").toLowerCase()}
+                        Legal · {p.overlay.replace(/_/g, " ").toLowerCase()}
                       </div>
                     )}
                   </button>
@@ -196,15 +201,15 @@ function Page() {
 
         {/* Graph */}
         <section
-          className="h-[calc(100vh-180px)] min-h-[520px] lg:h-auto"
+          className="h-[calc(100vh-200px)] min-h-[520px] lg:h-auto"
           style={{ minHeight: 520 }}
         >
           {mounted ? (
             <Suspense
               fallback={
                 <div
-                  className="grid h-full place-items-center rounded-lg border text-xs font-mono uppercase tracking-widest text-ink-dim"
-                  style={{ borderColor: COLORS.hair }}
+                  className="grid h-full place-items-center rounded-sm border text-xs font-mono uppercase tracking-widest text-ink-dim"
+                  style={{ borderColor: COLORS.hair, background: COLORS.panel }}
                 >
                   loading graph…
                 </div>
@@ -228,14 +233,14 @@ function Page() {
             </Suspense>
           ) : (
             <div
-              className="grid h-full place-items-center rounded-lg border"
-              style={{ borderColor: COLORS.hair }}
+              className="grid h-full place-items-center rounded-sm border"
+              style={{ borderColor: COLORS.hair, background: COLORS.panel }}
             />
           )}
         </section>
 
         {/* Inspector */}
-        <section className="h-[calc(100vh-180px)] min-h-[520px] lg:h-auto" style={{ minHeight: 520 }}>
+        <section className="h-[calc(100vh-200px)] min-h-[520px] lg:h-auto" style={{ minHeight: 520 }}>
           <Inspector
             data={data}
             selectedId={selectedId}
@@ -297,8 +302,8 @@ function ModeToggle({ mode, setMode }: { mode: Mode; setMode: (m: Mode) => void 
   ];
   return (
     <div
-      className="inline-flex rounded-md border p-0.5"
-      style={{ borderColor: COLORS.hair, background: COLORS.bg }}
+      className="inline-flex rounded-sm border p-0.5"
+      style={{ borderColor: COLORS.hair, background: COLORS.panel2 }}
     >
       {opts.map((o) => {
         const active = mode === o.k;
@@ -306,10 +311,10 @@ function ModeToggle({ mode, setMode }: { mode: Mode; setMode: (m: Mode) => void 
           <button
             key={o.k}
             onClick={() => setMode(o.k)}
-            className="rounded px-2.5 py-1 font-mono text-[10px] uppercase tracking-widest transition"
+            className="rounded-sm px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] transition"
             style={{
-              color: active ? COLORS.bg : COLORS.ink,
-              background: active ? COLORS.accent : "transparent",
+              color: active ? COLORS.panel : COLORS.ink,
+              background: active ? COLORS.ink : "transparent",
             }}
           >
             {o.label}
@@ -331,13 +336,13 @@ function StatChip({
 }) {
   return (
     <div
-      className="inline-flex flex-col rounded-md border px-2.5 py-1"
-      style={{ borderColor: COLORS.hair, background: COLORS.bg }}
+      className="inline-flex flex-col rounded-sm border px-3 py-1.5"
+      style={{ borderColor: COLORS.hair, background: COLORS.panel }}
     >
-      <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-ink-dim">
+      <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-ink-dim">
         {label}
       </span>
-      <span className="font-mono text-[12px]" style={{ color }}>
+      <span className="font-mono text-[13px] font-medium" style={{ color }}>
         {value}
       </span>
     </div>

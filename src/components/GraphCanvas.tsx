@@ -156,34 +156,48 @@ export default function GraphCanvas({
     return (
       <div
         ref={wrapRef}
-        className="relative h-full w-full overflow-hidden rounded-lg border bg-bg"
-        style={{ borderColor: COLORS.hair }}
+        className="relative h-full w-full overflow-hidden rounded-sm border"
+        style={{ borderColor: COLORS.hair, background: COLORS.panel }}
       >
         <div className="absolute inset-0 grid place-items-center text-sm text-ink-dim">
-          <div className="font-mono uppercase tracking-widest">initialising graph…</div>
+          <div className="font-mono text-[10px] uppercase tracking-[0.25em]">initialising graph…</div>
         </div>
       </div>
     );
   }
 
+  // Wheel: scroll the page by default; hold ⌘/Ctrl to zoom the graph.
+  const onWheel: React.WheelEventHandler<HTMLDivElement> = (e) => {
+    if (!(e.ctrlKey || e.metaKey)) return; // let the page scroll
+    e.preventDefault();
+    const fg = fgRef.current;
+    if (!fg?.zoom) return;
+    const current = fg.zoom();
+    const factor = Math.exp(-e.deltaY * 0.0015);
+    fg.zoom(Math.max(0.3, Math.min(8, current * factor)), 80);
+  };
+
   return (
     <div
       ref={wrapRef}
-      className="relative h-full w-full overflow-hidden rounded-lg border"
-      style={{ borderColor: COLORS.hair, background: COLORS.bg }}
+      className="relative h-full w-full overflow-hidden rounded-sm border"
+      style={{ borderColor: COLORS.hair, background: COLORS.panel }}
+      onWheel={onWheel}
     >
       <ForceGraph
         ref={fgRef}
         graphData={graph}
         width={size.w}
         height={size.h}
-        backgroundColor={COLORS.bg}
+        backgroundColor={COLORS.panel}
         cooldownTicks={reducedMotion ? 0 : 120}
         warmupTicks={reducedMotion ? 200 : 30}
         d3VelocityDecay={0.35}
         linkDirectionalParticles={0}
         nodeRelSize={5}
         enableNodeDrag={true}
+        enableZoomInteraction={false}
+        enablePanInteraction={true}
         onNodeHover={(n: any) => onHover(n ? n.id : null)}
         onNodeClick={(n: any) => {
           onSelect(n?.id ?? null);
@@ -200,7 +214,7 @@ export default function GraphCanvas({
         linkColor={(l: any) => {
           const dimmed = focused && !isLinkFocused(l, focused);
           const c = edgeColor(l.rel);
-          return dimmed ? withAlpha(c, 0.12) : withAlpha(c, l.rel === "asserts" ? 0.55 : 0.85);
+          return dimmed ? withAlpha(c, 0.10) : withAlpha(c, l.rel === "asserts" ? 0.45 : 0.78);
         }}
         linkWidth={(l: any) => {
           const isFocus = focused && isLinkFocused(l, focused);
@@ -269,7 +283,7 @@ export default function GraphCanvas({
           if (showLabel) {
             ctx.font = `${node.layer === "proposition" ? 600 : 500} ${
               node.layer === "proposition" ? 11 : 10
-            }px Inter, sans-serif`;
+            }px "IBM Plex Sans", sans-serif`;
             ctx.textAlign = "left";
             ctx.textBaseline = "middle";
             const text =
@@ -282,7 +296,7 @@ export default function GraphCanvas({
             const x = node.x + r + 6;
             const y = node.y;
             const w = ctx.measureText(text).width;
-            ctx.fillStyle = withAlpha(COLORS.panel, dimmed ? 0.5 : 0.85);
+            ctx.fillStyle = withAlpha(COLORS.panel, dimmed ? 0.6 : 0.92);
             ctx.fillRect(x - pad, y - 8, w + pad * 2, 16);
             ctx.fillStyle = dimmed ? COLORS.inkDim : COLORS.ink;
             ctx.fillText(text, x, y);
@@ -306,6 +320,19 @@ export default function GraphCanvas({
         }}
       />
       <Legend mode={mode} />
+      <WheelHint />
+    </div>
+  );
+}
+
+function WheelHint() {
+  const isMac = typeof navigator !== "undefined" && /Mac|iPhone|iPad/.test(navigator.platform);
+  return (
+    <div
+      className="pointer-events-none absolute left-3 top-3 rounded-sm border px-2 py-1 font-mono text-[10px] tracking-wider"
+      style={{ borderColor: COLORS.hair, background: withAlpha(COLORS.panel, 0.9), color: COLORS.inkDim }}
+    >
+      <kbd style={{ color: COLORS.ink }}>{isMac ? "⌘" : "Ctrl"}</kbd> + scroll to zoom · drag to pan
     </div>
   );
 }
@@ -352,11 +379,11 @@ function Legend({ mode }: { mode: Mode }) {
   ];
   return (
     <div
-      className="pointer-events-none absolute bottom-3 right-3 rounded-md border px-3 py-2 text-[10px] uppercase tracking-widest text-ink-dim backdrop-blur"
+      className="pointer-events-none absolute bottom-3 right-3 rounded-sm border px-3 py-2 text-[10px] uppercase tracking-widest text-ink-dim"
       style={{
         borderColor: COLORS.hair,
-        background: withAlpha(COLORS.panel, 0.7),
-        fontFamily: "JetBrains Mono, monospace",
+        background: withAlpha(COLORS.panel, 0.92),
+        fontFamily: '"IBM Plex Mono", monospace',
       }}
     >
       <div className="mb-1 text-ink">{mode === "stress" ? "Stress test" : "Bundle coherence"}</div>

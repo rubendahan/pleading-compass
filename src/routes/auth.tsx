@@ -2,7 +2,7 @@ import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useServerFn } from "@tanstack/react-start";
-import { createFirmWithDemo } from "@/lib/firm.functions";
+import { createFirmWithDemo, ensureDemoAdmin } from "@/lib/firm.functions";
 import { COLORS } from "@/lib/pleading";
 
 export const Route = createFileRoute("/auth")({

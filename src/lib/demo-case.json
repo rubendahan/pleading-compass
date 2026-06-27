@@ -1,0 +1,1193 @@
+{
+  "meta": {
+    "case": "Meridian Retail Group plc  v  TechFlow Solutions Ltd",
+    "claim_no": "HT-2025-000231",
+    "court": "Technology and Construction Court",
+    "seeded": false
+  },
+  "stats": {
+    "readiness": 20,
+    "own_goal": 6,
+    "props": 10,
+    "docs": 11,
+    "claims": 27,
+    "rejected_pleadings": 6,
+    "exposure_from": "£6.0m",
+    "exposure_to": "£1.8m"
+  },
+  "nodes": [
+    {
+      "id": "prop:P1",
+      "layer": "proposition",
+      "label": "P1",
+      "verdict": "NOT_ADDRESSED",
+      "overlay": "CONTRACTUALLY_BARRED",
+      "readiness": 0,
+      "text": "TechFlow's Sales Director orally represented, before contract, that the Platform would reliably support at least 10,000 concurrent transactions, and the representation was false."
+    },
+    {
+      "id": "prop:P2",
+      "layer": "proposition",
+      "label": "P2",
+      "verdict": "CONTRADICTED",
+      "overlay": "SUPERSEDED",
+      "readiness": 0,
+      "text": "TechFlow delivered the Platform late: it went live on 18 November 2024, seven weeks after the contractual go-live date of 1 October 2024, time being of the essence."
+    },
+    {
+      "id": "prop:P3",
+      "layer": "proposition",
+      "label": "P3",
+      "verdict": "CONTRADICTED",
+      "overlay": "NONE",
+      "readiness": 0,
+      "text": "Meridian did not request any change to the agreed scope; all delay was caused by TechFlow's failure to allocate adequate and competent resources."
+    },
+    {
+      "id": "prop:P4",
+      "layer": "proposition",
+      "label": "P4",
+      "verdict": "CONTRADICTED",
+      "overlay": "NONE",
+      "readiness": 0,
+      "text": "Meridian warned TechFlow the Platform was not ready and asked to defer go-live; TechFlow ignored those warnings and proceeded to go-live."
+    },
+    {
+      "id": "prop:P5",
+      "layer": "proposition",
+      "label": "P5",
+      "verdict": "CONTRADICTED",
+      "overlay": "CAUSATION_PROBLEM",
+      "readiness": 0,
+      "text": "Following go-live the Platform was unavailable for more than 40% of trading hours in November and December 2024, by reason of the Platform's own defects."
+    },
+    {
+      "id": "prop:P6",
+      "layer": "proposition",
+      "label": "P6",
+      "verdict": "SUPPORTED",
+      "overlay": "NONE",
+      "readiness": 100,
+      "text": "The Platform contained numerous defects, including critical Severity-1 failures in the stock-synchronisation module, and was not of satisfactory quality nor fit for purpose."
+    },
+    {
+      "id": "prop:P7",
+      "layer": "proposition",
+      "label": "P7",
+      "verdict": "CONTRADICTED",
+      "overlay": "NONE",
+      "readiness": 0,
+      "text": "Meridian did not accept the Platform or any part of it, and gave no acceptance or sign-off at any time."
+    },
+    {
+      "id": "prop:P8",
+      "layer": "proposition",
+      "label": "P8",
+      "verdict": "NOT_ADDRESSED",
+      "overlay": "BURDEN_PROBLEM",
+      "readiness": 0,
+      "text": "TechFlow failed to provide adequate training to Meridian's staff in the use of the Platform."
+    },
+    {
+      "id": "prop:P9a",
+      "layer": "proposition",
+      "label": "P9a",
+      "verdict": "SUPPORTED",
+      "overlay": "CAPPED",
+      "readiness": 100,
+      "text": "Meridian suffered wasted expenditure of GBP 1,800,000, being sums paid to TechFlow under the MSA."
+    },
+    {
+      "id": "prop:P9b",
+      "layer": "proposition",
+      "label": "P9b",
+      "verdict": "CONTRADICTED",
+      "overlay": "CAPPED",
+      "readiness": 0,
+      "text": "Meridian suffered loss of profit of GBP 4,200,000 during the November-December 2024 peak trading period, caused by the Platform."
+    },
+    {
+      "id": "claim:co3_revised",
+      "layer": "claim",
+      "label": "Change Order No. 3 revised the contractual",
+      "fulltext": "Change Order No. 3 revised the contractual go-live date to 18 November 2024.",
+      "issue": "DELAY/SCOPE",
+      "polarity": "bundle",
+      "source_type": "change_order",
+      "weight": 5.0,
+      "verdict": "accepted",
+      "anchor": "07¶9",
+      "quote": "2.1 The parties agree that, to accommodate the additional works, the go-live date is revised from 1 October 2024 to 18 November 2024. The revised date applies to the Platform as a whole.",
+      "prop": null,
+      "load_bearing": false,
+      "single_source": false,
+      "blocks": [
+        "p2_late"
+      ]
+    },
+    {
+      "id": "doc:07",
+      "layer": "document",
+      "label": "07",
+      "title": "Change Order No 3",
+      "doc_type": "contract",
+      "party": "neutral"
+    },
+    {
+      "id": "claim:loyalty_req",
+      "layer": "claim",
+      "label": "Meridian requested the loyalty-module chan",
+      "fulltext": "Meridian requested the loyalty-module change.",
+      "issue": "DELAY/SCOPE",
+      "polarity": "bundle",
+      "source_type": "contemporaneous_email",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "10¶4",
+      "quote": "Following the marketing review, the board wants a customer loyalty capability included in the platform before we go live — points accrual, redemption at the till, and a member database. I appreciate this was not in the original SOW, but it is now a priority for us.",
+      "prop": null,
+      "load_bearing": false,
+      "single_source": false,
+      "blocks": [
+        "p3_noscope"
+      ]
+    },
+    {
+      "id": "doc:10",
+      "layer": "document",
+      "label": "10",
+      "title": "Email Loyalty Module Change Request",
+      "doc_type": "correspondence",
+      "party": "neutral"
+    },
+    {
+      "id": "claim:actual_golive",
+      "layer": "claim",
+      "label": "The Platform went live on 18 November 2024",
+      "fulltext": "The Platform went live on 18 November 2024 — the revised date.",
+      "issue": "DELAY/SCOPE",
+      "polarity": "bundle",
+      "source_type": "witness_statement",
+      "weight": 2.0,
+      "verdict": "accepted",
+      "anchor": "18¶3",
+      "quote": "On 2 September 2024 I signed Change Order No. 3. This added the customer loyalty module, which Helena Vance had asked TechFlow to provide and which was not in the original Statement of Work, and it revised the go-live date from 1 October to 18 November 2024. I understood at the time that we were changing both the scope and the date.",
+      "prop": null,
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "doc:18",
+      "layer": "document",
+      "label": "18",
+      "title": "Witness Statement Priya Nair",
+      "doc_type": "witness",
+      "party": "claimant"
+    },
+    {
+      "id": "claim:p2_late",
+      "layer": "claim",
+      "label": "Delivered late: went live 18 Nov, seven we",
+      "fulltext": "Delivered late: went live 18 Nov, seven weeks after the 1 Oct go-live date.",
+      "issue": "DELAY/SCOPE",
+      "polarity": "pleading",
+      "source_type": "pleading",
+      "weight": 1.0,
+      "verdict": "rejected",
+      "anchor": "02¶8",
+      "quote": "In breach of the MSA, TechFlow delivered the Platform late. The Platform did not go live until 18 November 2024, some seven weeks after the contractual go-live date.",
+      "prop": "P2",
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:p3_noscope",
+      "layer": "claim",
+      "label": "Meridian requested no change to scope; all",
+      "fulltext": "Meridian requested no change to scope; all delay was TechFlow's fault.",
+      "issue": "DELAY/SCOPE",
+      "polarity": "pleading",
+      "source_type": "pleading",
+      "weight": 1.0,
+      "verdict": "rejected",
+      "anchor": "02¶9",
+      "quote": "Meridian did not at any time request any change to the agreed scope of the works. All delay was caused by TechFlow’s failure to allocate adequate and competent resources to the project.",
+      "prop": "P3",
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:uat_signed",
+      "layer": "claim",
+      "label": "Meridian signed a Phase 1 UAT Acceptance C",
+      "fulltext": "Meridian signed a Phase 1 UAT Acceptance Certificate on 12 November 2024.",
+      "issue": "ACCEPTANCE",
+      "polarity": "bundle",
+      "source_type": "acceptance_certificate",
+      "weight": 5.0,
+      "verdict": "accepted",
+      "anchor": "08¶7",
+      "quote": "Meridian confirms that Phase 1 has passed User Acceptance Testing and is accepted, subject to the resolution of the outstanding minor (Severity 3 and 4) items listed in the snag log appended to the UAT report. No outstanding Severity 1 or Severity 2 items were recorded at the date of this certificate.",
+      "prop": null,
+      "load_bearing": false,
+      "single_source": false,
+      "blocks": [
+        "p7_noaccept"
+      ]
+    },
+    {
+      "id": "doc:08",
+      "layer": "document",
+      "label": "08",
+      "title": "UAT Acceptance Certificate",
+      "doc_type": "record",
+      "party": "neutral"
+    },
+    {
+      "id": "claim:p7_noaccept",
+      "layer": "claim",
+      "label": "Meridian gave no acceptance or sign-off at",
+      "fulltext": "Meridian gave no acceptance or sign-off at any time.",
+      "issue": "ACCEPTANCE",
+      "polarity": "pleading",
+      "source_type": "pleading",
+      "weight": 1.0,
+      "verdict": "rejected",
+      "anchor": "02¶13",
+      "quote": "Meridian did not accept the Platform or any part of it, and no acceptance or sign-off was given by Meridian at any time.",
+      "prop": "P7",
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:expert_62",
+      "layer": "claim",
+      "label": "IT expert: Platform-attributable unavailab",
+      "fulltext": "IT expert: Platform-attributable unavailability was about 6.2%.",
+      "issue": "OUTAGE/CAUSATION",
+      "polarity": "bundle",
+      "source_type": "expert_report",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "19¶3",
+      "quote": "That figure is materially lower than the figure of \"more than 40% of trading hours\" referred to in the pleadings. I have found no support in the logs for a figure of that order.",
+      "prop": null,
+      "load_bearing": false,
+      "single_source": false,
+      "blocks": [
+        "p5_outage"
+      ]
+    },
+    {
+      "id": "doc:19",
+      "layer": "document",
+      "label": "19",
+      "title": "Expert Report Whitfield IT",
+      "doc_type": "expert",
+      "party": "claimant"
+    },
+    {
+      "id": "claim:network_cause",
+      "layer": "claim",
+      "label": "The largest outage was attributable to Mer",
+      "fulltext": "The largest outage was attributable to Meridian's own network provider, not the Platform.",
+      "issue": "OUTAGE/CAUSATION",
+      "polarity": "bundle",
+      "source_type": "witness_statement",
+      "weight": 2.0,
+      "verdict": "accepted",
+      "anchor": "17¶3",
+      "quote": "That said, I should be straight about the wider picture. A number of the till outages in stores turned out to be caused by the broadband connections in the stores dropping out, rather than the platform itself. There was also a complete outage on 25 November that I am told was a network failure at our data centre provider, not the platform.",
+      "prop": null,
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "doc:17",
+      "layer": "document",
+      "label": "17",
+      "title": "Witness Statement Raymond Okafor",
+      "doc_type": "witness",
+      "party": "claimant"
+    },
+    {
+      "id": "claim:p5_outage",
+      "layer": "claim",
+      "label": "Platform unavailable for >40% of trading h",
+      "fulltext": "Platform unavailable for >40% of trading hours, by reason of its own defects.",
+      "issue": "OUTAGE/CAUSATION",
+      "polarity": "pleading",
+      "source_type": "pleading",
+      "weight": 1.0,
+      "verdict": "rejected",
+      "anchor": "02¶11",
+      "quote": "Following go-live, the Platform was unavailable for more than 40% of trading hours during November and December 2024, causing widespread till failures and an inability to process sales across Meridian’s store estate.",
+      "prop": "P5",
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:deferral_advice",
+      "layer": "claim",
+      "label": "TechFlow recommended in writing that go-li",
+      "fulltext": "TechFlow recommended in writing that go-live be deferred.",
+      "issue": "WARNING/CAUSATION",
+      "polarity": "bundle",
+      "source_type": "contemporaneous_email",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "09¶5",
+      "quote": "Our clear recommendation is to defer go-live to mid-January 2025, after the peak trading period. Going live on 18 November, immediately before Black Friday and Christmas, carries real risk and removes our contingency. We can hold the 18 November date if Meridian instructs us to, but we would be doing so against our advice.",
+      "prop": null,
+      "load_bearing": false,
+      "single_source": false,
+      "blocks": [
+        "p4_warned"
+      ]
+    },
+    {
+      "id": "doc:09",
+      "layer": "document",
+      "label": "09",
+      "title": "Email Go-Live Readiness",
+      "doc_type": "correspondence",
+      "party": "neutral"
+    },
+    {
+      "id": "claim:overruled",
+      "layer": "claim",
+      "label": "Meridian's Programme Director overruled th",
+      "fulltext": "Meridian's Programme Director overruled the advice and instructed go-live.",
+      "issue": "WARNING/CAUSATION",
+      "polarity": "bundle",
+      "source_type": "witness_statement",
+      "weight": 2.0,
+      "verdict": "accepted",
+      "anchor": "16¶4",
+      "quote": "As we approached go-live, Marcus Reilly recommended in writing that we delay until January 2025, after the Christmas period. I decided that we should go live on 18 November 2024. The board was firm that we needed the platform live for peak trading, and I took the decision to proceed despite TechFlow’s advice. With hindsight, going live just before Black Friday was optimistic.",
+      "prop": null,
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "doc:16",
+      "layer": "document",
+      "label": "16",
+      "title": "Witness Statement Helena Vance",
+      "doc_type": "witness",
+      "party": "claimant"
+    },
+    {
+      "id": "claim:p4_warned",
+      "layer": "claim",
+      "label": "Meridian warned the Platform was not ready",
+      "fulltext": "Meridian warned the Platform was not ready and asked to defer; TechFlow ignored the warnings and proceeded to go-live.",
+      "issue": "WARNING/CAUSATION",
+      "polarity": "pleading",
+      "source_type": "pleading",
+      "weight": 1.0,
+      "verdict": "rejected",
+      "anchor": "02¶10",
+      "quote": "On numerous occasions prior to go-live, Meridian warned TechFlow that the Platform was not ready and requested that go-live be deferred. TechFlow ignored those warnings and proceeded to go-live on 18 November 2024.",
+      "prop": "P4",
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:p6_defects",
+      "layer": "claim",
+      "label": "Severity-1 stock-sync defects; the Platfor",
+      "fulltext": "Severity-1 stock-sync defects; the Platform was not of satisfactory quality nor fit for purpose.",
+      "issue": "DEFECTS",
+      "polarity": "pleading",
+      "source_type": "pleading",
+      "weight": 1.0,
+      "verdict": "accepted",
+      "anchor": "02¶12",
+      "quote": "The Platform contained numerous defects, including critical (Severity 1) failures in the stock-synchronisation module which caused stores to display and sell against incorrect stock figures. By reason of those defects the Platform was not of satisfactory quality and was not reasonably fit for its purpose.",
+      "prop": "P6",
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:defect_log",
+      "layer": "claim",
+      "label": "The Defect Log records Severity-1 stock-sy",
+      "fulltext": "The Defect Log records Severity-1 stock-synchronisation failures.",
+      "issue": "DEFECTS",
+      "polarity": "bundle",
+      "source_type": "defect_log",
+      "weight": 4.5,
+      "verdict": "accepted",
+      "anchor": "13¶5",
+      "quote": "D-001 | 19 Nov 2024 | Sev 1 | Stock-sync: tills show incorrect stock counts; oversell on promotional lines | Platform defect — fixed 31 Dec 2024",
+      "prop": null,
+      "load_bearing": true,
+      "single_source": false
+    },
+    {
+      "id": "doc:13",
+      "layer": "document",
+      "label": "13",
+      "title": "Defect Log",
+      "doc_type": "record",
+      "party": "neutral"
+    },
+    {
+      "id": "claim:expert_defects",
+      "layer": "claim",
+      "label": "The IT expert finds the stock-sync module ",
+      "fulltext": "The IT expert finds the stock-sync module was below standard.",
+      "issue": "DEFECTS",
+      "polarity": "bundle",
+      "source_type": "expert_report",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "19¶5",
+      "quote": "Notwithstanding the above, my opinion is that the Platform did contain genuine and serious defects in the stock-synchronisation module (defects D-001 and D-002 in the log). These were correctly categorised as Severity 1. They caused incorrect stock figures at the point of sale and overselling on certain lines, and persisted for approximately six weeks before being resolved.",
+      "prop": null,
+      "load_bearing": true,
+      "single_source": false
+    },
+    {
+      "id": "claim:p9a_wasted",
+      "layer": "claim",
+      "label": "Wasted expenditure of £1.8m paid to TechFl",
+      "fulltext": "Wasted expenditure of £1.8m paid to TechFlow under the MSA.",
+      "issue": "QUANTUM/CAP",
+      "polarity": "pleading",
+      "source_type": "pleading",
+      "weight": 1.0,
+      "verdict": "accepted",
+      "anchor": "02¶15",
+      "quote": "By reason of the matters aforesaid Meridian has suffered loss and damage. PARTICULARS: (a) Wasted expenditure, being sums paid to TechFlow under the MSA: £1,800,000. (b) Loss of profit during the peak trading period of November and December 2024: £4,200,000.",
+      "prop": "P9a",
+      "load_bearing": false,
+      "single_source": true
+    },
+    {
+      "id": "claim:expert_wasted",
+      "layer": "claim",
+      "label": "Quantum expert accepts the ~£1.8m wasted e",
+      "fulltext": "Quantum expert accepts the ~£1.8m wasted expenditure.",
+      "issue": "QUANTUM/CAP",
+      "polarity": "bundle",
+      "source_type": "expert_report",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "20¶2",
+      "quote": "Wasted expenditure 2. The pleaded wasted expenditure of £1,800,000 is consistent with the Claimant’s accounting records and the sums invoiced and paid under the Master Services Agreement. I have no reason to challenge this element on a wasted-expenditure basis.",
+      "prop": null,
+      "load_bearing": true,
+      "single_source": false
+    },
+    {
+      "id": "doc:20",
+      "layer": "document",
+      "label": "20",
+      "title": "Expert Report Greenhalgh Quantum",
+      "doc_type": "expert",
+      "party": "claimant"
+    },
+    {
+      "id": "claim:expert_profit",
+      "layer": "claim",
+      "label": "Quantum expert puts supportable loss of pr",
+      "fulltext": "Quantum expert puts supportable loss of profit at about £1.3m.",
+      "issue": "QUANTUM/CAP",
+      "polarity": "bundle",
+      "source_type": "expert_report",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "20¶4",
+      "quote": "On the most supportable basis, the incremental lost gross profit capable of being attributed to the Platform’s defects is of the order of £1,300,000, not £4,200,000.",
+      "prop": null,
+      "load_bearing": false,
+      "single_source": false,
+      "blocks": [
+        "p9b_profit"
+      ]
+    },
+    {
+      "id": "claim:flood_market",
+      "layer": "claim",
+      "label": "Much of the Q4 shortfall is attributable t",
+      "fulltext": "Much of the Q4 shortfall is attributable to a DC flood and the wider market.",
+      "issue": "QUANTUM/CAP",
+      "polarity": "bundle",
+      "source_type": "expert_report",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "20¶6",
+      "quote": "I note, as a matter for the Court rather than for me, that clause 14 of the Master Services Agreement appears to exclude liability for loss of profit and to cap the Supplier’s liability at the charges paid (approximately £1,800,000). If that clause is effective, it would significantly affect the recoverability of the loss-of-profit claim regardless of my quantification. 5. Summary of opinion",
+      "prop": null,
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:cap_cl14",
+      "layer": "claim",
+      "label": "MSA clause 14 excludes loss of profit and ",
+      "fulltext": "MSA clause 14 excludes loss of profit and caps liability near £1.8m.",
+      "issue": "QUANTUM/CAP",
+      "polarity": "legal_overlay",
+      "source_type": "legal_clause",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "03¶14",
+      "quote": "3.2 Any change to the scope, deliverables or timetable shall be agreed in writing by both parties by means of a signed Change Order. A signed Change Order varies this Agreement to the extent stated in it.",
+      "prop": null,
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "doc:03",
+      "layer": "document",
+      "label": "03",
+      "title": "Master Services Agreement",
+      "doc_type": "contract",
+      "party": "neutral"
+    },
+    {
+      "id": "claim:p9b_profit",
+      "layer": "claim",
+      "label": "Loss of profit of £4.2m during the Nov–Dec",
+      "fulltext": "Loss of profit of £4.2m during the Nov–Dec peak trading period.",
+      "issue": "QUANTUM/CAP",
+      "polarity": "pleading",
+      "source_type": "pleading",
+      "weight": 1.0,
+      "verdict": "rejected",
+      "anchor": "02¶15",
+      "quote": "By reason of the matters aforesaid Meridian has suffered loss and damage. PARTICULARS: (a) Wasted expenditure, being sums paid to TechFlow under the MSA: £1,800,000. (b) Loss of profit during the peak trading period of November and December 2024: £4,200,000.",
+      "prop": "P9b",
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:p8_training",
+      "layer": "claim",
+      "label": "TechFlow failed to provide adequate traini",
+      "fulltext": "TechFlow failed to provide adequate training to Meridian's staff.",
+      "issue": "TRAINING/ABSENCE",
+      "polarity": "pleading",
+      "source_type": "pleading",
+      "weight": 1.0,
+      "verdict": "accepted",
+      "anchor": "02¶14",
+      "quote": "Further, TechFlow failed to provide adequate training to Meridian’s staff in the use of the Platform. Loss and damage",
+      "prop": "P8",
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:absence_training",
+      "layer": "claim",
+      "label": "No quote-grounded document in the bundle a",
+      "fulltext": "No quote-grounded document in the bundle addresses training provision.",
+      "issue": "TRAINING/ABSENCE",
+      "polarity": "bundle",
+      "source_type": "absence",
+      "weight": 1.0,
+      "verdict": "accepted",
+      "anchor": null,
+      "quote": null,
+      "prop": null,
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:p1_oralrep",
+      "layer": "claim",
+      "label": "Pre-contract oral representation of 10,000",
+      "fulltext": "Pre-contract oral representation of 10,000 concurrent transactions, false.",
+      "issue": "ORAL_REP/NON_RELIANCE",
+      "polarity": "pleading",
+      "source_type": "pleading",
+      "weight": 1.0,
+      "verdict": "accepted",
+      "anchor": "02¶7",
+      "quote": "At a meeting on or about 5 February 2024, prior to entering into the MSA, TechFlow by its Sales Director Mr Daniel Frost orally represented to Meridian that the Platform would reliably support at least 10,000 concurrent transactions (\"the Representation\"). Meridian entered into the MSA in reliance upon the Representation. The Representation was false: the Platform was incapable of supporting that volume. Breaches",
+      "prop": "P1",
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:absence_rep",
+      "layer": "claim",
+      "label": "No document evidences the alleged pre-cont",
+      "fulltext": "No document evidences the alleged pre-contract representation.",
+      "issue": "ORAL_REP/NON_RELIANCE",
+      "polarity": "bundle",
+      "source_type": "absence",
+      "weight": 1.0,
+      "verdict": "accepted",
+      "anchor": null,
+      "quote": null,
+      "prop": null,
+      "load_bearing": false,
+      "single_source": false
+    },
+    {
+      "id": "claim:nonreliance_cl22",
+      "layer": "claim",
+      "label": "MSA cl.22 (entire agreement / non-reliance",
+      "fulltext": "MSA cl.22 (entire agreement / non-reliance) bars reliance on pre-contract representations.",
+      "issue": "ORAL_REP/NON_RELIANCE",
+      "polarity": "legal_overlay",
+      "source_type": "legal_clause",
+      "weight": 4.0,
+      "verdict": "accepted",
+      "anchor": "03¶22",
+      "quote": "25. Governing law and jurisdiction",
+      "prop": null,
+      "load_bearing": false,
+      "single_source": false
+    }
+  ],
+  "edges": [
+    {
+      "source": "doc:07",
+      "target": "claim:co3_revised",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "doc:10",
+      "target": "claim:loyalty_req",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "doc:18",
+      "target": "claim:actual_golive",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "claim:p2_late",
+      "target": "prop:P2",
+      "rel": "belongs_to",
+      "kind": "impact",
+      "hard": false,
+      "verdict": "rejected"
+    },
+    {
+      "source": "claim:p3_noscope",
+      "target": "prop:P3",
+      "rel": "belongs_to",
+      "kind": "impact",
+      "hard": false,
+      "verdict": "rejected"
+    },
+    {
+      "source": "claim:co3_revised",
+      "target": "claim:p2_late",
+      "rel": "supersedes",
+      "kind": "coherence",
+      "hard": true,
+      "explanation": "A signed variation revised the deadline to 18 Nov; lateness against the original 1 Oct date cannot stand without addressing it.",
+      "own_goal": false,
+      "blocking": true
+    },
+    {
+      "source": "claim:loyalty_req",
+      "target": "claim:p3_noscope",
+      "rel": "contradicts",
+      "kind": "coherence",
+      "hard": true,
+      "explanation": "Meridian itself requested the loyalty-module change.",
+      "own_goal": false,
+      "blocking": true
+    },
+    {
+      "source": "claim:co3_revised",
+      "target": "claim:actual_golive",
+      "rel": "supports",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "Go-live met the revised date.",
+      "own_goal": false
+    },
+    {
+      "source": "doc:08",
+      "target": "claim:uat_signed",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "claim:p7_noaccept",
+      "target": "prop:P7",
+      "rel": "belongs_to",
+      "kind": "impact",
+      "hard": false,
+      "verdict": "rejected"
+    },
+    {
+      "source": "claim:uat_signed",
+      "target": "claim:p7_noaccept",
+      "rel": "contradicts",
+      "kind": "coherence",
+      "hard": true,
+      "explanation": "A signed acceptance certificate is inconsistent with 'no acceptance'.",
+      "own_goal": false,
+      "blocking": true
+    },
+    {
+      "source": "doc:19",
+      "target": "claim:expert_62",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "doc:17",
+      "target": "claim:network_cause",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "claim:p5_outage",
+      "target": "prop:P5",
+      "rel": "belongs_to",
+      "kind": "impact",
+      "hard": false,
+      "verdict": "rejected"
+    },
+    {
+      "source": "claim:expert_62",
+      "target": "claim:p5_outage",
+      "rel": "contradicts",
+      "kind": "coherence",
+      "hard": true,
+      "explanation": "Pleaded interval [40,100]% is disjoint from the expert ~6.2% — a numeric contradiction (cf. numeric_check).",
+      "own_goal": true,
+      "blocking": true
+    },
+    {
+      "source": "claim:network_cause",
+      "target": "claim:p5_outage",
+      "rel": "attacks",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "The biggest outage attributable to Meridian's own network undermines TechFlow-only causation.",
+      "own_goal": true
+    },
+    {
+      "source": "doc:09",
+      "target": "claim:deferral_advice",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "doc:16",
+      "target": "claim:overruled",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "claim:p4_warned",
+      "target": "prop:P4",
+      "rel": "belongs_to",
+      "kind": "impact",
+      "hard": false,
+      "verdict": "rejected"
+    },
+    {
+      "source": "claim:deferral_advice",
+      "target": "claim:p4_warned",
+      "rel": "contradicts",
+      "kind": "coherence",
+      "hard": true,
+      "explanation": "TechFlow advised deferral in writing — the opposite of ignoring warnings.",
+      "own_goal": false,
+      "blocking": true
+    },
+    {
+      "source": "claim:overruled",
+      "target": "claim:p4_warned",
+      "rel": "attacks",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "Meridian itself overruled the advice and instructed go-live.",
+      "own_goal": true
+    },
+    {
+      "source": "claim:p6_defects",
+      "target": "prop:P6",
+      "rel": "belongs_to",
+      "kind": "impact",
+      "hard": false,
+      "verdict": "accepted"
+    },
+    {
+      "source": "doc:13",
+      "target": "claim:defect_log",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "doc:19",
+      "target": "claim:expert_defects",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "claim:defect_log",
+      "target": "claim:p6_defects",
+      "rel": "supports",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "Contemporaneous Defect Log records the Severity-1 failures.",
+      "own_goal": false,
+      "load_bearing": true
+    },
+    {
+      "source": "claim:expert_defects",
+      "target": "claim:p6_defects",
+      "rel": "supports",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "The IT expert independently finds the module below standard.",
+      "own_goal": false,
+      "load_bearing": true
+    },
+    {
+      "source": "claim:p9a_wasted",
+      "target": "prop:P9a",
+      "rel": "belongs_to",
+      "kind": "impact",
+      "hard": false,
+      "verdict": "accepted"
+    },
+    {
+      "source": "doc:20",
+      "target": "claim:expert_wasted",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "doc:20",
+      "target": "claim:expert_profit",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "doc:20",
+      "target": "claim:flood_market",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "doc:03",
+      "target": "claim:cap_cl14",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "claim:p9b_profit",
+      "target": "prop:P9b",
+      "rel": "belongs_to",
+      "kind": "impact",
+      "hard": false,
+      "verdict": "rejected"
+    },
+    {
+      "source": "claim:expert_wasted",
+      "target": "claim:p9a_wasted",
+      "rel": "supports",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "The quantum expert supports the ~£1.8m wasted expenditure.",
+      "own_goal": false,
+      "load_bearing": true
+    },
+    {
+      "source": "claim:expert_profit",
+      "target": "claim:p9b_profit",
+      "rel": "contradicts",
+      "kind": "coherence",
+      "hard": true,
+      "explanation": "Pleaded £4.2m is disjoint from the expert-supported ~£1.3m.",
+      "own_goal": true,
+      "blocking": true
+    },
+    {
+      "source": "claim:cap_cl14",
+      "target": "claim:p9b_profit",
+      "rel": "caps",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "cl.14 caps recovery — a legal overlay, not a factual contradiction.",
+      "own_goal": false
+    },
+    {
+      "source": "claim:flood_market",
+      "target": "claim:p9b_profit",
+      "rel": "qualifies",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "Flood/market are alternative causes of the Q4 shortfall.",
+      "own_goal": false
+    },
+    {
+      "source": "claim:p8_training",
+      "target": "prop:P8",
+      "rel": "belongs_to",
+      "kind": "impact",
+      "hard": false,
+      "verdict": "accepted"
+    },
+    {
+      "source": "claim:p1_oralrep",
+      "target": "prop:P1",
+      "rel": "belongs_to",
+      "kind": "impact",
+      "hard": false,
+      "verdict": "accepted"
+    },
+    {
+      "source": "doc:03",
+      "target": "claim:nonreliance_cl22",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
+      "source": "claim:nonreliance_cl22",
+      "target": "claim:p1_oralrep",
+      "rel": "legal_bar",
+      "kind": "coherence",
+      "hard": false,
+      "explanation": "A non-reliance clause is a legal blocker, not a factual contradiction.",
+      "own_goal": false
+    }
+  ],
+  "clusters": [
+    {
+      "issue": "DELAY/SCOPE",
+      "solver": "brute_force",
+      "story": [
+        "Original contractual go-live was 1 October 2024.",
+        "Meridian requested the loyalty-module change.",
+        "Change Order No. 3 revised the go-live date to 18 November 2024.",
+        "The Platform went live on 18 November 2024 — i.e. on the revised date.",
+        "So simple lateness against the original 1 Oct date is not supported unless the pleading addresses the signed variation."
+      ],
+      "impacts": [
+        "P2: REJECTED_BY_COHERENT_STORY  [legal overlay: SUPERSEDED] — Go-live was contractually revised to 18 November 2024 by Change Order No. 3.",
+        "P3: REJECTED_BY_COHERENT_STORY — Meridian itself requested the loyalty-module change (Change Order No. 3)."
+      ],
+      "amendments": [
+        "Do not plead simple late delivery against the original 1 Oct date without addressing Change Order No. 3.",
+        "Withdraw or qualify the 'no scope change' allegation; address Meridian's own loyalty-module request."
+      ]
+    },
+    {
+      "issue": "ACCEPTANCE",
+      "solver": "brute_force",
+      "story": [
+        "Meridian signed a Phase 1 UAT Acceptance Certificate on 12 November 2024.",
+        "So the pleaded 'no acceptance / no sign-off at any time' is rejected."
+      ],
+      "impacts": [
+        "P7: REJECTED_BY_COHERENT_STORY — Meridian signed a Phase 1 UAT Acceptance Certificate on 12 November 2024."
+      ],
+      "amendments": [
+        "Withdraw or qualify the no-acceptance allegation; address the signed UAT Acceptance Certificate."
+      ]
+    },
+    {
+      "issue": "OUTAGE/CAUSATION",
+      "solver": "brute_force",
+      "story": [
+        "The pleading alleges unavailability of more than 40% of trading hours.",
+        "The IT expert puts Platform-attributable unavailability at about 6.2%.",
+        "The single largest outage was attributable to Meridian's own network provider.",
+        "So the >40% figure and TechFlow-only causation are rejected or heavily qualified."
+      ],
+      "impacts": [
+        "P5: REJECTED_BY_COHERENT_STORY  [legal overlay: CAUSATION_PROBLEM] — The IT expert puts Platform-attributable unavailability at ~6.2%, not 40%; the largest outage was the Claimant's own network provider."
+      ],
+      "amendments": [
+        "Do not plead >40% unless further evidence exists; reduce the outage case to the expert-supported ~6.2% figure.",
+        "Reframe causation to address the Meridian-network contribution."
+      ]
+    },
+    {
+      "issue": "WARNING/CAUSATION",
+      "solver": "brute_force",
+      "story": [
+        "TechFlow recommended in writing that go-live be deferred.",
+        "Meridian's Programme Director overruled that advice and instructed go-live.",
+        "So 'we warned them, they ignored us and went live' is the opposite of the record."
+      ],
+      "impacts": [
+        "P4: REJECTED_BY_COHERENT_STORY — TechFlow recommended deferral in writing; Meridian's Programme Director overruled it and instructed go-live, accepting the risk."
+      ],
+      "amendments": [
+        "Withdraw or recast the 'ignored our warnings' allegation: the contemporaneous record shows TechFlow advised deferral and Meridian overruled it."
+      ]
+    },
+    {
+      "issue": "DEFECTS",
+      "solver": "brute_force",
+      "story": [
+        "The Defect Log records Severity-1 stock-synchronisation failures.",
+        "The IT expert finds the stock-sync module was below standard.",
+        "So the defects allegation is genuinely supported — it survives."
+      ],
+      "impacts": [
+        "P6: SURVIVES — Genuine Severity-1 stock-sync defects, found below standard by the IT expert."
+      ],
+      "amendments": [
+        "Keep the defects allegation (P6) — it is the claimant's strongest, evidence-backed point."
+      ]
+    },
+    {
+      "issue": "QUANTUM/CAP",
+      "solver": "brute_force",
+      "story": [
+        "The quantum expert accepts wasted expenditure of about £1.8m.",
+        "The pleaded loss of profit of £4.2m is substantially overstated.",
+        "The quantum expert supports about £1.3m of loss of profit.",
+        "MSA clause 14 excludes loss of profit and caps liability near £1.8m.",
+        "A DC flood and the wider market are alternative causes of the Q4 shortfall."
+      ],
+      "impacts": [
+        "P9a: SURVIVES (LEGALLY_RISKY)  [legal overlay: CAPPED] — The quantum expert accepts the GBP 1.8m wasted expenditure (at/around the MSA cl.14 liability cap).",
+        "P9b: REJECTED_BY_COHERENT_STORY  [legal overlay: CAPPED] — The quantum expert puts supportable loss of profit at ~GBP 1.3m, with much of the Q4 shortfall attributable to a DC flood and the wider market; MSA cl.14 excludes loss of profit and caps liability near GBP 1.8m."
+      ],
+      "amendments": [
+        "Keep the wasted-expenditure claim (P9a) — it is supported by the quantum expert.",
+        "Reduce or qualify the £4.2m loss-of-profit claim (P9b); address the expert figure, the cl.14 cap, and the alternative (flood/market) causation."
+      ]
+    },
+    {
+      "issue": "TRAINING/ABSENCE",
+      "solver": "brute_force",
+      "story": [
+        "No quote-grounded document in the bundle addresses training provision.",
+        "Absence of evidence is not a contradiction — it is a burden / evidence gap."
+      ],
+      "impacts": [
+        "P8: NOT_ADDRESSED  [legal overlay: BURDEN_PROBLEM] — No document in the bundle addresses training provision; the burden is the Claimant's."
+      ],
+      "amendments": [
+        "Add training records, attendance logs, witness evidence, or correspondence before pleading the training failure strongly. Lawyer review required."
+      ]
+    },
+    {
+      "issue": "ORAL_REP/NON_RELIANCE",
+      "solver": "brute_force",
+      "story": [
+        "No document in the bundle evidences the alleged pre-contract oral representation.",
+        "MSA clause 22 (entire agreement / non-reliance) would in any event bar reliance.",
+        "This is a legal risk overlay, not a factual contradiction."
+      ],
+      "impacts": [
+        "P1: NOT_ADDRESSED  [legal overlay: CONTRACTUALLY_BARRED] — No document evidences the alleged pre-contract representation by Mr Frost (10,000 concurrent transactions); MSA cl.22 (entire agreement / non-reliance) would in any event bar reliance on it."
+      ],
+      "amendments": [
+        "Do not treat non-reliance as a factual contradiction; mark the representation claim as not addressed plus a contractual reliance blocker. Lawyer review required."
+      ]
+    }
+  ],
+  "sensitivity": [
+    {
+      "issue": "DELAY/SCOPE",
+      "load_bearing": {},
+      "single_source": [],
+      "revives_if_removed": {
+        "co3_revised": [
+          "p2_late"
+        ],
+        "loyalty_req": [
+          "p3_noscope"
+        ]
+      }
+    },
+    {
+      "issue": "ACCEPTANCE",
+      "load_bearing": {},
+      "single_source": [],
+      "revives_if_removed": {
+        "uat_signed": [
+          "p7_noaccept"
+        ]
+      }
+    },
+    {
+      "issue": "OUTAGE/CAUSATION",
+      "load_bearing": {},
+      "single_source": [],
+      "revives_if_removed": {
+        "expert_62": [
+          "p5_outage"
+        ]
+      }
+    },
+    {
+      "issue": "WARNING/CAUSATION",
+      "load_bearing": {},
+      "single_source": [],
+      "revives_if_removed": {
+        "deferral_advice": [
+          "p4_warned"
+        ]
+      }
+    },
+    {
+      "issue": "DEFECTS",
+      "load_bearing": {
+        "p6_defects": [
+          "defect_log",
+          "expert_defects"
+        ]
+      },
+      "single_source": [],
+      "revives_if_removed": {}
+    },
+    {
+      "issue": "QUANTUM/CAP",
+      "load_bearing": {
+        "p9a_wasted": [
+          "expert_wasted"
+        ]
+      },
+      "single_source": [
+        "p9a_wasted"
+      ],
+      "revives_if_removed": {
+        "expert_profit": [
+          "p9b_profit"
+        ]
+      }
+    },
+    {
+      "issue": "TRAINING/ABSENCE",
+      "load_bearing": {},
+      "single_source": [],
+      "revives_if_removed": {}
+    },
+    {
+      "issue": "ORAL_REP/NON_RELIANCE",
+      "load_bearing": {},
+      "single_source": [],
+      "revives_if_removed": {}
+    }
+  ]
+}

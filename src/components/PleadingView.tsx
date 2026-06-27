@@ -43,36 +43,35 @@ export default function PleadingView({
       className="flex h-full flex-col overflow-hidden rounded-sm border"
       style={{ borderColor: COLORS.hair, background: COLORS.panel }}
     >
-      <header className="border-b px-7 py-5" style={{ borderColor: COLORS.hair }}>
-        <div className="rule-label">Statement of Case</div>
-        <h2 className="mt-1 font-display text-[24px] italic leading-tight">
-          Particulars of Claim
-        </h2>
-        <p className="mt-2 text-[13.5px] leading-relaxed text-ink-dim">
-          The pleading, as filed. Highlighted spans are the verbatim allegations;
-          their colour reflects whether the bundle{" "}
+      <header className="border-b px-5 py-3" style={{ borderColor: COLORS.hair }}>
+        <div className="flex items-baseline justify-between gap-4">
+          <div>
+            <div className="rule-label">Statement of Case</div>
+            <h2 className="mt-0.5 font-display text-[20px] italic leading-tight">
+              Particulars of Claim
+            </h2>
+          </div>
+          <div className="text-right font-mono text-[10px] uppercase tracking-[0.22em] text-ink-dim">
+            <div>{data.meta.court}</div>
+            <div className="mt-0.5">Claim {data.meta.claim_no}</div>
+          </div>
+        </div>
+        <p className="mt-2 text-[12px] leading-snug text-ink-dim">
+          Highlighted spans are verbatim allegations; colour shows whether the bundle{" "}
           <span style={{ color: COLORS.accepted }}>supports</span>,{" "}
           <span style={{ color: COLORS.rejected }}>contradicts</span>, or{" "}
           <span style={{ color: COLORS.absence }}>does not address</span> them.
         </p>
       </header>
 
-      <div className="flex-1 overflow-y-auto px-8 py-7 lg:px-10 lg:py-9">
-        <div className="mx-auto max-w-[68ch]">
-          <div className="mb-7 border-b pb-5 text-center" style={{ borderColor: COLORS.hair }}>
-            <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-ink-dim">
-              In the {data.meta.court}
-            </div>
-            <div className="mt-1.5 font-mono text-[11px] tracking-widest text-ink-dim">
-              Claim No. {data.meta.claim_no}
-            </div>
-            <div className="mt-3.5 font-display text-[18px] italic">{data.meta.case}</div>
-            <div className="mt-3 font-display text-[15px] uppercase tracking-[0.18em]">
-              Particulars of Claim
-            </div>
+      <div id="pleading-scroll" className="flex-1 overflow-y-auto px-6 py-5">
+        <div className="w-full">
+          <div className="mb-4 text-center font-display text-[14px] italic text-ink">
+            {data.meta.case}
           </div>
 
-          <ol className="space-y-6">
+          <ol className="space-y-4">
+
             {propositions.map((p, i) => {
               const pc = pleadingClaimByProp.get(p.label);
               const verdictC = verdictColor(p.verdict);

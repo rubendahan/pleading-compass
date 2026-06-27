@@ -43,12 +43,12 @@ export default function PleadingView({
       className="flex h-full flex-col overflow-hidden rounded-sm border"
       style={{ borderColor: COLORS.hair, background: COLORS.panel }}
     >
-      <header className="border-b px-6 py-4" style={{ borderColor: COLORS.hair }}>
+      <header className="border-b px-7 py-5" style={{ borderColor: COLORS.hair }}>
         <div className="rule-label">Statement of Case</div>
-        <h2 className="mt-1 font-display text-[20px] italic leading-tight">
+        <h2 className="mt-1 font-display text-[24px] italic leading-tight">
           Particulars of Claim
         </h2>
-        <p className="mt-1.5 text-[12px] leading-relaxed text-ink-dim">
+        <p className="mt-2 text-[13.5px] leading-relaxed text-ink-dim">
           The pleading, as filed. Highlighted spans are the verbatim allegations;
           their colour reflects whether the bundle{" "}
           <span style={{ color: COLORS.accepted }}>supports</span>,{" "}
@@ -57,22 +57,22 @@ export default function PleadingView({
         </p>
       </header>
 
-      <div className="flex-1 overflow-y-auto px-6 py-6 lg:px-8 lg:py-8">
-        <div className="mx-auto max-w-[62ch]">
-          <div className="mb-6 border-b pb-4 text-center" style={{ borderColor: COLORS.hair }}>
-            <div className="font-mono text-[10px] uppercase tracking-[0.28em] text-ink-dim">
+      <div className="flex-1 overflow-y-auto px-8 py-7 lg:px-10 lg:py-9">
+        <div className="mx-auto max-w-[68ch]">
+          <div className="mb-7 border-b pb-5 text-center" style={{ borderColor: COLORS.hair }}>
+            <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-ink-dim">
               In the {data.meta.court}
             </div>
-            <div className="mt-1 font-mono text-[10px] tracking-widest text-ink-dim">
+            <div className="mt-1.5 font-mono text-[11px] tracking-widest text-ink-dim">
               Claim No. {data.meta.claim_no}
             </div>
-            <div className="mt-3 font-display text-[15px] italic">{data.meta.case}</div>
-            <div className="mt-3 font-display text-[13px] uppercase tracking-[0.18em]">
+            <div className="mt-3.5 font-display text-[18px] italic">{data.meta.case}</div>
+            <div className="mt-3 font-display text-[15px] uppercase tracking-[0.18em]">
               Particulars of Claim
             </div>
           </div>
 
-          <ol className="space-y-5">
+          <ol className="space-y-6">
             {propositions.map((p, i) => {
               const pc = pleadingClaimByProp.get(p.label);
               const verdictC = verdictColor(p.verdict);
@@ -99,15 +99,15 @@ export default function PleadingView({
                     onClick={() => onSelect(p.id)}
                     className="block w-full cursor-pointer text-left focus:outline-none"
                   >
-                    <div className="flex items-baseline gap-3">
+                    <div className="flex items-baseline gap-3.5">
                       <span
-                        className="shrink-0 font-mono text-[11px] uppercase tracking-[0.2em] text-ink-dim"
-                        style={{ minWidth: "2.6rem" }}
+                        className="shrink-0 font-mono text-[12px] uppercase tracking-[0.2em] text-ink-dim"
+                        style={{ minWidth: "2.8rem" }}
                       >
                         {i + 1}.
                       </span>
                       <div className="flex-1">
-                        <p className="font-display text-[15px] leading-[1.7] text-ink">
+                        <p className="font-display text-[17px] leading-[1.75] text-ink">
                           <mark
                             className="rounded-[2px] px-1 py-[1px]"
                             style={{
@@ -125,7 +125,7 @@ export default function PleadingView({
                             {body}
                           </mark>
                         </p>
-                        <div className="mt-2 flex flex-wrap items-center gap-1.5">
+                        <div className="mt-2.5 flex flex-wrap items-center gap-1.5">
                           <span
                             className="font-mono text-[10px] uppercase tracking-[0.18em]"
                             style={{ color: COLORS.inkDim }}

@@ -31,6 +31,7 @@ function CasePage() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [inspectorOpen, setInspectorOpen] = useState(false);
   const [popover, setPopover] = useState<{ x: number; y: number } | null>(null);
+  const graphApi = useRef<{ focusNodes: (ids: string[]) => void } | null>(null);
 
   useEffect(() => {
     fetchCase({ data: { id: caseId } })

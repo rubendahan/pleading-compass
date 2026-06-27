@@ -314,7 +314,7 @@ function CasePage() {
                 mode="stress"
                 selectedId={selectedId}
                 hoveredId={hoveredId}
-                onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); }}
+                onSelect={handleGraphSelect}
                 onHover={setHoveredId}
                 onSelectEdge={(e) => { setSelectedId(null); setSelectedEdge(e); }}
                 centerHole={140}

@@ -99,15 +99,15 @@ export default function PleadingView({
                     onClick={() => onSelect(p.id)}
                     className="block w-full cursor-pointer text-left focus:outline-none"
                   >
-                    <div className="flex items-baseline gap-3">
+                    <div className="flex items-baseline gap-3.5">
                       <span
-                        className="shrink-0 font-mono text-[11px] uppercase tracking-[0.2em] text-ink-dim"
-                        style={{ minWidth: "2.6rem" }}
+                        className="shrink-0 font-mono text-[12px] uppercase tracking-[0.2em] text-ink-dim"
+                        style={{ minWidth: "2.8rem" }}
                       >
                         {i + 1}.
                       </span>
                       <div className="flex-1">
-                        <p className="font-display text-[15px] leading-[1.7] text-ink">
+                        <p className="font-display text-[17px] leading-[1.75] text-ink">
                           <mark
                             className="rounded-[2px] px-1 py-[1px]"
                             style={{
@@ -125,7 +125,7 @@ export default function PleadingView({
                             {body}
                           </mark>
                         </p>
-                        <div className="mt-2 flex flex-wrap items-center gap-1.5">
+                        <div className="mt-2.5 flex flex-wrap items-center gap-1.5">
                           <span
                             className="font-mono text-[10px] uppercase tracking-[0.18em]"
                             style={{ color: COLORS.inkDim }}

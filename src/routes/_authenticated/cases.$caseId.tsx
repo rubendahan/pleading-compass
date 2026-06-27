@@ -403,6 +403,14 @@ function CasePage() {
           )}
         </main>
       )}
+
+      <SourceReaderDialog
+        anchor={reader?.anchor}
+        quote={reader?.quote}
+        documents={(data as any)?.documents}
+        open={!!reader}
+        onOpenChange={(v) => { if (!v) setReader(null); }}
+      />
     </div>
   );
 }

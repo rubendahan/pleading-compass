@@ -66,7 +66,7 @@ One pipeline, end to end:
 
 ## Results
 
-13/13 on Meridian: every pleaded point correct.
+13/13 against our human-verified gold set on the curated Meridian demo.
 
 ## Tools
 
@@ -74,9 +74,9 @@ Each tool does one clear job:
 
 - **Lovable** is where PleadProof is built and deployed. The whole front end, the annotated pleading, the evidence graph, the chronology, and the in-site source reader, is built on Lovable, and the live app runs at pleadproof.lovable.app.
 - **Neo4j** stores the case as a graph. Every pleaded allegation and every piece of evidence is a node, and the relationships between them (supports, contradicts, supersedes, caps) are edges. The analysis is graph-native, which is what lets the front draw the evidence map.
-- **Google Vertex AI** provides the embeddings. We embed every paragraph of the bundle and every pleaded point, then retrieve by similarity, so the one clause that decides a point (a change order, an acceptance certificate) surfaces instead of being lost in a long document.
-- **NVIDIA Nemotron** is the LLM the pipeline is built to run on. The model sits behind a single seam that speaks the OpenAI protocol, so pointing it at a local or hosted Nemotron is a one line environment change (set the base URL and the model name) and it runs fully on open weights.
-- **EU Publications Office (Cellar API)** supplies the data behind the second bundle. The Brightmarket GDPR dispute is grounded in real EU legislation pulled by its CELEX identifiers from the Cellar API (the GDPR and the related regulations and directives), so the legal references in that case are authentic rather than invented.
+- **Google Vertex AI** provides the embeddings. We embed every document of the bundle and every pleaded point, retrieve the most relevant documents per point, and cross-examine them — so the evidence for and against a point is read in full, not truncated to a snippet.
+- **NVIDIA Nemotron** is a first-class, drop-in option for the LLM. It sits behind a single seam that speaks the OpenAI protocol, so pointing the pipeline at a local or hosted Nemotron is a one line environment change (set the base URL and the model name), letting the whole analysis run on open weights on a firm's own hardware. (Our reference runs used a hosted GPT-class model through the same seam.)
+- **EU Publications Office (Cellar API)** supplies the authentic legal references in the second case. The Brightmarket GDPR dispute is a scenario we wrote ourselves, but its legal grounding is real: the regulations and directives it cites (the GDPR and related instruments) are pulled by their CELEX identifiers from the Cellar API, so the law in the case is authentic rather than invented.
 
 ## Repository layout
 

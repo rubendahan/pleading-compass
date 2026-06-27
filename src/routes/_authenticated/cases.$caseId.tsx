@@ -2,8 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { getCase } from "@/lib/firm.functions";
-import type { AppData, DataEdge } from "@/lib/pleading";
-import { COLORS, srcId } from "@/lib/pleading";
+import type { AppData, DataEdge, SourceRef } from "@/lib/pleading";
+import { COLORS, resolveNodeSource, srcId } from "@/lib/pleading";
 import PleadingView from "@/components/PleadingView";
 import BundleView from "@/components/BundleView";
 import Inspector from "@/components/Inspector";
@@ -36,8 +36,10 @@ function CasePage() {
 
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [inspectorOpen, setInspectorOpen] = useState(false);
+  // Click-to-source reader (Bug 1): which source paragraph/PDF to show, and the node
+  // it was opened from so the reader can offer "open full analysis".
+  const [reader, setReader] = useState<SourceRef | null>(null);
   const [popover, setPopover] = useState<{ id: string; x: number; y: number } | null>(null);
-  const [reader, setReader] = useState<{ anchor: string; quote?: string | null } | null>(null);
   const [pleadingW, setPleadingW] = useState(560);
   const pleadingResizeRef = useRef<{ startW: number; startX: number } | null>(null);
   const graphContainerRef = useRef<HTMLDivElement | null>(null);
@@ -52,6 +54,12 @@ function CasePage() {
   }, [caseId, fetchCase]);
 
   const data: AppData | null = row?.data ?? null;
+
+  // Resolve any node to its source paragraph/PDF and open the in-site reader.
+  function openSource(nodeId: string) {
+    if (!data) return;
+    setReader(resolveNodeSource(nodeId, data));
+  }
 
   const adjacency = useMemo(() => {
     if (!data) return new Map<string, Set<string>>();
@@ -79,12 +87,13 @@ function CasePage() {
     [focusId, adjacency],
   );
 
-  // In graph view, node clicks open the floating popover (inspector stays manual).
-  // In dual-pane views (stress / coherence), selecting a node opens the inspector.
+  // In graph view, a node click opens the SOURCE reader (Bug 1); the Inspector is the
+  // deeper affordance, reached from the reader's "open full analysis" button. In the
+  // dual-pane / pleading views, selecting a node opens the Inspector as before.
   useEffect(() => {
-    if (selectedEdge) setInspectorOpen(true);
-    else if (selectedId) setInspectorOpen(true);
-    else if (!selectedId && !selectedEdge) { setInspectorOpen(false); setPopover(null); }
+    if (selectedEdge) { setInspectorOpen(true); return; }
+    if (selectedId && view !== "graph") { setInspectorOpen(true); return; }
+    if (!selectedId && !selectedEdge) { setInspectorOpen(false); setPopover(null); }
   }, [selectedId, selectedEdge, view]);
 
 
@@ -209,41 +218,6 @@ function CasePage() {
     if (!selectedId) setInspectorId(null);
   }, [selectedId]);
 
-  // Click on a graph node → contextual action:
-  //  - document  → open the bundle PDF in a new tab
-  //  - proposition / pleading-claim → scroll the docked pleading to that paragraph
-  //  - bundle claim with anchor → open its source PDF
-  // In all cases the inspector also focuses the node.
-  const handleGraphSelect = (id: string | null) => {
-    setSelectedEdge(null);
-    setSelectedId(id);
-    if (!id || !data) return;
-    const node: any = data.nodes.find((n) => n.id === id);
-    if (!node) return;
-
-    if (node.layer === "document") {
-      const tab = String(node.label ?? "").padStart(2, "0");
-      setReader({ anchor: tab });
-      return;
-    }
-
-    if (node.layer === "proposition" || (node.layer === "claim" && node.polarity === "pleading")) {
-      requestAnimationFrame(() => {
-        const sel = node.layer === "proposition"
-          ? `[data-prop-id="${CSS.escape(id)}"]`
-          : `[data-pclaim-id="${CSS.escape(id)}"]`;
-        const el = document.querySelector(sel);
-        el?.scrollIntoView({ behavior: "smooth", block: "center" });
-      });
-      return;
-    }
-
-    if (node.layer === "claim" && node.anchor) {
-      setReader({ anchor: String(node.anchor), quote: node.quote ?? node.text ?? null });
-    }
-  };
-
-
 
 
   if (err) return <div className="grid min-h-screen place-items-center bg-bg p-6" style={{ color: COLORS.rejected }}>{err}</div>;
@@ -315,9 +289,10 @@ function CasePage() {
                 mode="stress"
                 selectedId={selectedId}
                 hoveredId={hoveredId}
-                onSelect={handleGraphSelect}
+                onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); }}
                 onHover={setHoveredId}
                 onSelectEdge={(e) => { setSelectedId(null); setSelectedEdge(e); }}
+                onOpenSource={openSource}
                 centerHole={140}
                 hideHub
                 apiRef={graphApi}
@@ -353,6 +328,8 @@ function CasePage() {
                 selectedId={selectedId}
                 onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); }}
                 onHover={setHoveredId}
+                onOpenSource={openSource}
+                onReanalyzed={(d) => setRow((r: any) => ({ ...r, data: d }))}
               />
             </div>
             {inspectorOpen && (
@@ -388,6 +365,7 @@ function CasePage() {
             <BundleView
               data={data} selectedId={selectedId} hoveredId={hoveredId} highlightedIds={highlightedIds}
               onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); }} onHover={setHoveredId}
+              onOpenSource={openSource}
               mode={view}
             />
           </div>
@@ -404,12 +382,26 @@ function CasePage() {
         </main>
       )}
 
+      {/* Click-to-source reader: opened by graph node clicks, margin notes, claim rows.
+          "open full analysis" reveals the deeper Inspector for the same node. */}
       <SourceReaderDialog
-        anchor={reader?.anchor}
-        quote={reader?.quote}
-        documents={(data as any)?.documents}
         open={!!reader}
-        onOpenChange={(v) => { if (!v) setReader(null); }}
+        onOpenChange={(o) => { if (!o) setReader(null); }}
+        anchor={reader?.anchor ?? null}
+        quote={reader?.quote ?? null}
+        documents={data.documents}
+        onOpenAnalysis={
+          reader?.nodeId
+            ? () => {
+                const id = reader.nodeId;
+                setReader(null);
+                setSelectedEdge(null);
+                setSelectedId(id);
+                setInspectorId(id);
+                setInspectorOpen(true);
+              }
+            : undefined
+        }
       />
     </div>
   );

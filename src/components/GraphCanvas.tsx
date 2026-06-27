@@ -22,6 +22,8 @@ interface Props {
   hideHub?: boolean;
   /** Called when a node is clicked, with container-relative pixel coords. */
   onNodeClickScreen?: (id: string, x: number, y: number) => void;
+  /** Imperative API ref: caller can pan/zoom to a set of node ids. */
+  apiRef?: React.MutableRefObject<{ focusNodes: (ids: string[]) => void } | null>;
 }
 
 type GraphNode = DataNode & {

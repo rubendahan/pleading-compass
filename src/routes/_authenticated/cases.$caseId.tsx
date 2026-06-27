@@ -39,7 +39,7 @@ function CasePage() {
   const pleadingDragRef = useRef<{ ox: number; oy: number; sx: number; sy: number } | null>(null);
   const graphContainerRef = useRef<HTMLDivElement | null>(null);
   const [graphSize, setGraphSize] = useState<{ w: number; h: number }>({ w: 1000, h: 700 });
-  const graphApi = useRef<{ focusNodes: (ids: string[]) => void } | null>(null);
+  const graphApi = useRef<{ focusNodes: (ids: string[], biasX?: number) => void } | null>(null);
 
 
   useEffect(() => {
@@ -80,7 +80,7 @@ function CasePage() {
   // In dual-pane views (stress / coherence), selecting a node opens the inspector.
   useEffect(() => {
     if (selectedEdge) setInspectorOpen(true);
-    else if (selectedId && view !== "graph") setInspectorOpen(true);
+    else if (selectedId) setInspectorOpen(true);
     else if (!selectedId && !selectedEdge) { setInspectorOpen(false); setPopover(null); }
   }, [selectedId, selectedEdge, view]);
 
@@ -185,12 +185,20 @@ function CasePage() {
     }
 
     const first = targetIds[0];
-    // Inspector follows the scrolled-to / focused bundle target, while the
-    // pleading-side selection stays highlighted in the pleading view.
-    setInspectorId(isBundleNode(node) ? node.id : first);
+    // The inspector always shows exactly what you clicked, so the interaction is
+    // predictable: a pleaded sentence opens its own analysis; a node opens that node.
+    setInspectorId(node.id);
 
     if (view === "graph") {
-      graphApi.current?.focusNodes(targetIds);
+      // A directly clicked bundle node stays where it is (just highlight + inspect).
+      // For a pleaded sentence, slide the central card left and bring its related
+      // nodes into the clear space on its right, instead of hiding them behind it.
+      if (!isBundleNode(node)) {
+        const L = Math.min(280, Math.max(150, graphSize.w * 0.21));
+        const B = Math.min(150, Math.max(60, graphSize.w * 0.08));
+        setPleadingOffset({ x: -L, y: 0 });
+        graphApi.current?.focusNodes(targetIds, B);
+      }
     } else {
       requestAnimationFrame(() => {
         const el = document.querySelector(`[data-bundle-id="${CSS.escape(first)}"]`);
@@ -199,9 +207,9 @@ function CasePage() {
     }
   }, [selectedId, data, adjacency, view]);
 
-  // Clear inspector focus when nothing is selected.
+  // Clear inspector focus and recentre the pleading card when nothing is selected.
   useEffect(() => {
-    if (!selectedId) setInspectorId(null);
+    if (!selectedId) { setInspectorId(null); setPleadingOffset({ x: 0, y: 0 }); }
   }, [selectedId]);
 
 
@@ -260,7 +268,6 @@ function CasePage() {
                 ry: Math.min(CARD_H, graphSize.h - 80) / 2 + 24,
               }}
               hideHub
-              onNodeClickScreen={(id, x, y) => setPopover({ id, x, y })}
               apiRef={graphApi}
             />
 

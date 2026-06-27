@@ -43,12 +43,12 @@ export default function PleadingView({
       className="flex h-full flex-col overflow-hidden rounded-sm border"
       style={{ borderColor: COLORS.hair, background: COLORS.panel }}
     >
-      <header className="border-b px-6 py-4" style={{ borderColor: COLORS.hair }}>
+      <header className="border-b px-7 py-5" style={{ borderColor: COLORS.hair }}>
         <div className="rule-label">Statement of Case</div>
-        <h2 className="mt-1 font-display text-[20px] italic leading-tight">
+        <h2 className="mt-1 font-display text-[24px] italic leading-tight">
           Particulars of Claim
         </h2>
-        <p className="mt-1.5 text-[12px] leading-relaxed text-ink-dim">
+        <p className="mt-2 text-[13.5px] leading-relaxed text-ink-dim">
           The pleading, as filed. Highlighted spans are the verbatim allegations;
           their colour reflects whether the bundle{" "}
           <span style={{ color: COLORS.accepted }}>supports</span>,{" "}
@@ -57,7 +57,7 @@ export default function PleadingView({
         </p>
       </header>
 
-      <div className="flex-1 overflow-y-auto px-6 py-6 lg:px-8 lg:py-8">
+      <div className="flex-1 overflow-y-auto px-8 py-7 lg:px-10 lg:py-9">
         <div className="mx-auto max-w-[62ch]">
           <div className="mb-6 border-b pb-4 text-center" style={{ borderColor: COLORS.hair }}>
             <div className="font-mono text-[10px] uppercase tracking-[0.28em] text-ink-dim">

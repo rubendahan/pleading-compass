@@ -163,7 +163,7 @@ function Page() {
             : "lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]"
         }`}
       >
-        <div className="h-[calc(100vh-200px)] min-h-[560px] lg:h-auto">
+        <div className="h-[calc(100vh-200px)] min-h-[560px]">
           <PleadingView
             data={data}
             selectedId={selectedId}
@@ -177,7 +177,7 @@ function Page() {
           />
         </div>
 
-        <div className="h-[calc(100vh-200px)] min-h-[560px] lg:h-auto">
+        <div className="h-[calc(100vh-200px)] min-h-[560px]">
           <BundleView
             data={data}
             selectedId={selectedId}
@@ -192,7 +192,7 @@ function Page() {
         </div>
 
         {inspectorOpen && (
-          <div className="h-[calc(100vh-200px)] min-h-[560px] lg:h-auto">
+          <div className="h-[calc(100vh-200px)] min-h-[560px]">
             <Inspector
               data={data}
               selectedId={selectedId}

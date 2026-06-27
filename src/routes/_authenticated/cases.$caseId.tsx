@@ -155,7 +155,7 @@ function CasePage() {
                   className="h-full w-full overflow-hidden rounded-sm border shadow-[0_32px_70px_-25px_rgba(20,17,13,0.55)]"
                   style={{ borderColor: COLORS.hair, background: COLORS.panel }}
                 >
-                  <Inspector
+                  <Inspector caseId={caseId}
                     data={data}
                     selectedId={selectedId}
                     selectedEdge={selectedEdge}
@@ -189,7 +189,7 @@ function CasePage() {
           </div>
           {inspectorOpen && (
             <div className="h-[calc(100vh-200px)] min-h-[560px]">
-              <Inspector
+              <Inspector caseId={caseId}
                 data={data} selectedId={selectedId} selectedEdge={selectedEdge}
                 onSelect={(id) => { setSelectedEdge(null); setSelectedId(id); }}
                 onClose={() => { setSelectedId(null); setSelectedEdge(null); setInspectorOpen(false); }}

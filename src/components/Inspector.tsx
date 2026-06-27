@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import type { AppData, ClaimNode, DataEdge, DataNode, PropositionNode } from "@/lib/pleading";
-import { COLORS, anchorLabel, edgeColor, relLabel, verdictColor } from "@/lib/pleading";
+import { COLORS, anchorLabel, edgeColor, relLabel, srcId, verdictColor } from "@/lib/pleading";
 import { summariseNode } from "@/lib/summary.functions";
 import { AnchorButton } from "./SourceReader";
 
@@ -262,9 +262,9 @@ function PropositionView({
     );
   }
   const impact = cluster?.impacts.find((i) => i.startsWith(`${node.label}:`));
-  // The single most decisive claim: prefer one we can verify (quote + anchor),
-  // then load-bearing, then heaviest.
-  const controlling = pickControlling(claims);
+  // The single most decisive claim: the bundle/legal evidence that drives the verdict
+  // (follow the contradiction/support edges), falling back to whatever claim we have.
+  const controlling = controllingFromEdges(propKey, data) ?? pickControlling(claims);
   // A short, plain "why" for the verdict. The impact line carries it; otherwise
   // fall back to the opening line of the coherent story. (No duplicate restatement.)
   const why = impact
@@ -347,6 +347,32 @@ function PropositionView({
       )}
     </div>
   );
+}
+
+/** The bundle/legal claim that actually drives a proposition's verdict: follow the
+ *  coherence edges into its pleading claim and pick the heaviest contradicting /
+ *  superseding / barring / supporting evidence (never the pleading restating itself). */
+function controllingFromEdges(propKey: string, data: AppData): ClaimNode | null {
+  const pleadingIds = new Set(
+    data.nodes
+      .filter((n): n is ClaimNode => n.layer === "claim" && n.prop === propKey && n.polarity === "pleading")
+      .map((n) => n.id),
+  );
+  if (pleadingIds.size === 0) return null;
+  let best: { c: ClaimNode; rank: number } | null = null;
+  for (const e of data.edges) {
+    if (e.kind !== "coherence" || !pleadingIds.has(srcId(e.target))) continue;
+    const src = data.nodes.find((n) => n.id === srcId(e.source));
+    if (!src || src.layer !== "claim" || (src as ClaimNode).polarity === "pleading") continue;
+    const sc = src as ClaimNode;
+    const relRank =
+      e.rel === "contradicts" || e.rel === "supersedes" ? 4
+        : e.rel === "legal_bar" || e.rel === "caps" ? 3
+          : e.rel === "supports" ? 3 : 1;
+    const rank = relRank * 100 + (sc.weight ?? 0);
+    if (!best || rank > best.rank) best = { c: sc, rank };
+  }
+  return best?.c ?? null;
 }
 
 /** Pick the most decisive claim for an allegation: verifiable first (quote +

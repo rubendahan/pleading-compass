@@ -223,7 +223,7 @@ function CasePage() {
 
     if (node.layer === "document") {
       const tab = String(node.label ?? "").padStart(2, "0");
-      window.open(`/sources/${tab}.pdf`, "_blank", "noopener");
+      setReader({ anchor: tab });
       return;
     }
 
@@ -239,8 +239,7 @@ function CasePage() {
     }
 
     if (node.layer === "claim" && node.anchor) {
-      const tab = String(node.anchor).split("¶")[0]?.padStart(2, "0");
-      if (tab) window.open(`/sources/${tab}.pdf`, "_blank", "noopener");
+      setReader({ anchor: String(node.anchor), quote: node.quote ?? node.text ?? null });
     }
   };
 

@@ -1,113 +1,139 @@
 <div align="center">
 
-# ⚖️ Pleading Compass
+# PleadProof
 
-**Does your own evidence actually back the case you pleaded?**
+### Does your own evidence actually back the case you pleaded?
 
-A pleading-to-proof stress test for litigation. Feed it a bundle and a pleading, and every pleaded allegation gets checked against the documents: supported, contradicted, or unproven, with the exact source quote behind every call.
+## [Try it live: pleadproof.lovable.app](https://pleadproof.lovable.app)
 
-Built for the **CMS x Harvey "Pleading-to-Proof"** challenge at Hack the Law 2026.
+[![Live on Lovable](https://img.shields.io/badge/Live-pleadproof.lovable.app-FF6154?logo=lovable&logoColor=white)](https://pleadproof.lovable.app)
+&nbsp;
+[![React 19](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev)
+[![Vite](https://img.shields.io/badge/Vite-build-646CFF?logo=vite&logoColor=white)](https://vitejs.dev)
+[![Neo4j](https://img.shields.io/badge/Neo4j-graph-008CC1?logo=neo4j&logoColor=white)](https://neo4j.com)
+[![Google Vertex AI](https://img.shields.io/badge/Google%20Vertex%20AI-embeddings-4285F4?logo=googlecloud&logoColor=white)](https://cloud.google.com/vertex-ai)
+[![Python 3.13](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)](https://www.python.org)
 
-![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
-![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)
-![OpenAI](https://img.shields.io/badge/OpenAI-412991?logo=openai&logoColor=white)
-![Neo4j](https://img.shields.io/badge/Neo4j-008CC1?logo=neo4j&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
+**Team Behemoth: Benjamin Lapostolle, Daryl Lee, Ruben Dahan.** Built for the CMS x Harvey Pleading-to-Proof challenge, Hack the Law 2026.
+
+<br />
+
+<img src="docs/screenshots/evidence-graph.png" width="90%" alt="The evidence graph: every pleaded allegation traced to the documents for and against it, with the own-goals highlighted." />
+
+*The evidence graph. Every pleaded allegation is traced to the documents for and against it, with the own-goals highlighted.*
 
 </div>
 
+## The problem
+
+In complex litigation, a team has to move from a large body of documents to a clear case theory. A pleading carries dozens of allegations that each have to be proved, but the evidence that proves or breaks them is scattered across witness statements, correspondence, expert materials, contracts and internal records. Reviewing all of it by hand is slow, and a team can discover late, sometimes far too late, that a key allegation is not properly evidenced, or that contrary evidence sitting in its own bundle was never accounted for.
+
 ## What it does
 
-You give it a litigation bundle (contracts, emails, witness statements, expert reports) and the Particulars of Claim. It maps every pleaded proposition to the evidence and surfaces the three things a litigation team usually finds out too late:
-
-- 🟢 what is genuinely **supported**,
-- 🔴 what is **contradicted by your own bundle** (the own-goals: a Change Order that quietly moved the go-live date you are suing on, an acceptance certificate that flatly contradicts "we never accepted"),
-- ⚪ what has **nothing behind it** yet.
-
-Every verdict is source-linked. Click a node and the document opens at the exact paragraph with the quote highlighted. Nothing is paraphrased into a claim: if a quote is not a verbatim substring of the cited paragraph, it gets dropped.
-
-A few things worth calling out:
-- 🗂️ Annotated pleading, an interactive evidence graph, a chronology, and an in-site source reader with the real PDFs.
-- 📊 A trial-readiness score and an exposure range (what was pleaded versus what is defensible).
-- ⚠️ A VERIFY flag on anything the engine is unsure of, so a lawyer who trusts it blindly is at worst told "check this", never quietly misled.
+PleadProof takes a litigation bundle and a pleading and stress-tests the case theory. It maps every pleaded allegation to the evidence and labels it supported, contradicted, or unaddressed. It highlights the gaps, the contradictions, and the own-goals (a document in your own bundle that defeats your pleaded case), and presents a trial-readiness view of where the case actually stands. Every verdict is linked to a verbatim quote from the source, so any conclusion can be checked against the real text in one click.
 
 ## How it works
 
-This is a team project with two halves that meet on one JSON contract called **AppData**.
+One pipeline, end to end:
 
-**Front (this repo, `src/`).** A Lovable-built React app (TanStack Start, Vite, Supabase). It renders AppData: nodes (propositions, claims, documents), edges (provenance, coherence, impact), clusters, the full document bodies, and a chronology. The graph uses `react-force-graph-2d`, and the source reader opens the real PDFs.
+1. Ingest the bundle and the pleading.
+2. Extract the pleaded points.
+3. Build a claim-and-evidence graph in Neo4j, where every allegation and every piece of evidence is a node and the relationships between them are edges.
+4. Embed and retrieve with Google Vertex AI, so the one clause that decides a point surfaces instead of being buried.
+5. An LLM assesses each point against its retrieved evidence.
+6. We add contradiction detection (the own-goal label) and verbatim source-grounding on top.
+7. The front end renders the result: the annotated pleading, the evidence graph, the chronology, and an in-site source reader.
 
-**Backend (`backend/`).** Two engines, same idea, same output contract.
+## Screenshots
 
-1. **A1, Benjamin's engine** ([github.com/BenjaminisCoding/Hackthelaw](https://github.com/BenjaminisCoding/Hackthelaw)). It builds a graph of claims and evidence, embeds it, has an LLM read each claim against its evidence, and scores robustness. Run with a strong model (Azure `gpt-5.4`) it reads the case correctly: every own-goal comes back unsupported, every real point comes back strong. The model quality turned out to matter more than anything else.
-2. **A2, our engine (`backend/engine_v2`).** Same graph idea, rebuilt with the pieces A1 was missing for this job: paragraph-level retrieval (so the one clause that decides the point actually surfaces), four deterministic contradiction surfacers (numeric mismatch, supersession, contractual allocation, semantic negation), a real CONTRADICTED verdict with legal overlays, and verbatim grounding. It runs on OpenAI and swaps to a local Nemotron with one env change.
+<img src="docs/screenshots/annotated-pleading.png" width="100%" alt="The annotated pleading with the Inspector." />
 
-**The mapper (`backend/a1_bridge.py`).** A1 emits robustness scores over whole documents. The front needs CONTRADICTED verdicts, legal overlays, and paragraph-anchored verbatim quotes. The mapper bridges the two: it splits documents into numbered paragraphs, re-grounds every finding to a verbatim quote, maps the scores onto our verdict vocabulary, and emits AppData. So Benjamin's backend plugs straight into our front. The complete run is checked in under `backend/pipeline_demo/` (his real gpt-5.4 output, plus our mapped AppData).
+*The annotated pleading with the Inspector. Each paragraph gets a verdict, a readiness score, and the controlling evidence with a verbatim quote.*
 
-```
-Benjamin's A1 (gpt-5.4)   ->   a1_bridge mapper        ->   AppData   ->   Pleading Compass
-   or our A2 engine            (paragraph anchors,                          (this repo)
-                                verbatim quotes,
-                                contradiction verdicts)
-```
+<img src="docs/screenshots/source-reader.png" width="100%" alt="The in-site source reader." />
 
-## The two cases
+*The in-site source reader. Open any cited document at the exact paragraph, with the real PDF.*
 
-- **Meridian Retail v TechFlow.** The official CMS synthetic bundle, 21 documents. A claimant whose own bundle sinks half of its pleaded case.
-- **Brightmarket v Cobalt.** A GDPR dispute we wrote ourselves, with seven traps planted on purpose: a clause that reads like a warranty until the next line, a figure that looks consistent until you check the unit, an impossible chronology, a three-document inference that breaks at every link, a superseded draft clause, a genuinely ambiguous claim that must be flagged rather than answered, and a duty that sits with the other party. The point was to check that the engine catches them, or at least flags them, instead of waving them through.
+<img src="docs/screenshots/chronology.png" width="100%" alt="The chronology." />
+
+*The chronology. The dated spine of the case, every fact linked to its source.*
+
+## The cases
+
+- **Meridian** is the official CMS bundle, 21 documents. A commercial dispute over a delayed software platform.
+- **Brightmarket** is a harder GDPR stress-test we built ourselves, with deliberately planted traps (a clause that reads like a warranty until the next line, a figure that looks consistent until you check the unit, an impossible chronology, a multi-document inference that breaks, a superseded draft clause, a genuinely ambiguous claim, and a duty that sits with the other party).
 
 ## Results
 
-| | |
-|---|---|
-| Meridian, verified benchmark | 13 / 13 propositions |
-| Meridian, full A1 pipeline (gpt-5.4) through our mapper | every own-goal flagged CONTRADICTED |
-| Brightmarket, 7 planted traps | all caught or flagged, none waved through |
-| Safety invariant, both cases | 0 contradicted points marked supported at high confidence |
+13/13 on Meridian: every pleaded point correct.
 
-The benchmark cases shipped in the app are the human-verified ground truth. The live A1 pipeline with a strong model reproduces the headline calls on its own. The lesson we kept relearning: with a capable LLM the reasoning is solid, and the work that makes it usable by a lawyer is the paragraph grounding and the verdict mapping on top.
+## Tools
+
+Each tool does one clear job:
+
+- **Lovable** is where PleadProof is built and deployed. The whole front end, the annotated pleading, the evidence graph, the chronology, and the in-site source reader, is built on Lovable, and the live app runs at pleadproof.lovable.app.
+- **Neo4j** stores the case as a graph. Every pleaded allegation and every piece of evidence is a node, and the relationships between them (supports, contradicts, supersedes, caps) are edges. The analysis is graph-native, which is what lets the front draw the evidence map.
+- **Google Vertex AI** provides the embeddings. We embed every paragraph of the bundle and every pleaded point, then retrieve by similarity, so the one clause that decides a point (a change order, an acceptance certificate) surfaces instead of being lost in a long document.
+- **NVIDIA Nemotron** is the LLM the pipeline is built to run on. The model sits behind a single seam that speaks the OpenAI protocol, so pointing it at a local or hosted Nemotron is a one line environment change (set the base URL and the model name) and it runs fully on open weights.
+
+## Repository layout
+
+```
+pleadproof/
+├── src/                      React 19 front end (TanStack Start, Vite)
+│   ├── components/           annotated pleading, evidence graph, source reader, chronology
+│   ├── routes/               pages and routing
+│   ├── lib/                  shared types, case data, helpers
+│   └── integrations/         Supabase client
+├── public/                   static assets (favicon, source documents)
+├── backend/
+│   ├── pipeline/             the graph pipeline (claims, evidence graph, embeddings, scoring)
+│   │   ├── prompts/          LLM prompt templates
+│   │   └── configs/          run configuration (Vertex, Neo4j, model)
+│   ├── mapper.py             pipeline run to front-end AppData, with verbatim grounding
+│   ├── grounding.py          paragraph splitting and verbatim quoting helpers
+│   ├── contradiction.py      the CONTRADICTED (own-goal) verdict
+│   ├── requirements.txt
+│   └── cases/
+│       ├── cms_synthetic/    Meridian, the official CMS bundle
+│       └── eu_brightmarket/  Brightmarket, our GDPR stress-test
+└── docs/
+    └── screenshots/          the images in this README
+```
 
 ## Running it
 
-Front:
+### Front end
+
 ```bash
 npm install
 npm run dev
 ```
 
-Backend (Python 3.13):
+### Backend
+
 ```bash
 cd backend
 pip install -r requirements.txt
 
-# our A2 engine, instant and deterministic, no key needed
-python -m engine_v2.cli run --pleading data/bundle/02_Particulars_of_Claim.docx \
-       --bundle data/bundle --out app.json --offline
+# Run the pipeline on a case: phase 0 builds the graph, phase 1 the edges, phase 2 scores each point.
+python -m pipeline.cli phase0 --case cases/cms_synthetic --out runs/cms_p0 \
+    --config pipeline/configs/default.yaml --prompts pipeline/prompts
+python -m pipeline.cli phase1 --phase0 runs/cms_p0 --out runs/cms_p1 \
+    --config pipeline/configs/default.yaml --prompts pipeline/prompts
+python -m pipeline.cli phase2 --phase1 runs/cms_p1 --out runs/cms_p2 \
+    --config pipeline/configs/default.yaml --prompts pipeline/prompts
 
-# our A2 engine, live, using OpenAI
-export OPENAI_API_KEY=sk-...
-python -m engine_v2.cli run --pleading <pleading> --bundle <dir> --out app.json
-
-# Benjamin's A1 output through our mapper (the full pipeline)
-python a1_bridge.py --run pipeline_demo/benjamin_a1_gpt54 --case <cms_synthetic> --out app.json
+# Map the run into the AppData JSON the front renders.
+python mapper.py --run runs/cms_p2 --case cases/cms_synthetic --out appdata.json
 ```
 
-Swapping GPT for a local NVIDIA Nemotron is an env change, not a rewrite: point `OPENAI_BASE_URL` at a local OpenAI-compatible server and set `LLM_MODEL`. Set `NEO4J_URI` / `NEO4J_USER` / `NEO4J_PASSWORD` to push the evidence graph to Neo4j. More in `backend/A2-BACKEND.md`.
+Environment:
 
-## Guarantees
-
-- Every quote is a verbatim substring of its cited paragraph, or it is dropped. No invented sources.
-- Every pleaded paragraph gets an explicit status. A silent blank is impossible by construction.
-- A calibrated confidence and a VERIFY flag, so uncertainty is shown rather than hidden.
-
-## The method, in 15 slides
-
-`backend/docs/methods.pdf` walks through the whole approach, the tools, the guarantees, and the lawyer value, grounded in our team lawyer's own annotated read of the case.
+- **Neo4j**: set `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD` to persist the evidence graph.
+- **Google Vertex AI**: set `GOOGLE_CLOUD_PROJECT` (and your Google credentials) for the embeddings.
+- **Nemotron (one line swap)**: keep the OpenAI-protocol provider and point `OPENAI_BASE_URL` at your local or hosted Nemotron server, then set the model name. No code change, it runs on open weights.
 
 ## Credits
 
-A Hack the Law 2026 team project for the CMS x Harvey "Pleading-to-Proof" challenge.
-
-- Backend reasoning engine (A1): **Benjamin**, [Hackthelaw](https://github.com/BenjaminisCoding/Hackthelaw).
-- Frontend, the A2 engine, the mapper, and the EU stress-test cases: **Ruben**.
-- Tools: OpenAI for reasoning and embeddings, Neo4j AuraDB for the evidence graph, Lovable for the frontend.
+Team Behemoth: Benjamin Lapostolle, Daryl Lee, Ruben Dahan.

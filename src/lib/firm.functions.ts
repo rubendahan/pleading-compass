@@ -375,7 +375,7 @@ export const DEMO_ADMIN_PASSWORD = "DemoAdmin!2026";
 export const ensureDemoAdmin = createServerFn({ method: "POST" }).handler(async () => {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
-  // 1) Find existing user via listUsers (no direct getByEmail in v2 admin).
+  // 1) Find existing user via listUsers (no direct getByEmail in the admin API).
   let userId: string | null = null;
   const { data: list } = await supabaseAdmin.auth.admin.listUsers({ page: 1, perPage: 200 });
   const existing = list?.users?.find((u) => u.email?.toLowerCase() === DEMO_ADMIN_EMAIL);

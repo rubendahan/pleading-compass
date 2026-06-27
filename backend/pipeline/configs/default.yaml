@@ -1,0 +1,37 @@
+run:
+  name: cms_synthetic
+  fail_on_unsupported_evidence: false
+
+llm:
+  provider: azure_openai
+  model_id: ""
+  api_key_env: AZURE_OPENAI_API_KEY
+  azure_endpoint_env: AZURE_OPENAI_ENDPOINT
+  azure_api_version_env: AZURE_OPENAI_API_VERSION
+  azure_deployment_env: AZURE_OPENAI_DEPLOYMENT
+  azure_light_deployment_env: AZURE_OPENAI_LIGHT_DEPLOYMENT
+  timeout_seconds: 120
+  max_output_tokens: 12000
+  temperature: 0.0
+  trace: true
+
+embeddings:
+  provider: vertex_ai
+  model_id: gemini-embedding-001
+  project_id_env: GOOGLE_CLOUD_PROJECT
+  location: us-central1
+  max_chunk_chars: 12000
+
+neo4j:
+  enabled: true
+  uri_env: NEO4J_URI
+  user_env: NEO4J_USER
+  password_env: NEO4J_PASSWORD
+  database: null
+
+phase2:
+  claim_evidence_top_k: 5
+
+outputs:
+  include_embeddings_in_json: true
+  write_llm_traces: true

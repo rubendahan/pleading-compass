@@ -1,0 +1,9 @@
+OUTAGE IMPACT ASSESSMENT (OCTOBER 2025)
+
+Outage Impact Assessment — Brightmarket / Cobalt analytics dashboard incident, October 2025.
+
+The outage lasted approximately 30 hours, from 02:00 on 10 October 2025 to 08:00 on 11 October 2025.
+
+Brightmarket's average daily gross revenue across the affected stores is approximately EUR 150,000; this figure is gross revenue, not margin.
+
+The public storefront remained available throughout; only the internal analytics dashboard was affected, and the estimated gross-margin impact of the outage is approximately EUR 30,000.

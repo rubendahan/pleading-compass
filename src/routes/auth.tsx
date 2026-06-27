@@ -90,7 +90,7 @@ function AuthPage() {
     <div className="min-h-screen bg-bg text-ink">
       <div className="mx-auto flex min-h-screen max-w-md flex-col justify-center px-5 py-12">
         <Link to="/" className="mb-8 font-mono text-[10px] uppercase tracking-[0.3em] text-ink-dim hover:text-ink">
-          ← Pleading-to-Proof
+          ← PleadProof
         </Link>
         <div className="rounded-sm border bg-panel p-7" style={{ borderColor: COLORS.hair }}>
           <h1 className="font-display text-[22px] leading-tight">

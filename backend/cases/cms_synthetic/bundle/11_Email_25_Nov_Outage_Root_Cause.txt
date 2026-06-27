@@ -1,0 +1,17 @@
+EMAIL CORRESPONDENCE
+Thread: 25 November outage — root cause
+From:
+Sanjay Patel <s.patel@techflow-solutions.co.uk>
+To:
+Helena Vance <h.vance@meridianretail.co.uk>; Raymond Okafor <r.okafor@meridianretail.co.uk>
+Cc:
+Marcus Reilly <m.reilly@techflow-solutions.co.uk>
+Sent:
+26 November 2024 11:07
+Subject:
+Root cause — outage on 25 November
+
+Helena, Raymond,
+We’ve completed the incident review for yesterday’s outage (approx. 13:10–18:05, around five hours). The root cause was a loss of wide-area network connectivity at your data centre provided by Northgate Telecom, not the Platform. During the window the Platform application and database remained healthy but could not be reached because the network link was down.
+We have confirmed this with Northgate’s incident report (ref NT-22841). We’d suggest raising it with them directly. Separately, we are continuing to work the stock-sync defects, which are a Platform issue and which we own.
+Sanjay Patel | Service Manager | TechFlow Solutions

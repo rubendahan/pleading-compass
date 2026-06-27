@@ -1,0 +1,210 @@
+case_id: cms_synthetic
+case_name: TechFlow Solutions Limited v Meridian Retail Group plc
+court: High Court of Justice, Business and Property Courts, Technology and Construction Court
+claim_number: HT-2025-000231
+pleading: pleading.md
+pleading_sources:
+  - source_documents/01_Claim_Form.docx
+  - source_documents/02_Particulars_of_Claim.docx
+bundle_index: bundle_index.md
+bundle_dir: bundle
+source_documents_dir: source_documents
+evidence:
+  - id: E003
+    tab: 3
+    path: bundle/03_Master_Services_Agreement.txt
+    source_path: source_documents/03_Master_Services_Agreement.docx
+    type: contract
+    format: text
+    source_format: docx
+    date: "2024-03-14"
+    period: null
+    description_hint: Master Services Agreement governing the platform implementation.
+    cited_by_claim_ids: []
+  - id: E004
+    tab: 4
+    path: bundle/04_Statement_of_Work.txt
+    source_path: source_documents/04_Statement_of_Work.docx
+    type: contract
+    format: text
+    source_format: docx
+    date: "2024-03-14"
+    period: null
+    description_hint: Statement of Work for the agreed scope, timetable, and milestones.
+    cited_by_claim_ids: []
+  - id: E005
+    tab: 5
+    path: bundle/05_Order_Form_Phase_1.txt
+    source_path: source_documents/05_Order_Form_Phase_1.docx
+    type: contract
+    format: text
+    source_format: docx
+    date: "2024-03-20"
+    period: null
+    description_hint: Phase 1 order form.
+    cited_by_claim_ids: []
+  - id: E006
+    tab: 6
+    path: bundle/06_Deed_of_Variation_No_1.txt
+    source_path: source_documents/06_Deed_of_Variation_No_1.docx
+    type: amendment
+    format: text
+    source_format: docx
+    date: "2024-06-28"
+    period: null
+    description_hint: Deed of Variation No. 1.
+    cited_by_claim_ids: []
+  - id: E007
+    tab: 7
+    path: bundle/07_Change_Order_No_3.txt
+    source_path: source_documents/07_Change_Order_No_3.docx
+    type: amendment
+    format: text
+    source_format: docx
+    date: "2024-09-02"
+    period: null
+    description_hint: Change Order No. 3 relating to the loyalty module.
+    cited_by_claim_ids: []
+  - id: E008
+    tab: 8
+    path: bundle/08_UAT_Acceptance_Certificate.txt
+    source_path: source_documents/08_UAT_Acceptance_Certificate.docx
+    type: record
+    format: text
+    source_format: docx
+    date: "2024-11-12"
+    period: null
+    description_hint: Phase 1 UAT acceptance certificate.
+    cited_by_claim_ids: []
+  - id: E009
+    tab: 9
+    path: bundle/09_Email_Go-Live_Readiness.txt
+    source_path: source_documents/09_Email_Go-Live_Readiness.docx
+    type: correspondence
+    format: text
+    source_format: docx
+    date: "2024-10-24"
+    period: null
+    description_hint: Email about the go-live decision.
+    cited_by_claim_ids: []
+  - id: E010
+    tab: 10
+    path: bundle/10_Email_Loyalty_Module_Change_Request.txt
+    source_path: source_documents/10_Email_Loyalty_Module_Change_Request.docx
+    type: correspondence
+    format: text
+    source_format: docx
+    date: null
+    period: "2024-08-21/2024-08-27"
+    description_hint: Email chain about the loyalty module change request.
+    cited_by_claim_ids: []
+  - id: E011
+    tab: 11
+    path: bundle/11_Email_25_Nov_Outage_Root_Cause.txt
+    source_path: source_documents/11_Email_25_Nov_Outage_Root_Cause.docx
+    type: correspondence
+    format: text
+    source_format: docx
+    date: "2024-11-26"
+    period: null
+    description_hint: Email about the 25 November outage root cause.
+    cited_by_claim_ids: []
+  - id: E012
+    tab: 12
+    path: bundle/12_Email_Internal_Peak_Trading_Disruption.txt
+    source_path: source_documents/12_Email_Internal_Peak_Trading_Disruption.docx
+    type: internal_record
+    format: text
+    source_format: docx
+    date: "2024-12-08"
+    period: null
+    description_hint: Internal email about peak trading disruption.
+    cited_by_claim_ids: []
+  - id: E013
+    tab: 13
+    path: bundle/13_Defect_Log.txt
+    source_path: source_documents/13_Defect_Log.docx
+    type: internal_record
+    format: text
+    source_format: docx
+    date: null
+    period: "2024-11/2025-01"
+    description_hint: Platform defect and issue log extract.
+    cited_by_claim_ids: []
+  - id: E014
+    tab: 14
+    path: bundle/14_Letter_Notice_of_Termination.txt
+    source_path: source_documents/14_Letter_Notice_of_Termination.docx
+    type: correspondence
+    format: text
+    source_format: docx
+    date: "2025-01-20"
+    period: null
+    description_hint: Letter giving notice of termination.
+    cited_by_claim_ids: []
+  - id: E015
+    tab: 15
+    path: bundle/15_Letter_TechFlow_Response.txt
+    source_path: source_documents/15_Letter_TechFlow_Response.docx
+    type: correspondence
+    format: text
+    source_format: docx
+    date: "2025-02-07"
+    period: null
+    description_hint: TechFlow response letter.
+    cited_by_claim_ids: []
+  - id: E016
+    tab: 16
+    path: bundle/16_Witness_Statement_Helena_Vance.txt
+    source_path: source_documents/16_Witness_Statement_Helena_Vance.docx
+    type: fact_witness_statement
+    format: text
+    source_format: docx
+    date: "2026-03-13"
+    period: null
+    description_hint: Witness statement of Helena Vance.
+    cited_by_claim_ids: []
+  - id: E017
+    tab: 17
+    path: bundle/17_Witness_Statement_Raymond_Okafor.txt
+    source_path: source_documents/17_Witness_Statement_Raymond_Okafor.docx
+    type: fact_witness_statement
+    format: text
+    source_format: docx
+    date: "2026-03-13"
+    period: null
+    description_hint: Witness statement of Raymond Okafor.
+    cited_by_claim_ids: []
+  - id: E018
+    tab: 18
+    path: bundle/18_Witness_Statement_Priya_Nair.txt
+    source_path: source_documents/18_Witness_Statement_Priya_Nair.docx
+    type: fact_witness_statement
+    format: text
+    source_format: docx
+    date: "2026-03-13"
+    period: null
+    description_hint: Witness statement of Priya Nair.
+    cited_by_claim_ids: []
+  - id: E019
+    tab: 19
+    path: bundle/19_Expert_Report_Whitfield_IT.txt
+    source_path: source_documents/19_Expert_Report_Whitfield_IT.docx
+    type: expert_report
+    format: text
+    source_format: docx
+    date: "2026-04-24"
+    period: null
+    description_hint: Expert IT report by Dr Alan Whitfield.
+    cited_by_claim_ids: []
+  - id: E020
+    tab: 20
+    path: bundle/20_Expert_Report_Greenhalgh_Quantum.txt
+    source_path: source_documents/20_Expert_Report_Greenhalgh_Quantum.docx
+    type: expert_report
+    format: text
+    source_format: docx
+    date: "2026-04-24"
+    period: null
+    description_hint: Expert quantum report by Fiona Greenhalgh FCA.
+    cited_by_claim_ids: []

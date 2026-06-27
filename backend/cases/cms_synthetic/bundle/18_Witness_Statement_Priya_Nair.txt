@@ -1,0 +1,29 @@
+Claim No. HT-2025-000231
+Claimant — Third witness  |  P. Nair  |  13 March 2026
+Claim No. HT-2025-000231
+IN THE HIGH COURT OF JUSTICE
+BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES
+TECHNOLOGY AND CONSTRUCTION COURT (KBD)
+
+B E T W E E N :
+MERIDIAN RETAIL GROUP PLC
+Claimant
+- and -
+TECHFLOW SOLUTIONS LIMITED
+Defendant
+
+WITNESS STATEMENT OF PRIYA NAIR
+1.	I am Priya Nair, Head of Procurement at Meridian Retail Group plc. I make this statement from my own knowledge. I was responsible for the contractual and commercial administration of the TechFlow contract.
+2.	I signed the Master Services Agreement on Meridian’s behalf on 14 March 2024, and the related Order Form. The total contract value was £2.4 million.
+3.	On 2 September 2024 I signed Change Order No. 3. This added the customer loyalty module, which Helena Vance had asked TechFlow to provide and which was not in the original Statement of Work, and it revised the go-live date from 1 October to 18 November 2024. I understood at the time that we were changing both the scope and the date.
+4.	On 12 November 2024 I signed the Phase 1 Acceptance Certificate, confirming that Phase 1 of the platform had passed user acceptance testing. There were some minor snags listed, but no critical items were outstanding at that point.
+5.	In total Meridian paid TechFlow £1.8 million. We withheld the final two milestone payments of £300,000 each — £600,000 in total — because of the problems we experienced after go-live.
+6.	I am not in a position to comment on the technical performance of the platform; that is a matter for my operational and technical colleagues.
+
+Statement of Truth
+I believe that the facts stated in this witness statement are true. I understand that proceedings for contempt of court may be brought against anyone who makes, or causes to be made, a false statement in a document verified by a statement of truth without an honest belief in its truth.
+
+Signed:	............................................
+Name:	Priya Nair
+Position:	Head of Procurement, Meridian Retail Group plc
+Dated:	

@@ -1,0 +1,5 @@
+EMAIL — INTERNAL MODEL-TRAINING NOTE (COBALT)
+
+From: Cobalt Data Science. To: Cobalt Product (internal). Sent: 18 February 2025. Subject: forecasting model.
+
+We're using the merchant datasets, including Brightmarket's, to train the new forecasting model. Legal said to get controller consent first but we shipped it to hit the release date.

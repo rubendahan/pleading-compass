@@ -1,0 +1,26 @@
+SCHEDULE 1 — STATEMENT OF WORK (SOW-01)
+to the Master Services Agreement dated 14 March 2024
+1.  Scope
+1.1  The Supplier shall deliver the Platform in two phases: Phase 1 (core inventory and EPOS); Phase 2 (reporting and analytics). The agreed scope does not include a customer loyalty module.
+2.  Implementation timetable
+Milestone
+Description
+Target date
+M1
+Design sign-off
+30 April 2024
+M2
+Build complete (Phase 1)
+31 July 2024
+M3
+User acceptance testing
+13 September 2024
+M4
+Go-live (target date)
+1 October 2024
+2.1  The go-live date of 1 October 2024 is a target date. The detailed implementation plan is a planning estimate and is subject to the change control procedure in clause 3 of the MSA.
+3.  Responsibilities of the Customer
+3.1  The Customer shall provide timely access to data, systems, and personnel, and shall procure and maintain adequate in-store network connectivity.
+3.2  Training of the Customer’s store and head-office staff in the use of the Platform is the responsibility of the Customer. The Supplier shall provide a train-the-trainer session and written user guides only.
+4.  Payment milestones
+4.1  Charges are payable 25% on each of M1, M2, M3 and M4, subject to any variation agreed under the change control procedure.

@@ -6,13 +6,13 @@ import { COLORS } from "@/lib/pleading";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Pleading-to-Proof" },
+      { title: "PleadProof" },
       {
         name: "description",
         content:
           "Check every pleaded allegation against the evidence in the bundle. See what holds, what falls, and why.",
       },
-      { property: "og:title", content: "Pleading-to-Proof" },
+      { property: "og:title", content: "PleadProof" },
       {
         property: "og:description",
         content: "Every allegation checked against the evidence, colour-coded by verdict.",
@@ -38,7 +38,7 @@ function Landing() {
     <div className="min-h-screen bg-bg text-ink">
       <header className="border-b px-6 py-4" style={{ borderColor: COLORS.hair, background: COLORS.panel }}>
         <div className="mx-auto flex max-w-5xl items-center justify-between">
-          <div className="font-mono text-[11px] uppercase tracking-[0.28em]">Pleading-to-Proof</div>
+          <div className="font-mono text-[11px] uppercase tracking-[0.28em]">PleadProof</div>
           {checked && (
             signedIn ? (
               <Link to="/cases" className="font-mono text-[10px] uppercase tracking-[0.22em] underline">
@@ -54,7 +54,7 @@ function Landing() {
       </header>
 
       <main className="mx-auto max-w-3xl px-6 py-20">
-        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink-dim">Pleading-to-Proof</p>
+        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink-dim">PleadProof</p>
         <h1 className="mt-3 font-display text-[40px] leading-[1.1] sm:text-[56px]">
           See which allegations hold, and which fall.
         </h1>
@@ -88,7 +88,7 @@ function Landing() {
 
       <footer className="border-t px-6 py-4 text-center font-mono text-[10px] uppercase tracking-[0.22em] text-ink-dim"
         style={{ borderColor: COLORS.hair, background: COLORS.panel }}>
-        Pleading-to-Proof
+        PleadProof
       </footer>
     </div>
   );

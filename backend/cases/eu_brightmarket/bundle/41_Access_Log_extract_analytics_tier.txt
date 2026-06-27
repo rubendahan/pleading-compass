@@ -1,0 +1,5 @@
+ACCESS LOG (EXTRACT) — ANALYTICS TIER
+
+Access Log (extract): an inbound session from a Mumbai (India) IP address, 203.0.113.7, reached the analytics tier on 12 October 2025.
+
+On investigation, that session resolves to an EU-based engineer connecting through the company's Mumbai VPN egress node; the underlying access originated from within the EU.

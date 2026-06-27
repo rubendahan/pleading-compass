@@ -1,0 +1,7 @@
+WITNESS STATEMENT — MARCUS FELD (CTO, COBALT)
+
+Witness Statement of Marcus Feld, Chief Technology Officer of Cobalt.
+
+Our ISO 27001 certificate was valid for the contracted hosting services throughout, and our pre-contract materials reflected that certified scope.
+
+The forecasting work used aggregated and de-identified datasets; to my knowledge it did not use identifiable Brightmarket customer records for training.

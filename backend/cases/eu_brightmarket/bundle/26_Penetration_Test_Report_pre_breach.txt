@@ -1,0 +1,5 @@
+PENETRATION TEST REPORT (PRE-BREACH)
+
+Penetration Test Report — Brightmarket / Cobalt environment, 8 August 2025 (commissioned jointly).
+
+Finding PT-07 (Medium): a staging endpoint was reachable from the public internet during testing. We were unable to confirm whether this endpoint exposed the production database, or for how long it had been reachable; remediation was advised.

@@ -1,0 +1,5 @@
+REMEDIATION TICKET REGISTER (EXTRACT)
+
+Remediation Ticket Register (extract) — Cobalt platform operations.
+
+Ticket SEC-1187 was opened at 09:00 on 12 October 2025 and closed at 17:40 on 12 October 2025; the misconfiguration was remediated the same day.

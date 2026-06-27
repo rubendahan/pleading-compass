@@ -1,0 +1,7 @@
+WITNESS STATEMENT — LENA BRANDT (DPO, BRIGHTMARKET)
+
+Witness Statement of Lena Brandt, Data Protection Officer of Brightmarket. I make this statement from my own knowledge save where otherwise indicated.
+
+From the customer database size at the time, I believe the breach exposed the personal data of approximately 2.3 million of our customers.
+
+I am told by our IT team that Cobalt's engineers had left a production database publicly accessible on the internet for about three weeks before the breach; I did not see this myself.

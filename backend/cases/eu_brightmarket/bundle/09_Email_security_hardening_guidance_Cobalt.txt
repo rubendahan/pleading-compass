@@ -1,0 +1,5 @@
+EMAIL — SECURITY HARDENING GUIDANCE (COBALT)
+
+From: Cobalt Onboarding. To: Brightmarket IT. Sent: 3 June 2025. Subject: Security hardening — action required.
+
+Please enable multi-factor authentication on all Brightmarket administrator accounts on the shared console; leaving MFA disabled materially increases the risk of credential compromise. This is the Customer's responsibility under SOW Annex B.

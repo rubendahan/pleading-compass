@@ -1,0 +1,35 @@
+Claim No. HT-2025-000231
+Expert evidence (CPR Part 35)  |  IT / Software  |  24 April 2026
+Claim No. HT-2025-000231
+IN THE HIGH COURT OF JUSTICE
+BUSINESS AND PROPERTY COURTS OF ENGLAND AND WALES
+TECHNOLOGY AND CONSTRUCTION COURT (KBD)
+
+B E T W E E N :
+MERIDIAN RETAIL GROUP PLC
+Claimant
+- and -
+TECHFLOW SOLUTIONS LIMITED
+Defendant
+
+REPORT OF DR ALAN WHITFIELD
+Independent Expert in Software Engineering and IT Systems
+1.  Introduction and instructions
+1.	I am Dr Alan Whitfield, BSc PhD CEng FBCS. I have 28 years’ experience in the design and assurance of enterprise retail IT systems. I am instructed by Caldwell Pryce LLP, solicitors for the Claimant, to give my independent opinion on (a) the availability of the Platform following go-live and (b) whether the Platform contained defects falling below the standard reasonably to be expected.
+2.  Availability of the Platform
+2.	I was provided with the Platform application and database logs, the network monitoring data and the defect log for the period 18 November 2024 to 10 January 2025. Having analysed the logs, my opinion is that the total Platform unavailability attributable to the Platform itself was approximately 6.2% of trading hours over the period.
+3.	That figure is materially lower than the figure of "more than 40% of trading hours" referred to in the pleadings. I have found no support in the logs for a figure of that order.
+4.	The single largest outage occurred on 25 November 2024 and lasted approximately five hours. In my opinion this outage was not caused by the Platform. The application and database remained healthy throughout; the cause was a loss of wide-area network connectivity at the Claimant’s data-centre provider (Northgate Telecom). A number of shorter in-store till interruptions were likewise attributable to in-store broadband, not to the Platform.
+3.  Defects
+5.	Notwithstanding the above, my opinion is that the Platform did contain genuine and serious defects in the stock-synchronisation module (defects D-001 and D-002 in the log). These were correctly categorised as Severity 1. They caused incorrect stock figures at the point of sale and overselling on certain lines, and persisted for approximately six weeks before being resolved.
+6.	In my opinion the presence of Severity 1 stock-synchronisation defects of this kind, persisting for around six weeks across a live store estate, falls below the standard reasonably to be expected of a competent supplier exercising reasonable skill and care.
+4.  Summary of opinion
+7.	In summary: (a) the Platform contained genuine and serious stock-synchronisation defects which fell below the expected standard; but (b) the pleaded allegation that the Platform was unavailable for more than 40% of trading hours is not supported by the evidence, and the largest single outage was caused by the Claimant’s own network provider rather than the Platform.
+
+Expert’s declaration
+I understand that my duty is to help the court on matters within my expertise, and that this duty overrides any obligation to those instructing or paying me. I have complied with that duty. I have set out the substance of all facts and instructions which are material to the opinions I have expressed.
+I confirm that I have made clear which of the facts stated in this report are within my own knowledge and which are not, and that the opinions I have expressed represent my true and complete professional opinions.
+I believe that the facts I have stated in this report are true and that the opinions I have expressed are correct.
+
+Signed:	Dr Alan Whitfield
+Dated:	24 April 2026

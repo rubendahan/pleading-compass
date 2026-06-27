@@ -1,0 +1,7 @@
+DATA PROTECTION IMPACT ASSESSMENT
+
+Data Protection Impact Assessment — Brightmarket analytics processing, 2 May 2024.
+
+Processing note: the Supplier has indicated it may reuse aggregated and identifiable merchant datasets to improve and train its own analytics and forecasting models; this secondary use is outside the documented processing instructions and requires a controller decision.
+
+Assessment: the forecasting model is a B2B analytics aid producing aggregate outputs; it is not, on present design, a solely automated decision affecting individual data subjects, nor an Annex III high-risk AI system, and the AI Act's high-risk obligations are not yet in application.

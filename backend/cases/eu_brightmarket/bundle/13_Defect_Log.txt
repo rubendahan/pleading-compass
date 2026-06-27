@@ -1,0 +1,5 @@
+DEFECT LOG
+
+Defect Log — Brightmarket / Cobalt Platform (extract).
+
+DEF-204 | Severity 2 | Export module: monthly revenue figures overstated by 4-9% for multi-currency stores; reconciliation mismatch confirmed and reproduced.

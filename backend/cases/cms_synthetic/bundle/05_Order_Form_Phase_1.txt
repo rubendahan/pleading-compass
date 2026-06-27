@@ -1,0 +1,23 @@
+ORDER FORM
+Order Ref: MRG-TF-OF-001  |  Dated: 20 March 2024
+Customer:	Meridian Retail Group plc
+Supplier:	TechFlow Solutions Limited
+Under:	Master Services Agreement dated 14 March 2024
+
+Item
+Qty
+Charge (£)
+Platform licence & implementation (Phase 1 — core inventory & EPOS)
+1
+1,500,000
+EPOS terminal configuration (180 stores)
+180
+540,000
+Reporting & analytics (Phase 2)
+1
+360,000
+Total (excl. VAT)
+
+2,400,000
+
+Payment terms: 25% on each milestone M1–M4 per the SOW. Authorised by Priya Nair (Head of Procurement, Meridian) and Gregory Manton (Commercial Director, TechFlow).

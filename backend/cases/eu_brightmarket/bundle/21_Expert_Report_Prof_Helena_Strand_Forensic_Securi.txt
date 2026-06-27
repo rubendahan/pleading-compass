@@ -1,0 +1,11 @@
+EXPERT REPORT — PROF. HELENA STRAND (FORENSIC / SECURITY, CLAIMANT-INSTRUCTED)
+
+Expert Report of Prof. Helena Strand, instructed by the Claimant on forensic and security issues.
+
+I agree with Dr Vale that around 14,000 records were exfiltrated. However, in my opinion the population whose data was accessible during the incident window was much larger, and 'exposure' should not be equated with confirmed exfiltration.
+
+On my reconstruction up to approximately 1.9 million records were potentially accessible to the intruder and so, in my view, 'exposed' within Article 4(12) GDPR; I accept the available logs do not place this beyond doubt.
+
+In my opinion Cobalt's network was insufficiently segmented, which allowed lateral movement after the initial compromise; this was a substantial contributing cause of the breach independent of the disabled MFA.
+
+Standard contractual clauses alone may not suffice for transfers to the United States after Schrems II; I have not, however, seen a transfer impact assessment or evidence of supplementary measures either way.

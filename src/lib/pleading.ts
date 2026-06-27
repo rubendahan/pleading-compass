@@ -1,4 +1,4 @@
-// Shared types and helpers for the Pleading-to-Proof console.
+// Shared types and helpers for the PleadProof console.
 
 export type Verdict =
   | "SUPPORTED"

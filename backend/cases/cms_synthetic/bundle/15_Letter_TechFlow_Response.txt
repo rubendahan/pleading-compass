@@ -1,0 +1,18 @@
+HARBORNE QUINN LLP
+Solicitors  |  1 Colmore Square, Birmingham B4 6AA
+Our ref: HQ/TFS/2090  |  By email and post
+
+Caldwell Pryce LLP
+18 Bishopsgate, London EC2N 4AJ
+7 February 2025
+Dear Sirs
+TechFlow Solutions Limited – Master Services Agreement dated 14 March 2024 – RESPONSE TO LETTER BEFORE ACTION
+We act for TechFlow Solutions Limited. Your client’s claim is denied in its entirety. Liability and quantum are both disputed.
+Timetable and scope. The go-live date was a target, not a fixed date. It moved from 1 October to 18 November 2024 by reason of Change Order No. 3, signed by your client on 2 September 2024, which added a customer loyalty module that your client requested and which was not in the original scope. Your client’s assertion that it requested no change to scope is wrong and is contradicted by its own signed Change Order.
+Go-live decision. Our client expressly recommended, in writing on 24 October 2024, that go-live be deferred to January 2025 to avoid the peak trading period. Your client’s Programme Director rejected that recommendation and instructed our client to proceed on 18 November 2024, accepting the associated risk. Your client cannot now complain of the consequences of its own decision.
+Availability. The Platform was not "unavailable for more than 40% of trading hours". The most significant outage, on 25 November 2024, was caused by the failure of your client’s own network provider, Northgate Telecom, and not by the Platform.
+Acceptance. Your client accepted Phase 1 by a signed Acceptance Certificate dated 12 November 2024.
+Loss. Your client’s pleaded loss of profit is grossly overstated and ignores (a) the flooding of your client’s Lutterworth distribution centre in December 2024 and (b) the well-documented downturn in the retail sector during that quarter. In any event, clause 14 of the MSA excludes liability for loss of profit and caps our client’s liability at the charges actually paid.
+Outstanding sums. Your client has wrongly withheld the final two milestone payments totalling £600,000, which remain due to our client. Our client reserves the right to counterclaim.
+Yours faithfully
+Harborne Quinn LLP

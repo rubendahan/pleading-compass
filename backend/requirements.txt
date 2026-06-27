@@ -1,15 +1,17 @@
-# Core (required)
-streamlit>=1.30
-anthropic>=0.40
-requests>=2.31
+# Backend dependencies for the graph pipeline + the mapper.
+# The mapper, grounding and contradiction modules are pure standard library;
+# these packages are what the pipeline itself needs to run a case end to end.
 
-# Bundle ingestion (real CMS bundle). Pure .md/.txt needs neither.
-pdfplumber>=0.11
-python-docx>=1.1
-# Scanned PDFs (optional OCR): pip install pytesseract  + install the Tesseract binary.
+neo4j                     # case-as-graph store (claims, evidence, edges)
+openai                    # OpenAI-protocol client (also the seam for a local/hosted Nemotron)
+google-cloud-aiplatform   # Google Vertex AI client
+vertexai                  # Vertex AI text embeddings
+python-docx               # read .docx source documents in a case bundle
+pydantic                  # config and schema models
+pyyaml                    # configs/*.yaml and case manifest.yaml
 
-# Judge Z3 (numeric/temporal consistency)
-z3-solver>=4.12
-
-# Dev
-pytest>=8.0
+# Optional: run the embeddings or the LLM on local open weights (Nemotron).
+# These are large, so they are not installed by default. Uncomment to enable
+# provider=hf_local / a local Nemotron model.
+# torch
+# transformers

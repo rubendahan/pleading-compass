@@ -1,0 +1,39 @@
+
+PLATFORM DEFECT / ISSUE LOG
+Extract — 18 November 2024 to 10 January 2025
+Ref
+Date raised
+Severity
+Description
+Status / cause
+D-001
+19 Nov 2024
+Sev 1
+Stock-sync: tills show incorrect stock counts; oversell on promotional lines
+Platform defect — fixed 31 Dec 2024
+D-002
+22 Nov 2024
+Sev 1
+Stock-sync: overnight reconciliation job fails intermittently
+Platform defect — fixed 2 Jan 2025
+D-003
+25 Nov 2024
+Sev 1
+Total loss of EPOS connectivity, all stores, ~5 hours
+Network (Northgate Telecom) — not Platform
+D-004
+29 Nov 2024
+Sev 3
+Receipt printer formatting incorrect on loyalty redemptions
+Platform defect — fixed 6 Dec 2024
+D-005
+2 Dec 2024
+Sev 4
+Report export to CSV mis-orders columns
+Platform defect — fixed 9 Dec 2024
+D-006
+11 Dec 2024
+Sev 2
+Intermittent till freezes traced to in-store broadband dropouts
+Store network — not Platform
+Note: Recorded Platform unavailability attributable to Platform defects over the period was modest; the single largest outage (D-003) and the intermittent till freezes (D-006) were attributable to network connectivity provided by Meridian, not to the Platform.

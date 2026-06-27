@@ -1,0 +1,5 @@
+CERTIFICATION / SURVEILLANCE-AUDIT REPORT (ISO 27001)
+
+ISO 27001 Surveillance-Audit Report — Cobalt Cloud Analytics Ltd, 20 November 2016 (issued by the certification body).
+
+At the date of audit Cobalt held a valid ISO 27001 certificate covering its core hosting and platform operations; the analytics-export module was scheduled for inclusion at the next surveillance cycle and was not yet within the certified scope.

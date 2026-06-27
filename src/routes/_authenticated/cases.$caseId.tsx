@@ -8,6 +8,7 @@ import PleadingView from "@/components/PleadingView";
 import BundleView from "@/components/BundleView";
 import Inspector from "@/components/Inspector";
 import GraphCanvas from "@/components/GraphCanvas";
+import BundlePiecePopover from "@/components/BundlePiecePopover";
 
 type View = "stress" | "coherence" | "graph";
 
@@ -15,9 +16,8 @@ export const Route = createFileRoute("/_authenticated/cases/$caseId")({
   component: CasePage,
 });
 
-const CARD_W = 820;
-const CARD_H = 760;
-const HOLE_R = Math.hypot(CARD_W / 2, CARD_H / 2) + 50;
+const CARD_W = 760;
+const CARD_H = 680;
 
 function CasePage() {
   const { caseId } = Route.useParams();
@@ -30,8 +30,13 @@ function CasePage() {
   const [selectedEdge, setSelectedEdge] = useState<DataEdge | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [inspectorOpen, setInspectorOpen] = useState(false);
-  const [popover, setPopover] = useState<{ x: number; y: number } | null>(null);
+  const [popover, setPopover] = useState<{ id: string; x: number; y: number } | null>(null);
+  const [pleadingOffset, setPleadingOffset] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const pleadingDragRef = useRef<{ ox: number; oy: number; sx: number; sy: number } | null>(null);
+  const graphContainerRef = useRef<HTMLDivElement | null>(null);
+  const [graphSize, setGraphSize] = useState<{ w: number; h: number }>({ w: 1000, h: 700 });
   const graphApi = useRef<{ focusNodes: (ids: string[]) => void } | null>(null);
+
 
   useEffect(() => {
     fetchCase({ data: { id: caseId } })

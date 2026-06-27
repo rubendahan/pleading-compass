@@ -320,6 +320,19 @@ export default function GraphCanvas({
         }}
       />
       <Legend mode={mode} />
+      <WheelHint />
+    </div>
+  );
+}
+
+function WheelHint() {
+  const isMac = typeof navigator !== "undefined" && /Mac|iPhone|iPad/.test(navigator.platform);
+  return (
+    <div
+      className="pointer-events-none absolute left-3 top-3 rounded-sm border px-2 py-1 font-mono text-[10px] tracking-wider"
+      style={{ borderColor: COLORS.hair, background: withAlpha(COLORS.panel, 0.9), color: COLORS.inkDim }}
+    >
+      <kbd style={{ color: COLORS.ink }}>{isMac ? "⌘" : "Ctrl"}</kbd> + scroll to zoom · drag to pan
     </div>
   );
 }

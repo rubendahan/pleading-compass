@@ -466,10 +466,11 @@ function Legend({ mode }: { mode: Mode }) {
   const items: Array<[string, string]> = [
     ["supports", COLORS.accepted],
     ["contradicts", COLORS.rejected],
-    ["attacks / supersedes", COLORS.orange],
-    ["caps / qualifies / legal bar", COLORS.legal],
-    ["asserts (provenance)", COLORS.accent],
+    ["attacks", COLORS.orange],
+    ["legal bar", COLORS.legal],
+    ["asserts", COLORS.accent],
   ];
+
   return (
     <div
       className="pointer-events-none absolute bottom-3 right-3 rounded-sm border px-3 py-2 text-[10px] uppercase tracking-widest text-ink-dim"

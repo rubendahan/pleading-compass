@@ -153,6 +153,7 @@ function CasePage() {
               centerHole={HOLE_R}
               hideHub
               onNodeClickScreen={(_id, x, y) => setPopover({ x, y })}
+              apiRef={graphApi}
             />
 
             {/* Central Pleading card — hero piece in the graph's hole. */}

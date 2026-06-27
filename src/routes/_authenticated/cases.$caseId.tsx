@@ -37,6 +37,7 @@ function CasePage() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [inspectorOpen, setInspectorOpen] = useState(false);
   const [popover, setPopover] = useState<{ id: string; x: number; y: number } | null>(null);
+  const [reader, setReader] = useState<{ anchor: string; quote?: string | null } | null>(null);
   const [pleadingW, setPleadingW] = useState(560);
   const pleadingResizeRef = useRef<{ startW: number; startX: number } | null>(null);
   const graphContainerRef = useRef<HTMLDivElement | null>(null);

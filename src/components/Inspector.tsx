@@ -53,7 +53,7 @@ export default function Inspector({ data, caseId, selectedId, selectedEdge, onSe
         )}
       </header>
 
-      <div className="flex-1 overflow-y-auto px-4 py-4">
+      <div className="flex-1 overflow-y-auto px-4 py-4 space-y-5">
         {!node && !selectedEdge && <EmptyState />}
         {node?.layer === "proposition" && (
           <PropositionView data={data} node={node} onSelect={onSelect} />
@@ -65,9 +65,61 @@ export default function Inspector({ data, caseId, selectedId, selectedEdge, onSe
           <DocumentView data={data} node={node} onSelect={onSelect} />
         )}
         {selectedEdge && <EdgeView data={data} edge={selectedEdge} onSelect={onSelect} />}
+        {node && caseId && <AiSummary caseId={caseId} nodeId={node.id} />}
       </div>
     </aside>
   );
+}
+
+function AiSummary({ caseId, nodeId }: { caseId: string; nodeId: string }) {
+  const call = useServerFn(summariseNode);
+  const [state, setState] = useState<{ loading: boolean; text: string | null; err: string | null }>({
+    loading: false,
+    text: null,
+    err: null,
+  });
+
+  // Reset when the selected node changes.
+  useEffect(() => { setState({ loading: false, text: null, err: null }); }, [nodeId]);
+
+  const run = async () => {
+    setState({ loading: true, text: null, err: null });
+    try {
+      const { summary } = await call({ data: { caseId, nodeId } });
+      setState({ loading: false, text: summary, err: null });
+    } catch (e: any) {
+      setState({ loading: false, text: null, err: String(e?.message ?? e) });
+    }
+  };
+
+  return (
+    <div className="rounded-md border p-3" style={{ borderColor: COLORS.hair, background: COLORS.panel2 }}>
+      <div className="mb-2 flex items-center justify-between">
+        <SectionHeading>AI bundle note</SectionHeading>
+        <button
+          onClick={run}
+          disabled={state.loading}
+          className="rounded border px-2 py-1 font-mono text-[10px] uppercase tracking-widest transition hover:bg-bg/40 disabled:opacity-50"
+          style={{ borderColor: COLORS.hair, color: COLORS.ink }}
+        >
+          {state.loading ? "drafting…" : state.text ? "regenerate" : "generate"}
+        </button>
+      </div>
+      {state.text && (
+        <p className="text-[13px] leading-relaxed text-ink whitespace-pre-wrap">{state.text}</p>
+      )}
+      {state.err && (
+        <p className="text-[12px] leading-snug" style={{ color: COLORS.rejected }}>{state.err}</p>
+      )}
+      {!state.text && !state.err && !state.loading && (
+        <p className="text-[11px] italic text-ink-dim">
+          One-paragraph forensic note grounded in this node and its relations.
+        </p>
+      )}
+    </div>
+  );
+}
+
 }
 
 function EmptyState() {

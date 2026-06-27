@@ -17,7 +17,7 @@ export const Route = createFileRoute("/_authenticated/cases/$caseId")({
 
 function CasePage() {
   const { caseId } = Route.useParams();
-  const navigate = useNavigate();
+  // navigate not needed currently
   const fetchCase = useServerFn(getCase);
 
   const [row, setRow] = useState<any>(null);

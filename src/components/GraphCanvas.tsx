@@ -22,6 +22,8 @@ interface Props {
   hideHub?: boolean;
   /** Called when a node is clicked, with container-relative pixel coords. */
   onNodeClickScreen?: (id: string, x: number, y: number) => void;
+  /** Imperative API ref: caller can pan/zoom to a set of node ids. */
+  apiRef?: React.MutableRefObject<{ focusNodes: (ids: string[]) => void } | null>;
 }
 
 type GraphNode = DataNode & {
@@ -51,6 +53,7 @@ export default function GraphCanvas({
   centerHole = 0,
   hideHub = false,
   onNodeClickScreen,
+  apiRef,
 }: Props) {
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const fgRef = useRef<any>(null);
@@ -114,9 +117,7 @@ export default function GraphCanvas({
     try {
       const sim = fg.d3Force ? fg : null;
       if (!sim) return;
-      // Gentler charge so nodes don't fly off-screen
-      fg.d3Force("charge")?.strength(-90).distanceMax(420);
-      // Custom radial repulsion pushing free nodes outside the hole.
+      fg.d3Force("charge")?.strength(-110).distanceMax(500);
       const holeForce = (alpha: number) => {
         const r0 = geom.hole + 30;
         for (const n of graph.nodes as any[]) {
@@ -131,34 +132,24 @@ export default function GraphCanvas({
         }
       };
       fg.d3Force("centerHole", holeForce);
-      // Keep nodes inside the visible viewport (with a small margin).
-      const boundsForce = () => {
-        const padX = 40;
-        const padY = 40;
+      // Elastic bounds: pull nodes back smoothly when outside viewport, no hard clamp.
+      const boundsForce = (alpha: number) => {
+        const padX = 60;
+        const padY = 60;
         const maxX = size.w / 2 - padX;
         const maxY = size.h / 2 - padY;
         for (const n of graph.nodes as any[]) {
           if (n.fx != null || n.fy != null) continue;
-          if (n.x != null && Math.abs(n.x) > maxX) {
-            n.x = Math.sign(n.x) * maxX;
-            n.vx = (n.vx ?? 0) * -0.5;
+          const x = n.x ?? 0, y = n.y ?? 0;
+          if (Math.abs(x) > maxX) {
+            n.vx = (n.vx ?? 0) - (x - Math.sign(x) * maxX) * 0.08 * alpha;
           }
-          if (n.y != null && Math.abs(n.y) > maxY) {
-            n.y = Math.sign(n.y) * maxY;
-            n.vy = (n.vy ?? 0) * -0.5;
+          if (Math.abs(y) > maxY) {
+            n.vy = (n.vy ?? 0) - (y - Math.sign(y) * maxY) * 0.08 * alpha;
           }
         }
       };
       fg.d3Force("bounds", boundsForce);
-      // Soft pull toward center so nodes don't drift away
-      fg.d3Force("centerPull", (alpha: number) => {
-        for (const n of graph.nodes as any[]) {
-          if (n.layer === "proposition") continue;
-          n.vx = (n.vx ?? 0) - (n.x ?? 0) * 0.008 * alpha;
-          n.vy = (n.vy ?? 0) - (n.y ?? 0) * 0.008 * alpha;
-        }
-      });
-      // Shorter distance for belongs_to so claims cluster around their document.
       const linkF = fg.d3Force("link");
       if (linkF) {
         linkF.distance((l: any) => (l.rel === "belongs_to" ? 22 : 70));
@@ -167,6 +158,31 @@ export default function GraphCanvas({
       fg.d3ReheatSimulation();
     } catch {/* noop */}
   }, [ForceGraph, geom.hole, graph.nodes, size.w, size.h]);
+
+  // Expose imperative focusNodes(ids): pan/zoom to the centroid of the given nodes.
+  useEffect(() => {
+    if (!apiRef) return;
+    apiRef.current = {
+      focusNodes: (ids: string[]) => {
+        const fg = fgRef.current;
+        if (!fg || !ids.length) return;
+        const set = new Set(ids);
+        const targets = (graph.nodes as any[]).filter(
+          (n) => set.has(n.id) && n.layer !== "proposition" && typeof n.x === "number",
+        );
+        if (!targets.length) return;
+        let sx = 0, sy = 0;
+        for (const n of targets) { sx += n.x; sy += n.y; }
+        const cx = sx / targets.length;
+        const cy = sy / targets.length;
+        try {
+          fg.centerAt?.(cx, cy, 600);
+          fg.zoom?.(Math.max(1, fg.zoom?.() ?? 1), 600);
+        } catch {/* noop */}
+      },
+    };
+    return () => { if (apiRef) apiRef.current = null; };
+  }, [apiRef, graph.nodes]);
 
   const neighbours = useMemo(() => {
     const map = new Map<string, Set<string>>();

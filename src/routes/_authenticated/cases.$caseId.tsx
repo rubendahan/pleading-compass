@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { getCase } from "@/lib/firm.functions";
 import type { AppData, DataEdge } from "@/lib/pleading";
@@ -31,6 +31,7 @@ function CasePage() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [inspectorOpen, setInspectorOpen] = useState(false);
   const [popover, setPopover] = useState<{ x: number; y: number } | null>(null);
+  const graphApi = useRef<{ focusNodes: (ids: string[]) => void } | null>(null);
 
   useEffect(() => {
     fetchCase({ data: { id: caseId } })
@@ -70,6 +71,38 @@ function CasePage() {
     if (selectedId || selectedEdge) setInspectorOpen(true);
     else { setInspectorOpen(false); setPopover(null); }
   }, [selectedId, selectedEdge]);
+
+  // When a proposition is selected, pan the graph to its supporting/contradicting
+  // evidence — and in dual-pane views, scroll the bundle to the nearest doc.
+  useEffect(() => {
+    if (!data || !selectedId) return;
+    const node = data.nodes.find((n) => n.id === selectedId);
+    if (!node || node.layer !== "proposition") return;
+    // Prefer directly-linked non-proposition nodes via support/contradict/asserts edges.
+    const directIds: string[] = [];
+    for (const e of data.edges) {
+      const s = srcId(e.source); const t = srcId(e.target);
+      const other = s === selectedId ? t : t === selectedId ? s : null;
+      if (!other) continue;
+      const on = data.nodes.find((n) => n.id === other);
+      if (!on || on.layer === "proposition") continue;
+      directIds.push(other);
+    }
+    // Fall back to the broader adjacency map.
+    const ids = directIds.length ? directIds : Array.from(adjacency.get(selectedId) ?? []);
+    if (view === "graph") {
+      graphApi.current?.focusNodes(ids);
+    } else {
+      // In stress / coherence dual-pane, scroll the bundle pane to the first match.
+      const first = ids[0];
+      if (first) {
+        requestAnimationFrame(() => {
+          const el = document.querySelector(`[data-bundle-id="${first}"]`);
+          el?.scrollIntoView({ behavior: "smooth", block: "center" });
+        });
+      }
+    }
+  }, [selectedId, data, adjacency, view]);
 
   if (err) return <div className="grid min-h-screen place-items-center bg-bg p-6" style={{ color: COLORS.rejected }}>{err}</div>;
   if (!data) return <div className="grid min-h-screen place-items-center bg-bg font-mono text-[11px] text-ink-dim">loading case…</div>;
@@ -120,6 +153,7 @@ function CasePage() {
               centerHole={HOLE_R}
               hideHub
               onNodeClickScreen={(_id, x, y) => setPopover({ x, y })}
+              apiRef={graphApi}
             />
 
             {/* Central Pleading card — hero piece in the graph's hole. */}

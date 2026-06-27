@@ -268,6 +268,7 @@ function DocCardInner({
 
   return (
     <div
+      data-bundle-id={item.doc.id}
       className="rounded-sm border bg-panel"
       style={{
         borderColor: isSelected || isLinked ? COLORS.ink : COLORS.hair,
@@ -378,6 +379,7 @@ function ClaimRow({
   return (
     <button
       type="button"
+      data-bundle-id={claim.id}
       onClick={() => onSelect(claim.id)}
       onMouseEnter={() => onHover(claim.id)}
       onMouseLeave={() => onHover(null)}

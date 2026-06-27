@@ -10,6 +10,7 @@ import Inspector from "@/components/Inspector";
 import GraphCanvas from "@/components/GraphCanvas";
 import AnnotatedPleading from "@/components/AnnotatedPleading";
 import Chronology from "@/components/Chronology";
+import { SourceReaderDialog } from "@/components/SourceReader";
 
 type View = "pleading" | "chronology" | "stress" | "graph";
 
@@ -36,6 +37,7 @@ function CasePage() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [inspectorOpen, setInspectorOpen] = useState(false);
   const [popover, setPopover] = useState<{ id: string; x: number; y: number } | null>(null);
+  const [reader, setReader] = useState<{ anchor: string; quote?: string | null } | null>(null);
   const [pleadingW, setPleadingW] = useState(560);
   const pleadingResizeRef = useRef<{ startW: number; startX: number } | null>(null);
   const graphContainerRef = useRef<HTMLDivElement | null>(null);
@@ -221,7 +223,7 @@ function CasePage() {
 
     if (node.layer === "document") {
       const tab = String(node.label ?? "").padStart(2, "0");
-      window.open(`/sources/${tab}.pdf`, "_blank", "noopener");
+      setReader({ anchor: tab });
       return;
     }
 
@@ -237,8 +239,7 @@ function CasePage() {
     }
 
     if (node.layer === "claim" && node.anchor) {
-      const tab = String(node.anchor).split("¶")[0]?.padStart(2, "0");
-      if (tab) window.open(`/sources/${tab}.pdf`, "_blank", "noopener");
+      setReader({ anchor: String(node.anchor), quote: node.quote ?? node.text ?? null });
     }
   };
 
@@ -402,6 +403,14 @@ function CasePage() {
           )}
         </main>
       )}
+
+      <SourceReaderDialog
+        anchor={reader?.anchor}
+        quote={reader?.quote}
+        documents={(data as any)?.documents}
+        open={!!reader}
+        onOpenChange={(v) => { if (!v) setReader(null); }}
+      />
     </div>
   );
 }

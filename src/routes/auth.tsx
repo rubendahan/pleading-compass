@@ -2,7 +2,7 @@ import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useServerFn } from "@tanstack/react-start";
-import { createFirmWithDemo } from "@/lib/firm.functions";
+import { createFirmWithDemo, ensureDemoAdmin } from "@/lib/firm.functions";
 import { COLORS } from "@/lib/pleading";
 
 export const Route = createFileRoute("/auth")({
@@ -25,6 +25,25 @@ function AuthPage() {
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const createFirm = useServerFn(createFirmWithDemo);
+  const ensureDemo = useServerFn(ensureDemoAdmin);
+
+  async function handleDemoAdmin() {
+    setErr(null);
+    setLoading(true);
+    try {
+      const creds = await ensureDemo();
+      const { error } = await supabase.auth.signInWithPassword({
+        email: creds.email,
+        password: creds.password,
+      });
+      if (error) throw error;
+      navigate({ to: "/cases" });
+    } catch (e: any) {
+      setErr(e?.message ?? String(e));
+    } finally {
+      setLoading(false);
+    }
+  }
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
@@ -114,7 +133,27 @@ function AuthPage() {
           >
             {mode === "signin" ? "No account? Open a cabinet →" : "← Already have an account? Sign in"}
           </button>
+
+          <div className="my-5 flex items-center gap-3">
+            <div className="h-px flex-1" style={{ background: COLORS.hair }} />
+            <span className="font-mono text-[9px] uppercase tracking-[0.28em] text-ink-dim">demo</span>
+            <div className="h-px flex-1" style={{ background: COLORS.hair }} />
+          </div>
+
+          <button
+            type="button"
+            onClick={handleDemoAdmin}
+            disabled={loading}
+            className="w-full rounded-sm border px-3 py-2.5 font-mono text-[11px] uppercase tracking-[0.2em] hover:bg-panel2 disabled:opacity-50"
+            style={{ borderColor: COLORS.ink, color: COLORS.ink }}
+          >
+            ⚡ Enter as demo admin
+          </button>
+          <p className="mt-2 text-center font-mono text-[9px] uppercase tracking-[0.2em] text-ink-dim">
+            instant access · seeded case · no signup
+          </p>
         </div>
+
       </div>
     </div>
   );

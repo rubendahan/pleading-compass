@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { COLORS } from "@/lib/pleading";
+import { COLORS, anchorLabel } from "@/lib/pleading";
 import demoCase from "@/lib/demo-case.json";
 
 type Para = { n: number; text: string };
-type Doc = { title: string; doc_type: string; party: string; paras: Para[] };
+type Doc = { title: string; doc_type: string; party: string; paras: Para[]; file_url?: string | null; mime?: string };
 type Docs = Record<string, Doc>;
 
 function parseAnchor(a: string) {
@@ -43,7 +43,9 @@ export function AnchorButton({
               {doc ? doc.title : `Document ${parsed?.doc ?? ""}`}
             </DialogTitle>
           </DialogHeader>
-          {doc ? (
+          {doc?.file_url ? (
+            <FileViewer doc={doc} anchor={anchor} quote={quote} />
+          ) : doc ? (
             <Reader doc={doc} para={parsed?.para} quote={quote} />
           ) : (
             <p className="text-sm text-ink-dim">
@@ -101,5 +103,32 @@ function renderHighlighted(text: string, quote?: string | null) {
       </mark>
       {text.slice(i + quote.length)}
     </>
+  );
+}
+
+/** Renders the actual source file (PDF / image / video) with the quote shown alongside, so the
+ *  lawyer verifies against the real document, not a transcription. Lights up whenever a backend
+ *  supplies a document `file_url` + `mime` (e.g. scanned PDFs, multi-modal evidence). */
+function FileViewer({ doc, anchor, quote }: { doc: Doc; anchor: string; quote?: string | null }) {
+  const mime = doc.mime ?? "";
+  const url = doc.file_url ?? "";
+  const isImage = mime.startsWith("image/");
+  const isVideo = mime.startsWith("video/");
+  return (
+    <div className="space-y-2">
+      <div className="rounded-sm border p-2.5" style={{ borderColor: COLORS.hair, background: COLORS.bg }}>
+        <div className="font-mono text-[10px] uppercase tracking-widest text-ink-dim">{anchorLabel(anchor)}</div>
+        {quote ? <p className="mt-1 font-mono text-[12px] leading-relaxed text-ink">“{quote}”</p> : null}
+      </div>
+      <div className="h-[62vh] overflow-hidden rounded-sm border" style={{ borderColor: COLORS.hair, background: COLORS.panel2 }}>
+        {isImage ? (
+          <img src={url} alt={doc.title} className="h-full w-full object-contain" />
+        ) : isVideo ? (
+          <video src={url} controls className="h-full w-full" />
+        ) : (
+          <iframe src={url} title={doc.title} className="h-full w-full" style={{ border: "none" }} />
+        )}
+      </div>
+    </div>
   );
 }

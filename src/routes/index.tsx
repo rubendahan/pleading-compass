@@ -302,8 +302,8 @@ function ModeToggle({ mode, setMode }: { mode: Mode; setMode: (m: Mode) => void 
   ];
   return (
     <div
-      className="inline-flex rounded-md border p-0.5"
-      style={{ borderColor: COLORS.hair, background: COLORS.bg }}
+      className="inline-flex rounded-sm border p-0.5"
+      style={{ borderColor: COLORS.hair, background: COLORS.panel2 }}
     >
       {opts.map((o) => {
         const active = mode === o.k;
@@ -311,10 +311,10 @@ function ModeToggle({ mode, setMode }: { mode: Mode; setMode: (m: Mode) => void 
           <button
             key={o.k}
             onClick={() => setMode(o.k)}
-            className="rounded px-2.5 py-1 font-mono text-[10px] uppercase tracking-widest transition"
+            className="rounded-sm px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] transition"
             style={{
-              color: active ? COLORS.bg : COLORS.ink,
-              background: active ? COLORS.accent : "transparent",
+              color: active ? COLORS.panel : COLORS.ink,
+              background: active ? COLORS.ink : "transparent",
             }}
           >
             {o.label}
@@ -336,13 +336,13 @@ function StatChip({
 }) {
   return (
     <div
-      className="inline-flex flex-col rounded-md border px-2.5 py-1"
-      style={{ borderColor: COLORS.hair, background: COLORS.bg }}
+      className="inline-flex flex-col rounded-sm border px-3 py-1.5"
+      style={{ borderColor: COLORS.hair, background: COLORS.panel }}
     >
-      <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-ink-dim">
+      <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-ink-dim">
         {label}
       </span>
-      <span className="font-mono text-[12px]" style={{ color }}>
+      <span className="font-mono text-[13px] font-medium" style={{ color }}>
         {value}
       </span>
     </div>

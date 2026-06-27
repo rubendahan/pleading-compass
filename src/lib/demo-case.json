@@ -9,9 +9,9 @@
     "readiness": 20,
     "own_goal": 6,
     "props": 10,
-    "docs": 11,
+    "docs": 12,
     "claims": 27,
-    "rejected_pleadings": 6,
+    "rejected_pleadings": 7,
     "exposure_from": "£6.0m",
     "exposure_to": "£1.8m"
   },
@@ -83,8 +83,8 @@
       "id": "prop:P8",
       "layer": "proposition",
       "label": "P8",
-      "verdict": "NOT_ADDRESSED",
-      "overlay": "BURDEN_PROBLEM",
+      "verdict": "CONTRADICTED",
+      "overlay": "NONE",
       "readiness": 0,
       "text": "TechFlow failed to provide adequate training to Meridian's staff in the use of the Platform."
     },
@@ -300,7 +300,13 @@
       "quote": "That said, I should be straight about the wider picture. A number of the till outages in stores turned out to be caused by the broadband connections in the stores dropping out, rather than the platform itself. There was also a complete outage on 25 November that I am told was a network failure at our data centre provider, not the platform.",
       "prop": null,
       "load_bearing": false,
-      "single_source": false
+      "single_source": false,
+      "admissibility": {
+        "hearsay": true,
+        "personal_knowledge": false,
+        "note": "Okafor relays the outage cause as hearsay (\"I am told\"); not within his personal knowledge.",
+        "source": "counsel"
+      }
     },
     {
       "id": "doc:17",
@@ -565,34 +571,45 @@
       "single_source": false
     },
     {
+      "id": "claim:sow_training_alloc",
+      "layer": "claim",
+      "label": "SOW cl 3.2: training of the Customer's sta",
+      "fulltext": "SOW cl 3.2: training of the Customer's staff is the Customer's responsibility; the Supplier owed only a train-the-trainer session and written user guides.",
+      "issue": "TRAINING",
+      "polarity": "bundle",
+      "source_type": "signed_contract",
+      "weight": 5.0,
+      "verdict": "accepted",
+      "anchor": "04¶9",
+      "quote": "3.2 Training of the Customer’s store and head-office staff in the use of the Platform is the responsibility of the Customer. The Supplier shall provide a train-the-trainer session and written user guides only.",
+      "prop": null,
+      "load_bearing": false,
+      "single_source": false,
+      "blocks": [
+        "p8_training"
+      ]
+    },
+    {
+      "id": "doc:04",
+      "layer": "document",
+      "label": "04",
+      "title": "Statement of Work",
+      "doc_type": "contract",
+      "party": "neutral"
+    },
+    {
       "id": "claim:p8_training",
       "layer": "claim",
       "label": "TechFlow failed to provide adequate traini",
       "fulltext": "TechFlow failed to provide adequate training to Meridian's staff.",
-      "issue": "TRAINING/ABSENCE",
+      "issue": "TRAINING",
       "polarity": "pleading",
       "source_type": "pleading",
       "weight": 1.0,
-      "verdict": "accepted",
+      "verdict": "rejected",
       "anchor": "02¶14",
       "quote": "Further, TechFlow failed to provide adequate training to Meridian’s staff in the use of the Platform. Loss and damage",
       "prop": "P8",
-      "load_bearing": false,
-      "single_source": false
-    },
-    {
-      "id": "claim:absence_training",
-      "layer": "claim",
-      "label": "No quote-grounded document in the bundle a",
-      "fulltext": "No quote-grounded document in the bundle addresses training provision.",
-      "issue": "TRAINING/ABSENCE",
-      "polarity": "bundle",
-      "source_type": "absence",
-      "weight": 1.0,
-      "verdict": "accepted",
-      "anchor": null,
-      "quote": null,
-      "prop": null,
       "load_bearing": false,
       "single_source": false
     },
@@ -944,12 +961,29 @@
       "own_goal": false
     },
     {
+      "source": "doc:04",
+      "target": "claim:sow_training_alloc",
+      "rel": "asserts",
+      "kind": "provenance",
+      "hard": false
+    },
+    {
       "source": "claim:p8_training",
       "target": "prop:P8",
       "rel": "belongs_to",
       "kind": "impact",
       "hard": false,
-      "verdict": "accepted"
+      "verdict": "rejected"
+    },
+    {
+      "source": "claim:sow_training_alloc",
+      "target": "claim:p8_training",
+      "rel": "contradicts",
+      "kind": "coherence",
+      "hard": true,
+      "explanation": "SOW cl 3.2 allocates staff training to Meridian and limits TechFlow's duty to a train-the-trainer session and written guides - contradicting 'TechFlow failed to provide adequate training'.",
+      "own_goal": false,
+      "blocking": true
     },
     {
       "source": "claim:p1_oralrep",
@@ -1077,17 +1111,18 @@
       ]
     },
     {
-      "issue": "TRAINING/ABSENCE",
+      "issue": "TRAINING",
       "solver": "brute_force",
       "story": [
-        "No quote-grounded document in the bundle addresses training provision.",
-        "Absence of evidence is not a contradiction - it is a burden / evidence gap."
+        "SOW clause 3.2 makes training of Meridian's own staff Meridian's responsibility.",
+        "TechFlow's only training obligation was a train-the-trainer session and written user guides.",
+        "So 'TechFlow failed to provide adequate training' is contradicted by the contract, unless Meridian pleads a specific failure of the train-the-trainer / user-guide duty."
       ],
       "impacts": [
-        "P8: NOT_ADDRESSED  [legal overlay: BURDEN_PROBLEM] - No document in the bundle addresses training provision; the burden is the Claimant's."
+        "P8: REJECTED_BY_COHERENT_STORY - SOW cl 3.2 makes training of Meridian's own staff Meridian's responsibility; TechFlow owed only a train-the-trainer session and written user guides. The 'failure to train' allegation is contradicted by the contract (Tab 4 / doc 04 ¶9)."
       ],
       "amendments": [
-        "Add training records, attendance logs, witness evidence, or correspondence before pleading the training failure strongly. Lawyer review required."
+        "Withdraw or recast the training allegation: SOW cl 3.2 puts staff training on Meridian; plead only a failure of TechFlow's limited train-the-trainer / user-guide obligation, if evidenced. Lawyer review required."
       ]
     },
     {
@@ -1178,10 +1213,14 @@
       }
     },
     {
-      "issue": "TRAINING/ABSENCE",
+      "issue": "TRAINING",
       "load_bearing": {},
       "single_source": [],
-      "revives_if_removed": {}
+      "revives_if_removed": {
+        "sow_training_alloc": [
+          "p8_training"
+        ]
+      }
     },
     {
       "issue": "ORAL_REP/NON_RELIANCE",
@@ -1195,6 +1234,13 @@
       "title": "Particulars of Claim",
       "doc_type": "pleading",
       "party": "claimant",
+      "tab": "02",
+      "date": "2025-06-05",
+      "category": "Pleading",
+      "modality": "document",
+      "mime": "text/plain",
+      "file_url": null,
+      "description": "Particulars of Claim",
       "paras": [
         {
           "n": 1,
@@ -1266,6 +1312,13 @@
       "title": "Master Services Agreement",
       "doc_type": "contract",
       "party": "neutral",
+      "tab": "03",
+      "date": "2024-03-14",
+      "category": "Contract",
+      "modality": "document",
+      "mime": "text/plain",
+      "file_url": null,
+      "description": "Master Services Agreement",
       "paras": [
         {
           "n": 1,
@@ -1365,10 +1418,95 @@
         }
       ]
     },
+    "04": {
+      "title": "Statement of Work",
+      "doc_type": "contract",
+      "party": "neutral",
+      "tab": "04",
+      "date": "2024-03-14",
+      "category": "Contract",
+      "modality": "document",
+      "mime": "text/plain",
+      "file_url": null,
+      "description": "Statement of Work",
+      "paras": [
+        {
+          "n": 1,
+          "text": "SCHEDULE 1 - STATEMENT OF WORK (SOW-01)"
+        },
+        {
+          "n": 2,
+          "text": "to the Master Services Agreement dated 14 March 2024"
+        },
+        {
+          "n": 3,
+          "text": "1. Scope"
+        },
+        {
+          "n": 4,
+          "text": "1.1 The Supplier shall deliver the Platform in two phases: Phase 1 (core inventory and EPOS); Phase 2 (reporting and analytics). The agreed scope does not include a customer loyalty module."
+        },
+        {
+          "n": 5,
+          "text": "2. Implementation timetable"
+        },
+        {
+          "n": 6,
+          "text": "2.1 The go-live date of 1 October 2024 is a target date. The detailed implementation plan is a planning estimate and is subject to the change control procedure in clause 3 of the MSA."
+        },
+        {
+          "n": 7,
+          "text": "3. Responsibilities of the Customer"
+        },
+        {
+          "n": 8,
+          "text": "3.1 The Customer shall provide timely access to data, systems and personnel, and shall procure and maintain adequate in-store network connectivity."
+        },
+        {
+          "n": 9,
+          "text": "3.2 Training of the Customer’s store and head-office staff in the use of the Platform is the responsibility of the Customer. The Supplier shall provide a train-the-trainer session and written user guides only."
+        },
+        {
+          "n": 10,
+          "text": "4. Payment milestones"
+        },
+        {
+          "n": 11,
+          "text": "4.1 Charges are payable 25% on each of M1, M2, M3 and M4, subject to any variation agreed under the change control procedure."
+        },
+        {
+          "n": 12,
+          "text": "Milestone | Description | Target date"
+        },
+        {
+          "n": 13,
+          "text": "M1 | Design sign-off | 30 April 2024"
+        },
+        {
+          "n": 14,
+          "text": "M2 | Build complete (Phase 1) | 31 July 2024"
+        },
+        {
+          "n": 15,
+          "text": "M3 | User acceptance testing | 13 September 2024"
+        },
+        {
+          "n": 16,
+          "text": "M4 | Go-live (target date) | 1 October 2024"
+        }
+      ]
+    },
     "07": {
       "title": "Change Order No 3",
       "doc_type": "contract",
       "party": "neutral",
+      "tab": "07",
+      "date": "2024-09-02",
+      "category": "Amendment",
+      "modality": "document",
+      "mime": "text/plain",
+      "file_url": null,
+      "description": "Change Order No 3",
       "paras": [
         {
           "n": 1,
@@ -1428,6 +1566,13 @@
       "title": "UAT Acceptance Certificate",
       "doc_type": "record",
       "party": "neutral",
+      "tab": "08",
+      "date": "2024-11-12",
+      "category": "Record",
+      "modality": "document",
+      "mime": "text/plain",
+      "file_url": null,
+      "description": "UAT Acceptance Certificate",
       "paras": [
         {
           "n": 1,
@@ -1467,6 +1612,13 @@
       "title": "Email Go-Live Readiness",
       "doc_type": "correspondence",
       "party": "neutral",
+      "tab": "09",
+      "date": "2024-10-24",
+      "category": "Correspondence",
+      "modality": "email",
+      "mime": "text/plain",
+      "file_url": null,
+      "description": "Email Go-Live Readiness",
       "paras": [
         {
           "n": 1,
@@ -1558,6 +1710,13 @@
       "title": "Email Loyalty Module Change Request",
       "doc_type": "correspondence",
       "party": "neutral",
+      "tab": "10",
+      "date": "2024-08-21",
+      "category": "Correspondence",
+      "modality": "email",
+      "mime": "text/plain",
+      "file_url": null,
+      "description": "Email Loyalty Module Change Request",
       "paras": [
         {
           "n": 1,
@@ -1641,6 +1800,13 @@
       "title": "Defect Log",
       "doc_type": "record",
       "party": "neutral",
+      "tab": "13",
+      "date": "2024-11-30",
+      "category": "Internal record",
+      "modality": "email",
+      "mime": "text/plain",
+      "file_url": null,
+      "description": "Defect Log",
       "paras": [
         {
           "n": 1,
@@ -1688,6 +1854,13 @@
       "title": "Witness Statement Helena Vance",
       "doc_type": "witness",
       "party": "claimant",
+      "tab": "16",
+      "date": "2026-03-13",
+      "category": "Witness (fact)",
+      "modality": "document",
+      "mime": "text/plain",
+      "file_url": null,
+      "description": "Witness Statement Helena Vance",
       "paras": [
         {
           "n": 1,
@@ -1723,6 +1896,13 @@
       "title": "Witness Statement Raymond Okafor",
       "doc_type": "witness",
       "party": "claimant",
+      "tab": "17",
+      "date": "2026-03-13",
+      "category": "Witness (fact)",
+      "modality": "document",
+      "mime": "text/plain",
+      "file_url": null,
+      "description": "Witness Statement Raymond Okafor",
       "paras": [
         {
           "n": 1,
@@ -1754,6 +1934,13 @@
       "title": "Witness Statement Priya Nair",
       "doc_type": "witness",
       "party": "claimant",
+      "tab": "18",
+      "date": "2026-03-13",
+      "category": "Witness (fact)",
+      "modality": "document",
+      "mime": "text/plain",
+      "file_url": null,
+      "description": "Witness Statement Priya Nair",
       "paras": [
         {
           "n": 1,
@@ -1785,6 +1972,13 @@
       "title": "Expert Report Whitfield IT",
       "doc_type": "expert",
       "party": "claimant",
+      "tab": "19",
+      "date": "2026-04-24",
+      "category": "Witness (expert)",
+      "modality": "document",
+      "mime": "text/plain",
+      "file_url": null,
+      "description": "Expert Report Whitfield IT",
       "paras": [
         {
           "n": 1,
@@ -1820,6 +2014,13 @@
       "title": "Expert Report Greenhalgh Quantum",
       "doc_type": "expert",
       "party": "claimant",
+      "tab": "20",
+      "date": "2026-04-24",
+      "category": "Witness (expert)",
+      "modality": "document",
+      "mime": "text/plain",
+      "file_url": null,
+      "description": "Expert Report Greenhalgh Quantum",
       "paras": [
         {
           "n": 1,
@@ -1851,5 +2052,341 @@
         }
       ]
     }
-  }
+  },
+  "doc_index": [
+    {
+      "tab": "01",
+      "title": "Claim Form",
+      "party": "claimant",
+      "date": "2025-06-05",
+      "category": "Pleading"
+    },
+    {
+      "tab": "02",
+      "title": "Particulars of Claim",
+      "party": "claimant",
+      "date": "2025-06-05",
+      "category": "Pleading"
+    },
+    {
+      "tab": "03",
+      "title": "Master Services Agreement",
+      "party": "neutral",
+      "date": "2024-03-14",
+      "category": "Contract"
+    },
+    {
+      "tab": "04",
+      "title": "Statement of Work",
+      "party": "neutral",
+      "date": "2024-03-14",
+      "category": "Contract"
+    },
+    {
+      "tab": "05",
+      "title": "Order Form Phase 1",
+      "party": "neutral",
+      "date": "2024-03-20",
+      "category": "Contract"
+    },
+    {
+      "tab": "06",
+      "title": "Deed of Variation No 1",
+      "party": "neutral",
+      "date": "2024-06-28",
+      "category": "Amendment"
+    },
+    {
+      "tab": "07",
+      "title": "Change Order No 3",
+      "party": "neutral",
+      "date": "2024-09-02",
+      "category": "Amendment"
+    },
+    {
+      "tab": "08",
+      "title": "UAT Acceptance Certificate",
+      "party": "neutral",
+      "date": "2024-11-12",
+      "category": "Record"
+    },
+    {
+      "tab": "09",
+      "title": "Email Go-Live Readiness",
+      "party": "neutral",
+      "date": "2024-10-24",
+      "category": "Correspondence"
+    },
+    {
+      "tab": "10",
+      "title": "Email Loyalty Module Change Request",
+      "party": "neutral",
+      "date": "2024-08-21",
+      "category": "Correspondence"
+    },
+    {
+      "tab": "11",
+      "title": "Email 25 Nov Outage Root Cause",
+      "party": "neutral",
+      "date": "2024-11-26",
+      "category": "Correspondence"
+    },
+    {
+      "tab": "12",
+      "title": "Email Internal Peak Trading Disruption",
+      "party": "neutral",
+      "date": "2024-12-08",
+      "category": "Internal record"
+    },
+    {
+      "tab": "13",
+      "title": "Defect Log",
+      "party": "neutral",
+      "date": "2024-11-30",
+      "category": "Internal record"
+    },
+    {
+      "tab": "14",
+      "title": "Letter Notice of Termination",
+      "party": "claimant",
+      "date": "2025-01-20",
+      "category": "Correspondence"
+    },
+    {
+      "tab": "15",
+      "title": "Letter TechFlow Response",
+      "party": "defendant",
+      "date": "2025-02-07",
+      "category": "Correspondence"
+    },
+    {
+      "tab": "16",
+      "title": "Witness Statement Helena Vance",
+      "party": "claimant",
+      "date": "2026-03-13",
+      "category": "Witness (fact)"
+    },
+    {
+      "tab": "17",
+      "title": "Witness Statement Raymond Okafor",
+      "party": "claimant",
+      "date": "2026-03-13",
+      "category": "Witness (fact)"
+    },
+    {
+      "tab": "18",
+      "title": "Witness Statement Priya Nair",
+      "party": "claimant",
+      "date": "2026-03-13",
+      "category": "Witness (fact)"
+    },
+    {
+      "tab": "19",
+      "title": "Expert Report Whitfield IT",
+      "party": "claimant",
+      "date": "2026-04-24",
+      "category": "Witness (expert)"
+    },
+    {
+      "tab": "20",
+      "title": "Expert Report Greenhalgh Quantum",
+      "party": "claimant",
+      "date": "2026-04-24",
+      "category": "Witness (expert)"
+    }
+  ],
+  "chronology": [
+    {
+      "n": 1,
+      "date": "2024-03-14",
+      "event": "Meridian and TechFlow entered into the Master Services Agreement (MSA) to design, build and implement a cloud inventory-management and EPOS platform.",
+      "evidence": [
+        {
+          "tab": "03",
+          "para": null
+        },
+        {
+          "tab": "18",
+          "para": 2
+        }
+      ],
+      "remarks": "",
+      "source": "counsel"
+    },
+    {
+      "n": 2,
+      "date": "2024-03-14",
+      "event": "The SOW (Schedule 1) set the scope, implementation plan and milestones; the 1 October 2024 go-live was stated to be a target date.",
+      "evidence": [
+        {
+          "tab": "04",
+          "para": 6
+        }
+      ],
+      "remarks": "",
+      "source": "counsel"
+    },
+    {
+      "n": 3,
+      "date": "2024-03-20",
+      "event": "Meridian issued an Order Form (Phase 1); the charges payable under the MSA were GBP 2,400,000 (excluding VAT).",
+      "evidence": [
+        {
+          "tab": "05",
+          "para": null
+        }
+      ],
+      "remarks": "",
+      "source": "counsel"
+    },
+    {
+      "n": 4,
+      "date": "2024-06-28",
+      "event": "Deed of Variation No. 1 varied the payment-milestone profile in the SOW to reflect cash-flow phasing.",
+      "evidence": [
+        {
+          "tab": "06",
+          "para": null
+        }
+      ],
+      "remarks": "",
+      "source": "counsel"
+    },
+    {
+      "n": 5,
+      "date": "2024-08-21",
+      "event": "Helena Vance (Meridian) requested a Loyalty Module and was willing to revise the go-live date; on 27 August TechFlow quoted GBP 180,000 and a move to 18 Nov 2024.",
+      "evidence": [
+        {
+          "tab": "10",
+          "para": null
+        },
+        {
+          "tab": "16",
+          "para": 3
+        }
+      ],
+      "remarks": "",
+      "source": "counsel"
+    },
+    {
+      "n": 6,
+      "date": "2024-09-02",
+      "event": "Change Order No. 3 was signed: it added the Loyalty Module (+GBP 180,000) and revised the go-live date from 1 October to 18 November 2024.",
+      "evidence": [
+        {
+          "tab": "07",
+          "para": 9
+        },
+        {
+          "tab": "18",
+          "para": 3
+        }
+      ],
+      "remarks": "Supersedes the original 1 October go-live date.",
+      "source": "counsel"
+    },
+    {
+      "n": 7,
+      "date": "2024-10-24",
+      "event": "TechFlow recommended deferring go-live to mid-January 2025; Meridian elected to accept the risk and instructed go-live on 18 November 2024.",
+      "evidence": [
+        {
+          "tab": "09",
+          "para": 5
+        },
+        {
+          "tab": "08",
+          "para": 7
+        },
+        {
+          "tab": "18",
+          "para": 4
+        }
+      ],
+      "remarks": "",
+      "source": "counsel"
+    },
+    {
+      "n": 8,
+      "date": "2024-11-26",
+      "event": "TechFlow informed Meridian that the 25 November 2024 outage was caused by loss of wide-area network connectivity at Meridian's data-centre provider (Northgate).",
+      "evidence": [
+        {
+          "tab": "11",
+          "para": null
+        },
+        {
+          "tab": "13",
+          "para": null
+        },
+        {
+          "tab": "17",
+          "para": 3
+        }
+      ],
+      "remarks": "Okafor relays the cause as hearsay ('I am told').",
+      "source": "counsel"
+    },
+    {
+      "n": 9,
+      "date": "2024-12-08",
+      "event": "Okafor's internal email: December trading below plan; a DC flood closed the Lutterworth distribution centre for 10 days and the market was soft.",
+      "evidence": [
+        {
+          "tab": "12",
+          "para": null
+        },
+        {
+          "tab": "17",
+          "para": 4
+        }
+      ],
+      "remarks": "Alternative causation for the Q4 shortfall.",
+      "source": "counsel"
+    },
+    {
+      "n": 10,
+      "date": "2025-01-20",
+      "event": "Meridian's solicitors issued a Notice of Termination of the MSA: late delivery, repeated failures, and not fit for purpose.",
+      "evidence": [
+        {
+          "tab": "14",
+          "para": null
+        }
+      ],
+      "remarks": "",
+      "source": "counsel"
+    },
+    {
+      "n": 11,
+      "date": "2025-02-07",
+      "event": "TechFlow's solicitors replied, disputing the grounds of termination.",
+      "evidence": [
+        {
+          "tab": "15",
+          "para": null
+        }
+      ],
+      "remarks": "",
+      "source": "counsel"
+    },
+    {
+      "n": 12,
+      "date": "2025-06-05",
+      "event": "Meridian filed its Claim at the High Court.",
+      "evidence": [
+        {
+          "tab": "01",
+          "para": null
+        },
+        {
+          "tab": "02",
+          "para": null
+        }
+      ],
+      "remarks": "",
+      "source": "counsel"
+    }
+  ]
 }

@@ -172,3 +172,17 @@ export function relLabel(rel: EdgeRel): string {
 export function srcId(s: string | { id: string }): string {
   return typeof s === "string" ? s : s.id;
 }
+
+/** A bundle document id is its litigation Tab number. "04" -> "Tab 4". */
+export function tabLabel(docId: string | null | undefined): string {
+  if (!docId) return "";
+  const n = parseInt(docId, 10);
+  return Number.isNaN(n) ? `Tab ${docId}` : `Tab ${n}`;
+}
+
+/** Format a source anchor "04¶9" as "Tab 4 · ¶9" for lawyer-facing references. */
+export function anchorLabel(anchor: string | null | undefined): string {
+  if (!anchor) return "";
+  const [doc, para] = anchor.split("¶");
+  return para ? `${tabLabel(doc)} · ¶${para}` : tabLabel(doc);
+}

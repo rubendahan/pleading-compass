@@ -27,7 +27,11 @@ function CasePage() {
   const [err, setErr] = useState<string | null>(null);
   const [view, setView] = useState<View>("graph");
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  // Inspector can be focused on a different node than the main selection — e.g.
+  // when clicking a pleading claim, the inspector follows the scrolled-to bundle item.
+  const [inspectorId, setInspectorId] = useState<string | null>(null);
   const [selectedEdge, setSelectedEdge] = useState<DataEdge | null>(null);
+
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [inspectorOpen, setInspectorOpen] = useState(false);
   const [popover, setPopover] = useState<{ id: string; x: number; y: number } | null>(null);

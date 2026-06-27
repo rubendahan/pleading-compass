@@ -58,6 +58,42 @@ export function AnchorButton({
   );
 }
 
+/** Controlled variant: opens the source reader for an arbitrary anchor.
+ *  Used when the trigger is somewhere else (e.g. a graph node click). */
+export function SourceReaderDialog({
+  anchor, quote, documents, open, onOpenChange,
+}: {
+  anchor: string | null | undefined;
+  quote?: string | null;
+  documents?: Docs;
+  open: boolean;
+  onOpenChange: (v: boolean) => void;
+}) {
+  const parsed = anchor ? parseAnchor(anchor) : null;
+  const docs: Docs = (documents ?? (demoCase as any).documents ?? {}) as Docs;
+  const doc = parsed ? docs[parsed.doc] : undefined;
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="max-w-2xl" style={{ background: COLORS.panel, borderColor: COLORS.hair }}>
+        <DialogHeader>
+          <DialogTitle className="font-display text-[18px]">
+            {doc ? doc.title : `Document ${parsed?.doc ?? ""}`}
+          </DialogTitle>
+        </DialogHeader>
+        {doc?.file_url ? (
+          <FileViewer doc={doc} anchor={anchor!} quote={quote} />
+        ) : doc ? (
+          <Reader doc={doc} para={parsed?.para} quote={quote} />
+        ) : (
+          <p className="text-sm text-ink-dim">
+            Full document text is not loaded for this case.
+          </p>
+        )}
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 function Reader({ doc, para, quote }: { doc: Doc; para?: number; quote?: string | null }) {
   const ref = useRef<HTMLDivElement | null>(null);
   useEffect(() => {

@@ -349,22 +349,33 @@ export default function GraphCanvas({
         }}
       />
       <Legend mode={mode} />
-      <WheelHint />
+      <ZoomControls
+        onZoomIn={() => { const fg = fgRef.current; if (!fg?.zoom) return; fg.zoom(Math.min(8, fg.zoom() * 1.35), 220); }}
+        onZoomOut={() => { const fg = fgRef.current; if (!fg?.zoom) return; fg.zoom(Math.max(0.2, fg.zoom() / 1.35), 220); }}
+        onFit={() => { const fg = fgRef.current; if (!fg?.zoomToFit) return; fg.zoomToFit(400, 80); }}
+        onRecenter={() => { const fg = fgRef.current; if (!fg?.centerAt) return; fg.centerAt(0, 0, 400); fg.zoom(1, 400); }}
+      />
     </div>
   );
 }
 
-function WheelHint() {
-  const isMac = typeof navigator !== "undefined" && /Mac|iPhone|iPad/.test(navigator.platform);
+function ZoomControls({
+  onZoomIn, onZoomOut, onFit, onRecenter,
+}: { onZoomIn: () => void; onZoomOut: () => void; onFit: () => void; onRecenter: () => void }) {
+  const btn = "h-8 w-8 grid place-items-center font-mono text-[13px] leading-none hover:bg-black/5 transition";
   return (
     <div
-      className="pointer-events-none absolute left-3 top-3 rounded-sm border px-2 py-1 font-mono text-[10px] tracking-wider"
-      style={{ borderColor: COLORS.hair, background: withAlpha(COLORS.panel, 0.9), color: COLORS.inkDim }}
+      className="absolute left-3 top-3 flex flex-col rounded-sm border overflow-hidden"
+      style={{ borderColor: COLORS.hair, background: withAlpha(COLORS.panel, 0.95), color: COLORS.ink }}
     >
-      <kbd style={{ color: COLORS.ink }}>{isMac ? "⌘" : "Ctrl"}</kbd> + scroll to zoom · drag to pan
+      <button onClick={onZoomIn} className={btn} title="Zoom in">＋</button>
+      <button onClick={onZoomOut} className={btn + " border-t"} style={{ borderColor: COLORS.hair }} title="Zoom out">−</button>
+      <button onClick={onFit} className={btn + " border-t text-[10px]"} style={{ borderColor: COLORS.hair }} title="Fit graph">⤢</button>
+      <button onClick={onRecenter} className={btn + " border-t text-[11px]"} style={{ borderColor: COLORS.hair }} title="Recenter">⊕</button>
     </div>
   );
 }
+
 
 function isLinkFocused(l: any, focused: Set<string>): boolean {
   return focused.has(srcId(l.source)) && focused.has(srcId(l.target));

@@ -272,7 +272,12 @@ function PropositionView({
     ? impact.slice(impact.indexOf(":") + 1).trim()
     : cluster?.story[0] ?? null;
   const hasAnalysis = Boolean(
-    cluster?.story.length || cluster?.amendments.length || claims.length,
+    cluster?.story.length ||
+      cluster?.amendments.length ||
+      cluster?.missing_evidence?.length ||
+      cluster?.over_extrapolation_risks?.length ||
+      cluster?.recommended_action ||
+      claims.length,
   );
 
   return (
@@ -330,17 +335,55 @@ function PropositionView({
             </div>
           )}
 
-          {cluster && cluster.amendments.length > 0 && (
+          {cluster?.recommended_action && (
             <div>
-              <SectionHeading>Suggested amendments</SectionHeading>
-              <ul className="space-y-2 text-[13px] leading-relaxed text-ink">
-                {cluster.amendments.map((a, i) => (
-                  <li key={i} className="rounded border-l-2 pl-3" style={{ borderColor: COLORS.legal }}>
-                    {a}
-                  </li>
-                ))}
-              </ul>
+              <SectionHeading>Recommended action</SectionHeading>
+              <p className="text-[13px] leading-relaxed text-ink">{cluster.recommended_action}</p>
             </div>
+          )}
+
+          {/* The backend's gaps, split by kind when available; otherwise the merged
+              `amendments` list (older cases without the split fields). */}
+          {cluster && (cluster.missing_evidence?.length || cluster.over_extrapolation_risks?.length) ? (
+            <>
+              {cluster.missing_evidence && cluster.missing_evidence.length > 0 && (
+                <div>
+                  <SectionHeading>Missing evidence</SectionHeading>
+                  <ul className="space-y-2 text-[13px] leading-relaxed text-ink">
+                    {cluster.missing_evidence.map((a, i) => (
+                      <li key={i} className="rounded border-l-2 pl-3" style={{ borderColor: COLORS.legal }}>
+                        {a}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {cluster.over_extrapolation_risks && cluster.over_extrapolation_risks.length > 0 && (
+                <div>
+                  <SectionHeading>Over-extrapolation risks</SectionHeading>
+                  <ul className="space-y-2 text-[13px] leading-relaxed text-ink">
+                    {cluster.over_extrapolation_risks.map((a, i) => (
+                      <li key={i} className="rounded border-l-2 pl-3" style={{ borderColor: COLORS.orange }}>
+                        {a}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </>
+          ) : (
+            cluster && cluster.amendments.length > 0 && (
+              <div>
+                <SectionHeading>Suggested amendments</SectionHeading>
+                <ul className="space-y-2 text-[13px] leading-relaxed text-ink">
+                  {cluster.amendments.map((a, i) => (
+                    <li key={i} className="rounded border-l-2 pl-3" style={{ borderColor: COLORS.legal }}>
+                      {a}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )
           )}
 
           <p className="text-[11px] italic text-ink-dim">Coherence signal, not a verdict.</p>

@@ -536,11 +536,17 @@ def build_appdata(run_dir, case_dir, *, meta: dict | None = None) -> dict:
         story = _sentences((report or {}).get("legal_explanation", ""), 2)
         action = (report or {}).get("recommended_action", "") or ""
         impacts = [f"{plabel}: {verdict} - {action[:120]}".rstrip(" -")]
-        amendments = list((report or {}).get("missing_evidence") or []) + \
-            list((report or {}).get("over_extrapolation_risks") or [])
+        missing_evidence = list((report or {}).get("missing_evidence") or [])
+        over_extrapolation = list((report or {}).get("over_extrapolation_risks") or [])
+        # `amendments` is kept (merged) for backward-compatible consumers; the split
+        # fields + full action let the Inspector show each kind on its own.
+        amendments = missing_evidence + over_extrapolation
         clusters.append({
             "issue": issue, "solver": "pipeline", "story": story,
             "impacts": impacts, "amendments": amendments,
+            "missing_evidence": missing_evidence,
+            "over_extrapolation_risks": over_extrapolation,
+            "recommended_action": action,
         })
 
     # -------------------------------------- documents map (the WHOLE bundle)

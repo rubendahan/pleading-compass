@@ -86,6 +86,13 @@ export interface Cluster {
   story: string[];
   impacts: string[];
   amendments: string[];
+  /** Backend per-claim analysis, surfaced verbatim in the Inspector. When present,
+   *  these are shown as their own sections; otherwise the Inspector falls back to the
+   *  merged `amendments` list (keeps older cases like the EU demo unchanged). */
+  missing_evidence?: string[];
+  over_extrapolation_risks?: string[];
+  /** Full recommended action (not the truncated form folded into `impacts`). */
+  recommended_action?: string;
 }
 
 export interface AppData {

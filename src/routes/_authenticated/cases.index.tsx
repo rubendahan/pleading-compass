@@ -98,6 +98,8 @@ function CasesPage() {
               >
                 + New demo case
               </button>
+            </div>
+          </div>
           {cases.length === 0 ? (
             <p className="font-mono text-[12px] text-ink-dim">
               No cases yet. Start a <Link to="/cases/new" className="underline">new case</Link> or seed a demo case to explore the console.

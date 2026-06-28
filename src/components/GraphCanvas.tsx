@@ -651,67 +651,33 @@ function useReducedMotion(): boolean {
 }
 
 function Legend({ mode }: { mode: Mode }) {
-  const links: Array<[string, string]> = [
-    ["supports", COLORS.accepted],
-    ["contradicts", COLORS.rejected],
-    ["supersedes / attacks", COLORS.orange],
-    ["caps / legal bar", COLORS.legal],
-    ["asserts", COLORS.accent],
-  ];
+  void mode;
   const verdicts: Array<[string, string]> = [
     ["supported", COLORS.accepted],
     ["contradicted", COLORS.rejected],
     ["legal overlay", COLORS.legal],
     ["not addressed", COLORS.absence],
   ];
-  const div = <div className="my-1.5 h-px" style={{ background: COLORS.hair }} />;
-
   return (
     <div
-      className="pointer-events-none absolute bottom-3 left-3 rounded-sm border px-3 py-2 text-[10px] uppercase tracking-widest text-ink-dim"
+      className="pointer-events-none absolute bottom-3 left-3 flex flex-wrap items-center gap-x-3 gap-y-1.5 rounded-sm border px-2.5 py-1.5 text-[10px] uppercase tracking-widest text-ink-dim"
       style={{
         borderColor: COLORS.hair,
         background: withAlpha(COLORS.panel, 0.94),
         fontFamily: '"IBM Plex Mono", monospace',
+        maxWidth: 340,
       }}
     >
-      <div className="mb-1 text-ink">Legend</div>
-
-      <div className="flex items-center gap-2 leading-5">
-        <span className="inline-block h-2.5 w-2.5 rounded-full" style={{ background: COLORS.inkDim }} />
-        <span>claim</span>
-      </div>
-      <div className="flex items-center gap-2 leading-5">
-        <span className="inline-block h-2.5 w-2.5" style={{ background: COLORS.accent }} />
-        <span>document</span>
-      </div>
-      <div className="flex items-center gap-2 leading-5">
-        <span className="inline-block h-2.5 w-2.5 rounded-full border" style={{ borderColor: COLORS.brass, borderWidth: 1.5 }} />
-        <span>load-bearing</span>
-      </div>
-      <div className="flex items-center gap-2 leading-5">
-        <span className="inline-flex items-center gap-0.5">
-          <span className="inline-block rounded-full" style={{ width: 5, height: 5, background: COLORS.inkDim }} />
-          <span className="inline-block rounded-full" style={{ width: 9, height: 9, background: COLORS.inkDim }} />
-        </span>
-        <span>size = how load-bearing</span>
-      </div>
-
-      {div}
       {verdicts.map(([k, c]) => (
-        <div key={k} className="flex items-center gap-2 leading-5">
-          <span className="inline-block h-2.5 w-2.5 rounded-full" style={{ background: c }} />
-          <span>{k}</span>
-        </div>
+        <span key={k} className="flex items-center gap-1.5">
+          <span className="inline-block h-2 w-2 rounded-full" style={{ background: c }} />
+          {k}
+        </span>
       ))}
-
-      {div}
-      {links.map(([k, c]) => (
-        <div key={k} className="flex items-center gap-2 leading-5">
-          <span className="inline-block h-[2px] w-5" style={{ background: c }} />
-          <span>{k}</span>
-        </div>
-      ))}
+      <span className="flex items-center gap-1.5">
+        <span className="inline-block h-2 w-2 rounded-full border" style={{ borderColor: COLORS.brass, borderWidth: 1.5 }} />
+        load-bearing
+      </span>
     </div>
   );
 }

@@ -289,10 +289,18 @@ export const createDemoCase = createServerFn({ method: "POST" })
       .maybeSingle();
     if (!prof?.firm_id) throw new Error("No firm");
     const m = (demoCase as any).meta ?? {};
-    // Reuse an existing case of the same title instead of piling up duplicates.
+    // Reuse the existing case of the same title instead of piling up duplicates, but
+    // refresh its analysis to the latest bundled JSON so a redeploy of the demo data
+    // propagates to the seeded row on the next click (no need to delete + recreate).
     const { data: existing } = await supabase
       .from("cases").select("id").eq("firm_id", prof.firm_id).eq("title", m.case ?? "Demo Case").limit(1).maybeSingle();
-    if (existing?.id) return existing;
+    if (existing?.id) {
+      await supabase
+        .from("cases")
+        .update({ data: demoCase, claim_no: m.claim_no ?? null, court: m.court ?? null })
+        .eq("id", existing.id);
+      return existing;
+    }
     const { data, error } = await supabase
       .from("cases")
       .insert({
@@ -320,7 +328,13 @@ export const createEuCase = createServerFn({ method: "POST" })
     const m = (euCase as any).meta ?? {};
     const { data: existing } = await supabase
       .from("cases").select("id").eq("firm_id", prof.firm_id).eq("title", m.case ?? "EU Case").limit(1).maybeSingle();
-    if (existing?.id) return existing;
+    if (existing?.id) {
+      await supabase
+        .from("cases")
+        .update({ data: euCase, claim_no: m.claim_no ?? null, court: m.court ?? null })
+        .eq("id", existing.id);
+      return existing;
+    }
     const { data, error } = await supabase
       .from("cases")
       .insert({

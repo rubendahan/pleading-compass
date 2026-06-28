@@ -111,8 +111,31 @@ export default function GraphCanvas({
   }, [size.w, size.h, centerHole, centerHoleRect]);
 
   const graph = useMemo(() => {
-    const nodes: GraphNode[] = data.nodes.map((n) => ({ ...n }));
-    let edges = data.edges.slice();
+    // Declutter: keep propositions + documents + only the claims that carry weight
+    // (load-bearing, high weight, or part of a contradiction/supersedes edge).
+    // The rest is noise for an at-a-glance read.
+    const heavyClaimIds = new Set<string>();
+    for (const n of data.nodes as any[]) {
+      if (n.layer !== "claim") continue;
+      if (n.load_bearing) heavyClaimIds.add(n.id);
+      else if ((n.weight ?? 1) >= 4) heavyClaimIds.add(n.id);
+    }
+    for (const e of data.edges as any[]) {
+      if (e.rel === "contradicts" || e.rel === "supersedes" || e.hard) {
+        heavyClaimIds.add(e.source);
+        heavyClaimIds.add(e.target);
+      }
+    }
+    const layerOf = new Map(data.nodes.map((n) => [n.id, n.layer] as const));
+    const keep = (id: string) => {
+      const l = layerOf.get(id);
+      if (!l) return false;
+      return l !== "claim" || heavyClaimIds.has(id);
+    };
+    const nodes: GraphNode[] = data.nodes
+      .filter((n) => n.layer !== "claim" || heavyClaimIds.has(n.id))
+      .map((n) => ({ ...n }));
+    let edges = data.edges.slice().filter((e) => keep(e.source) && keep(e.target));
     if (mode === "stress") {
       edges = edges.filter((e) =>
         e.kind === "impact" || e.kind === "provenance" || e.kind === "coherence",

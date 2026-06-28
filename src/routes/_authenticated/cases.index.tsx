@@ -98,20 +98,6 @@ function CasesPage() {
               >
                 + New demo case
               </button>
-              <button
-                disabled={busy}
-                onClick={async () => {
-                  setBusy(true);
-                  try { const r = await seedEu(); navigate({ to: "/cases/$caseId", params: { caseId: r.id } }); }
-                  finally { setBusy(false); }
-                }}
-                className="rounded-sm border px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-dim hover:text-ink disabled:opacity-50"
-                style={{ borderColor: COLORS.hair }}
-              >
-                + EU test case
-              </button>
-            </div>
-          </div>
           {cases.length === 0 ? (
             <p className="font-mono text-[12px] text-ink-dim">
               No cases yet. Start a <Link to="/cases/new" className="underline">new case</Link> or seed a demo case to explore the console.

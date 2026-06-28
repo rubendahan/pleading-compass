@@ -247,7 +247,7 @@ function CasePage() {
             <div className="ml-1 flex flex-wrap gap-2">
               <StatChip label="trial readiness" value={`${data.stats.readiness}/100`}
                 color={data.stats.readiness >= 70 ? COLORS.accepted : data.stats.readiness >= 30 ? COLORS.legal : COLORS.rejected} />
-              <StatChip label="own goals" value={`${data.stats.own_goal}/10`} color={COLORS.orange} />
+              <StatChip label="own goals" value={`${data.stats.own_goal}`} color={COLORS.orange} />
               <StatChip label="exposure" value={`${data.stats.exposure_from} to ${data.stats.exposure_to}`} color={COLORS.ink} />
             </div>
           </div>

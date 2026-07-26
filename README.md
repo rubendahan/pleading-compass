@@ -4,10 +4,8 @@
 
 ### Does your own evidence actually back the case you pleaded?
 
-## [Try it live: pleadproof.lovable.app](https://pleadproof.lovable.app)
+## [Try it live](https://pleadproof.lovable.app)
 
-[![Live on Lovable](https://img.shields.io/badge/Live-pleadproof.lovable.app-FF6154?logo=lovable&logoColor=white)](https://pleadproof.lovable.app)
-&nbsp;
 [![React 19](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev)
 [![Vite](https://img.shields.io/badge/Vite-build-646CFF?logo=vite&logoColor=white)](https://vitejs.dev)
 [![Neo4j](https://img.shields.io/badge/Neo4j-graph-008CC1?logo=neo4j&logoColor=white)](https://neo4j.com)
@@ -15,7 +13,7 @@
 [![EU Cellar](https://img.shields.io/badge/EU%20Cellar-data-003399)](https://op.europa.eu/en/web/cellar)
 [![Python 3.13](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)](https://www.python.org)
 
-**Team Behemoth: Benjamin Lapostolle, Daryl Lee, Ruben Dahan.** Built for the CMS x Harvey Pleading-to-Proof challenge, Hack the Law 2026.
+**Team Behemoth: Benjamin Lapostolle, Daryl Lee, Ruben Dahan.** Built for the CMS × Harvey Pleading-to-Proof challenge at Hack the Law 2026 — winner of the Google Cloud prize.
 
 <br />
 
@@ -72,8 +70,6 @@ One pipeline, end to end:
 
 Each tool does one clear job:
 
-- **Lovable** is where PleadProof is built and deployed. The whole front end, the annotated pleading, the evidence graph, the chronology, and the in-site source reader, is built on Lovable, and the live app runs at pleadproof.lovable.app.
-- **Claude Code** (Anthropic) is the agentic coding tool the engineering was built with. The backend pipeline (the graph build, the embeddings and retrieval wiring, the scoring, the contradiction detection, and the verbatim grounding) was written with Claude Code driving Claude, and it was the team's pair-programmer across the front-end integration too.
 - **Neo4j** stores the case as a graph. Every pleaded allegation and every piece of evidence is a node, and the relationships between them (supports, contradicts, supersedes, caps) are edges. The analysis is graph-native, which is what lets the front draw the evidence map.
 - **Google Vertex AI** provides the embeddings. We embed every document of the bundle and every pleaded point, retrieve the most relevant documents per point, and cross-examine them — so the evidence for and against a point is read in full, not truncated to a snippet.
 - **NVIDIA Nemotron** is a first-class, drop-in option for the LLM. It sits behind a single seam that speaks the OpenAI protocol, so pointing the pipeline at a local or hosted Nemotron is a one line environment change (set the base URL and the model name), letting the whole analysis run on open weights on a firm's own hardware. (Our reference runs used a hosted GPT-class model through the same seam.)

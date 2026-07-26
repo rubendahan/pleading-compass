@@ -10,7 +10,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
+import { reportBoundaryError } from "../lib/error-reporting";
 
 function NotFoundComponent() {
   return (
@@ -38,7 +38,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
+    reportBoundaryError(error, { boundary: "tanstack_root_error_component" });
   }, [error]);
 
   return (
@@ -85,8 +85,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary" },
       { name: "twitter:title", content: "PleadProof" },
       { name: "twitter:description", content: "An Obsidian-style coherence console for litigation pleadings: see which allegations stand, which fall, and why." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/62a3472c-e416-4762-ac61-569d9c229f46/id-preview-4b98535d--06b12f54-dd0f-44e5-97ef-25d62a503469.lovable.app-1782566315618.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/62a3472c-e416-4762-ac61-569d9c229f46/id-preview-4b98535d--06b12f54-dd0f-44e5-97ef-25d62a503469.lovable.app-1782566315618.png" },
     ],
     links: [
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },

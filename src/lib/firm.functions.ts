@@ -40,7 +40,7 @@ export const getMyContext = createServerFn({ method: "GET" })
 // Create a firm + grant admin role + seed a demo case. Called once after signup.
 export const createFirmWithDemo = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
-  .inputValidator((input: { firmName: string; fullName: string }) =>
+  .validator((input: { firmName: string; fullName: string }) =>
     z.object({ firmName: z.string().trim().min(2).max(120), fullName: z.string().trim().min(2).max(120) }).parse(input),
   )
   .handler(async ({ data, context }) => {
@@ -91,7 +91,7 @@ export const createFirmWithDemo = createServerFn({ method: "POST" })
 // Invite a lawyer to the firm (admin only). Creates user via admin API and grants lawyer role.
 export const inviteLawyer = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
-  .inputValidator((input: { email: string; password: string; fullName: string }) =>
+  .validator((input: { email: string; password: string; fullName: string }) =>
     z.object({
       email: z.string().trim().email().max(255),
       password: z.string().min(8).max(128),
@@ -150,7 +150,7 @@ export const listCases = createServerFn({ method: "GET" })
 
 export const getCase = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
-  .inputValidator((input: { id: string }) => z.object({ id: z.string().uuid() }).parse(input))
+  .validator((input: { id: string }) => z.object({ id: z.string().uuid() }).parse(input))
   .handler(async ({ data, context }) => {
     const { supabase } = context;
     const { data: row, error } = await supabase
@@ -169,7 +169,7 @@ export const getCase = createServerFn({ method: "GET" })
 // mirror getCase; RLS scopes the write to the caller's firm.
 export const updateCase = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
-  .inputValidator((input: { id: string; data: AppData }) =>
+  .validator((input: { id: string; data: AppData }) =>
     z.object({ id: z.string().uuid(), data: z.custom<AppData>() }).parse(input),
   )
   .handler(async ({ data, context }) => {
@@ -229,7 +229,7 @@ async function callEngine(payload: unknown): Promise<AppData> {
 // scopes the write to the caller's firm.
 export const reanalyzeCase = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
-  .inputValidator((input: { id: string; pleading: unknown; bundle: unknown }) =>
+  .validator((input: { id: string; pleading: unknown; bundle: unknown }) =>
     z.object({ id: z.string().uuid(), pleading: z.any(), bundle: z.any() }).parse(input),
   )
   .handler(async ({ data, context }) => {
@@ -250,7 +250,7 @@ export const reanalyzeCase = createServerFn({ method: "POST" })
 // and seeds a new case from the AppData it returns (mirrors createDemoCase's insert).
 export const analyzeBundle = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
-  .inputValidator((input: { files: Array<{ name: string; type: string; size: number }> }) =>
+  .validator((input: { files: Array<{ name: string; type: string; size: number }> }) =>
     z.object({
       files: z.array(z.object({ name: z.string(), type: z.string(), size: z.number() })),
     }).parse(input),
@@ -353,7 +353,7 @@ export const createEuCase = createServerFn({ method: "POST" })
 // Delete a case (RLS scopes it to the user's firm).
 export const deleteCase = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
-  .inputValidator((input: { id: string }) => z.object({ id: z.string().uuid() }).parse(input))
+  .validator((input: { id: string }) => z.object({ id: z.string().uuid() }).parse(input))
   .handler(async ({ data, context }) => {
     const { supabase } = context;
     const { error } = await supabase.from("cases").delete().eq("id", data.id);

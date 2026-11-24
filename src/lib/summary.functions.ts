@@ -16,7 +16,7 @@ No hedging fluff, no markdown, no bullet points, no bold. Plain prose. End with 
 
 export const summariseNode = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
-  .inputValidator((d: unknown) => Input.parse(d))
+  .validator((d: unknown) => Input.parse(d))
   .handler(async ({ data, context }) => {
     const key = process.env.LOVABLE_API_KEY;
     if (!key) throw new Error("LOVABLE_API_KEY missing on server");
